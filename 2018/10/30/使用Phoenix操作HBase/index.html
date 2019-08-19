@@ -1,0 +1,1080 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="使用Phoenix操作HBase, 博客,貍铭">
+    <meta name="description" content="使用Phoenix操作HBase
+
+HBase集群环境搭建参考：CentOS7下搭建HBase集群+HBase基本操作
+下载与HBase版本兼容的Phoenixapache-phoenix-4.14.1-HBase-1.4-bin.tar.">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>使用Phoenix操作HBase | 貍铭的博客</title>
+    <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+        code[class*="language-"], pre[class*="language-"] {
+            white-space: pre !important;
+        }
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-xonokai.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/cyanide3.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">貍铭的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/cyanide3.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">貍铭的博客</div>
+        <div class="logo-desc">
+            
+            长风破浪会有时，直挂云帆济沧海
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/hm-dusk" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/hm-dusk" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        使用Phoenix操作HBase
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/大数据/" target="_blank">
+                                <span class="chip bg-color">大数据</span>
+                            </a>
+                        
+                            <a href="/tags/HBase/" target="_blank">
+                                <span class="chip bg-color">HBase</span>
+                            </a>
+                        
+                            <a href="/tags/Phoenix/" target="_blank">
+                                <span class="chip bg-color">Phoenix</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/大数据/" class="post-category" target="_blank">
+                                大数据
+                            </a>
+                        
+                            <a href="/categories/大数据/HBase/" class="post-category" target="_blank">
+                                HBase
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2018-10-30
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        2,092
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        11 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>使用Phoenix操作HBase</p>
+<a id="more"></a>
+<p>HBase集群环境搭建参考：<a href="http://blog.hming.org/2018/12/15/CentOS7%E4%B8%8B%E6%90%AD%E5%BB%BAHBase%E9%9B%86%E7%BE%A4+HBase%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" target="_blank" rel="noopener">CentOS7下搭建HBase集群+HBase基本操作</a></p>
+<h3 id="下载与HBase版本兼容的Phoenix"><a href="#下载与HBase版本兼容的Phoenix" class="headerlink" title="下载与HBase版本兼容的Phoenix"></a>下载与HBase版本兼容的Phoenix</h3><p><code>apache-phoenix-4.14.1-HBase-1.4-bin.tar.gz</code><br>下载地址：<a href="http://archive.apache.org/dist/phoenix/" target="_blank" rel="noopener">http://archive.apache.org/dist/phoenix/</a></p>
+<h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><p>复制<code>phoenix-4.14.1-HBase-1.4-server.jar</code>到<code>hbase/lib</code>下并分发到从节点</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hadoopmaster phoenix<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># pwd</span>
+/home/phoenix
+<span class="token punctuation">[</span>root@hadoopmaster phoenix<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cp phoenix-4.14.1-HBase-1.4-server.jar /home/hbase/lib/</span>
+//分发
+<span class="token punctuation">[</span>root@hadoopmaster phoenix<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># scp phoenix-4.14.1-HBase-1.4-server.jar hadoop001:/home/hbase/lib/</span>
+phoenix-4.14.1-HBase-1.4-server.jar                     100%   40MB  60.4MB/s   00:00    
+<span class="token punctuation">[</span>root@hadoopmaster phoenix<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># scp phoenix-4.14.1-HBase-1.4-server.jar hadoop002:/home/hbase/lib/</span>
+phoenix-4.14.1-HBase-1.4-server.jar                     100%   40MB  55.1MB/s   00:00    </code></pre>
+<h3 id="重启HBase"><a href="#重启HBase" class="headerlink" title="重启HBase"></a>重启HBase</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hadoopmaster bin<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># stop-hbase.sh</span>
+<span class="token punctuation">..</span>.
+<span class="token punctuation">[</span>root@hadoopmaster bin<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># start-hbase.sh</span>
+<span class="token punctuation">..</span>.</code></pre>
+<h3 id="使用sqlline-py命令行终端"><a href="#使用sqlline-py命令行终端" class="headerlink" title="使用sqlline.py命令行终端"></a>使用sqlline.py命令行终端</h3><p>运行<code>phoenix/bin/sqlline.py</code>脚本，连接zookeeper</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hadoopmaster bin<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># pwd</span>
+/home/phoenix/bin
+<span class="token punctuation">[</span>root@hadoopmaster bin<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ./sqlline.py hadoopmaster:2181</span></code></pre>
+<p><strong>报错：</strong></p>
+<pre class=" language-bash"><code class="language-bash">Error: SYSTEM.CATALOG <span class="token punctuation">(</span>state<span class="token operator">=</span>08000,code<span class="token operator">=</span>101<span class="token punctuation">)</span>
+org.apache.phoenix.exception.PhoenixIOException: SYSTEM.CATALOG
+    at org.apache.phoenix.util.ServerUtil.parseServerException<span class="token punctuation">(</span>ServerUtil.java:144<span class="token punctuation">)</span>
+    at org.apache.phoenix.query.ConnectionQueryServicesImpl.metaDataCoprocessorExec<span class="token punctuation">(</span>ConnectionQueryServicesImpl.java:1379<span class="token punctuation">)</span>
+    at org.apache.phoenix.query.ConnectionQueryServicesImpl.metaDataCoprocessorExec<span class="token punctuation">(</span>ConnectionQueryServicesImpl.java:1343<span class="token punctuation">)</span>
+    at org.apache.phoenix.query.ConnectionQueryServicesImpl.getTable<span class="token punctuation">(</span>ConnectionQueryServicesImpl.java:1560<span class="token punctuation">)</span>
+    at org.apache.phoenix.schema.MetaDataClient.updateCache<span class="token punctuation">(</span>MetaDataClient.java:643<span class="token punctuation">)</span>
+    <span class="token punctuation">..</span>.
+    at sqlline.SqlLine.start<span class="token punctuation">(</span>SqlLine.java:398<span class="token punctuation">)</span>
+    at sqlline.SqlLine.main<span class="token punctuation">(</span>SqlLine.java:291<span class="token punctuation">)</span>
+Caused by: org.apache.hadoop.hbase.TableNotFoundException: SYSTEM.CATALOG
+    at org.apache.hadoop.hbase.client.ConnectionManager<span class="token variable">$HConnectionImplementation</span>.locateRegionInMeta<span class="token punctuation">(</span>ConnectionManager.java:1283<span class="token punctuation">)</span>
+    at org.apache.hadoop.hbase.client.ConnectionManager<span class="token variable">$HConnectionImplementation</span>.locateRegion<span class="token punctuation">(</span>ConnectionManager.java:1181<span class="token punctuation">)</span>
+    at org.apache.hadoop.hbase.client.ConnectionManager<span class="token variable">$HConnectionImplementation</span>.locateRegion<span class="token punctuation">(</span>ConnectionManager.java:1165<span class="token punctuation">)</span>
+    <span class="token punctuation">..</span>.
+    at org.apache.phoenix.query.ConnectionQueryServicesImpl.metaDataCoprocessorExec<span class="token punctuation">(</span>ConnectionQueryServicesImpl.java:1362<span class="token punctuation">)</span>
+    <span class="token punctuation">..</span>. 31 <span class="token function">more</span></code></pre>
+<blockquote>
+<p><strong>解决方案：</strong><br>查看hdfs中<code>/hbase/data/default/</code>目录下是否有<code>SYSTEM.*</code>等文件。如果没有，则：</p>
+<ol>
+<li>停止HBase，保留zookeeper启动</li>
+<li>执行<code>hbase clean --cleanZk</code>命令</li>
+<li>重新启动HBase，使用Phoenix连接<br>参考链接：<a href="https://stackoverflow.com/questions/33176081/org-apache-hadoop-hbase-tablenotfoundexception-system-catalog-exception-with-ph" target="_blank" rel="noopener">stackoverflow</a></li>
+</ol>
+</blockquote>
+<h3 id="连接成功"><a href="#连接成功" class="headerlink" title="连接成功"></a>连接成功</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hadoopmaster bin<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ./sqlline.py hadoop001:2181</span>
+Setting property: <span class="token punctuation">[</span>incremental, false<span class="token punctuation">]</span>
+Setting property: <span class="token punctuation">[</span>isolation, TRANSACTION_READ_COMMITTED<span class="token punctuation">]</span>
+issuing: <span class="token operator">!</span>connect jdbc:phoenix:hadoop001:2181 none none org.apache.phoenix.jdbc.PhoenixDriver
+Connecting to jdbc:phoenix:hadoop001:2181
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding <span class="token keyword">in</span> <span class="token punctuation">[</span>jar:file:/home/apache-phoenix-4.14.0-HBase-1.2-bin/phoenix-4.14.0-HBase-1.2-client.jar<span class="token operator">!</span>/org/slf4j/impl/StaticLoggerBinder.class<span class="token punctuation">]</span>
+SLF4J: Found binding <span class="token keyword">in</span> <span class="token punctuation">[</span>jar:file:/opt/hadoop/hadoop-2.7.6/share/hadoop/common/lib/slf4j-log4j12-1.7.10.jar<span class="token operator">!</span>/org/slf4j/impl/StaticLoggerBinder.class<span class="token punctuation">]</span>
+SLF4J: See http://www.slf4j.org/codes.html<span class="token comment" spellcheck="true">#multiple_bindings for an explanation.</span>
+18/10/30 03:59:49 WARN util.NativeCodeLoader: Unable to load native-hadoop library <span class="token keyword">for</span> your platform<span class="token punctuation">..</span>. using builtin-java classes where applicable
+Connected to: Phoenix <span class="token punctuation">(</span>version 4.14<span class="token punctuation">)</span>
+Driver: PhoenixEmbeddedDriver <span class="token punctuation">(</span>version 4.14<span class="token punctuation">)</span>
+Autocommit status: <span class="token boolean">true</span>
+Transaction isolation: TRANSACTION_READ_COMMITTED
+Building list of tables and columns <span class="token keyword">for</span> tab-completion <span class="token punctuation">(</span>set fastconnect to <span class="token boolean">true</span> to skip<span class="token punctuation">)</span><span class="token punctuation">..</span>.
+133/133 <span class="token punctuation">(</span>100%<span class="token punctuation">)</span> Done
+Done
+sqlline version 1.2.0
+0: jdbc:phoenix:hadoopmaster:2181<span class="token operator">></span><span class="token operator">|</span></code></pre>
+<h3 id="开启schema对应namespace"><a href="#开启schema对应namespace" class="headerlink" title="开启schema对应namespace"></a>开启schema对应namespace</h3><p><strong>Phoenix默认使用的是HBase中default名字空间（namespace），如果要用自定义的namespace，Phoenix中与之对应的是schema的概念，但是默认是关闭的，需要单独配置。</strong></p>
+<ol>
+<li>在<code>hbase/conf/hbase-site.xml</code>、<code>phoenix/bin/hbase-site.xml</code>两个文件中增加以下代码：<pre class=" language-xml"><code class="language-xml"> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>phoenix.schema.isNamespaceMappingEnabled<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>phoenix.schema.mapSystemTablesToNamespace<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span></code></pre>
+</li>
+<li>如果HBase是分布式，则需要将文件分发到其他节点<br>（最好是将该文件也复制到<code>phoenix/bin/</code>保证客户端与服务端的一致性）</li>
+<li>Phoenix其他相关配置参照：<a href="https://phoenix.apache.org/tuning.html" target="_blank" rel="noopener">https://phoenix.apache.org/tuning.html</a><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hadoopmaster conf<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># scp hbase-site.xml hadoop001:/home/hbase/conf/</span>
+hbase-site.xml                              100% 1569     2.2MB/s   00:00    
+<span class="token punctuation">[</span>root@hadoopmaster conf<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># scp hbase-site.xml hadoop002:/home/hbase/conf/</span>
+hbase-site.xml                              100% 1569     1.6MB/s   00:00    </code></pre>
+</li>
+<li>重启HBase，重新连接</li>
+</ol>
+<p><strong><code>报错：Error: ERROR 726 (43M10):  Inconsistent namespace mapping properties. Ensure that config phoenix.schema.isNamespaceMappingEnabled is consistent on client and server. (state=43M10,code=726)</code></strong></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hadoopmaster conf<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#sqlline.py hadoopmaster:2181</span>
+Setting property: <span class="token punctuation">[</span>incremental, false<span class="token punctuation">]</span>
+Setting property: <span class="token punctuation">[</span>isolation, TRANSACTION_READ_COMMITTED<span class="token punctuation">]</span>
+issuing: <span class="token operator">!</span>connect jdbc:phoenix:hadoopmaster:2181 none none org.apache.phoenix.jdbc.PhoenixDriver
+Connecting to jdbc:phoenix:hadoopmaster:2181
+18/12/18 09:41:04 WARN util.NativeCodeLoader: Unable to load native-hadoop library <span class="token keyword">for</span> your platform<span class="token punctuation">..</span>. using builtin-java classes where applicable
+Error: ERROR 726 <span class="token punctuation">(</span>43M10<span class="token punctuation">)</span>:  Inconsistent namespace mapping properties. Ensure that config phoenix.schema.isNamespaceMappingEnabled is consistent on client and server. <span class="token punctuation">(</span>state<span class="token operator">=</span>43M10,code<span class="token operator">=</span>726<span class="token punctuation">)</span>
+java.sql.SQLException: ERROR 726 <span class="token punctuation">(</span>43M10<span class="token punctuation">)</span>:  Inconsistent namespace mapping properties. Ensure that config phoenix.schema.isNamespaceMappingEnabled is consistent on client and server.
+    at org.apache.phoenix.exception.SQLExceptionCode<span class="token variable">$Factory</span><span class="token variable">$1</span>.newException<span class="token punctuation">(</span>SQLExceptionCode.java:494<span class="token punctuation">)</span>
+    at org.apache.phoenix.exception.SQLExceptionInfo.buildException<span class="token punctuation">(</span>SQLExceptionInfo.java:150<span class="token punctuation">)</span>
+    at org.apache.phoenix.query.ConnectionQueryServicesImpl.checkClientServerCompatibility<span class="token punctuation">(</span>ConnectionQueryServicesImpl.java:1310<span class="token punctuation">)</span>
+    at org.apache.phoenix.query.ConnectionQueryServicesImpl.ensureTableCreated<span class="token punctuation">(</span>ConnectionQueryServicesImpl.java:1154<span class="token punctuation">)</span>
+    at org.apache.phoenix.query.ConnectionQueryServicesImpl.createTable<span class="token punctuation">(</span>ConnectionQueryServicesImpl.java:1491<span class="token punctuation">)</span>
+    at org.apache.phoenix.schema.MetaDataClient.createTableInternal<span class="token punctuation">(</span>MetaDataClient.java:2725<span class="token punctuation">)</span>
+    at org.apache.phoenix.schema.MetaDataClient.createTable<span class="token punctuation">(</span>MetaDataClient.java:1114<span class="token punctuation">)</span>
+    at org.apache.phoenix.compile.CreateTableCompiler<span class="token variable">$1</span>.execute<span class="token punctuation">(</span>CreateTableCompiler.java:192<span class="token punctuation">)</span>
+    at org.apache.phoenix.jdbc.PhoenixStatement<span class="token variable">$2</span>.call<span class="token punctuation">(</span>PhoenixStatement.java:408<span class="token punctuation">)</span>
+    at org.apache.phoenix.jdbc.PhoenixStatement<span class="token variable">$2</span>.call<span class="token punctuation">(</span>PhoenixStatement.java:391<span class="token punctuation">)</span>
+    at org.apache.phoenix.call.CallRunner.run<span class="token punctuation">(</span>CallRunner.java:53<span class="token punctuation">)</span>
+    at org.apache.phoenix.jdbc.PhoenixStatement.executeMutation<span class="token punctuation">(</span>PhoenixStatement.java:390<span class="token punctuation">)</span>
+    at org.apache.phoenix.jdbc.PhoenixStatement.executeMutation<span class="token punctuation">(</span>PhoenixStatement.java:378<span class="token punctuation">)</span>
+    at org.apache.phoenix.jdbc.PhoenixStatement.executeUpdate<span class="token punctuation">(</span>PhoenixStatement.java:1806<span class="token punctuation">)</span>
+    at org.apache.phoenix.query.ConnectionQueryServicesImpl<span class="token variable">$12</span>.call<span class="token punctuation">(</span>ConnectionQueryServicesImpl.java:2536<span class="token punctuation">)</span>
+    at org.apache.phoenix.query.ConnectionQueryServicesImpl<span class="token variable">$12</span>.call<span class="token punctuation">(</span>ConnectionQueryServicesImpl.java:2499<span class="token punctuation">)</span>
+    at org.apache.phoenix.util.PhoenixContextExecutor.call<span class="token punctuation">(</span>PhoenixContextExecutor.java:76<span class="token punctuation">)</span>
+    at org.apache.phoenix.query.ConnectionQueryServicesImpl.init<span class="token punctuation">(</span>ConnectionQueryServicesImpl.java:2499<span class="token punctuation">)</span>
+    at org.apache.phoenix.jdbc.PhoenixDriver.getConnectionQueryServices<span class="token punctuation">(</span>PhoenixDriver.java:255<span class="token punctuation">)</span>
+    at org.apache.phoenix.jdbc.PhoenixEmbeddedDriver.createConnection<span class="token punctuation">(</span>PhoenixEmbeddedDriver.java:150<span class="token punctuation">)</span>
+    at org.apache.phoenix.jdbc.PhoenixDriver.connect<span class="token punctuation">(</span>PhoenixDriver.java:221<span class="token punctuation">)</span>
+    at sqlline.DatabaseConnection.connect<span class="token punctuation">(</span>DatabaseConnection.java:157<span class="token punctuation">)</span>
+    at sqlline.DatabaseConnection.getConnection<span class="token punctuation">(</span>DatabaseConnection.java:203<span class="token punctuation">)</span>
+    at sqlline.Commands.connect<span class="token punctuation">(</span>Commands.java:1064<span class="token punctuation">)</span>
+    at sqlline.Commands.connect<span class="token punctuation">(</span>Commands.java:996<span class="token punctuation">)</span>
+    at sun.reflect.NativeMethodAccessorImpl.invoke0<span class="token punctuation">(</span>Native Method<span class="token punctuation">)</span>
+    at sun.reflect.NativeMethodAccessorImpl.invoke<span class="token punctuation">(</span>NativeMethodAccessorImpl.java:62<span class="token punctuation">)</span>
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke<span class="token punctuation">(</span>DelegatingMethodAccessorImpl.java:43<span class="token punctuation">)</span>
+    at java.lang.reflect.Method.invoke<span class="token punctuation">(</span>Method.java:498<span class="token punctuation">)</span>
+    at sqlline.ReflectiveCommandHandler.execute<span class="token punctuation">(</span>ReflectiveCommandHandler.java:38<span class="token punctuation">)</span>
+    at sqlline.SqlLine.dispatch<span class="token punctuation">(</span>SqlLine.java:809<span class="token punctuation">)</span>
+    at sqlline.SqlLine.initArgs<span class="token punctuation">(</span>SqlLine.java:588<span class="token punctuation">)</span>
+    at sqlline.SqlLine.begin<span class="token punctuation">(</span>SqlLine.java:661<span class="token punctuation">)</span>
+    at sqlline.SqlLine.start<span class="token punctuation">(</span>SqlLine.java:398<span class="token punctuation">)</span>
+    at sqlline.SqlLine.main<span class="token punctuation">(</span>SqlLine.java:291<span class="token punctuation">)</span>
+sqlline version 1.2.0</code></pre>
+<p><code>原因：hbase和Phoenix配置不一致导致，需要将上述两个地方的文件都作修改。</code></p>
+<h3 id="基本操作（常用命令）"><a href="#基本操作（常用命令）" class="headerlink" title="基本操作（常用命令）"></a>基本操作（常用命令）</h3><p><strong>注意：HBase是大小写敏感，Phoenix操作时需要添加双引号，如果不添加双引号的话会统一转换成大写</strong></p>
+<pre class=" language-bash"><code class="language-bash">//查看帮助
+<span class="token variable">$sqlline</span><span class="token operator">></span> <span class="token operator">!</span>help
+//列出连接
+<span class="token variable">$sqlline</span><span class="token operator">></span> <span class="token operator">!</span>list
+//显式表
+<span class="token variable">$sqlilne</span><span class="token operator">></span> <span class="token operator">!</span>tables
+//列出所有列
+<span class="token variable">$sqlline</span><span class="token operator">></span> <span class="token operator">!</span>columns myns.test
+//创建schema（相当于数据库）
+<span class="token variable">$sqlline</span><span class="token operator">></span> create schema wndb<span class="token punctuation">;</span>
+//删除表结构
+<span class="token variable">$sqlline</span><span class="token operator">></span> drop table <span class="token string">"test"</span><span class="token punctuation">;</span>
+//创建表
+<span class="token variable">$sqlline</span><span class="token operator">></span> create table <span class="token string">"ns1"</span><span class="token keyword">.</span><span class="token string">"test"</span><span class="token punctuation">(</span>id integer primary key ,name varchar,age integer<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+//创建表并指定列族
+<span class="token variable">$sqlline</span><span class="token operator">></span> create table <span class="token string">"ns1"</span><span class="token keyword">.</span><span class="token string">"test"</span><span class="token punctuation">(</span>id integer primary key ,<span class="token string">"cf1"</span>.name varchar,<span class="token string">"cf2"</span>.age integer<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+//插入数据和更新数据
+<span class="token variable">$sqlline</span><span class="token operator">></span> upsert into <span class="token string">"myns"</span><span class="token keyword">.</span><span class="token string">"test"</span><span class="token punctuation">(</span>id,name,age<span class="token punctuation">)</span> values<span class="token punctuation">(</span>1,<span class="token string">'tom'</span>,12<span class="token punctuation">)</span>
+//删除
+<span class="token variable">$sqlline</span><span class="token operator">></span> delete from <span class="token string">"myns"</span><span class="token keyword">.</span><span class="token string">"test"</span> where <span class="token function">id</span> <span class="token operator">=</span> 1 <span class="token punctuation">;</span> 
+//条件查询
+<span class="token variable">$sqlline</span><span class="token operator">></span> <span class="token keyword">select</span> * from <span class="token string">"myns"</span><span class="token keyword">.</span><span class="token string">"test"</span> where name like <span class="token string">'t%'</span> <span class="token punctuation">;</span></code></pre>
+<h3 id="创建ID自增的表"><a href="#创建ID自增的表" class="headerlink" title="创建ID自增的表"></a>创建ID自增的表</h3><p><code>Phoenix中创建表时，必须制定主键。</code><br>在关系型数据库中（如：mysql）设置主键自增非常容易，但是Phoenix中不能直接设置主键自增，需要额外新建一个自增序列<code>sequence</code>，当插入表数据时，根据<code>sequence</code>的值，来进行自增id的插入。</p>
+<ol>
+<li><p>语法</p>
+<pre class=" language-sql"><code class="language-sql"> <span class="token keyword">CREATE</span> SEQUENCE <span class="token punctuation">[</span><span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span><span class="token punctuation">]</span> <span class="token keyword">SCHEMA</span><span class="token punctuation">.</span>SEQUENCE_NAME
+ <span class="token punctuation">[</span><span class="token keyword">START</span> <span class="token keyword">WITH</span> number<span class="token punctuation">]</span>
+ <span class="token punctuation">[</span>INCREMENT <span class="token keyword">BY</span> number<span class="token punctuation">]</span>
+ <span class="token punctuation">[</span>MINVALUE number<span class="token punctuation">]</span>
+ <span class="token punctuation">[</span>MAXVALUE number<span class="token punctuation">]</span>
+ <span class="token punctuation">[</span>CYCLE<span class="token punctuation">]</span>
+ <span class="token punctuation">[</span>CACHE number<span class="token punctuation">]</span></code></pre>
+</li>
+<li><p>参数说明</p>
+<ul>
+<li><code>start</code>用于指定第一个值。如果不指定默认为1。</li>
+<li><code>increment</code>指定每次调用<code>next value for</code>后自增大小。 如果不指定默认为1。</li>
+<li><code>minvalue</code>和<code>maxvalue</code>一般与<code>cycle</code>连用, 让自增数据形成一个环，从最小值到最大值，再从最大值到最小值。</li>
+<li><code>cache</code>默认为100, 表示server端生成100个自增序列缓存在客户端，可以减少rpc次数。此值也可以通过<code>phoenix.sequence.cacheSize</code>来配置。</li>
+</ul>
+</li>
+<li><p>案例与注意事项<br> <strong><code>注意cache值：如果一次插入个数小于该数n，则断开连接后，由于缓存在客户端，下次重新连接后插入会接着生成n个缓存数来使用，导致自增序列不连续</code></strong><br> 案例如下：</p>
+<pre class=" language-bash"><code class="language-bash"> <span class="token comment" spellcheck="true"># 演示表a中无数据</span>
+ <span class="token variable">$sqlline</span><span class="token operator">></span> <span class="token keyword">select</span> * from a<span class="token punctuation">;</span>
+ +-----+------+-------+
+ <span class="token operator">|</span> ID  <span class="token operator">|</span> AGE  <span class="token operator">|</span> NAME  <span class="token operator">|</span>
+ +-----+------+-------+
+ +-----+------+-------+
+ <span class="token comment" spellcheck="true"># 1、创建一个自增序列test，缓存大小设置为50</span>
+ <span class="token variable">$sqlline</span><span class="token operator">></span> create sequence <span class="token function">test</span> cache 50<span class="token punctuation">;</span>
+ No rows affected <span class="token punctuation">(</span>0.016 seconds<span class="token punctuation">)</span>
+ <span class="token comment" spellcheck="true"># 查看序列详情</span>
+ <span class="token variable">$sqlline</span><span class="token operator">></span> <span class="token keyword">select</span> * from system.<span class="token string">"SEQUENCE"</span><span class="token punctuation">;</span>
+ +---------+---------------+-------------+----------+-------------+------------+----------+--------------------+-----------------+
+ <span class="token operator">|</span>TENANT_ID<span class="token operator">|</span>SEQUENCE_SCHEMA<span class="token operator">|</span>SEQUENCE_NAME<span class="token operator">|</span>START_WITH<span class="token operator">|</span>CURRENT_VALUE<span class="token operator">|</span>INCREMENT_BY<span class="token operator">|</span>CACHE_SIZE<span class="token operator">|</span>      MIN_VALUE     <span class="token operator">|</span>     MAX_VALUE   <span class="token operator">|</span>
+ +---------+---------------+-------------+----------+-------------+------------+----------+--------------------+-----------------+
+ <span class="token operator">|</span>         <span class="token operator">|</span>               <span class="token operator">|</span>TEST         <span class="token operator">|</span>1         <span class="token operator">|</span>1            <span class="token operator">|</span>1           <span class="token operator">|</span>50        <span class="token operator">|</span>-9223372036854775808<span class="token operator">|</span>92233720368547758<span class="token operator">|</span>
+ +---------+---------------+-------------+----------+-------------+------------+----------+--------------------+-----------------+
+ <span class="token comment" spellcheck="true"># 2、向演示表a中插入数据，id使用test序列中的值</span>
+ <span class="token variable">$sqlline</span><span class="token operator">></span> upsert into a values<span class="token punctuation">(</span>next value <span class="token keyword">for</span> test, 20, <span class="token string">'zhangsan'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ 1 row affected <span class="token punctuation">(</span>0.019 seconds<span class="token punctuation">)</span>
+ <span class="token variable">$sqlline</span><span class="token operator">></span> upsert into a values<span class="token punctuation">(</span>next value <span class="token keyword">for</span> test, 30, <span class="token string">'zhangsan1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ 1 row affected <span class="token punctuation">(</span>0.019 seconds<span class="token punctuation">)</span>
+ <span class="token variable">$sqlline</span><span class="token operator">></span> upsert into a values<span class="token punctuation">(</span>next value <span class="token keyword">for</span> test, 40, <span class="token string">'zhangsan2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ 1 row affected <span class="token punctuation">(</span>0.019 seconds<span class="token punctuation">)</span>
+ <span class="token comment" spellcheck="true"># 成功插入多条数据，id自增</span>
+ <span class="token variable">$sqlline</span><span class="token operator">></span> <span class="token keyword">select</span> * from a<span class="token punctuation">;</span>
+ +-----+-------+-----------+
+ <span class="token operator">|</span> ID  <span class="token operator">|</span>  AGE  <span class="token operator">|</span>   NAME    <span class="token operator">|</span>
+ +-----+-------+-----------+
+ <span class="token operator">|</span> 1   <span class="token operator">|</span> 20.0  <span class="token operator">|</span> zhangsan  <span class="token operator">|</span>
+ <span class="token operator">|</span> 2   <span class="token operator">|</span> 30.0  <span class="token operator">|</span> zhangsan1 <span class="token operator">|</span>
+ <span class="token operator">|</span> 3   <span class="token operator">|</span> 40.0  <span class="token operator">|</span> zhangsan2 <span class="token operator">|</span>
+ +-----+-------+-----------+
+ <span class="token comment" spellcheck="true"># 3、退出当前连接</span>
+ <span class="token variable">$sqlline</span><span class="token operator">></span> <span class="token operator">!</span>quit
+ Closing: org.apache.phoenix.jdbc.PhoenixConnection
+
+ <span class="token comment" spellcheck="true"># 4、重新连接</span>
+ <span class="token punctuation">[</span>root@hadoopmaster shell<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># sqlline.py hadoopmaster,hadoop001,hadoop002:2181</span>
+ <span class="token punctuation">..</span>.
+ 155/155 <span class="token punctuation">(</span>100%<span class="token punctuation">)</span> Done
+ Done
+ sqlline version 1.2.0
+ <span class="token comment" spellcheck="true"># 查看当前自增序列状态，发现当前值CURRENT_VALUE已经变为51</span>
+ <span class="token variable">$sqlline</span><span class="token operator">></span> <span class="token keyword">select</span> * from system.<span class="token string">"SEQUENCE"</span><span class="token punctuation">;</span>
+ +---------+---------------+-------------+----------+-------------+------------+----------+--------------------+-----------------+
+ <span class="token operator">|</span>TENANT_ID<span class="token operator">|</span>SEQUENCE_SCHEMA<span class="token operator">|</span>SEQUENCE_NAME<span class="token operator">|</span>START_WITH<span class="token operator">|</span>CURRENT_VALUE<span class="token operator">|</span>INCREMENT_BY<span class="token operator">|</span>CACHE_SIZE<span class="token operator">|</span>      MIN_VALUE     <span class="token operator">|</span>     MAX_VALUE   <span class="token operator">|</span>
+ +---------+---------------+-------------+----------+-------------+------------+----------+--------------------+-----------------+
+ <span class="token operator">|</span>         <span class="token operator">|</span>               <span class="token operator">|</span>TEST         <span class="token operator">|</span>1         <span class="token operator">|</span>51           <span class="token operator">|</span>1           <span class="token operator">|</span>50        <span class="token operator">|</span>-9223372036854775808<span class="token operator">|</span>92233720368547758<span class="token operator">|</span>
+ +---------+---------------+-------------+----------+-------------+------------+----------+--------------------+-----------------+
+ <span class="token comment" spellcheck="true"># 5、继续使用test序列值插入演示表a</span>
+ <span class="token variable">$sqlline</span><span class="token operator">></span> upsert into a values<span class="token punctuation">(</span>next value <span class="token keyword">for</span> test, 21, <span class="token string">'lisi'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ 1 row affected <span class="token punctuation">(</span>0.067 seconds<span class="token punctuation">)</span>
+ <span class="token comment" spellcheck="true"># 6、发现id已经变为51，导致id不连续的问题</span>
+ <span class="token variable">$sqlline</span><span class="token operator">></span> <span class="token keyword">select</span> * from a<span class="token punctuation">;</span>
+ +-----+-------+-----------+
+ <span class="token operator">|</span> ID  <span class="token operator">|</span>  AGE  <span class="token operator">|</span>   NAME    <span class="token operator">|</span>
+ +-----+-------+-----------+
+ <span class="token operator">|</span> 1   <span class="token operator">|</span> 20.0  <span class="token operator">|</span> zhangsan  <span class="token operator">|</span>
+ <span class="token operator">|</span> 2   <span class="token operator">|</span> 30.0  <span class="token operator">|</span> zhangsan1 <span class="token operator">|</span>
+ <span class="token operator">|</span> 3   <span class="token operator">|</span> 40.0  <span class="token operator">|</span> zhangsan2 <span class="token operator">|</span>
+ <span class="token operator">|</span> 51  <span class="token operator">|</span> 21.0  <span class="token operator">|</span> lisi      <span class="token operator">|</span>
+ +-----+-------+-----------+</code></pre>
+<h3 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h3></li>
+</ol>
+
+            </div>
+            <hr/>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '5d9119965bca0418a356',
+        clientSecret: '9f807f3b84131fb73cd00b374d87d2829674d456',
+        repo: 'gitalk',
+        owner: 'hm-dusk',
+        admin: "hm-dusk",
+        id: '2018-10-30T20-09-11',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2018/10/31/CentOS7下搭建kubernetes环境/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="CentOS7下搭建Kubernetes环境">
+                        
+                        <span class="card-title">CentOS7下搭建Kubernetes环境</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            CentOS7使用kubeadm安装kubernetes 1.11版本多主高可用（进行中）
+
+1.11多主高可用1.10kubeadm安装
+安装配置docker
+v1.11.0版本推荐使用docker v17.03,  v1.11,v1.1
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2018-10-31
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/容器/" class="post-category" target="_blank">
+                                    容器
+                                </a>
+                            
+                            <a href="/categories/容器/K8s/" class="post-category" target="_blank">
+                                    K8s
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/集群/" target="_blank">
+                        <span class="chip bg-color">集群</span>
+                    </a>
+                    
+                    <a href="/tags/K8s/" target="_blank">
+                        <span class="chip bg-color">K8s</span>
+                    </a>
+                    
+                    <a href="/tags/容器/" target="_blank">
+                        <span class="chip bg-color">容器</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2018/10/20/Docker容器固定IP/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Docker容器固定IP">
+                        
+                        <span class="card-title">Docker容器固定IP</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Docker启动容器后一般是分配随机ip，本文将介绍如何使用Docker生成静态ip
+
+创建自定义网络[root@hadoopmaster bin]# docker network create --subnet=172.18.0.0/16
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-10-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/容器/" class="post-category" target="_blank">
+                                    容器
+                                </a>
+                            
+                            <a href="/categories/容器/Docker/" class="post-category" target="_blank">
+                                    Docker
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/容器/" target="_blank">
+                        <span class="chip bg-color">容器</span>
+                    </a>
+                    
+                    <a href="/tags/Docker/" target="_blank">
+                        <span class="chip bg-color">Docker</span>
+                    </a>
+                    
+                    <a href="/tags/IP/" target="_blank">
+                        <span class="chip bg-color">IP</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">56.8k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/hm-dusk" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1322260665@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1322260665@qq.com" class="tooltipped" data-tooltip="QQ联系我: 1322260665@qq.com" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

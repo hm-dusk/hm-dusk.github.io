@@ -1,0 +1,1117 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="MongoDB的安装以及MongoDB Replicat Set复制集的搭建, 博客,貍铭">
+    <meta name="description" content="记录MongoDB在Linux下的安装过程和MongoDB Replicat Set复制集的搭建过程。
+
+一、搭建MongoDB单机环境MongoDB 是一个基于分布式文件存储的数据库。由 C++ 语言编写。旨在为 WEB 应用提供可扩展的">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>MongoDB的安装以及MongoDB Replicat Set复制集的搭建 | 貍铭的博客</title>
+    <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+        code[class*="language-"], pre[class*="language-"] {
+            white-space: pre !important;
+        }
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-xonokai.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/cyanide3.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">貍铭的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/cyanide3.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">貍铭的博客</div>
+        <div class="logo-desc">
+            
+            长风破浪会有时，直挂云帆济沧海
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/hm-dusk" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/hm-dusk" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        MongoDB的安装以及MongoDB Replicat Set复制集的搭建
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Linux/" target="_blank">
+                                <span class="chip bg-color">Linux</span>
+                            </a>
+                        
+                            <a href="/tags/Mongodb/" target="_blank">
+                                <span class="chip bg-color">Mongodb</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/数据库/" class="post-category" target="_blank">
+                                数据库
+                            </a>
+                        
+                            <a href="/categories/数据库/Mongodb/" class="post-category" target="_blank">
+                                Mongodb
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2017-07-29
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        2,357
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        10 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>记录MongoDB在Linux下的安装过程和MongoDB Replicat Set复制集的搭建过程。</p>
+<a id="more"></a>
+<h2 id="一、搭建MongoDB单机环境"><a href="#一、搭建MongoDB单机环境" class="headerlink" title="一、搭建MongoDB单机环境"></a>一、搭建MongoDB单机环境</h2><p>MongoDB 是一个基于分布式文件存储的数据库。由 C++ 语言编写。旨在为 WEB 应用提供可扩展的高性能数据存储解决方案。</p>
+<h3 id="A、使用APT安装"><a href="#A、使用APT安装" class="headerlink" title="A、使用APT安装"></a>A、使用APT安装</h3><p><a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/" target="_blank" rel="noopener">参考官方安装文档</a></p>
+<h4 id="1-导入public-key"><a href="#1-导入public-key" class="headerlink" title="1. 导入public key"></a>1. 导入public key</h4><pre><code>sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6</code></pre><h4 id="2-导入源（不同Ubuntu版本的源不一样，此处采用Ubuntu-16-04）"><a href="#2-导入源（不同Ubuntu版本的源不一样，此处采用Ubuntu-16-04）" class="headerlink" title="2. 导入源（不同Ubuntu版本的源不一样，此处采用Ubuntu 16.04）"></a>2. 导入源（不同Ubuntu版本的源不一样，此处采用Ubuntu 16.04）</h4><pre><code>echo &quot;deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse&quot; | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list</code></pre><h4 id="3-重新加载本地源"><a href="#3-重新加载本地源" class="headerlink" title="3. 重新加载本地源"></a>3. 重新加载本地源</h4><pre><code>sudo apt-get update</code></pre><h4 id="4-安装mongodb"><a href="#4-安装mongodb" class="headerlink" title="4. 安装mongodb"></a>4. 安装mongodb</h4><pre><code>sudo apt-get install -y mongodb-org</code></pre><h4 id="5-修改配置文件"><a href="#5-修改配置文件" class="headerlink" title="5. 修改配置文件"></a>5. 修改配置文件</h4><blockquote>
+<p>配置文件默认文件目录/etc/mongod.conf<br>默认存储其数据文件/var/lib/mongodb<br>默认日志文件/var/log/mongodb/mongod.log<br><img src="http://image.hming.org/mongodb%E5%A4%8D%E5%88%B6%E9%9B%86%E6%90%AD%E5%BB%BA/%E9%BB%98%E8%AE%A4mongodb%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.jpg" alt></p>
+</blockquote>
+<h4 id="6-启动mongodb"><a href="#6-启动mongodb" class="headerlink" title="6. 启动mongodb"></a>6. 启动mongodb</h4><pre><code>mongod -f /etc/mongod.conf</code></pre><h4 id="7-卸载mongodb"><a href="#7-卸载mongodb" class="headerlink" title="7. 卸载mongodb"></a>7. 卸载mongodb</h4><p>1)停止mongodb服务</p>
+<pre><code>sudo service mongod stop</code></pre><p>2)删除软件包<br>删除您以前安装的任何MongoDB包。</p>
+<pre><code>sudo apt-get purge mongodb-org *</code></pre><p>3)删除数据目录<br>删除数据库和日志文件</p>
+<pre><code>sudo rm -r / var / log / mongodb 
+sudo rm -r / var / lib / mongodb</code></pre><h3 id="B、使用安装包安装"><a href="#B、使用安装包安装" class="headerlink" title="B、使用安装包安装"></a>B、使用安装包安装</h3><p>到<a href="https://mirrors.tuna.tsinghua.edu.cn/mongodb/apt/ubuntu/dists/xenial/mongodb-org/" target="_blank" rel="noopener">清华开源镜像</a>下载相应的包</p>
+<h4 id="1-解压到需要安装的目录"><a href="#1-解压到需要安装的目录" class="headerlink" title="1. 解压到需要安装的目录"></a>1. 解压到需要安装的目录</h4><pre><code>tar zxvf mongodb-linux-x86_64-ubuntu1604-3.4.4.tgz</code></pre><blockquote>
+<p>tar命令参数详解：<br>-c ：建立打包档案，可搭配-v 来察看过程中被打包的档名(filename)<br>-t ：察看打包档案的内容含有哪些档名，重点在察看『档名』就是了；<br>-x ：解打包或解压缩的功能，可以搭配-C (大写) 在特定目录解开<br><em>特别留意的是， -c, -t, -x 不可同时出现在一串指令列中。</em><br>-z ：透过gzip 的支援进行压缩/解压缩：此时档名最好为<code>*.tar.gz</code><br>-j ：透过bzip2 的支援进行压缩/解压缩：此时档名最好为<code>*.tar.bz2</code><br>-J ：透过xz 的支援进行压缩/解压缩：此时档名最好为<code>*.tar.xz</code><br><em>特别留意， -z, -j, -J 不可以同时出现在一串指令列中。</em><br>-v ：在压缩/解压缩的过程中，将正在处理的档名显示出来！<br>-f filename：-f 后面要立刻接要被处理的档名！建议-f 单独写一个选项啰！(比较不会忘记)<br>-C 目录：这个选项用在解压缩，若要在特定目录解压缩，可以使用这个选项。<br>更多的压缩命令参考<a href="http://linux.vbird.org/linux_basic/0240tarcompress.php#compress_name" target="_blank" rel="noopener">鸟哥的Linux私房菜之档案的压缩、解压</a></p>
+</blockquote>
+<h4 id="2-创建存放数据文件目录以及日志文件目录（可以自己指定）"><a href="#2-创建存放数据文件目录以及日志文件目录（可以自己指定）" class="headerlink" title="2. 创建存放数据文件目录以及日志文件目录（可以自己指定）"></a>2. 创建存放数据文件目录以及日志文件目录（可以自己指定）</h4><p>可以创建多个数据库存放路径，每个数据库对应一个conf配置文件，mongodb只需要安装一次</p>
+<pre><code>mkdir -p /mongodb/db  # 创建数据文件夹
+mkdir -p /mongodb/log
+touch /mongodb/log/mongodb.log  #创建文件</code></pre><h4 id="3-在适当的路径编辑配置文件（后缀可选conf和yaml）"><a href="#3-在适当的路径编辑配置文件（后缀可选conf和yaml）" class="headerlink" title="3. 在适当的路径编辑配置文件（后缀可选conf和yaml）"></a>3. 在适当的路径编辑配置文件（后缀可选conf和yaml）</h4><pre><code>vi mongodb.conf</code></pre><p>配置文件模板：</p>
+<pre><code># mongodb.conf
+# Where and how to store data.
+storage:
+  dbPath: /mongodb/data
+  journal:
+    enabled: true
+#  engine:
+#  mmapv1:
+#  wiredTiger:
+
+# where to write logging data.
+systemLog:
+  destination: file
+  logAppend: true
+  path: /mongodb/log/mongodb.log 
+
+# network interfaces
+net:
+  port: 28001
+ # bindIp: 127.0.0.1
+
+processManagement:
+  fork: true
+#security:
+#operationProfiling:</code></pre><blockquote>
+<p>文件路径修改为设置的存储路径，端口可自定义（一般推荐27或者28开头的5位数）</p>
+</blockquote>
+<h4 id="4-配置环境变量PATH路径"><a href="#4-配置环境变量PATH路径" class="headerlink" title="4. 配置环境变量PATH路径"></a>4. 配置环境变量PATH路径</h4><pre><code># 这里也可以修改~/.bashrc文件（区别见下表）
+sudo vi /etc/profile
+
+# 追加(路径是放置Mongodb安装包的bin路径)
+export PATH=/home/dusk/mongodb/bin:$PATH</code></pre><blockquote>
+<p>Linux中profile、bashrc、bash_profile之间的区别和联系</p>
+<table>
+<thead>
+<tr>
+<th align="center">文件名</th>
+<th align="center">作用区间</th>
+<th align="center">执行时间</th>
+<th align="center">修改后是否需要重启</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">/etc/profile</td>
+<td align="center">该系统下每个用户</td>
+<td align="center">用户第一次登陆</td>
+<td align="center">是（<code>source /etc/profile</code>）</td>
+</tr>
+<tr>
+<td align="center">/etc/bashrc</td>
+<td align="center">该系统下每个用户</td>
+<td align="center">用户新打开shell</td>
+<td align="center">否</td>
+</tr>
+<tr>
+<td align="center">~/.bash_profile</td>
+<td align="center">当前用户</td>
+<td align="center">用户第一次登陆</td>
+<td align="center">是（<code>source ~/.bash_profile</code>）</td>
+</tr>
+<tr>
+<td align="center">~/.bashrc</td>
+<td align="center">当前用户</td>
+<td align="center">用户新打开shell</td>
+<td align="center">否</td>
+</tr>
+<tr>
+<td align="center">~/.bash_logout</td>
+<td align="center">当前用户</td>
+<td align="center">退出shell</td>
+<td align="center">否</td>
+</tr>
+</tbody></table>
+<ul>
+<li><em>/etc/profile</em>：该文件为系统的每个用户的环境信息文件，对每个用户生效。当用户第一次登陆的时候会执行这个文件加载里面的shell配置，所以修改这个文件之后要重启设置才能生效–&gt;source /etc/profile</li>
+<li><em>/etc/bashrc</em>：为每一个执行bash shell的用户执行此文件，当bash shell被打开时，该文件被读取。修改后只需要重新打开一个bash即可生效</li>
+<li><em>~/.bash_profile</em>：每个用户目录下都有这个文件，用户可以通过修改这个文件来设置自己专用的shell信息，该文件中设置了一些环境变量，执行用户的.bashrc文件。该文件类似于/etc/profile，需要重新启动才会生效，只对当前用户生效。</li>
+<li><em>~/.bashrc</em>：该文件包含专用于你自己的bash shell信息，每次打开新的shell时被读取，只对当前用户新打开的bash生效。</li>
+<li><em>~/.bash_logout</em>：当该用户退出bash shell时执行</li>
+</ul>
+</blockquote>
+<h4 id="5-如果修改的是-etc-profile，则需要重新启动配置文件"><a href="#5-如果修改的是-etc-profile，则需要重新启动配置文件" class="headerlink" title="5. 如果修改的是/etc/profile，则需要重新启动配置文件"></a>5. 如果修改的是/etc/profile，则需要重新启动配置文件</h4><pre><code>source /etc/profile</code></pre><h4 id="6-在配置文件路径启动mongodb"><a href="#6-在配置文件路径启动mongodb" class="headerlink" title="6. 在配置文件路径启动mongodb"></a>6. 在配置文件路径启动mongodb</h4><pre><code>mongod -f mongodb.conf</code></pre><h3 id="关闭MongoDB"><a href="#关闭MongoDB" class="headerlink" title="关闭MongoDB"></a>关闭MongoDB</h3><ol>
+<li>使用mongod命令<pre><code>mongod --shutdown --dbpath /数据库储存路径</code></pre></li>
+<li>连接进mongodb数据库关闭<pre><code># 进入mongoshell
+mongo --port=28001
+# 使用admin数据库（只有在admin下才能执行shutdown方法）
+use admin
+# 关闭mongodb服务
+db.shutdownServer()</code></pre></li>
+<li>查看mongodb的进程，用kill杀掉进程<br><code>不推荐这种方式，会有丢失数据的风险</code></li>
+</ol>
+<hr>
+<h2 id="二、搭建MongoDB-Replicat-Set复制集"><a href="#二、搭建MongoDB-Replicat-Set复制集" class="headerlink" title="二、搭建MongoDB Replicat Set复制集"></a>二、搭建MongoDB Replicat Set复制集</h2><p>MongoDB Replica Set是MongoDB官方推荐的主从复制和高可用方案，用于替代原有的Master-Slave主从复制方案。<br>不懂原理的可以<a href="http://www.linuxidc.com/Linux/2015-02/113296.htm" target="_blank" rel="noopener">点击这里</a>查看复制集原理（<code>推荐了解原理后再搭建</code>）<br><img src="http://image.hming.org/mongodb%E5%A4%8D%E5%88%B6%E9%9B%86%E6%90%AD%E5%BB%BA/%E5%A4%8D%E5%88%B6%E9%9B%86.jpg" alt></p>
+<h3 id="1-搭建环境（电脑配置）"><a href="#1-搭建环境（电脑配置）" class="headerlink" title="1.搭建环境（电脑配置）"></a>1.搭建环境（电脑配置）</h3><p>在需要布置为节点的机器上安装好MongoDB环境，参照上面的教程</p>
+<table>
+<thead>
+<tr>
+<th align="center">节点</th>
+<th align="center">主机名(IP地址):端口号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Primary Node(主节点)</td>
+<td align="center">node1:28001</td>
+</tr>
+<tr>
+<td align="center">Secondary Node(次节点)</td>
+<td align="center">node2:28001</td>
+</tr>
+<tr>
+<td align="center">Arbiter Node(投票节点)</td>
+<td align="center">node3:28001</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><em>当然，你也可以在一台电脑上搭建复制集，但是端口一定不要冲突</em></p>
+</blockquote>
+<h3 id="2-确保每个节点数据、日志文件都建立完毕"><a href="#2-确保每个节点数据、日志文件都建立完毕" class="headerlink" title="2.确保每个节点数据、日志文件都建立完毕"></a>2.确保每个节点数据、日志文件都建立完毕</h3><pre><code># 数据目录
+mkdir -p /mongodb/data/
+# 日志目录
+mkdir -p /mongodb/log/
+# 创建日志文件
+touch /mongodb/log/mongodb.log
+# 配置文件目录
+mkdir -p /mongodb/conf</code></pre><blockquote>
+<p>参考上面的mongodb环境搭建</p>
+</blockquote>
+<h3 id="3-修改每个节点的配置文件（重点）"><a href="#3-修改每个节点的配置文件（重点）" class="headerlink" title="3.修改每个节点的配置文件（重点）"></a>3.修改每个节点的配置文件（重点）</h3><pre><code># 例：
+vi /mongodb/conf/mongodb.yaml</code></pre><p>在文件后面追加：</p>
+<pre><code># 副本
+replication:
+  #设置复制集名称，可自定义
+  replSetName: DBTEST
+  #设置操作日志的大小(important)
+  oplogSizeMB: 10240
+#sharding:
+## Enterprise-Only Options:
+#auditLog:
+#snmp:</code></pre><blockquote>
+<p><em>复制集名称每个节点一定要一样</em></p>
+</blockquote>
+<h3 id="4-启动每个节点"><a href="#4-启动每个节点" class="headerlink" title="4.启动每个节点"></a>4.启动每个节点</h3><pre><code>mongod -f /mongodb/conf/mongodb.conf</code></pre><h3 id="5-进入一个节点配置复制集（重点）"><a href="#5-进入一个节点配置复制集（重点）" class="headerlink" title="5.进入一个节点配置复制集（重点）"></a>5.进入一个节点配置复制集（重点）</h3><pre><code>#任意一个节点上(最好选在主节点node1)
+mongo --port 28001</code></pre><p>在mongo shell中配置副本<br><em>输入rs.help()可以查看rs的各种方法</em></p>
+<pre><code># 初始化复制集
+rs.initiate()
+# 显示复制集配置对象
+rs.conf()
+# 将其余成员添加到副本集
+# 返回{ &quot;ok&quot; : 1 }说明添加成功
+rs.add(&quot;node2:28001&quot;)
+rs.addArb(&quot;node3:28001&quot;)</code></pre><p>查看副本集状态，可以看到复制集的全部信息都被显示出来</p>
+<pre><code>DBTEST:PRIMARY&gt; rs.status()
+{
+    &quot;set&quot; : &quot;DBTEST&quot;,
+    &quot;date&quot; : ISODate(&quot;2017-06-30T07:10:33.247Z&quot;),
+    &quot;myState&quot; : 1,
+    &quot;term&quot; : NumberLong(1),
+    &quot;heartbeatIntervalMillis&quot; : NumberLong(2000),
+    &quot;members&quot; : [
+        {
+            &quot;_id&quot; : 0,
+            &quot;name&quot; : &quot;node1:28001&quot;,
+            &quot;health&quot; : 1,
+            &quot;state&quot; : 1,
+            &quot;stateStr&quot; : &quot;PRIMARY&quot;,
+            &quot;uptime&quot; : 316,
+            &quot;optime&quot; : {
+                &quot;ts&quot; : Timestamp(1498806589, 1),
+                &quot;t&quot; : NumberLong(1)
+            },
+            &quot;optimeDate&quot; : ISODate(&quot;2017-06-30T07:09:49Z&quot;),
+            &quot;infoMessage&quot; : &quot;could not find member to sync from&quot;,
+            &quot;electionTime&quot; : Timestamp(1498806520, 2),
+            &quot;electionDate&quot; : ISODate(&quot;2017-06-30T07:08:40Z&quot;),
+            &quot;configVersion&quot; : 4,
+            &quot;self&quot; : true
+        },
+        {
+            &quot;_id&quot; : 1,
+            &quot;name&quot; : &quot;node2:28001&quot;,
+            &quot;health&quot; : 1,
+            &quot;state&quot; : 2,
+            &quot;stateStr&quot; : &quot;SECONDARY&quot;,
+            &quot;uptime&quot; : 58,
+            &quot;optime&quot; : {
+                &quot;ts&quot; : Timestamp(1498806589, 1),
+                &quot;t&quot; : NumberLong(1)
+            },
+            &quot;optimeDate&quot; : ISODate(&quot;2017-06-30T07:09:49Z&quot;),
+            &quot;lastHeartbeat&quot; : ISODate(&quot;2017-06-30T07:10:31.761Z&quot;),
+            &quot;lastHeartbeatRecv&quot; : ISODate(&quot;2017-06-30T07:10:32.765Z&quot;),
+            &quot;pingMs&quot; : NumberLong(0),
+            &quot;syncingTo&quot; : &quot;node2:28001&quot;,
+            &quot;configVersion&quot; : 4
+        },
+        {
+            &quot;_id&quot; : 2,
+            &quot;name&quot; : &quot;node3:28001&quot;,
+            &quot;health&quot; : 1,
+            &quot;state&quot; : 7,
+            &quot;stateStr&quot; : &quot;ARBITER&quot;,
+            &quot;uptime&quot; : 43,
+            &quot;lastHeartbeat&quot; : ISODate(&quot;2017-06-30T07:10:31.761Z&quot;),
+            &quot;lastHeartbeatRecv&quot; : ISODate(&quot;2017-06-30T07:10:29.970Z&quot;),
+            &quot;pingMs&quot; : NumberLong(0),
+            &quot;configVersion&quot; : 4
+        }
+    ],
+    &quot;ok&quot; : 1
+}</code></pre><h3 id="6-删除子节点"><a href="#6-删除子节点" class="headerlink" title="6.删除子节点"></a>6.删除子节点</h3><pre><code>rs.remove(&quot;node3:28001&quot;)
+# 返回{&quot;ok&quot; : 1}</code></pre><h3 id="7-可能遇到的问题"><a href="#7-可能遇到的问题" class="headerlink" title="7.可能遇到的问题"></a>7.可能遇到的问题</h3><p>在节点中执行show方法可能出现</p>
+<pre><code>DBTEST:SECONDARY&gt; show databases
+2017-07-28T11:15:06.856+0800 E QUERY    [thread1] Error: listDatabases failed:{
+        &quot;ok&quot; : 0,
+        &quot;errmsg&quot; : &quot;not master and slaveOk=false&quot;,
+        &quot;code&quot; : 13435,
+        &quot;codeName&quot; : &quot;NotMasterNoSlaveOk&quot;
+} :
+_getErrorWithCode@src/mongo/shell/utils.js:25:13
+Mongo.prototype.getDBs@src/mongo/shell/mongo.js:62:1
+shellHelper.show@src/mongo/shell/utils.js:755:19
+shellHelper@src/mongo/shell/utils.js:645:15
+
+#解决方法是在报错的节点上执行rs.slaveOk()方法即可
+DBTEST:STARTUP2&gt; rs.slaveOk()
+DBTEST:STARTUP2&gt; show databases
+admin       0.000GB
+local       0.000GB
+mydatabase  0.000GB</code></pre><h3 id="8-关闭、重启复制集"><a href="#8-关闭、重启复制集" class="headerlink" title="8.关闭、重启复制集"></a>8.关闭、重启复制集</h3><p>参考上边的关闭mongodb的方法，依次在每个节点上执行关闭操作<br><code>注意关闭顺序，在重启节点的过程中，建议不要直接shutdown Primary，这样可能导致已经写入primary但未同步到secondary的数据丢失</code></p>
+<blockquote>
+<p>1.shutdown Primary （shutdown会等待Secondary oplog追到10s以内）<br>2.Primary退出后，剩余的节点选举出一个新的Primary（复制集只包含1或2节点例外）<br>3.Primary重新启动，因为当前复制集已经有了新的Primary，这个Primary将以Secondary的角色运行。<br>4.从新的Primary同步的过程中，发现自己有无效的oplog，会先进行rollback。（rollback的数据只要不超过300M是可以找回的）</p>
+</blockquote>
+<p>上面这种操作可能会导致数据丢失</p>
+<blockquote>
+<p>1.逐个重启复制集里所有的Secondary节点<br>2.对Primary发送stepDown命令，等待primary降级为Secondary<br>3.重启降级后的Primary</p>
+</blockquote>
+
+            </div>
+            <hr/>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '5d9119965bca0418a356',
+        clientSecret: '9f807f3b84131fb73cd00b374d87d2829674d456',
+        repo: 'gitalk',
+        owner: 'hm-dusk',
+        admin: "hm-dusk",
+        id: '2017-07-29T11-32-03',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2017/08/09/HTTP协议/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="HTTP协议">
+                        
+                        <span class="card-title">HTTP协议</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            HTTP协议
+
+HTTP（HyperText Transfer Protocol，超文本传输协议）TCP/IP的分层管理应用层、传输层、网络层、数据链路层TCP/IP协议族各层的作用：
+
+
+
+名称
+作用
+协议
+
+
+
+应用层
+决定了向用户提供
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2017-08-09
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/网络协议/" class="post-category" target="_blank">
+                                    网络协议
+                                </a>
+                            
+                            <a href="/categories/网络协议/Http/" class="post-category" target="_blank">
+                                    Http
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/网络/" target="_blank">
+                        <span class="chip bg-color">网络</span>
+                    </a>
+                    
+                    <a href="/tags/Http/" target="_blank">
+                        <span class="chip bg-color">Http</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2017/07/26/MongoDB笔记/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="MongoDB笔记">
+                        
+                        <span class="card-title">MongoDB笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            MongoDB笔记
+
+一、Mongo数据库为NoSQL数据库
+
+
+关系型数据库
+NoSQL数据库
+
+
+
+数据库
+数据库类似于MySQL
+
+
+表
+集合
+
+
+行
+文档
+
+
+列
+成员
+
+
+主键
+Object ID（自动维护）
+
+
+与Node.js
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2017-07-26
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/数据库/" class="post-category" target="_blank">
+                                    数据库
+                                </a>
+                            
+                            <a href="/categories/数据库/Mongodb/" class="post-category" target="_blank">
+                                    Mongodb
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Mongodb/" target="_blank">
+                        <span class="chip bg-color">Mongodb</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">56.8k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/hm-dusk" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1322260665@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1322260665@qq.com" class="tooltipped" data-tooltip="QQ联系我: 1322260665@qq.com" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>
