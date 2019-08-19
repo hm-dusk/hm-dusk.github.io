@@ -33,8 +33,6 @@
     
       <category term="大数据" scheme="http://cyanide.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
-      <category term="CDH" scheme="http://cyanide.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/CDH/"/>
-    
     
       <category term="大数据" scheme="http://cyanide.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
@@ -61,8 +59,6 @@
     
       <category term="Linux" scheme="http://cyanide.top/categories/Linux/"/>
     
-      <category term="远程连接" scheme="http://cyanide.top/categories/Linux/%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/"/>
-    
     
       <category term="Linux" scheme="http://cyanide.top/tags/Linux/"/>
     
@@ -86,8 +82,6 @@
     </summary>
     
       <category term="大数据" scheme="http://cyanide.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
-    
-      <category term="选型" scheme="http://cyanide.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E9%80%89%E5%9E%8B/"/>
     
     
       <category term="大数据" scheme="http://cyanide.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
@@ -115,8 +109,6 @@
     
       <category term="部署" scheme="http://cyanide.top/categories/%E9%83%A8%E7%BD%B2/"/>
     
-      <category term="网站生成" scheme="http://cyanide.top/categories/%E9%83%A8%E7%BD%B2/%E7%BD%91%E7%AB%99%E7%94%9F%E6%88%90/"/>
-    
     
       <category term="文档" scheme="http://cyanide.top/tags/%E6%96%87%E6%A1%A3/"/>
     
@@ -140,8 +132,6 @@
     </summary>
     
       <category term="大数据" scheme="http://cyanide.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
-    
-      <category term="SandBox" scheme="http://cyanide.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/SandBox/"/>
     
     
       <category term="大数据" scheme="http://cyanide.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
@@ -171,8 +161,6 @@
     
       <category term="大数据" scheme="http://cyanide.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
-      <category term="SandBox" scheme="http://cyanide.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/SandBox/"/>
-    
     
       <category term="大数据" scheme="http://cyanide.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
@@ -198,8 +186,6 @@
     </summary>
     
       <category term="大数据" scheme="http://cyanide.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
-    
-      <category term="SandBox" scheme="http://cyanide.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/SandBox/"/>
     
     
       <category term="大数据" scheme="http://cyanide.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
@@ -231,8 +217,6 @@
     
       <category term="大数据" scheme="http://cyanide.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
-      <category term="SandBox" scheme="http://cyanide.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/SandBox/"/>
-    
     
       <category term="大数据" scheme="http://cyanide.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
@@ -261,8 +245,6 @@
     
       <category term="Linux" scheme="http://cyanide.top/categories/Linux/"/>
     
-      <category term="yum源" scheme="http://cyanide.top/categories/Linux/yum%E6%BA%90/"/>
-    
     
       <category term="Linux" scheme="http://cyanide.top/tags/Linux/"/>
     
@@ -289,8 +271,6 @@
     
       <category term="Linux" scheme="http://cyanide.top/categories/Linux/"/>
     
-      <category term="命令行" scheme="http://cyanide.top/categories/Linux/%E5%91%BD%E4%BB%A4%E8%A1%8C/"/>
-    
     
       <category term="Linux" scheme="http://cyanide.top/tags/Linux/"/>
     
@@ -314,8 +294,6 @@
     </summary>
     
       <category term="容器" scheme="http://cyanide.top/categories/%E5%AE%B9%E5%99%A8/"/>
-    
-      <category term="Docker" scheme="http://cyanide.top/categories/%E5%AE%B9%E5%99%A8/Docker/"/>
     
     
       <category term="容器" scheme="http://cyanide.top/tags/%E5%AE%B9%E5%99%A8/"/>
@@ -343,8 +321,6 @@
     
       <category term="大数据" scheme="http://cyanide.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
-      <category term="HDF" scheme="http://cyanide.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/HDF/"/>
-    
     
       <category term="大数据" scheme="http://cyanide.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
@@ -370,8 +346,6 @@
     </summary>
     
       <category term="大数据" scheme="http://cyanide.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
-    
-      <category term="HDP" scheme="http://cyanide.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/HDP/"/>
     
     
       <category term="大数据" scheme="http://cyanide.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
@@ -401,8 +375,6 @@
     
       <category term="大数据" scheme="http://cyanide.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
-      <category term="HDP" scheme="http://cyanide.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/HDP/"/>
-    
     
       <category term="大数据" scheme="http://cyanide.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
@@ -428,8 +400,6 @@
     </summary>
     
       <category term="大数据" scheme="http://cyanide.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
-    
-      <category term="Hive" scheme="http://cyanide.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/Hive/"/>
     
     
       <category term="大数据" scheme="http://cyanide.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
@@ -459,8 +429,6 @@
     
       <category term="大数据" scheme="http://cyanide.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
-      <category term="Tez" scheme="http://cyanide.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/Tez/"/>
-    
     
       <category term="大数据" scheme="http://cyanide.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
@@ -484,8 +452,6 @@
     </summary>
     
       <category term="大数据" scheme="http://cyanide.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
-    
-      <category term="HBase" scheme="http://cyanide.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/HBase/"/>
     
     
       <category term="大数据" scheme="http://cyanide.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
@@ -513,8 +479,6 @@
     
       <category term="大数据" scheme="http://cyanide.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
-      <category term="Zookeeper" scheme="http://cyanide.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/Zookeeper/"/>
-    
     
       <category term="大数据" scheme="http://cyanide.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
@@ -538,8 +502,6 @@
     </summary>
     
       <category term="大数据" scheme="http://cyanide.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
-    
-      <category term="Hive" scheme="http://cyanide.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/Hive/"/>
     
     
       <category term="大数据" scheme="http://cyanide.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
@@ -566,8 +528,6 @@
     </summary>
     
       <category term="数据库" scheme="http://cyanide.top/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-      <category term="MySQL" scheme="http://cyanide.top/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/"/>
     
     
       <category term="MySQL" scheme="http://cyanide.top/tags/MySQL/"/>
