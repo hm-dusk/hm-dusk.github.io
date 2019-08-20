@@ -4,19 +4,17 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="那些年经历过的编码警告（持续更新）, 博客,貍铭">
+    <meta name="keywords" content="那些年经历过的编码警告, 博客,貍铭">
     <meta name="description" content="记录遇到的代码警告
 
 try catch中catch块臃肿catch块臃肿
 
-
 虽然不会报错，但是会有警告。
-
 
 正确的书写方式如下：
 try{
     //...
-} catch (IOException | ClassNotFoundE">
+} catch (IOException | ClassNotFoundExc">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -24,7 +22,7 @@ try{
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>那些年经历过的编码警告（持续更新） | 貍铭的博客</title>
+    <title>那些年经历过的编码警告 | 貍铭的博客</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -275,13 +273,13 @@ try{
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        那些年经历过的编码警告（持续更新）
+                        那些年经历过的编码警告
                     </div>
                 </div>
             </div>
@@ -450,9 +448,7 @@ try{
 <a id="more"></a>
 <h3 id="try-catch中catch块臃肿"><a href="#try-catch中catch块臃肿" class="headerlink" title="try catch中catch块臃肿"></a>try catch中catch块臃肿</h3><p><strong>catch块臃肿</strong><br><img src="http://image.hming.org/%E4%BB%A3%E7%A0%81%E8%AD%A6%E5%91%8A/catch%E5%9D%97%E8%87%83%E8%82%BF1.jpg" alt="catch块臃肿1"><br><img src="http://image.hming.org/%E4%BB%A3%E7%A0%81%E8%AD%A6%E5%91%8A/catch%E5%9D%97%E8%87%83%E8%82%BF2.jpg" alt="catch块臃肿2"></p>
 <blockquote>
-<blockquote>
 <p>虽然不会报错，但是会有警告。</p>
-</blockquote>
 </blockquote>
 <p>正确的书写方式如下：</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">try</span><span class="token punctuation">{</span>
@@ -461,16 +457,12 @@ try{
     e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
 <blockquote>
-<blockquote>
 <p>可以看到，通过 <code>|</code> 运算符号折叠成一个判断语句，这个符号有”或”的意思，在这里理解非常合适。</p>
-</blockquote>
 </blockquote>
 <p>应该是java意识到了catch语句的臃肿，所以在JDK中开始建议这种模式来捕获异常。</p>
 <h3 id="集合泛型检查警告"><a href="#集合泛型检查警告" class="headerlink" title="集合泛型检查警告"></a>集合泛型检查警告</h3><p><img src="http://image.hming.org/%E4%BB%A3%E7%A0%81%E8%AD%A6%E5%91%8A/%E9%9B%86%E5%90%88%E6%B3%9B%E5%9E%8B%E6%A3%80%E6%9F%A5%E8%AD%A6%E5%91%8A.png" alt="集合泛型检查警告"></p>
 <blockquote>
-<blockquote>
 <p>该警告就是集合在创建是没有用泛型指定存储的对象类型</p>
-</blockquote>
 </blockquote>
 <p><strong>解决方式：</strong></p>
 <ol>
@@ -481,21 +473,15 @@ try{
 </li>
 </ol>
 <blockquote>
-<blockquote>
 <p>其他集合类型如：<code>Map</code>、<code>Set</code>类似</p>
-</blockquote>
 </blockquote>
 <h3 id="一些清晰易懂的警告"><a href="#一些清晰易懂的警告" class="headerlink" title="一些清晰易懂的警告"></a>一些清晰易懂的警告</h3><h4 id="1、空指针警告"><a href="#1、空指针警告" class="headerlink" title="1、空指针警告"></a>1、空指针警告</h4><p><img src="http://image.hming.org/%E4%BB%A3%E7%A0%81%E8%AD%A6%E5%91%8A/%E7%A9%BA%E6%8C%87%E9%92%88%E8%AD%A6%E5%91%8A.png" alt="空指针警告"></p>
 <blockquote>
-<blockquote>
 <p>该警告意思是可能报空指针异常，也就是没有做安全处理。<br>消除警告的做法就是在调用方法之前，对有可能出现空指针异常的对象做是否为空的判断，也就是安全处理。</p>
-</blockquote>
 </blockquote>
 <h4 id="2、忽略返回值警告"><a href="#2、忽略返回值警告" class="headerlink" title="2、忽略返回值警告"></a>2、忽略返回值警告</h4><p><img src="http://image.hming.org/%E4%BB%A3%E7%A0%81%E8%AD%A6%E5%91%8A/%E5%BF%BD%E7%95%A5%E8%BF%94%E5%9B%9E%E5%80%BC%E8%AD%A6%E5%91%8A.png" alt="忽略返回值警告"></p>
 <blockquote>
-<blockquote>
 <p>该警告消除方式为定义一个该方法的返回值类型去接收返回值。</p>
-</blockquote>
 </blockquote>
 
             </div>
@@ -630,8 +616,7 @@ try{
 
 接着下一步，这里需要注在Properties中添加一个参数archetypeCatalog=internal，不加这个参数，在maven生成骨架的时候将会非常慢，有时候直接卡住。
 
-
-来自网上的解释：a
+来自网上的解释：ar
                         
                     </div>
                     <div class="publish-info">
@@ -777,9 +762,15 @@ try{
 <footer class="page-footer bg-color">
     <div class="container row center-align">
         <div class="col s12 m8 l8 copy-right">
-            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
-            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
-            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+<!--            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于-->
+<!--            <a href="https://hexo.io/" target="_blank">Hexo</a> 的-->
+<!--            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.-->
+
+            <span class="white-color">Copyright</span>
+            <i class="fa fa-copyright"></i>
+            <span class="white-color">2016 -2019</span>
+            <i class="fa fa-heart"></i>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;

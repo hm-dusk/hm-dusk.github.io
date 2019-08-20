@@ -430,7 +430,7 @@ docker info显示内容需要启动docker服务才">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1,892
+                        1,889
                     </div>
                     
 
@@ -561,43 +561,45 @@ $ docker image build -t demo:0.0.1 <span class="token keyword">.</span>
 <h4 id="进入已经运行的容器"><a href="#进入已经运行的容器" class="headerlink" title="进入已经运行的容器"></a>进入已经运行的容器</h4><p>   <code>docker container exec -it [容器id] [/bin/bash]</code></p>
 <h4 id="将容器里的文件拷贝到本机"><a href="#将容器里的文件拷贝到本机" class="headerlink" title="将容器里的文件拷贝到本机"></a>将容器里的文件拷贝到本机</h4><p>   <code>docker container cp [容器id]:[/path/to/file] .</code></p>
 <h4 id="将镜像保存为tar文件、将tar文件加载到docker镜像"><a href="#将镜像保存为tar文件、将tar文件加载到docker镜像" class="headerlink" title="将镜像保存为tar文件、将tar文件加载到docker镜像"></a>将镜像保存为tar文件、将tar文件加载到docker镜像</h4><ol>
-<li>保存镜像<br><code>docker save -o [路径/文件名] [镜像名]</code>或者<code>docker save [镜像名] &gt; [路径/文件名]</code><br>```bash<br>[root@hadoopCDH opt]# docker save -o my_centos.tar cyanidehm/my_centos:latest<br>[root@hadoopCDH opt]# ll my_centos.tar </li>
-</ol>
-<p>-rw——-. 1 root root 779944960 10月 17 03:40 my_centos.tar</p>
-<pre><code>&gt; 可以通过指定打包格式来打包成压缩文件：
-&gt; `docker save [镜像名] | gzip &gt; [路径/文件名.tar.gz]`
-
-2. 加载镜像
-`docker load --input [路径/文件名]`或者`docker load &lt; [路径/文件名]`
-```bash
-[root@hadoopmaster opt]# docker load &lt; my_centos.tar 
-1d31b5806ba4: Loading layer [==================================================&gt;] 208.3 MB/208.3 MB
-a5789abfb72a: Loading layer [==================================================&gt;] 571.6 MB/571.6 MB
-Loaded image: cyanidehm/my_centos:latest
-[root@hadoopmaster opt]# docker images
-REPOSITORY            TAG                 IMAGE ID            CREATED                  SIZE
-cyanidehm/my_centos   latest              3ced2987d19a        Less than a second ago   765 MB</code></pre><ol start="3">
-<li><strong>批量save/load镜像</strong><br>脚本地址<a href="https://gist.github.com/hydra1983/22b2bed38b4f5f56caa87c830c96378d#file-docker_images-sh" target="_blank" rel="noopener">hydra1983/docker_images.sh</a><br>批量保存<br><code>./docker_images.sh save-images</code><br>批量加载<br><code>./docker_images.sh load-images</code><blockquote>
-<p>脚本将镜像文件保存到<code>./images</code>目录下，另外一个<code>images.db</code>文件与之对应<br>将这两个东西拷贝到其他主机，执行批量加载命令就行实现批量转移镜像</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@localhost save<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ./docker_images.sh save-images </span>
-Create /opt/save/images.db
-Read /opt/save/images.db
-Create /opt/save/images
-<span class="token punctuation">[</span>DEBUG<span class="token punctuation">]</span> save 00ead811e8ae docker.io/portainer/portainer:latest to /opt/save/images/00ead811e8ae.dim
-real    0m27.343s
-<span class="token punctuation">[</span>DEBUG<span class="token punctuation">]</span> save d63b9b4bd205 rancher/server:v1.6.14 to /opt/save/images/d63b9b4bd205.dim
-real    4m46.480s
-<span class="token punctuation">[</span>DEBUG<span class="token punctuation">]</span> save 34a453d374b9 docker.io/rancher/agent:v1.2.9 to /opt/save/images/34a453d374b9.dim
-real    0m28.037s</code></pre>
+<li><p>保存镜像<br><code>docker save -o [路径/文件名] [镜像名]</code>或者<code>docker save [镜像名] &gt; [路径/文件名]</code></p>
+<pre class=" language-bash"><code class="language-bash"> <span class="token punctuation">[</span>root@hadoopCDH opt<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker save -o my_centos.tar cyanidehm/my_centos:latest</span>
+ <span class="token punctuation">[</span>root@hadoopCDH opt<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ll my_centos.tar </span>
+ -rw-------. 1 root root 779944960 10月 17 03:40 my_centos.tar</code></pre>
+<blockquote>
+<p>可以通过指定打包格式来打包成压缩文件：<br><code>docker save [镜像名] | gzip &gt; [路径/文件名.tar.gz]</code></p>
 </blockquote>
 </li>
+<li><p>加载镜像<br><code>docker load --input [路径/文件名]</code>或者<code>docker load &lt; [路径/文件名]</code></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hadoopmaster opt<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker load &lt; my_centos.tar </span>
+1d31b5806ba4: Loading layer <span class="token punctuation">[</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">></span><span class="token punctuation">]</span> 208.3 MB/208.3 MB
+a5789abfb72a: Loading layer <span class="token punctuation">[</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">></span><span class="token punctuation">]</span> 571.6 MB/571.6 MB
+Loaded image: cyanidehm/my_centos:latest
+<span class="token punctuation">[</span>root@hadoopmaster opt<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker images</span>
+REPOSITORY            TAG                 IMAGE ID            CREATED                  SIZE
+cyanidehm/my_centos   latest              3ced2987d19a        Less than a second ago   765 MB</code></pre>
+</li>
+<li><p><strong>批量save/load镜像</strong><br>脚本地址<a href="https://gist.github.com/hydra1983/22b2bed38b4f5f56caa87c830c96378d#file-docker_images-sh" target="_blank" rel="noopener">hydra1983/docker_images.sh</a><br>批量保存<br><code>./docker_images.sh save-images</code><br>批量加载<br><code>./docker_images.sh load-images</code></p>
+<blockquote>
+<p>脚本将镜像文件保存到<code>./images</code>目录下，另外一个<code>images.db</code>文件与之对应<br>将这两个东西拷贝到其他主机，执行批量加载命令就行实现批量转移镜像</p>
+</blockquote>
+<pre class=" language-bash"><code class="language-bash"> <span class="token punctuation">[</span>root@localhost save<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ./docker_images.sh save-images </span>
+ Create /opt/save/images.db
+ Read /opt/save/images.db
+ Create /opt/save/images
+ <span class="token punctuation">[</span>DEBUG<span class="token punctuation">]</span> save 00ead811e8ae docker.io/portainer/portainer:latest to /opt/save/images/00ead811e8ae.dim
+ real    0m27.343s
+ <span class="token punctuation">[</span>DEBUG<span class="token punctuation">]</span> save d63b9b4bd205 rancher/server:v1.6.14 to /opt/save/images/d63b9b4bd205.dim
+ real    4m46.480s
+ <span class="token punctuation">[</span>DEBUG<span class="token punctuation">]</span> save 34a453d374b9 docker.io/rancher/agent:v1.2.9 to /opt/save/images/34a453d374b9.dim
+ real    0m28.037s
+
+ <span class="token punctuation">[</span>root@localhost save<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ./docker_images.sh load-images</span>
+ <span class="token punctuation">..</span>.</code></pre>
+</li>
 </ol>
-<p>[root@localhost save]# ./docker_images.sh load-images<br>…</p>
-<pre><code>
-#### 容器启动后自动运行脚本
-情景：1、镜像已经存在。2、镜像内包含脚本`/home/ssh.sh`需要在容器启动后运行
-```bash
-docker run -itd cyanidehm/base_ssh /bin/bash -c &quot;sh /home/ssh.sh;/bin/bash&quot;</code></pre><blockquote>
+<h4 id="容器启动后自动运行脚本"><a href="#容器启动后自动运行脚本" class="headerlink" title="容器启动后自动运行脚本"></a>容器启动后自动运行脚本</h4><p>情景：1、镜像已经存在。2、镜像内包含脚本<code>/home/ssh.sh</code>需要在容器启动后运行</p>
+<pre class=" language-bash"><code class="language-bash">docker run -itd cyanidehm/base_ssh /bin/bash -c <span class="token string">"sh /home/ssh.sh;/bin/bash"</span></code></pre>
+<blockquote>
 <p>说明：<br><code>/bin/bash -c &quot;&quot;</code>表示容器运行后使用bash执行引号内语句。<br>引号内的 <code>;</code> 表示命令分割，执行多条命令时用<code>;</code>进行分割<br>引号内最后的<code>/bin/bash</code>表示容器启动以bash方式运行（如果容器启动后没有线程在运行，容器会停止退出） </p>
 </blockquote>
 <h4 id="查看容器相关信息"><a href="#查看容器相关信息" class="headerlink" title="查看容器相关信息"></a>查看容器相关信息</h4><p>在容器外面不进入容器查看容器信息<br><code>docker inspect [容器名/id]</code>：查看到容器的相关信息</p>
@@ -912,9 +914,15 @@ hadoop002
 <footer class="page-footer bg-color">
     <div class="container row center-align">
         <div class="col s12 m8 l8 copy-right">
-            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
-            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
-            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+<!--            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于-->
+<!--            <a href="https://hexo.io/" target="_blank">Hexo</a> 的-->
+<!--            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.-->
+
+            <span class="white-color">Copyright</span>
+            <i class="fa fa-copyright"></i>
+            <span class="white-color">2016 -2019</span>
+            <i class="fa fa-heart"></i>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;

@@ -459,9 +459,7 @@ Map">
 
         <span class="token punctuation">}</span></code></pre>
 <blockquote>
-<blockquote>
 <p>注意：for-each循环在<code>Java 5</code>中被引入所以该方法只能应用于java 5或更高的版本中。如果你遍历的是一个空的map对象，for-each循环将抛出<code>NullPointerException</code>，因此在遍历前你总是应该检查空引用。</p>
-</blockquote>
 </blockquote>
 <h2 id="第二种-在for-each循环中遍历keys或values"><a href="#第二种-在for-each循环中遍历keys或values" class="headerlink" title="第二种 在for-each循环中遍历keys或values"></a>第二种 在for-each循环中遍历keys或values</h2><ul>
 <li>如果只需要map中的键或者值，你可以通过keySet或values来实现遍历，而不是用entrySet</li>
@@ -484,9 +482,7 @@ Map">
 
 <span class="token punctuation">}</span></code></pre>
 <blockquote>
-<blockquote>
 <p>该方法比entrySet遍历在性能上稍好（快了10%），而且代码更加干净。</p>
-</blockquote>
 </blockquote>
 <h2 id="第三种-使用Iterator遍历"><a href="#第三种-使用Iterator遍历" class="headerlink" title="第三种 使用Iterator遍历"></a>第三种 使用Iterator遍历</h2><pre class=" language-java"><code class="language-java">Map<span class="token operator">&lt;</span>Integer<span class="token punctuation">,</span> Integer<span class="token operator">></span> map <span class="token operator">=</span> Maps<span class="token punctuation">.</span><span class="token function">newHashMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
@@ -504,10 +500,8 @@ Iterator<span class="token operator">&lt;</span>Map<span class="token punctuatio
 
 <span class="token punctuation">}</span></code></pre>
 <blockquote>
-<blockquote>
 <p>该种方式看起来冗余却有其优点所在。首先，在老版本java中这是惟一遍历map的方式。另一个好处是，你可以在遍历时调用<code>iterator.remove()</code>来<code>删除entries</code>，另两个方法则不能。根据javadoc的说明，如果在for-each遍历中尝试使用此方法，结果是不可预测的。</p>
 <p>从性能方面看，该方法类同于for-each遍历（即方法二）的性能。</p>
-</blockquote>
 </blockquote>
 <h2 id="第四种-通过键找值遍历（效率低）"><a href="#第四种-通过键找值遍历（效率低）" class="headerlink" title="第四种 通过键找值遍历（效率低）"></a>第四种 通过键找值遍历（效率低）</h2><pre class=" language-java"><code class="language-java">Map<span class="token operator">&lt;</span>Integer<span class="token punctuation">,</span> Integer<span class="token operator">></span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token operator">&lt;</span>Integer<span class="token punctuation">,</span> Integer<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
 
@@ -519,9 +513,7 @@ Iterator<span class="token operator">&lt;</span>Map<span class="token punctuatio
 
 <span class="token punctuation">}</span>  </code></pre>
 <blockquote>
-<blockquote>
 <p>作为方法一的替代，这个代码看上去更加干净；但实际上它相当慢且无效率。因为从键取值是耗时的操作（与方法一相比，在不同的Map实现中该方法慢了20%~200%）。如果你安装了FindBugs，它会做出检查并警告你关于哪些是低效率的遍历。所以尽量避免使用。</p>
-</blockquote>
 </blockquote>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>如果仅需要键(keys)或值(values)使用方法二。如果你使用的语言版本低于java 5，或是打算在遍历时删除entries，必须使用方法三。否则使用方法一(键值都要)。</p>
 
@@ -796,9 +788,15 @@ Iterator<span class="token operator">&lt;</span>Map<span class="token punctuatio
 <footer class="page-footer bg-color">
     <div class="container row center-align">
         <div class="col s12 m8 l8 copy-right">
-            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
-            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
-            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+<!--            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于-->
+<!--            <a href="https://hexo.io/" target="_blank">Hexo</a> 的-->
+<!--            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.-->
+
+            <span class="white-color">Copyright</span>
+            <i class="fa fa-copyright"></i>
+            <span class="white-color">2016 -2019</span>
+            <i class="fa fa-heart"></i>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;

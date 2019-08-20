@@ -500,7 +500,7 @@ tcp6       0      0 :::5901                 :::*                    LISTEN      
 tcp6       0      0 :::5902                 :::*                    LISTEN      11394/Xvnc          
 tcp6       0      0 :::6001                 :::*                    LISTEN      10196/Xvnc          
 tcp6       0      0 :::6002                 :::*                    LISTEN      11394/Xvnc          </code></pre>
-<h3 id="配置防火墙，开通端口"><a href="#配置防火墙，开通端口" class="headerlink" title="配置防火墙，开通端口"></a>配置防火墙，开通端口</h3><p>如果没有开启防火墙，则这一步可以跳过<br>根据监听的端口，进行端口开放，每个用户会对应一个端口，第一个用户默认为<code>5901</code>端口，如果配置多个，则需要开发相应端口</p>
+<h3 id="配置防火墙，开通端口"><a href="#配置防火墙，开通端口" class="headerlink" title="配置防火墙，开通端口"></a>配置防火墙，开通端口</h3><p>如果没有开启防火墙，则这一步可以跳过<br>根据监听的端口，进行端口开放，每个用户会对应一个端口，第一个用户默认为<code>5901</code>端口，如果配置多个，则需要开放相应端口</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@AccessGateway ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># firewall-cmd --add-port=5901/tcp --permanent</span>
 <span class="token punctuation">[</span>root@AccessGateway ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># firewall-cmd --reload</span></code></pre>
 <h3 id="Windows安装VNC，连接Centos远程桌面"><a href="#Windows安装VNC，连接Centos远程桌面" class="headerlink" title="Windows安装VNC，连接Centos远程桌面"></a>Windows安装VNC，连接Centos远程桌面</h3><ol>
@@ -584,6 +584,7 @@ tcp6       0      0 :::6002                 :::*                    LISTEN      
                         
                             CentOS7.6离线安装CDP，Cloudera Manager版本：6.3.0，CDH版本：6.3.0-1
 
+
 本文环境
 
 
@@ -597,7 +598,7 @@ hdp001
 
 
 hdp002
-192.168.171.11
+192.168.171.1
                         
                     </div>
                     <div class="publish-info">
@@ -803,9 +804,15 @@ CDH版本更新比
 <footer class="page-footer bg-color">
     <div class="container row center-align">
         <div class="col s12 m8 l8 copy-right">
-            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
-            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
-            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+<!--            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于-->
+<!--            <a href="https://hexo.io/" target="_blank">Hexo</a> 的-->
+<!--            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.-->
+
+            <span class="white-color">Copyright</span>
+            <i class="fa fa-copyright"></i>
+            <span class="white-color">2016 -2019</span>
+            <i class="fa fa-heart"></i>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;

@@ -422,7 +422,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1,130
+                        1,128
                     </div>
                     
 
@@ -495,40 +495,51 @@ Last login: Thu Apr  4 08:22:27 2019 from 172.18.0.3
 </tr>
 </tbody></table>
 <h3 id="重置Ambari管理员密码"><a href="#重置Ambari管理员密码" class="headerlink" title="重置Ambari管理员密码"></a>重置Ambari管理员密码</h3><ol>
-<li>以root用户登录到HDP主机<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@sandbox opt<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ssh 127.0.0.1 -p 2222</span>
+<li>以root用户登录到HDP主机</li>
+</ol>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@sandbox opt<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ssh 127.0.0.1 -p 2222</span>
 root@127.0.0.1`s password: 
 Last login: Thu Apr  4 08:22:27 2019 from 172.18.0.3
 <span class="token punctuation">[</span>root@sandbox-hdp ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># </span></code></pre>
-</li>
-<li>运行<code>ambari-admin-password-reset</code>命令，根据提示修改密码<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@sandbox-hdp /<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ambari-admin-password-reset</span>
+<ol start="2">
+<li>运行<code>ambari-admin-password-reset</code>命令，根据提示修改密码</li>
+</ol>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@sandbox-hdp /<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ambari-admin-password-reset</span>
 Please <span class="token keyword">set</span> the password <span class="token keyword">for</span> admin: 
 Please retype the password <span class="token keyword">for</span> admin: 
-</code></pre>
-</li>
+
+The admin password has been set.
+Restarting ambari-server to <span class="token function">make</span> the password change effective<span class="token punctuation">..</span>.
+
+Using python  /usr/bin/python
+Restarting ambari-server
+Waiting <span class="token keyword">for</span> server stop<span class="token punctuation">..</span>.
+Ambari Server stopped
+Ambari Server running with administrator privileges.
+Organizing resource files at /var/lib/ambari-server/resources<span class="token punctuation">..</span>.
+Ambari database consistency check started<span class="token punctuation">..</span>.
+Server PID at: /var/run/ambari-server/ambari-server.pid
+Server out at: /var/log/ambari-server/ambari-server.out
+Server log at: /var/log/ambari-server/ambari-server.log
+Waiting <span class="token keyword">for</span> server start<span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>
+DB configs consistency check: no errors and warnings were found.
+ERROR: Exiting with <span class="token keyword">exit</span> code 1. 
+REASON: Server not yet listening on http port 8080 after 90 seconds. Exiting.</code></pre>
+<blockquote>
+<p>可能会遇到报错<br>  <code>ERROR: Exiting with exit code 1. 
+   REASON: Server not yet listening on http port 8080 after 90 seconds. Exiting.</code><br>  这是由于SandBox中所有服务都在一个节点上，启动Ambari比较慢，超过了90秒，实际上这个错不会有任何影响<br>  可以通过编辑<code>/etc/ambari-server/conf/ambari.properties</code>文件，添加一行<code>server.startup.web.timeout = 150</code>来增加超时时间的方法解决</p>
+</blockquote>
+<ol start="3">
+<li>执行命令后Ambari服务会重启，然后就可以通过新的admin密码登录Ambari</li>
 </ol>
-<p>The admin password has been set.<br>Restarting ambari-server to make the password change effective…</p>
-<p>Using python  /usr/bin/python<br>Restarting ambari-server<br>Waiting for server stop…<br>Ambari Server stopped<br>Ambari Server running with administrator privileges.<br>Organizing resource files at /var/lib/ambari-server/resources…<br>Ambari database consistency check started…<br>Server PID at: /var/run/ambari-server/ambari-server.pid<br>Server out at: /var/log/ambari-server/ambari-server.out<br>Server log at: /var/log/ambari-server/ambari-server.log<br>Waiting for server start……………………………………………………………………………………….<br>DB configs consistency check: no errors and warnings were found.<br>ERROR: Exiting with exit code 1.<br>REASON: Server not yet listening on http port 8080 after 90 seconds. Exiting.</p>
-<pre><code>&gt; 可能会遇到报错
-  `ERROR: Exiting with exit code 1. 
-   REASON: Server not yet listening on http port 8080 after 90 seconds. Exiting.`
-  这是由于SandBox中所有服务都在一个节点上，启动Ambari比较慢，超过了90秒，实际上这个错不会有任何影响
-  可以通过编辑`/etc/ambari-server/conf/ambari.properties`文件，添加一行`server.startup.web.timeout = 150`来增加超时时间的方法解决
-
-3. 执行命令后Ambari服务会重启，然后就可以通过新的admin密码登录Ambari
-
-### 新增host映射
-Ambari中有些内部链接是通过`sandbox-hdp.hortonworks.com`域名去访问的，比如`HDFS NameNode UI`
-可以在需要访问的主机上增加host映射方便访问
-
-### 数据库初始密码
-#### PostgreSQL
-查看ambari用户的密码，默认为`bigdata`
-```bash
-[root@sandbox-hdp ~]# grep &quot;password&quot; /etc/ambari-server/conf/ambari.properties
-server.jdbc.rca.user.passwd=/etc/ambari-server/conf/password.dat
-server.jdbc.user.passwd=/etc/ambari-server/conf/password.dat
-[root@sandbox-hdp ~]# cat /etc/ambari-server/conf/password.dat 
-bigdata</code></pre><p>使用ambari用户登录postgreSQL</p>
+<h3 id="新增host映射"><a href="#新增host映射" class="headerlink" title="新增host映射"></a>新增host映射</h3><p>Ambari中有些内部链接是通过<code>sandbox-hdp.hortonworks.com</code>域名去访问的，比如<code>HDFS NameNode UI</code><br>可以在需要访问的主机上增加host映射方便访问</p>
+<h3 id="数据库初始密码"><a href="#数据库初始密码" class="headerlink" title="数据库初始密码"></a>数据库初始密码</h3><h4 id="PostgreSQL"><a href="#PostgreSQL" class="headerlink" title="PostgreSQL"></a>PostgreSQL</h4><p>查看ambari用户的密码，默认为<code>bigdata</code></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@sandbox-hdp ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># grep "password" /etc/ambari-server/conf/ambari.properties</span>
+server.jdbc.rca.user.passwd<span class="token operator">=</span>/etc/ambari-server/conf/password.dat
+server.jdbc.user.passwd<span class="token operator">=</span>/etc/ambari-server/conf/password.dat
+<span class="token punctuation">[</span>root@sandbox-hdp ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cat /etc/ambari-server/conf/password.dat </span>
+bigdata</code></pre>
+<p>使用ambari用户登录postgreSQL</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@sandbox-hdp ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># psql -U ambari -W</span>
 Password <span class="token keyword">for</span> user ambari: 
 psql <span class="token punctuation">(</span>9.6.11<span class="token punctuation">)</span>
@@ -852,9 +863,15 @@ ambari<span class="token operator">=</span><span class="token operator">></span>
 <footer class="page-footer bg-color">
     <div class="container row center-align">
         <div class="col s12 m8 l8 copy-right">
-            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
-            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
-            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+<!--            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于-->
+<!--            <a href="https://hexo.io/" target="_blank">Hexo</a> 的-->
+<!--            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.-->
+
+            <span class="white-color">Copyright</span>
+            <i class="fa fa-copyright"></i>
+            <span class="white-color">2016 -2019</span>
+            <i class="fa fa-heart"></i>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;

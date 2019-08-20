@@ -423,7 +423,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1,091
+                        1,087
                     </div>
                     
 
@@ -452,6 +452,7 @@
 <h3 id="下载离线包"><a href="#下载离线包" class="headerlink" title="下载离线包"></a>下载离线包</h3><p><a href="https://docs.hortonworks.com/HDPDocuments/HDF3/HDF-3.3.1/release-notes/content/hdf_repository_locations.html" target="_blank" rel="noopener">HDF仓库地址</a><br>找到对应操作系统的包，下载HDF Management Pack与HDF RPM tarball两个包即可。（本文为CentOS7的包）</p>
 <blockquote>
 <p>注意：HDF RPM tarball包大小<code>3.6G</code>左右，HDF Management Pack包<code>96M</code>左右，请确保保存路径有足够空间</p>
+</blockquote>
 <pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@master ambari<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ll -h</span>
 total 3.7G
 drwxr-xr-x 3 root      root  4.0K Jan 16 15:00 ambari
@@ -460,31 +461,42 @@ drwxr-xr-x 3 root      root  4.0K Jan 16 15:00 ambari
 drwxr-xr-x 3 ambari-qa <span class="token function">users</span> 4.0K Dec 11 11:49 HDP
 drwxr-xr-x 3 ambari-qa <span class="token function">users</span> 4.0K Aug 13  2018 HDP-UTILS</code></pre>
 <p>其中ambari、HDP、HDP-UTILS为<a href="https://blog.hming.org/2019/01/09/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/" target="_blank" rel="noopener">CentOS7离线安装HDP</a>中制作的yum本地源地址</p>
-</blockquote>
 <h3 id="制作HDF-yum镜像源"><a href="#制作HDF-yum镜像源" class="headerlink" title="制作HDF yum镜像源"></a>制作HDF yum镜像源</h3><p>参考<a href="https://blog.hming.org/2019/01/09/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/#%E5%88%B6%E4%BD%9C%E6%9C%AC%E5%9C%B0%E6%BA%90" target="_blank" rel="noopener">制作本地源</a>，将<code>HDF-3.3.1.0-centos7-rpm.tar.gz</code>包解压，制作yum本地源。</p>
 <ol>
-<li>解压到<code>httpd</code>服务路径(本文httpd服务路径为<code>/cloud/ambari</code>)<br>```bash<br>[root@master ambari]# pwd<br>/cloud/ambari<br>[root@master ambari]# tar -zxvf HDF-3.3.1.0-centos7-rpm.tar.gz<br>[root@node1 ambari]# ll -h<br>total 3.7G<br>drwxr-xr-x 3 root      root  4.0K Jan 16 15:00 ambari<br>drwxr-xr-x 3 ambari-qa users 4.0K Dec 15 02:19 HDF</li>
+<li>解压到<code>httpd</code>服务路径(本文httpd服务路径为<code>/cloud/ambari</code>)</li>
 </ol>
-<p>-rw-r–r– 1 root      root  3.6G Dec 15 02:36 HDF-3.3.1.0-centos7-rpm.tar.gz<br>-rw-r–r– 1 root      root   96M Dec 15 02:13 hdf-ambari-mpack-3.3.1.0-10.tar.gz<br>drwxr-xr-x 3 ambari-qa users 4.0K Dec 11 11:49 HDP<br>drwxr-xr-x 3 ambari-qa users 4.0K Aug 13  2018 HDP-UTILS</p>
-<pre><code>2. 修改`./HDF/centos7/3.3.1.0-10/hdf.repo`文件为以下内容
-```bash
-#VERSION_NUMBER=3.3.1.0-10
-[HDF-3.3.1.0]
-name=HDF Version - HDF-3.3.1.0
-baseurl=http://192.168.0.151:88/ambari/HDF/centos7/3.3.1.0-10
-gpgcheck=1
-gpgkey=http://192.168.0.151:88/ambari/HDF/centos7/3.3.1.0-10/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
-enabled=1
-priority=1
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@master ambari<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># pwd</span>
+/cloud/ambari
+<span class="token punctuation">[</span>root@master ambari<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># tar -zxvf HDF-3.3.1.0-centos7-rpm.tar.gz </span>
+<span class="token punctuation">[</span>root@node1 ambari<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ll -h</span>
+total 3.7G
+drwxr-xr-x 3 root      root  4.0K Jan 16 15:00 ambari
+drwxr-xr-x 3 ambari-qa <span class="token function">users</span> 4.0K Dec 15 02:19 HDF
+-rw-r--r-- 1 root      root  3.6G Dec 15 02:36 HDF-3.3.1.0-centos7-rpm.tar.gz
+-rw-r--r-- 1 root      root   96M Dec 15 02:13 hdf-ambari-mpack-3.3.1.0-10.tar.gz
+drwxr-xr-x 3 ambari-qa <span class="token function">users</span> 4.0K Dec 11 11:49 HDP
+drwxr-xr-x 3 ambari-qa <span class="token function">users</span> 4.0K Aug 13  2018 HDP-UTILS</code></pre>
+<ol start="2">
+<li>修改<code>./HDF/centos7/3.3.1.0-10/hdf.repo</code>文件为以下内容</li>
+</ol>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#VERSION_NUMBER=3.3.1.0-10</span>
+<span class="token punctuation">[</span>HDF-3.3.1.0<span class="token punctuation">]</span>
+name<span class="token operator">=</span>HDF Version - HDF-3.3.1.0
+baseurl<span class="token operator">=</span>http://192.168.0.151:88/ambari/HDF/centos7/3.3.1.0-10
+gpgcheck<span class="token operator">=</span>1
+gpgkey<span class="token operator">=</span>http://192.168.0.151:88/ambari/HDF/centos7/3.3.1.0-10/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
+enabled<span class="token operator">=</span>1
+priority<span class="token operator">=</span>1
 
 
-[HDP-UTILS-1.1.0.22]
-name=HDP-UTILS Version - HDP-UTILS-1.1.0.22
-baseurl=http://192.168.0.151:88/ambari/HDP-UTILS/centos7/1.1.0.22
-gpgcheck=1
-gpgkey=http://192.168.0.151:88/ambari/HDP-UTILS/centos7/1.1.0.22/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
-enabled=1
-priority=1</code></pre><blockquote>
+<span class="token punctuation">[</span>HDP-UTILS-1.1.0.22<span class="token punctuation">]</span>
+name<span class="token operator">=</span>HDP-UTILS Version - HDP-UTILS-1.1.0.22
+baseurl<span class="token operator">=</span>http://192.168.0.151:88/ambari/HDP-UTILS/centos7/1.1.0.22
+gpgcheck<span class="token operator">=</span>1
+gpgkey<span class="token operator">=</span>http://192.168.0.151:88/ambari/HDP-UTILS/centos7/1.1.0.22/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
+enabled<span class="token operator">=</span>1
+priority<span class="token operator">=</span>1</code></pre>
+<blockquote>
 <p>1)其中192.168.0.151:88为httpd的路径和端口，需根据实际情况修改。<br>2)HDP-UTILS如果在HDP中已经配置过，则这里可以删除。</p>
 </blockquote>
 <ol start="3">
@@ -502,7 +514,9 @@ priority=1</code></pre><blockquote>
 </ol>
 <h3 id="安装HDF-Management-Pack"><a href="#安装HDF-Management-Pack" class="headerlink" title="安装HDF Management Pack"></a>安装HDF Management Pack</h3><p>此处参考<a href="https://docs.hortonworks.com/HDPDocuments/HDF3/HDF-3.3.1/installing-hdf-on-hdp/content/installing_the_hdf_management_pack.html" target="_blank" rel="noopener">官方文档</a></p>
 <ol>
-<li>使用<code>ambari-server install-mpack</code>命令安装Management Pack<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@master ambari<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ambari-server install-mpack --mpack=./hdf-ambari-mpack-3.3.1.0-10.tar.gz --verbose</span>
+<li>使用<code>ambari-server install-mpack</code>命令安装Management Pack</li>
+</ol>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@master ambari<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ambari-server install-mpack --mpack=./hdf-ambari-mpack-3.3.1.0-10.tar.gz --verbose</span>
 Using python  /usr/bin/python
 Installing management pack
 INFO: Loading properties from /etc/ambari-server/conf/ambari.properties
@@ -513,27 +527,28 @@ INFO: Loading properties from /etc/ambari-server/conf/ambari.properties
 <span class="token punctuation">..</span>.
 INFO: Loading properties from /etc/ambari-server/conf/ambari.properties
 INFO: Successfully switched addon services using config <span class="token function">file</span> /var/lib/ambari-server/resources/mpacks/hdf-ambari-mpack-3.3.1.0-10/hooks/HDF-3.3.json
-</code></pre>
-</li>
+
+INFO: Loading properties from /etc/ambari-server/conf/ambari.properties
+Ambari Server <span class="token string">'install-mpack'</span> completed successfully.</code></pre>
+<ol start="2">
+<li>使用<code>ambari-server restart</code>命令重启ambari服务</li>
 </ol>
-<p>INFO: Loading properties from /etc/ambari-server/conf/ambari.properties<br>Ambari Server ‘install-mpack’ completed successfully.</p>
-<pre><code>2. 使用`ambari-server restart`命令重启ambari服务
-```bash
-[root@master ambari]# ambari-server restart
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@master ambari<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ambari-server restart</span>
 Using python  /usr/bin/python
 Restarting ambari-server
-Waiting for server stop...
+Waiting <span class="token keyword">for</span> server stop<span class="token punctuation">..</span>.
 Ambari Server stopped
 Ambari Server running with administrator privileges.
-Organizing resource files at /var/lib/ambari-server/resources...
-Ambari database consistency check started...
+Organizing resource files at /var/lib/ambari-server/resources<span class="token punctuation">..</span>.
+Ambari database consistency check started<span class="token punctuation">..</span>.
 Server PID at: /var/run/ambari-server/ambari-server.pid
 Server out at: /var/log/ambari-server/ambari-server.out
 Server log at: /var/log/ambari-server/ambari-server.log
-Waiting for server start.......................
+Waiting <span class="token keyword">for</span> server start<span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>.
 Server started listening on 8080
 
-DB configs consistency check: no errors and warnings were found.</code></pre><h3 id="更新ambari服务中HDF源地址"><a href="#更新ambari服务中HDF源地址" class="headerlink" title="更新ambari服务中HDF源地址"></a>更新ambari服务中HDF源地址</h3><p>参考<a href="https://docs.hortonworks.com/HDPDocuments/HDF3/HDF-3.3.1/installing-hdf-on-hdp/content/update_the_hdf_base_url.html" target="_blank" rel="noopener">官方文档</a></p>
+DB configs consistency check: no errors and warnings were found.</code></pre>
+<h3 id="更新ambari服务中HDF源地址"><a href="#更新ambari服务中HDF源地址" class="headerlink" title="更新ambari服务中HDF源地址"></a>更新ambari服务中HDF源地址</h3><p>参考<a href="https://docs.hortonworks.com/HDPDocuments/HDF3/HDF-3.3.1/installing-hdf-on-hdp/content/update_the_hdf_base_url.html" target="_blank" rel="noopener">官方文档</a></p>
 <ol>
 <li>浏览器进入Ambari服务地址（默认端口为8080）</li>
 <li>在右上角admin下拉框中选择Manage Ambari</li>
@@ -828,9 +843,15 @@ http://www.voidcn.com/article/p-ulbbnkky-brh.htmlhttps://blog.phpgao.com/docker_
 <footer class="page-footer bg-color">
     <div class="container row center-align">
         <div class="col s12 m8 l8 copy-right">
-            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
-            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
-            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+<!--            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于-->
+<!--            <a href="https://hexo.io/" target="_blank">Hexo</a> 的-->
+<!--            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.-->
+
+            <span class="white-color">Copyright</span>
+            <i class="fa fa-copyright"></i>
+            <span class="white-color">2016 -2019</span>
+            <i class="fa fa-heart"></i>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;

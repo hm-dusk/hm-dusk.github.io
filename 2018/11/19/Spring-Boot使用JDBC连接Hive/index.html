@@ -423,7 +423,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        869
+                        868
                     </div>
                     
 
@@ -481,8 +481,12 @@
      <span class="token key atrule">name</span><span class="token punctuation">:</span> ProjectName
    <span class="token key atrule">profiles</span><span class="token punctuation">:</span>
      <span class="token key atrule">active</span><span class="token punctuation">:</span> hive</code></pre>
-<h3 id="编写config配置类，将Hive的JdbcTemplate加载到Spring容器中"><a href="#编写config配置类，将Hive的JdbcTemplate加载到Spring容器中" class="headerlink" title="编写config配置类，将Hive的JdbcTemplate加载到Spring容器中"></a>编写config配置类，将Hive的JdbcTemplate加载到Spring容器中</h3></li>
-<li>采用手动加载DataSource配置方式（不推荐）<pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> com<span class="token punctuation">.</span>zaxxer<span class="token punctuation">.</span>hikari<span class="token punctuation">.</span>HikariDataSource<span class="token punctuation">;</span>
+</li>
+</ol>
+<h3 id="编写config配置类，将Hive的JdbcTemplate加载到Spring容器中"><a href="#编写config配置类，将Hive的JdbcTemplate加载到Spring容器中" class="headerlink" title="编写config配置类，将Hive的JdbcTemplate加载到Spring容器中"></a>编写config配置类，将Hive的JdbcTemplate加载到Spring容器中</h3><ol>
+<li>采用手动加载DataSource配置方式（不推荐）</li>
+</ol>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> com<span class="token punctuation">.</span>zaxxer<span class="token punctuation">.</span>hikari<span class="token punctuation">.</span>HikariDataSource<span class="token punctuation">;</span>
 <span class="token keyword">import</span> org<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>Logger<span class="token punctuation">;</span>
 <span class="token keyword">import</span> org<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>LoggerFactory<span class="token punctuation">;</span>
 <span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Qualifier<span class="token punctuation">;</span>
@@ -491,73 +495,100 @@
 <span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Configuration<span class="token punctuation">;</span>
 <span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>core<span class="token punctuation">.</span>env<span class="token punctuation">.</span>Environment<span class="token punctuation">;</span>
 <span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>jdbc<span class="token punctuation">.</span>core<span class="token punctuation">.</span>JdbcTemplate<span class="token punctuation">;</span>
-</code></pre>
-</li>
+
+<span class="token keyword">import</span> javax<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Resource<span class="token punctuation">;</span>
+<span class="token keyword">import</span> javax<span class="token punctuation">.</span>sql<span class="token punctuation">.</span>DataSource<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Objects<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+ * Hive-JDBC配置
+ *
+ * @author liming
+ * @date Created in 2018/11/15 11:58
+ */</span>
+<span class="token annotation punctuation">@Configuration</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HiveJdbcConfig</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> Logger logger <span class="token operator">=</span> LoggerFactory<span class="token punctuation">.</span><span class="token function">getLogger</span><span class="token punctuation">(</span>HiveJdbcConfig<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Resource</span>
+    <span class="token keyword">private</span> Environment env<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Bean</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"hiveJdbcDataSource"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> DataSource <span class="token function">dataSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        DataSourceProperties dataSourceProperties <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DataSourceProperties</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        dataSourceProperties<span class="token punctuation">.</span><span class="token function">setUrl</span><span class="token punctuation">(</span>env<span class="token punctuation">.</span><span class="token function">getProperty</span><span class="token punctuation">(</span><span class="token string">"hive.url"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        dataSourceProperties<span class="token punctuation">.</span><span class="token function">setDriverClassName</span><span class="token punctuation">(</span>env<span class="token punctuation">.</span><span class="token function">getProperty</span><span class="token punctuation">(</span><span class="token string">"hive.driver-class-name"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        dataSourceProperties<span class="token punctuation">.</span><span class="token function">setUsername</span><span class="token punctuation">(</span>env<span class="token punctuation">.</span><span class="token function">getProperty</span><span class="token punctuation">(</span><span class="token string">"hive.username"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        dataSourceProperties<span class="token punctuation">.</span><span class="token function">setPassword</span><span class="token punctuation">(</span>env<span class="token punctuation">.</span><span class="token function">getProperty</span><span class="token punctuation">(</span><span class="token string">"hive.password"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        HikariDataSource dataSource <span class="token operator">=</span> dataSourceProperties<span class="token punctuation">.</span><span class="token function">initializeDataSourceBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">type</span><span class="token punctuation">(</span>HikariDataSource<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//下面的配置根据实际情况添加、修改</span>
+        <span class="token comment" spellcheck="true">//连接超时时间</span>
+        dataSource<span class="token punctuation">.</span><span class="token function">setConnectionTimeout</span><span class="token punctuation">(</span>Long<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>Objects<span class="token punctuation">.</span><span class="token function">requireNonNull</span><span class="token punctuation">(</span>env<span class="token punctuation">.</span><span class="token function">getProperty</span><span class="token punctuation">(</span><span class="token string">"hive.connectionTimeout"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//连接池最大连接数</span>
+        dataSource<span class="token punctuation">.</span><span class="token function">setMaximumPoolSize</span><span class="token punctuation">(</span>Integer<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>Objects<span class="token punctuation">.</span><span class="token function">requireNonNull</span><span class="token punctuation">(</span>env<span class="token punctuation">.</span><span class="token function">getProperty</span><span class="token punctuation">(</span><span class="token string">"hive.maximumPoolSize"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//最小闲置连接数</span>
+        dataSource<span class="token punctuation">.</span><span class="token function">setMinimumIdle</span><span class="token punctuation">(</span>Integer<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>Objects<span class="token punctuation">.</span><span class="token function">requireNonNull</span><span class="token punctuation">(</span>env<span class="token punctuation">.</span><span class="token function">getProperty</span><span class="token punctuation">(</span><span class="token string">"hive.minimumIdle"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒</span>
+        dataSource<span class="token punctuation">.</span><span class="token function">setIdleTimeout</span><span class="token punctuation">(</span>Long<span class="token punctuation">.</span><span class="token function">parseLong</span><span class="token punctuation">(</span>Objects<span class="token punctuation">.</span><span class="token function">requireNonNull</span><span class="token punctuation">(</span>env<span class="token punctuation">.</span><span class="token function">getProperty</span><span class="token punctuation">(</span><span class="token string">"hive.idleTimeout"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//连接最大生存时间</span>
+        dataSource<span class="token punctuation">.</span><span class="token function">setMaxLifetime</span><span class="token punctuation">(</span>Long<span class="token punctuation">.</span><span class="token function">parseLong</span><span class="token punctuation">(</span>Objects<span class="token punctuation">.</span><span class="token function">requireNonNull</span><span class="token punctuation">(</span>env<span class="token punctuation">.</span><span class="token function">getProperty</span><span class="token punctuation">(</span><span class="token string">"hive.maxLifeTime"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//验证超时时间</span>
+        dataSource<span class="token punctuation">.</span><span class="token function">setValidationTimeout</span><span class="token punctuation">(</span>Long<span class="token punctuation">.</span><span class="token function">parseLong</span><span class="token punctuation">(</span>Objects<span class="token punctuation">.</span><span class="token function">requireNonNull</span><span class="token punctuation">(</span>env<span class="token punctuation">.</span><span class="token function">getProperty</span><span class="token punctuation">(</span><span class="token string">"hive.validationTimeout"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        logger<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">"Hive DataSource Inject Successfully..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> dataSource<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Bean</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"hiveJdbcTemplate"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> JdbcTemplate <span class="token function">hiveJdbcTemplate</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Qualifier</span><span class="token punctuation">(</span><span class="token string">"hiveJdbcDataSource"</span><span class="token punctuation">)</span> DataSource dataSource<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">JdbcTemplate</span><span class="token punctuation">(</span>dataSource<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<ol start="2">
+<li>采用自动加载DataSource配置方式（推荐）<br>该方式需要yml配置文件中变量名与DataSource类里面的变量名对应</li>
 </ol>
-<p>import javax.annotation.Resource;<br>import javax.sql.DataSource;<br>import java.util.Objects;</p>
-<p>/**</p>
-<ul>
-<li><p>Hive-JDBC配置</p>
-</li>
-<li></li>
-<li><p>@author liming</p>
-</li>
-<li><p>@date Created in 2018/11/15 11:58</p>
-</li>
-<li><p>/<br>@Configuration<br>public class HiveJdbcConfig {</p>
-<p>  private static final Logger logger = LoggerFactory.getLogger(HiveJdbcConfig.class);</p>
-<p>  @Resource<br>  private Environment env;</p>
-<p>  @Bean(name = “hiveJdbcDataSource”)<br>  public DataSource dataSource() {</p>
-<pre><code>  DataSourceProperties dataSourceProperties = new DataSourceProperties();
-  dataSourceProperties.setUrl(env.getProperty(&quot;hive.url&quot;));
-  dataSourceProperties.setDriverClassName(env.getProperty(&quot;hive.driver-class-name&quot;));
-  dataSourceProperties.setUsername(env.getProperty(&quot;hive.username&quot;));
-  dataSourceProperties.setPassword(env.getProperty(&quot;hive.password&quot;));
-  HikariDataSource dataSource = dataSourceProperties.initializeDataSourceBuilder().type(HikariDataSource.class).build();
-  //下面的配置根据实际情况添加、修改
-  //连接超时时间
-  dataSource.setConnectionTimeout(Long.valueOf(Objects.requireNonNull(env.getProperty(&quot;hive.connectionTimeout&quot;))));
-  //连接池最大连接数
-  dataSource.setMaximumPoolSize(Integer.valueOf(Objects.requireNonNull(env.getProperty(&quot;hive.maximumPoolSize&quot;))));
-  //最小闲置连接数
-  dataSource.setMinimumIdle(Integer.valueOf(Objects.requireNonNull(env.getProperty(&quot;hive.minimumIdle&quot;))));
-  //配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
-  dataSource.setIdleTimeout(Long.parseLong(Objects.requireNonNull(env.getProperty(&quot;hive.idleTimeout&quot;))));
-  //连接最大生存时间
-  dataSource.setMaxLifetime(Long.parseLong(Objects.requireNonNull(env.getProperty(&quot;hive.maxLifeTime&quot;))));
-  //验证超时时间
-  dataSource.setValidationTimeout(Long.parseLong(Objects.requireNonNull(env.getProperty(&quot;hive.validationTimeout&quot;))));
-  logger.debug(&quot;Hive DataSource Inject Successfully...&quot;);
-  return dataSource;</code></pre><p>  }</p>
-<p>  @Bean(name = “hiveJdbcTemplate”)<br>  public JdbcTemplate hiveJdbcTemplate(@Qualifier(“hiveJdbcDataSource”) DataSource dataSource) {</p>
-<pre><code>  return new JdbcTemplate(dataSource);</code></pre><p>  }<br>}</p>
-<pre><code>2. 采用自动加载DataSource配置方式（推荐）
-该方式需要yml配置文件中变量名与DataSource类里面的变量名对应
-```java
-package tech.segma.bi.config;
-</code></pre></li>
-</ul>
-<p>import com.zaxxer.hikari.HikariDataSource;<br>import org.slf4j.Logger;<br>import org.slf4j.LoggerFactory;<br>import org.springframework.beans.factory.annotation.Qualifier;<br>import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;<br>import org.springframework.boot.context.properties.ConfigurationProperties;<br>import org.springframework.context.annotation.Bean;<br>import org.springframework.context.annotation.Configuration;<br>import org.springframework.jdbc.core.JdbcTemplate;</p>
-<p>import javax.sql.DataSource;</p>
-<p>/**</p>
-<ul>
-<li><p>Hive-JDBC配置</p>
-</li>
-<li></li>
-<li><p>@author liming</p>
-</li>
-<li><p>@date Created in 2018/11/15 11:58</p>
-</li>
-<li><p>/<br>@Configuration<br>public class HiveJdbcConfig {<br>  private static final Logger LOGGER = LoggerFactory.getLogger(HiveJdbcConfig.class);</p>
-<p>  @Bean<br>  @ConfigurationProperties(prefix = “hive”)//需要配置前缀<br>  public DataSourceProperties dataSourceProperties() {</p>
-<pre><code>  return new DataSourceProperties();</code></pre><p>  }</p>
-<p>  @Bean(name = “hiveJdbcDataSource”)<br>  @ConfigurationProperties(prefix = “hive”)//需要配置前缀<br>  public DataSource dataSource() {</p>
-<pre><code>  return dataSourceProperties().initializeDataSourceBuilder().type(HikariDataSource.class).build();</code></pre><p>  }</p>
-<p>  @Bean(name = “hiveJdbcTemplate”)<br>  public JdbcTemplate hiveJdbcTemplate(@Qualifier(“hiveJdbcDataSource”) DataSource dataSource) {</p>
-<pre><code>  LOGGER.debug(&quot;Hive DataSource Inject Successfully...&quot;);
-  return new JdbcTemplate(dataSource);</code></pre><p>  }<br>}</p>
-<pre><code></code></pre></li>
-</ul>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> tech<span class="token punctuation">.</span>segma<span class="token punctuation">.</span>bi<span class="token punctuation">.</span>config<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>zaxxer<span class="token punctuation">.</span>hikari<span class="token punctuation">.</span>HikariDataSource<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>Logger<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>LoggerFactory<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Qualifier<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>autoconfigure<span class="token punctuation">.</span>jdbc<span class="token punctuation">.</span>DataSourceProperties<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>context<span class="token punctuation">.</span>properties<span class="token punctuation">.</span>ConfigurationProperties<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Bean<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Configuration<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>jdbc<span class="token punctuation">.</span>core<span class="token punctuation">.</span>JdbcTemplate<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> javax<span class="token punctuation">.</span>sql<span class="token punctuation">.</span>DataSource<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+ * Hive-JDBC配置
+ *
+ * @author liming
+ * @date Created in 2018/11/15 11:58
+ */</span>
+<span class="token annotation punctuation">@Configuration</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HiveJdbcConfig</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> Logger LOGGER <span class="token operator">=</span> LoggerFactory<span class="token punctuation">.</span><span class="token function">getLogger</span><span class="token punctuation">(</span>HiveJdbcConfig<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token annotation punctuation">@ConfigurationProperties</span><span class="token punctuation">(</span>prefix <span class="token operator">=</span> <span class="token string">"hive"</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//需要配置前缀</span>
+    <span class="token keyword">public</span> DataSourceProperties <span class="token function">dataSourceProperties</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">DataSourceProperties</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Bean</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"hiveJdbcDataSource"</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@ConfigurationProperties</span><span class="token punctuation">(</span>prefix <span class="token operator">=</span> <span class="token string">"hive"</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//需要配置前缀</span>
+    <span class="token keyword">public</span> DataSource <span class="token function">dataSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">dataSourceProperties</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">initializeDataSourceBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">type</span><span class="token punctuation">(</span>HikariDataSource<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Bean</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"hiveJdbcTemplate"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> JdbcTemplate <span class="token function">hiveJdbcTemplate</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Qualifier</span><span class="token punctuation">(</span><span class="token string">"hiveJdbcDataSource"</span><span class="token punctuation">)</span> DataSource dataSource<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        LOGGER<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">"Hive DataSource Inject Successfully..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">JdbcTemplate</span><span class="token punctuation">(</span>dataSource<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <h3 id="在代码中使用JdbcTemplate"><a href="#在代码中使用JdbcTemplate" class="headerlink" title="在代码中使用JdbcTemplate"></a>在代码中使用JdbcTemplate</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Resource</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"hiveJdbcTemplate"</span><span class="token punctuation">)</span>
 <span class="token keyword">private</span> JdbcTemplate hiveJdbcTemplate<span class="token punctuation">;</span>
 
@@ -858,9 +889,15 @@ server {
 <footer class="page-footer bg-color">
     <div class="container row center-align">
         <div class="col s12 m8 l8 copy-right">
-            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
-            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
-            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+<!--            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于-->
+<!--            <a href="https://hexo.io/" target="_blank">Hexo</a> 的-->
+<!--            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.-->
+
+            <span class="white-color">Copyright</span>
+            <i class="fa fa-copyright"></i>
+            <span class="white-color">2016 -2019</span>
+            <i class="fa fa-heart"></i>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;

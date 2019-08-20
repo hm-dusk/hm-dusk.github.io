@@ -440,7 +440,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        943
+                        986
                     </div>
                     
 
@@ -485,379 +485,89 @@
 <td align="center">磁盘</td>
 <td align="center">docker镜像目录至少30G（sandbox镜像27.5G）</td>
 </tr>
-<tr>
-<td align="center">### 下载脚本文件</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">到<a href="https://hortonworks.com/downloads/#sandbox" target="_blank" rel="noopener">官网</a>下载zip格式的shell脚本文件</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center"><img src="http://image.hming.org/%E5%AE%89%E8%A3%85sandbox-docker/docker%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD.png" alt="脚本下载"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">下载可能需要注册，随便填就行了。压缩包内容如下：</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center"><img src="http://image.hming.org/%E5%AE%89%E8%A3%85sandbox-docker/docker%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E9%A2%84%E8%A7%88.png" alt><img src="http://image.hming.org/%E5%AE%89%E8%A3%85sandbox-docker/docker%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E9%A2%84%E8%A7%882.png" alt></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">需要将脚本上传到Linux并解压</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">```bash</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">[root@sandbox opt]# ls</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">assets  docker-deploy-hdp30.sh</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">```</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">### 执行脚本</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">#### 1. 在Linux中执行<code>docker-deploy-hdp30.sh</code>脚本，拉取镜像，运行容器</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">```bash</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">[root@sandbox opt]# sh docker-deploy-hdp30.sh</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">+ registry=hortonworks</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">+ name=sandbox-hdp</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">+ version=3.0.1</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">+ proxyName=sandbox-proxy</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">+ proxyVersion=1.0</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">+ flavor=hdp</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">+ echo hdp</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">+ mkdir -p sandbox/proxy/conf.d</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">+ mkdir -p sandbox/proxy/conf.stream.d</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">+ docker pull hortonworks/sandbox-hdp:3.0.1</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">Trying to pull repository docker.io/hortonworks/sandbox-hdp …</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">3.0.1: Pulling from docker.io/hortonworks/sandbox-hdp</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">70799bbf2226: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">40963917cdad: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">3fe9adbb8d7e: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">ee3ec4e8cb3d: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">7ea5917732c0: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">2d951411620c: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">f4c5e354e7fd: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">22ffa6ef360f: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">2060aa0f3751: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">ca01ba34744d: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">83326dded077: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">eb3d71b90b73: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">bdd1cab41c81: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">500cc770c4bd: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">0cb1decd5474: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">b9591f4b6855: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">f28e56086127: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">e7de4e7d0bca: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">ec77967d2166: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">4fdcae170114: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">6347f5df8ffc: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">6a6ecc232709: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">ea845898ff50: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">02135573b1bf: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">cb0176867cd8: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">3c08321268fd: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">82e82a97c465: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">8aaaa48ed101: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">74b321ac2ac5: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">569da02c0a66: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">af40820407ef: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">Digest: sha256:7b767af7b42030fb1dd0f672b801199241e6bef1258e3ce57361edb779d95921</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">Status: Downloaded newer image for docker.io/hortonworks/sandbox-hdp:3.0.1</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">+ docker pull hortonworks/sandbox-proxy:1.0</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">Trying to pull repository docker.io/hortonworks/sandbox-proxy …</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">1.0: Pulling from docker.io/hortonworks/sandbox-proxy</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">951bdea65c93: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">4b9047c5fbbb: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">773156407aae: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">d8524176841d: Pull complete</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">Digest: sha256:42e4cfbcbb76af07e5d8f47a183a0d4105e65a1e7ef39fe37ab746e8b2523e9e</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">Status: Downloaded newer image for docker.io/hortonworks/sandbox-proxy:1.0</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">+ ‘[‘ hdp == hdf ‘]’</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">+ ‘[‘ hdp == hdp ‘]’</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">+ hostname=sandbox-hdp.hortonworks.com</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">++ docker images</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">++ awk ‘{print $2}’</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">++ grep hortonworks/sandbox-hdp</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">+ version=3.0.1</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">+ docker network create cda</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">7f641a6c16cf73df1079f241e76a318f3094f4303feaeae1c0a50c1b58c9d1ee</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">+ docker run –privileged –name sandbox-hdp -h sandbox-hdp.hortonworks.com –network=cda –network-alias=sandbox-hdp.hortonworks.com -d hortonworks/sandbox-hdp:3.0.1</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">59cb51cd71faa11218a12ee3f8c8ea1e58790025428a4573e476c1ddd118c202</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">+ echo ‘ Remove existing postgres run files. Please wait’</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">Remove existing postgres run files. Please wait</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">+ sleep 2</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">+ docker exec -t sandbox-hdp sh -c ‘rm -rf /var/run/postgresql/*; systemctl restart postgresql-9.6.service;’</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">+ sed s/sandbox-hdp-security/sandbox-hdp/g assets/generate-proxy-deploy-script.sh</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">+ mv -f assets/generate-proxy-deploy-script.sh.new assets/generate-proxy-deploy-script.sh</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">+ chmod +x assets/generate-proxy-deploy-script.sh</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">+ assets/generate-proxy-deploy-script.sh</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">+ grep MINGW</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">+ uname</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">+ chmod +x sandbox/proxy/proxy-deploy.sh</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">+ sandbox/proxy/proxy-deploy.sh</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">c1f52cfec560982477e4b6c69f4cc95309bd93907196761ed5eff7222744743e</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">```</td>
-<td align="center"></td>
-</tr>
 </tbody></table>
+<h3 id="下载脚本文件"><a href="#下载脚本文件" class="headerlink" title="下载脚本文件"></a>下载脚本文件</h3><p>到<a href="https://hortonworks.com/downloads/#sandbox" target="_blank" rel="noopener">官网</a>下载zip格式的shell脚本文件<br><img src="http://image.hming.org/%E5%AE%89%E8%A3%85sandbox-docker/docker%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD.png" alt="脚本下载"><br>下载可能需要注册，随便填就行了。压缩包内容如下：<br><img src="http://image.hming.org/%E5%AE%89%E8%A3%85sandbox-docker/docker%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E9%A2%84%E8%A7%88.png" alt><img src="http://image.hming.org/%E5%AE%89%E8%A3%85sandbox-docker/docker%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E9%A2%84%E8%A7%882.png" alt><br>需要将脚本上传到Linux并解压</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@sandbox opt<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ls</span>
+assets  docker-deploy-hdp30.sh</code></pre>
+<h3 id="执行脚本"><a href="#执行脚本" class="headerlink" title="执行脚本"></a>执行脚本</h3><h4 id="1-在Linux中执行docker-deploy-hdp30-sh脚本，拉取镜像，运行容器"><a href="#1-在Linux中执行docker-deploy-hdp30-sh脚本，拉取镜像，运行容器" class="headerlink" title="1. 在Linux中执行docker-deploy-hdp30.sh脚本，拉取镜像，运行容器"></a>1. 在Linux中执行<code>docker-deploy-hdp30.sh</code>脚本，拉取镜像，运行容器</h4><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@sandbox opt<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># sh docker-deploy-hdp30.sh </span>
++ registry<span class="token operator">=</span>hortonworks
++ name<span class="token operator">=</span>sandbox-hdp
++ version<span class="token operator">=</span>3.0.1
++ proxyName<span class="token operator">=</span>sandbox-proxy
++ proxyVersion<span class="token operator">=</span>1.0
++ flavor<span class="token operator">=</span>hdp
++ <span class="token keyword">echo</span> hdp
++ <span class="token function">mkdir</span> -p sandbox/proxy/conf.d
++ <span class="token function">mkdir</span> -p sandbox/proxy/conf.stream.d
++ docker pull hortonworks/sandbox-hdp:3.0.1
+Trying to pull repository docker.io/hortonworks/sandbox-hdp <span class="token punctuation">..</span>. 
+3.0.1: Pulling from docker.io/hortonworks/sandbox-hdp
+70799bbf2226: Pull complete 
+40963917cdad: Pull complete 
+3fe9adbb8d7e: Pull complete 
+ee3ec4e8cb3d: Pull complete 
+7ea5917732c0: Pull complete 
+2d951411620c: Pull complete 
+f4c5e354e7fd: Pull complete 
+22ffa6ef360f: Pull complete 
+2060aa0f3751: Pull complete 
+ca01ba34744d: Pull complete 
+83326dded077: Pull complete 
+eb3d71b90b73: Pull complete 
+bdd1cab41c81: Pull complete 
+500cc770c4bd: Pull complete 
+0cb1decd5474: Pull complete 
+b9591f4b6855: Pull complete 
+f28e56086127: Pull complete 
+e7de4e7d0bca: Pull complete 
+ec77967d2166: Pull complete 
+4fdcae170114: Pull complete 
+6347f5df8ffc: Pull complete 
+6a6ecc232709: Pull complete 
+ea845898ff50: Pull complete 
+02135573b1bf: Pull complete 
+cb0176867cd8: Pull complete 
+3c08321268fd: Pull complete 
+82e82a97c465: Pull complete 
+8aaaa48ed101: Pull complete 
+74b321ac2ac5: Pull complete 
+569da02c0a66: Pull complete 
+af40820407ef: Pull complete 
+Digest: sha256:7b767af7b42030fb1dd0f672b801199241e6bef1258e3ce57361edb779d95921
+Status: Downloaded newer image <span class="token keyword">for</span> docker.io/hortonworks/sandbox-hdp:3.0.1
++ docker pull hortonworks/sandbox-proxy:1.0
+Trying to pull repository docker.io/hortonworks/sandbox-proxy <span class="token punctuation">..</span>. 
+1.0: Pulling from docker.io/hortonworks/sandbox-proxy
+951bdea65c93: Pull complete 
+4b9047c5fbbb: Pull complete 
+773156407aae: Pull complete 
+d8524176841d: Pull complete 
+Digest: sha256:42e4cfbcbb76af07e5d8f47a183a0d4105e65a1e7ef39fe37ab746e8b2523e9e
+Status: Downloaded newer image <span class="token keyword">for</span> docker.io/hortonworks/sandbox-proxy:1.0
++ <span class="token string">'['</span> hdp <span class="token operator">==</span> hdf <span class="token string">']'</span>
++ <span class="token string">'['</span> hdp <span class="token operator">==</span> hdp <span class="token string">']'</span>
++ hostname<span class="token operator">=</span>sandbox-hdp.hortonworks.com
+++ docker images
+++ <span class="token function">awk</span> <span class="token string">'{print <span class="token variable">$2</span>}'</span>
+++ <span class="token function">grep</span> hortonworks/sandbox-hdp
++ version<span class="token operator">=</span>3.0.1
++ docker network create cda
+7f641a6c16cf73df1079f241e76a318f3094f4303feaeae1c0a50c1b58c9d1ee
++ docker run --privileged --name sandbox-hdp -h sandbox-hdp.hortonworks.com --network<span class="token operator">=</span>cda --network-alias<span class="token operator">=</span>sandbox-hdp.hortonworks.com -d hortonworks/sandbox-hdp:3.0.1
+59cb51cd71faa11218a12ee3f8c8ea1e58790025428a4573e476c1ddd118c202
++ <span class="token keyword">echo</span> <span class="token string">' Remove existing postgres run files. Please wait'</span>
+ Remove existing postgres run files. Please <span class="token function">wait</span>
++ <span class="token function">sleep</span> 2
++ docker <span class="token function">exec</span> -t sandbox-hdp sh -c <span class="token string">'rm -rf /var/run/postgresql/*; systemctl restart postgresql-9.6.service;'</span>
++ <span class="token function">sed</span> s/sandbox-hdp-security/sandbox-hdp/g assets/generate-proxy-deploy-script.sh
++ <span class="token function">mv</span> -f assets/generate-proxy-deploy-script.sh.new assets/generate-proxy-deploy-script.sh
++ <span class="token function">chmod</span> +x assets/generate-proxy-deploy-script.sh
++ assets/generate-proxy-deploy-script.sh
++ <span class="token function">grep</span> MINGW
++ <span class="token function">uname</span>
++ <span class="token function">chmod</span> +x sandbox/proxy/proxy-deploy.sh
++ sandbox/proxy/proxy-deploy.sh
+c1f52cfec560982477e4b6c69f4cc95309bd93907196761ed5eff7222744743e</code></pre>
 <blockquote>
 <p>注意：镜像文件特别大，国内拉取非常慢，可通过代理等方式拉取。</p>
 </blockquote>
@@ -1190,9 +900,15 @@ nginx: <span class="token punctuation">[</span>emerg<span class="token punctuati
 <footer class="page-footer bg-color">
     <div class="container row center-align">
         <div class="col s12 m8 l8 copy-right">
-            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
-            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
-            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+<!--            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于-->
+<!--            <a href="https://hexo.io/" target="_blank">Hexo</a> 的-->
+<!--            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.-->
+
+            <span class="white-color">Copyright</span>
+            <i class="fa fa-copyright"></i>
+            <span class="white-color">2016 -2019</span>
+            <i class="fa fa-heart"></i>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;

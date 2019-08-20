@@ -445,53 +445,66 @@
 <a id="more"></a>
 <h2 id="一、搭建MongoDB单机环境"><a href="#一、搭建MongoDB单机环境" class="headerlink" title="一、搭建MongoDB单机环境"></a>一、搭建MongoDB单机环境</h2><p>MongoDB 是一个基于分布式文件存储的数据库。由 C++ 语言编写。旨在为 WEB 应用提供可扩展的高性能数据存储解决方案。</p>
 <h3 id="A、使用APT安装"><a href="#A、使用APT安装" class="headerlink" title="A、使用APT安装"></a>A、使用APT安装</h3><p><a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/" target="_blank" rel="noopener">参考官方安装文档</a></p>
-<h4 id="1-导入public-key"><a href="#1-导入public-key" class="headerlink" title="1. 导入public key"></a>1. 导入public key</h4><pre><code>sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6</code></pre><h4 id="2-导入源（不同Ubuntu版本的源不一样，此处采用Ubuntu-16-04）"><a href="#2-导入源（不同Ubuntu版本的源不一样，此处采用Ubuntu-16-04）" class="headerlink" title="2. 导入源（不同Ubuntu版本的源不一样，此处采用Ubuntu 16.04）"></a>2. 导入源（不同Ubuntu版本的源不一样，此处采用Ubuntu 16.04）</h4><pre><code>echo &quot;deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse&quot; | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list</code></pre><h4 id="3-重新加载本地源"><a href="#3-重新加载本地源" class="headerlink" title="3. 重新加载本地源"></a>3. 重新加载本地源</h4><pre><code>sudo apt-get update</code></pre><h4 id="4-安装mongodb"><a href="#4-安装mongodb" class="headerlink" title="4. 安装mongodb"></a>4. 安装mongodb</h4><pre><code>sudo apt-get install -y mongodb-org</code></pre><h4 id="5-修改配置文件"><a href="#5-修改配置文件" class="headerlink" title="5. 修改配置文件"></a>5. 修改配置文件</h4><blockquote>
+<h4 id="1-导入public-key"><a href="#1-导入public-key" class="headerlink" title="1. 导入public key"></a>1. 导入public key</h4><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6</code></pre>
+<h4 id="2-导入源（不同Ubuntu版本的源不一样，此处采用Ubuntu-16-04）"><a href="#2-导入源（不同Ubuntu版本的源不一样，此处采用Ubuntu-16-04）" class="headerlink" title="2. 导入源（不同Ubuntu版本的源不一样，此处采用Ubuntu 16.04）"></a>2. 导入源（不同Ubuntu版本的源不一样，此处采用Ubuntu 16.04）</h4><pre class=" language-bash"><code class="language-bash"><span class="token keyword">echo</span> <span class="token string">"deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse"</span> <span class="token operator">|</span> <span class="token function">sudo</span> <span class="token function">tee</span> /etc/apt/sources.list.d/mongodb-org-3.4.list</code></pre>
+<h4 id="3-重新加载本地源"><a href="#3-重新加载本地源" class="headerlink" title="3. 重新加载本地源"></a>3. 重新加载本地源</h4><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> update</code></pre>
+<h4 id="4-安装mongodb"><a href="#4-安装mongodb" class="headerlink" title="4. 安装mongodb"></a>4. 安装mongodb</h4><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> -y mongodb-org</code></pre>
+<h4 id="5-修改配置文件"><a href="#5-修改配置文件" class="headerlink" title="5. 修改配置文件"></a>5. 修改配置文件</h4><blockquote>
 <p>配置文件默认文件目录/etc/mongod.conf<br>默认存储其数据文件/var/lib/mongodb<br>默认日志文件/var/log/mongodb/mongod.log<br><img src="http://image.hming.org/mongodb%E5%A4%8D%E5%88%B6%E9%9B%86%E6%90%AD%E5%BB%BA/%E9%BB%98%E8%AE%A4mongodb%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.jpg" alt></p>
 </blockquote>
-<h4 id="6-启动mongodb"><a href="#6-启动mongodb" class="headerlink" title="6. 启动mongodb"></a>6. 启动mongodb</h4><pre><code>mongod -f /etc/mongod.conf</code></pre><h4 id="7-卸载mongodb"><a href="#7-卸载mongodb" class="headerlink" title="7. 卸载mongodb"></a>7. 卸载mongodb</h4><p>1)停止mongodb服务</p>
-<pre><code>sudo service mongod stop</code></pre><p>2)删除软件包<br>删除您以前安装的任何MongoDB包。</p>
-<pre><code>sudo apt-get purge mongodb-org *</code></pre><p>3)删除数据目录<br>删除数据库和日志文件</p>
-<pre><code>sudo rm -r / var / log / mongodb 
-sudo rm -r / var / lib / mongodb</code></pre><h3 id="B、使用安装包安装"><a href="#B、使用安装包安装" class="headerlink" title="B、使用安装包安装"></a>B、使用安装包安装</h3><p>到<a href="https://mirrors.tuna.tsinghua.edu.cn/mongodb/apt/ubuntu/dists/xenial/mongodb-org/" target="_blank" rel="noopener">清华开源镜像</a>下载相应的包</p>
-<h4 id="1-解压到需要安装的目录"><a href="#1-解压到需要安装的目录" class="headerlink" title="1. 解压到需要安装的目录"></a>1. 解压到需要安装的目录</h4><pre><code>tar zxvf mongodb-linux-x86_64-ubuntu1604-3.4.4.tgz</code></pre><blockquote>
+<h4 id="6-启动mongodb"><a href="#6-启动mongodb" class="headerlink" title="6. 启动mongodb"></a>6. 启动mongodb</h4><pre class=" language-bash"><code class="language-bash">mongod -f /etc/mongod.conf</code></pre>
+<h4 id="7-卸载mongodb"><a href="#7-卸载mongodb" class="headerlink" title="7. 卸载mongodb"></a>7. 卸载mongodb</h4><p>1)停止mongodb服务</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">service</span> mongod stop</code></pre>
+<p>2)删除软件包<br>删除您以前安装的任何MongoDB包。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> purge mongodb-org *</code></pre>
+<p>3)删除数据目录<br>删除数据库和日志文件</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">rm</span> -r / var / log / mongodb 
+<span class="token function">sudo</span> <span class="token function">rm</span> -r / var / lib / mongodb</code></pre>
+<h3 id="B、使用安装包安装"><a href="#B、使用安装包安装" class="headerlink" title="B、使用安装包安装"></a>B、使用安装包安装</h3><p>到<a href="https://mirrors.tuna.tsinghua.edu.cn/mongodb/apt/ubuntu/dists/xenial/mongodb-org/" target="_blank" rel="noopener">清华开源镜像</a>下载相应的包</p>
+<h4 id="1-解压到需要安装的目录"><a href="#1-解压到需要安装的目录" class="headerlink" title="1. 解压到需要安装的目录"></a>1. 解压到需要安装的目录</h4><pre class=" language-bash"><code class="language-bash"><span class="token function">tar</span> zxvf mongodb-linux-x86_64-ubuntu1604-3.4.4.tgz</code></pre>
+<blockquote>
 <p>tar命令参数详解：<br>-c ：建立打包档案，可搭配-v 来察看过程中被打包的档名(filename)<br>-t ：察看打包档案的内容含有哪些档名，重点在察看『档名』就是了；<br>-x ：解打包或解压缩的功能，可以搭配-C (大写) 在特定目录解开<br><em>特别留意的是， -c, -t, -x 不可同时出现在一串指令列中。</em><br>-z ：透过gzip 的支援进行压缩/解压缩：此时档名最好为<code>*.tar.gz</code><br>-j ：透过bzip2 的支援进行压缩/解压缩：此时档名最好为<code>*.tar.bz2</code><br>-J ：透过xz 的支援进行压缩/解压缩：此时档名最好为<code>*.tar.xz</code><br><em>特别留意， -z, -j, -J 不可以同时出现在一串指令列中。</em><br>-v ：在压缩/解压缩的过程中，将正在处理的档名显示出来！<br>-f filename：-f 后面要立刻接要被处理的档名！建议-f 单独写一个选项啰！(比较不会忘记)<br>-C 目录：这个选项用在解压缩，若要在特定目录解压缩，可以使用这个选项。<br>更多的压缩命令参考<a href="http://linux.vbird.org/linux_basic/0240tarcompress.php#compress_name" target="_blank" rel="noopener">鸟哥的Linux私房菜之档案的压缩、解压</a></p>
 </blockquote>
 <h4 id="2-创建存放数据文件目录以及日志文件目录（可以自己指定）"><a href="#2-创建存放数据文件目录以及日志文件目录（可以自己指定）" class="headerlink" title="2. 创建存放数据文件目录以及日志文件目录（可以自己指定）"></a>2. 创建存放数据文件目录以及日志文件目录（可以自己指定）</h4><p>可以创建多个数据库存放路径，每个数据库对应一个conf配置文件，mongodb只需要安装一次</p>
-<pre><code>mkdir -p /mongodb/db  # 创建数据文件夹
-mkdir -p /mongodb/log
-touch /mongodb/log/mongodb.log  #创建文件</code></pre><h4 id="3-在适当的路径编辑配置文件（后缀可选conf和yaml）"><a href="#3-在适当的路径编辑配置文件（后缀可选conf和yaml）" class="headerlink" title="3. 在适当的路径编辑配置文件（后缀可选conf和yaml）"></a>3. 在适当的路径编辑配置文件（后缀可选conf和yaml）</h4><pre><code>vi mongodb.conf</code></pre><p>配置文件模板：</p>
-<pre><code># mongodb.conf
-# Where and how to store data.
+<pre class=" language-bash"><code class="language-bash"><span class="token function">mkdir</span> -p /mongodb/db  <span class="token comment" spellcheck="true"># 创建数据文件夹</span>
+<span class="token function">mkdir</span> -p /mongodb/log
+<span class="token function">touch</span> /mongodb/log/mongodb.log  <span class="token comment" spellcheck="true">#创建文件</span></code></pre>
+<h4 id="3-在适当的路径编辑配置文件（后缀可选conf和yaml）"><a href="#3-在适当的路径编辑配置文件（后缀可选conf和yaml）" class="headerlink" title="3. 在适当的路径编辑配置文件（后缀可选conf和yaml）"></a>3. 在适当的路径编辑配置文件（后缀可选conf和yaml）</h4><pre class=" language-bash"><code class="language-bash"><span class="token function">vi</span> mongodb.conf</code></pre>
+<p>配置文件模板：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># mongodb.conf</span>
+<span class="token comment" spellcheck="true"># Where and how to store data.</span>
 storage:
   dbPath: /mongodb/data
   journal:
-    enabled: true
-#  engine:
-#  mmapv1:
-#  wiredTiger:
+    enabled: <span class="token boolean">true</span>
+<span class="token comment" spellcheck="true">#  engine:</span>
+<span class="token comment" spellcheck="true">#  mmapv1:</span>
+<span class="token comment" spellcheck="true">#  wiredTiger:</span>
 
-# where to write logging data.
+<span class="token comment" spellcheck="true"># where to write logging data.</span>
 systemLog:
-  destination: file
-  logAppend: true
+  destination: <span class="token function">file</span>
+  logAppend: <span class="token boolean">true</span>
   path: /mongodb/log/mongodb.log 
 
-# network interfaces
+<span class="token comment" spellcheck="true"># network interfaces</span>
 net:
   port: 28001
- # bindIp: 127.0.0.1
+ <span class="token comment" spellcheck="true"># bindIp: 127.0.0.1</span>
 
 processManagement:
-  fork: true
-#security:
-#operationProfiling:</code></pre><blockquote>
+  fork: <span class="token boolean">true</span>
+<span class="token comment" spellcheck="true">#security:</span>
+<span class="token comment" spellcheck="true">#operationProfiling:</span></code></pre>
+<blockquote>
 <p>文件路径修改为设置的存储路径，端口可自定义（一般推荐27或者28开头的5位数）</p>
 </blockquote>
-<h4 id="4-配置环境变量PATH路径"><a href="#4-配置环境变量PATH路径" class="headerlink" title="4. 配置环境变量PATH路径"></a>4. 配置环境变量PATH路径</h4><pre><code># 这里也可以修改~/.bashrc文件（区别见下表）
-sudo vi /etc/profile
+<h4 id="4-配置环境变量PATH路径"><a href="#4-配置环境变量PATH路径" class="headerlink" title="4. 配置环境变量PATH路径"></a>4. 配置环境变量PATH路径</h4><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 这里也可以修改~/.bashrc文件（区别见下表）</span>
+<span class="token function">sudo</span> <span class="token function">vi</span> /etc/profile
 
-# 追加(路径是放置Mongodb安装包的bin路径)
-export PATH=/home/dusk/mongodb/bin:$PATH</code></pre><blockquote>
+<span class="token comment" spellcheck="true"># 追加(路径是放置Mongodb安装包的bin路径)</span>
+<span class="token function">export</span> PATH<span class="token operator">=</span>/home/dusk/mongodb/bin:<span class="token variable">$PATH</span></code></pre>
+<blockquote>
 <p>Linux中profile、bashrc、bash_profile之间的区别和联系</p>
 <table>
 <thead>
@@ -541,14 +554,18 @@ export PATH=/home/dusk/mongodb/bin:$PATH</code></pre><blockquote>
 <li><em>~/.bash_logout</em>：当该用户退出bash shell时执行</li>
 </ul>
 </blockquote>
-<h4 id="5-如果修改的是-etc-profile，则需要重新启动配置文件"><a href="#5-如果修改的是-etc-profile，则需要重新启动配置文件" class="headerlink" title="5. 如果修改的是/etc/profile，则需要重新启动配置文件"></a>5. 如果修改的是/etc/profile，则需要重新启动配置文件</h4><pre><code>source /etc/profile</code></pre><h4 id="6-在配置文件路径启动mongodb"><a href="#6-在配置文件路径启动mongodb" class="headerlink" title="6. 在配置文件路径启动mongodb"></a>6. 在配置文件路径启动mongodb</h4><pre><code>mongod -f mongodb.conf</code></pre><h3 id="关闭MongoDB"><a href="#关闭MongoDB" class="headerlink" title="关闭MongoDB"></a>关闭MongoDB</h3><ol>
-<li>使用mongod命令<pre><code>mongod --shutdown --dbpath /数据库储存路径</code></pre></li>
-<li>连接进mongodb数据库关闭<pre><code># 进入mongoshell
-mongo --port=28001
-# 使用admin数据库（只有在admin下才能执行shutdown方法）
+<h4 id="5-如果修改的是-etc-profile，则需要重新启动配置文件"><a href="#5-如果修改的是-etc-profile，则需要重新启动配置文件" class="headerlink" title="5. 如果修改的是/etc/profile，则需要重新启动配置文件"></a>5. 如果修改的是/etc/profile，则需要重新启动配置文件</h4><pre class=" language-bash"><code class="language-bash"><span class="token function">source</span> /etc/profile</code></pre>
+<h4 id="6-在配置文件路径启动mongodb"><a href="#6-在配置文件路径启动mongodb" class="headerlink" title="6. 在配置文件路径启动mongodb"></a>6. 在配置文件路径启动mongodb</h4><pre class=" language-bash"><code class="language-bash">mongod -f mongodb.conf</code></pre>
+<h3 id="关闭MongoDB"><a href="#关闭MongoDB" class="headerlink" title="关闭MongoDB"></a>关闭MongoDB</h3><ol>
+<li>使用mongod命令<pre class=" language-bash"><code class="language-bash">mongod --shutdown --dbpath /数据库储存路径</code></pre>
+</li>
+<li>连接进mongodb数据库关闭<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 进入mongoshell</span>
+mongo --port<span class="token operator">=</span>28001
+<span class="token comment" spellcheck="true"># 使用admin数据库（只有在admin下才能执行shutdown方法）</span>
 use admin
-# 关闭mongodb服务
-db.shutdownServer()</code></pre></li>
+<span class="token comment" spellcheck="true"># 关闭mongodb服务</span>
+db.shutdownServer<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+</li>
 <li>查看mongodb的进程，用kill杀掉进程<br><code>不推荐这种方式，会有丢失数据的风险</code></li>
 </ol>
 <hr>
@@ -577,118 +594,127 @@ db.shutdownServer()</code></pre></li>
 <blockquote>
 <p><em>当然，你也可以在一台电脑上搭建复制集，但是端口一定不要冲突</em></p>
 </blockquote>
-<h3 id="2-确保每个节点数据、日志文件都建立完毕"><a href="#2-确保每个节点数据、日志文件都建立完毕" class="headerlink" title="2.确保每个节点数据、日志文件都建立完毕"></a>2.确保每个节点数据、日志文件都建立完毕</h3><pre><code># 数据目录
-mkdir -p /mongodb/data/
-# 日志目录
-mkdir -p /mongodb/log/
-# 创建日志文件
-touch /mongodb/log/mongodb.log
-# 配置文件目录
-mkdir -p /mongodb/conf</code></pre><blockquote>
+<h3 id="2-确保每个节点数据、日志文件都建立完毕"><a href="#2-确保每个节点数据、日志文件都建立完毕" class="headerlink" title="2.确保每个节点数据、日志文件都建立完毕"></a>2.确保每个节点数据、日志文件都建立完毕</h3><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 数据目录</span>
+<span class="token function">mkdir</span> -p /mongodb/data/
+<span class="token comment" spellcheck="true"># 日志目录</span>
+<span class="token function">mkdir</span> -p /mongodb/log/
+<span class="token comment" spellcheck="true"># 创建日志文件</span>
+<span class="token function">touch</span> /mongodb/log/mongodb.log
+<span class="token comment" spellcheck="true"># 配置文件目录</span>
+<span class="token function">mkdir</span> -p /mongodb/conf</code></pre>
+<blockquote>
 <p>参考上面的mongodb环境搭建</p>
 </blockquote>
-<h3 id="3-修改每个节点的配置文件（重点）"><a href="#3-修改每个节点的配置文件（重点）" class="headerlink" title="3.修改每个节点的配置文件（重点）"></a>3.修改每个节点的配置文件（重点）</h3><pre><code># 例：
-vi /mongodb/conf/mongodb.yaml</code></pre><p>在文件后面追加：</p>
-<pre><code># 副本
+<h3 id="3-修改每个节点的配置文件（重点）"><a href="#3-修改每个节点的配置文件（重点）" class="headerlink" title="3.修改每个节点的配置文件（重点）"></a>3.修改每个节点的配置文件（重点）</h3><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 例：</span>
+<span class="token function">vi</span> /mongodb/conf/mongodb.yaml</code></pre>
+<p>在文件后面追加：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 副本</span>
 replication:
-  #设置复制集名称，可自定义
+  <span class="token comment" spellcheck="true">#设置复制集名称，可自定义</span>
   replSetName: DBTEST
-  #设置操作日志的大小(important)
+  <span class="token comment" spellcheck="true">#设置操作日志的大小(important)</span>
   oplogSizeMB: 10240
-#sharding:
-## Enterprise-Only Options:
-#auditLog:
-#snmp:</code></pre><blockquote>
+<span class="token comment" spellcheck="true">#sharding:</span>
+<span class="token comment" spellcheck="true">## Enterprise-Only Options:</span>
+<span class="token comment" spellcheck="true">#auditLog:</span>
+<span class="token comment" spellcheck="true">#snmp:</span></code></pre>
+<blockquote>
 <p><em>复制集名称每个节点一定要一样</em></p>
 </blockquote>
-<h3 id="4-启动每个节点"><a href="#4-启动每个节点" class="headerlink" title="4.启动每个节点"></a>4.启动每个节点</h3><pre><code>mongod -f /mongodb/conf/mongodb.conf</code></pre><h3 id="5-进入一个节点配置复制集（重点）"><a href="#5-进入一个节点配置复制集（重点）" class="headerlink" title="5.进入一个节点配置复制集（重点）"></a>5.进入一个节点配置复制集（重点）</h3><pre><code>#任意一个节点上(最好选在主节点node1)
-mongo --port 28001</code></pre><p>在mongo shell中配置副本<br><em>输入rs.help()可以查看rs的各种方法</em></p>
-<pre><code># 初始化复制集
-rs.initiate()
-# 显示复制集配置对象
-rs.conf()
-# 将其余成员添加到副本集
-# 返回{ &quot;ok&quot; : 1 }说明添加成功
-rs.add(&quot;node2:28001&quot;)
-rs.addArb(&quot;node3:28001&quot;)</code></pre><p>查看副本集状态，可以看到复制集的全部信息都被显示出来</p>
-<pre><code>DBTEST:PRIMARY&gt; rs.status()
-{
-    &quot;set&quot; : &quot;DBTEST&quot;,
-    &quot;date&quot; : ISODate(&quot;2017-06-30T07:10:33.247Z&quot;),
-    &quot;myState&quot; : 1,
-    &quot;term&quot; : NumberLong(1),
-    &quot;heartbeatIntervalMillis&quot; : NumberLong(2000),
-    &quot;members&quot; : [
-        {
-            &quot;_id&quot; : 0,
-            &quot;name&quot; : &quot;node1:28001&quot;,
-            &quot;health&quot; : 1,
-            &quot;state&quot; : 1,
-            &quot;stateStr&quot; : &quot;PRIMARY&quot;,
-            &quot;uptime&quot; : 316,
-            &quot;optime&quot; : {
-                &quot;ts&quot; : Timestamp(1498806589, 1),
-                &quot;t&quot; : NumberLong(1)
-            },
-            &quot;optimeDate&quot; : ISODate(&quot;2017-06-30T07:09:49Z&quot;),
-            &quot;infoMessage&quot; : &quot;could not find member to sync from&quot;,
-            &quot;electionTime&quot; : Timestamp(1498806520, 2),
-            &quot;electionDate&quot; : ISODate(&quot;2017-06-30T07:08:40Z&quot;),
-            &quot;configVersion&quot; : 4,
-            &quot;self&quot; : true
-        },
-        {
-            &quot;_id&quot; : 1,
-            &quot;name&quot; : &quot;node2:28001&quot;,
-            &quot;health&quot; : 1,
-            &quot;state&quot; : 2,
-            &quot;stateStr&quot; : &quot;SECONDARY&quot;,
-            &quot;uptime&quot; : 58,
-            &quot;optime&quot; : {
-                &quot;ts&quot; : Timestamp(1498806589, 1),
-                &quot;t&quot; : NumberLong(1)
-            },
-            &quot;optimeDate&quot; : ISODate(&quot;2017-06-30T07:09:49Z&quot;),
-            &quot;lastHeartbeat&quot; : ISODate(&quot;2017-06-30T07:10:31.761Z&quot;),
-            &quot;lastHeartbeatRecv&quot; : ISODate(&quot;2017-06-30T07:10:32.765Z&quot;),
-            &quot;pingMs&quot; : NumberLong(0),
-            &quot;syncingTo&quot; : &quot;node2:28001&quot;,
-            &quot;configVersion&quot; : 4
-        },
-        {
-            &quot;_id&quot; : 2,
-            &quot;name&quot; : &quot;node3:28001&quot;,
-            &quot;health&quot; : 1,
-            &quot;state&quot; : 7,
-            &quot;stateStr&quot; : &quot;ARBITER&quot;,
-            &quot;uptime&quot; : 43,
-            &quot;lastHeartbeat&quot; : ISODate(&quot;2017-06-30T07:10:31.761Z&quot;),
-            &quot;lastHeartbeatRecv&quot; : ISODate(&quot;2017-06-30T07:10:29.970Z&quot;),
-            &quot;pingMs&quot; : NumberLong(0),
-            &quot;configVersion&quot; : 4
-        }
-    ],
-    &quot;ok&quot; : 1
-}</code></pre><h3 id="6-删除子节点"><a href="#6-删除子节点" class="headerlink" title="6.删除子节点"></a>6.删除子节点</h3><pre><code>rs.remove(&quot;node3:28001&quot;)
-# 返回{&quot;ok&quot; : 1}</code></pre><h3 id="7-可能遇到的问题"><a href="#7-可能遇到的问题" class="headerlink" title="7.可能遇到的问题"></a>7.可能遇到的问题</h3><p>在节点中执行show方法可能出现</p>
-<pre><code>DBTEST:SECONDARY&gt; show databases
-2017-07-28T11:15:06.856+0800 E QUERY    [thread1] Error: listDatabases failed:{
-        &quot;ok&quot; : 0,
-        &quot;errmsg&quot; : &quot;not master and slaveOk=false&quot;,
-        &quot;code&quot; : 13435,
-        &quot;codeName&quot; : &quot;NotMasterNoSlaveOk&quot;
-} :
-_getErrorWithCode@src/mongo/shell/utils.js:25:13
-Mongo.prototype.getDBs@src/mongo/shell/mongo.js:62:1
-shellHelper.show@src/mongo/shell/utils.js:755:19
-shellHelper@src/mongo/shell/utils.js:645:15
+<h3 id="4-启动每个节点"><a href="#4-启动每个节点" class="headerlink" title="4.启动每个节点"></a>4.启动每个节点</h3><pre class=" language-bash"><code class="language-bash">mongod -f /mongodb/conf/mongodb.conf</code></pre>
+<h3 id="5-进入一个节点配置复制集（重点）"><a href="#5-进入一个节点配置复制集（重点）" class="headerlink" title="5.进入一个节点配置复制集（重点）"></a>5.进入一个节点配置复制集（重点）</h3><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#任意一个节点上(最好选在主节点node1)</span>
+mongo --port 28001</code></pre>
+<p>在mongo shell中配置副本<br><em>输入rs.help()可以查看rs的各种方法</em></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 初始化复制集</span>
+rs.initiate<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 显示复制集配置对象</span>
+rs.conf<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 将其余成员添加到副本集</span>
+<span class="token comment" spellcheck="true"># 返回{ "ok" : 1 }说明添加成功</span>
+rs.add<span class="token punctuation">(</span><span class="token string">"node2:28001"</span><span class="token punctuation">)</span>
+rs.addArb<span class="token punctuation">(</span><span class="token string">"node3:28001"</span><span class="token punctuation">)</span></code></pre>
+<p>查看副本集状态，可以看到复制集的全部信息都被显示出来</p>
+<pre class=" language-json"><code class="language-json">DBTEST<span class="token operator">:</span>PRIMARY> rs.status(<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token property">"set"</span> <span class="token operator">:</span> <span class="token string">"DBTEST"</span><span class="token punctuation">,</span>
+    <span class="token property">"date"</span> <span class="token operator">:</span> ISODate(<span class="token string">"2017-06-30T07:10:33.247Z"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token property">"myState"</span> <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token property">"term"</span> <span class="token operator">:</span> NumberLong(<span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token property">"heartbeatIntervalMillis"</span> <span class="token operator">:</span> NumberLong(<span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token property">"members"</span> <span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"_id"</span> <span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+            <span class="token property">"name"</span> <span class="token operator">:</span> <span class="token string">"node1:28001"</span><span class="token punctuation">,</span>
+            <span class="token property">"health"</span> <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+            <span class="token property">"state"</span> <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+            <span class="token property">"stateStr"</span> <span class="token operator">:</span> <span class="token string">"PRIMARY"</span><span class="token punctuation">,</span>
+            <span class="token property">"uptime"</span> <span class="token operator">:</span> <span class="token number">316</span><span class="token punctuation">,</span>
+            <span class="token property">"optime"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">"ts"</span> <span class="token operator">:</span> Timestamp(<span class="token number">1498806589</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token property">"t"</span> <span class="token operator">:</span> NumberLong(<span class="token number">1</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token property">"optimeDate"</span> <span class="token operator">:</span> ISODate(<span class="token string">"2017-06-30T07:09:49Z"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token property">"infoMessage"</span> <span class="token operator">:</span> <span class="token string">"could not find member to sync from"</span><span class="token punctuation">,</span>
+            <span class="token property">"electionTime"</span> <span class="token operator">:</span> Timestamp(<span class="token number">1498806520</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token property">"electionDate"</span> <span class="token operator">:</span> ISODate(<span class="token string">"2017-06-30T07:08:40Z"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token property">"configVersion"</span> <span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+            <span class="token property">"self"</span> <span class="token operator">:</span> <span class="token boolean">true</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"_id"</span> <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+            <span class="token property">"name"</span> <span class="token operator">:</span> <span class="token string">"node2:28001"</span><span class="token punctuation">,</span>
+            <span class="token property">"health"</span> <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+            <span class="token property">"state"</span> <span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+            <span class="token property">"stateStr"</span> <span class="token operator">:</span> <span class="token string">"SECONDARY"</span><span class="token punctuation">,</span>
+            <span class="token property">"uptime"</span> <span class="token operator">:</span> <span class="token number">58</span><span class="token punctuation">,</span>
+            <span class="token property">"optime"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">"ts"</span> <span class="token operator">:</span> Timestamp(<span class="token number">1498806589</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token property">"t"</span> <span class="token operator">:</span> NumberLong(<span class="token number">1</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token property">"optimeDate"</span> <span class="token operator">:</span> ISODate(<span class="token string">"2017-06-30T07:09:49Z"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token property">"lastHeartbeat"</span> <span class="token operator">:</span> ISODate(<span class="token string">"2017-06-30T07:10:31.761Z"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token property">"lastHeartbeatRecv"</span> <span class="token operator">:</span> ISODate(<span class="token string">"2017-06-30T07:10:32.765Z"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token property">"pingMs"</span> <span class="token operator">:</span> NumberLong(<span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token property">"syncingTo"</span> <span class="token operator">:</span> <span class="token string">"node2:28001"</span><span class="token punctuation">,</span>
+            <span class="token property">"configVersion"</span> <span class="token operator">:</span> <span class="token number">4</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"_id"</span> <span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+            <span class="token property">"name"</span> <span class="token operator">:</span> <span class="token string">"node3:28001"</span><span class="token punctuation">,</span>
+            <span class="token property">"health"</span> <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+            <span class="token property">"state"</span> <span class="token operator">:</span> <span class="token number">7</span><span class="token punctuation">,</span>
+            <span class="token property">"stateStr"</span> <span class="token operator">:</span> <span class="token string">"ARBITER"</span><span class="token punctuation">,</span>
+            <span class="token property">"uptime"</span> <span class="token operator">:</span> <span class="token number">43</span><span class="token punctuation">,</span>
+            <span class="token property">"lastHeartbeat"</span> <span class="token operator">:</span> ISODate(<span class="token string">"2017-06-30T07:10:31.761Z"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token property">"lastHeartbeatRecv"</span> <span class="token operator">:</span> ISODate(<span class="token string">"2017-06-30T07:10:29.970Z"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token property">"pingMs"</span> <span class="token operator">:</span> NumberLong(<span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token property">"configVersion"</span> <span class="token operator">:</span> <span class="token number">4</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"ok"</span> <span class="token operator">:</span> <span class="token number">1</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="6-删除子节点"><a href="#6-删除子节点" class="headerlink" title="6.删除子节点"></a>6.删除子节点</h3><pre class=" language-bash"><code class="language-bash">rs.remove<span class="token punctuation">(</span><span class="token string">"node3:28001"</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 返回{"ok" : 1}</span></code></pre>
+<h3 id="7-可能遇到的问题"><a href="#7-可能遇到的问题" class="headerlink" title="7.可能遇到的问题"></a>7.可能遇到的问题</h3><p>在节点中执行show方法可能出现</p>
+<pre class=" language-json"><code class="language-json">DBTEST<span class="token operator">:</span>SECONDARY> show databases
+<span class="token number">2017</span>-<span class="token number">07</span>-28T11<span class="token operator">:</span><span class="token number">15</span><span class="token operator">:</span><span class="token number">06.856</span>+<span class="token number">0800</span> E QUERY    <span class="token punctuation">[</span>thread1<span class="token punctuation">]</span> Error<span class="token operator">:</span> listDatabases failed<span class="token operator">:</span><span class="token punctuation">{</span>
+        <span class="token property">"ok"</span> <span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token property">"errmsg"</span> <span class="token operator">:</span> <span class="token string">"not master and slaveOk=false"</span><span class="token punctuation">,</span>
+        <span class="token property">"code"</span> <span class="token operator">:</span> <span class="token number">13435</span><span class="token punctuation">,</span>
+        <span class="token property">"codeName"</span> <span class="token operator">:</span> <span class="token string">"NotMasterNoSlaveOk"</span>
+<span class="token punctuation">}</span> <span class="token operator">:</span>
+_getErrorWithCode@src/mongo/shell/utils.js<span class="token operator">:</span><span class="token number">25</span><span class="token operator">:</span><span class="token number">13</span>
+Mongo.prototype.getDBs@src/mongo/shell/mongo.js<span class="token operator">:</span><span class="token number">62</span><span class="token operator">:</span><span class="token number">1</span>
+shellHelper.show@src/mongo/shell/utils.js<span class="token operator">:</span><span class="token number">755</span><span class="token operator">:</span><span class="token number">19</span>
+shellHelper@src/mongo/shell/utils.js<span class="token operator">:</span><span class="token number">645</span><span class="token operator">:</span><span class="token number">15</span>
 
-#解决方法是在报错的节点上执行rs.slaveOk()方法即可
-DBTEST:STARTUP2&gt; rs.slaveOk()
-DBTEST:STARTUP2&gt; show databases
-admin       0.000GB
-local       0.000GB
-mydatabase  0.000GB</code></pre><h3 id="8-关闭、重启复制集"><a href="#8-关闭、重启复制集" class="headerlink" title="8.关闭、重启复制集"></a>8.关闭、重启复制集</h3><p>参考上边的关闭mongodb的方法，依次在每个节点上执行关闭操作<br><code>注意关闭顺序，在重启节点的过程中，建议不要直接shutdown Primary，这样可能导致已经写入primary但未同步到secondary的数据丢失</code></p>
+#解决方法是在报错的节点上执行rs.slaveOk(<span class="token punctuation">)</span>方法即可
+DBTEST<span class="token operator">:</span>STARTUP2> rs.slaveOk(<span class="token punctuation">)</span>
+DBTEST<span class="token operator">:</span>STARTUP2> show databases
+admin       <span class="token number">0</span>.000GB
+local       <span class="token number">0</span>.000GB
+mydatabase  <span class="token number">0</span>.000GB</code></pre>
+<h3 id="8-关闭、重启复制集"><a href="#8-关闭、重启复制集" class="headerlink" title="8.关闭、重启复制集"></a>8.关闭、重启复制集</h3><p>参考上边的关闭mongodb的方法，依次在每个节点上执行关闭操作<br><code>注意关闭顺序，在重启节点的过程中，建议不要直接shutdown Primary，这样可能导致已经写入primary但未同步到secondary的数据丢失</code></p>
 <blockquote>
 <p>1.shutdown Primary （shutdown会等待Secondary oplog追到10s以内）<br>2.Primary退出后，剩余的节点选举出一个新的Primary（复制集只包含1或2节点例外）<br>3.Primary重新启动，因为当前复制集已经有了新的Primary，这个Primary将以Secondary的角色运行。<br>4.从新的Primary同步的过程中，发现自己有无效的oplog，会先进行rollback。（rollback的数据只要不超过300M是可以找回的）</p>
 </blockquote>
@@ -1005,9 +1031,15 @@ Object ID（自动维护）
 <footer class="page-footer bg-color">
     <div class="container row center-align">
         <div class="col s12 m8 l8 copy-right">
-            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
-            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
-            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+<!--            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于-->
+<!--            <a href="https://hexo.io/" target="_blank">Hexo</a> 的-->
+<!--            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.-->
+
+            <span class="white-color">Copyright</span>
+            <i class="fa fa-copyright"></i>
+            <span class="white-color">2016 -2019</span>
+            <i class="fa fa-heart"></i>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;

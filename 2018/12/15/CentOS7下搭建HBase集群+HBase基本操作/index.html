@@ -439,7 +439,7 @@ hadoop002
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        855
+                        854
                     </div>
                     
 
@@ -483,19 +483,8 @@ hadoop002
 <td align="center">hadoop002</td>
 <td align="center">192.168.171.12</td>
 </tr>
-<tr>
-<td align="center">### 下载安装包</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">下载地址：<a href="http://archive.apache.org/dist/hbase/" target="_blank" rel="noopener">http://archive.apache.org/dist/hbase/</a></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">根据需要选择合适的版本，本文为<code>hbase-1.4.8-bin.tar.gz</code></td>
-<td align="center"></td>
-</tr>
 </tbody></table>
+<h3 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h3><p>下载地址：<a href="http://archive.apache.org/dist/hbase/" target="_blank" rel="noopener">http://archive.apache.org/dist/hbase/</a><br>根据需要选择合适的版本，本文为<code>hbase-1.4.8-bin.tar.gz</code></p>
 <h3 id="上传、解压"><a href="#上传、解压" class="headerlink" title="上传、解压"></a>上传、解压</h3><p>使用<a href="http://blog.hming.org/2018/08/15/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/#rz%E4%B8%8Esz%EF%BC%88%E4%B8%8A%E4%BC%A0%E3%80%81%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%EF%BC%89" target="_blank" rel="noopener">rz 命令</a>上传到服务器并解压</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hadoopmaster opt<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># tar -zxvf hbase-1.4.8-bin.tar.gz</span></code></pre>
 <h3 id="配置环境变量（每个节点都需要配置）"><a href="#配置环境变量（每个节点都需要配置）" class="headerlink" title="配置环境变量（每个节点都需要配置）"></a>配置环境变量（每个节点都需要配置）</h3><p><code>vim /etc/profile</code></p>
@@ -595,75 +584,20 @@ $<span class="token operator">></span> hbase-daemon.sh start regionserver    //�
 <td align="center">/hbase/data/hbase</td>
 <td align="center">hbase内置的名字空间（相当于hive中的数据库）</td>
 </tr>
-<tr>
-<td align="center">文件表示完整路径示意：</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center"><code>/hbase/data/${namespace}/${tablename}/${region_name}/${column_family}/${file_name}</code></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">### HBase常用命令</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">```bash</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">$&gt; hbase shell                //进入hbase shell</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">$hbase&gt; help                //查看帮助</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">$hbase&gt; list_namespace            //查看名字空间(数据库)</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">$hbase&gt; list_namespace_tables ‘hbase’    //查看指定空间（hbase空间）下的表</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">$hbase&gt; scan ‘hbase:meta’        //查看表</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">$hbase&gt; create_namespace ‘ns1’        //创建名字空间</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">$hbase&gt; create ‘ns1:t1’ , ‘f1’        //创建表</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">$hbase&gt; scan ‘ns1:t1’            //扫描表</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">$hbase&gt; describe ‘t1’ 或者 desc ‘t1’    //查看表结构</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">$hbase&gt; truncate ‘ns1:t1’        //清空表数据</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">$hbase&gt; put ‘ns1:t1’,’row1’,’f1:id’,1    //插入数据table,row,f:c,value</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">$hbase&gt; delete ‘ns1:t1’,’row1’,’f1:id’    //删除</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">```</td>
-<td align="center"></td>
-</tr>
 </tbody></table>
+<p>文件表示完整路径示意：<br><code>/hbase/data/${namespace}/${tablename}/${region_name}/${column_family}/${file_name}</code></p>
+<h3 id="HBase常用命令"><a href="#HBase常用命令" class="headerlink" title="HBase常用命令"></a>HBase常用命令</h3><pre class=" language-bash"><code class="language-bash">$<span class="token operator">></span> hbase shell                //进入hbase shell
+<span class="token variable">$hbase</span><span class="token operator">></span> <span class="token function">help</span>                //查看帮助
+<span class="token variable">$hbase</span><span class="token operator">></span> list_namespace            //查看名字空间<span class="token punctuation">(</span>数据库<span class="token punctuation">)</span>
+<span class="token variable">$hbase</span><span class="token operator">></span> list_namespace_tables <span class="token string">'hbase'</span>    //查看指定空间（hbase空间）下的表
+<span class="token variable">$hbase</span><span class="token operator">></span> scan <span class="token string">'hbase:meta'</span>        //查看表
+<span class="token variable">$hbase</span><span class="token operator">></span> create_namespace <span class="token string">'ns1'</span>        //创建名字空间
+<span class="token variable">$hbase</span><span class="token operator">></span> create <span class="token string">'ns1:t1'</span> , <span class="token string">'f1'</span>        //创建表
+<span class="token variable">$hbase</span><span class="token operator">></span> scan <span class="token string">'ns1:t1'</span>            //扫描表
+<span class="token variable">$hbase</span><span class="token operator">></span> describe <span class="token string">'t1'</span> 或者 desc <span class="token string">'t1'</span>    //查看表结构
+<span class="token variable">$hbase</span><span class="token operator">></span> truncate <span class="token string">'ns1:t1'</span>        //清空表数据
+<span class="token variable">$hbase</span><span class="token operator">></span> put <span class="token string">'ns1:t1'</span>,<span class="token string">'row1'</span>,<span class="token string">'f1:id'</span>,1    //插入数据table,row,f:c,value
+<span class="token variable">$hbase</span><span class="token operator">></span> delete <span class="token string">'ns1:t1'</span>,<span class="token string">'row1'</span>,<span class="token string">'f1:id'</span>    //删除</code></pre>
 
             </div>
             <hr/>
@@ -957,9 +891,15 @@ hadoop002
 <footer class="page-footer bg-color">
     <div class="container row center-align">
         <div class="col s12 m8 l8 copy-right">
-            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
-            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
-            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+<!--            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于-->
+<!--            <a href="https://hexo.io/" target="_blank">Hexo</a> 的-->
+<!--            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.-->
+
+            <span class="white-color">Copyright</span>
+            <i class="fa fa-copyright"></i>
+            <span class="white-color">2016 -2019</span>
+            <i class="fa fa-heart"></i>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;

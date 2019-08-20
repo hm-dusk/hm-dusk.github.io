@@ -446,10 +446,12 @@
 <h3 id="下载社区版离线安装包"><a href="#下载社区版离线安装包" class="headerlink" title="下载社区版离线安装包"></a>下载社区版离线安装包</h3><p>本文为<code>mysql-5.7.24-1.el7.x86_64.rpm-bundle.tar</code><br>下载路径：<a href="https://dev.mysql.com/downloads/mysql/5.7.html#downloads" target="_blank" rel="noopener">https://dev.mysql.com/downloads/mysql/5.7.html#downloads</a></p>
 <ol>
 <li>选择适合CentOS的版本<br><img src="http://image.hming.org/centos7%E4%B8%8B%E5%AE%89%E8%A3%85mysql/%E4%B8%8B%E8%BD%BD%E9%A1%B5%E9%9D%A21.png" alt="下载页面1"></li>
-<li>跳过登录直接下载<br><img src="http://image.hming.org/centos7%E4%B8%8B%E5%AE%89%E8%A3%85mysql/%E4%B8%8B%E8%BD%BD%E9%A1%B5%E9%9D%A22.png" alt="下载页面2"><h3 id="卸载系统自带的mariadb-lib"><a href="#卸载系统自带的mariadb-lib" class="headerlink" title="卸载系统自带的mariadb-lib"></a>卸载系统自带的mariadb-lib</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hadoopmaster opt<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># rpm -qa|grep mariadb</span>
+<li>跳过登录直接下载<br><img src="http://image.hming.org/centos7%E4%B8%8B%E5%AE%89%E8%A3%85mysql/%E4%B8%8B%E8%BD%BD%E9%A1%B5%E9%9D%A22.png" alt="下载页面2"></li>
+</ol>
+<h3 id="卸载系统自带的mariadb-lib"><a href="#卸载系统自带的mariadb-lib" class="headerlink" title="卸载系统自带的mariadb-lib"></a>卸载系统自带的mariadb-lib</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hadoopmaster opt<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># rpm -qa|grep mariadb</span>
 mariadb-libs-5.5.56-2.el7.x86_64
 <span class="token punctuation">[</span>root@hadoopmaster opt<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># rpm -e --nodeps mariadb-libs-5.5.56-2.el7.x86_64</span></code></pre>
-<h3 id="解压mysql"><a href="#解压mysql" class="headerlink" title="解压mysql"></a>解压mysql</h3></li>
+<h3 id="解压mysql"><a href="#解压mysql" class="headerlink" title="解压mysql"></a>解压mysql</h3><ol>
 <li>使用<a href="http://http://blog.hming.org/2018/08/15/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/#rz%E4%B8%8Esz%EF%BC%88%E4%B8%8A%E4%BC%A0%E3%80%81%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%EF%BC%89" target="_blank" rel="noopener">rz 命令</a>上传文件到服务器</li>
 <li>解压<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hadoopmaster mysql<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># tar -xf mysql-5.7.24-1.el7.x86_64.rpm-bundle.tar</span>
 <span class="token punctuation">[</span>root@hadoopmaster mysql<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ls</span>
@@ -466,13 +468,15 @@ mysql-community-minimal-debuginfo-5.7.24-1.el7.x86_64.rpm
 mysql-community-server-5.7.24-1.el7.x86_64.rpm
 mysql-community-server-minimal-5.7.24-1.el7.x86_64.rpm
 mysql-community-test-5.7.24-1.el7.x86_64.rpm</code></pre>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3>使用<code>rpm -ivh</code>命令依次进行安装<br>按顺序安装以下软件包<pre class=" language-bash"><code class="language-bash">mysql-community-common-5.7.24-1.el7.x86_64.rpm
+</li>
+</ol>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>使用<code>rpm -ivh</code>命令依次进行安装<br>按顺序安装以下软件包</p>
+<pre class=" language-bash"><code class="language-bash">mysql-community-common-5.7.24-1.el7.x86_64.rpm
 mysql-community-libs-5.7.24-1.el7.x86_64.rpm
 mysql-community-client-5.7.24-1.el7.x86_64.rpm
 mysql-community-server-5.7.24-1.el7.x86_64.rpm</code></pre>
-有时可能需要安装以下包<pre class=" language-bash"><code class="language-bash">mysql-community-libs-compat-5.7.24-1.el7.x86_64.rpm</code></pre>
-</li>
-</ol>
+<p>有时可能需要安装以下包</p>
+<pre class=" language-bash"><code class="language-bash">mysql-community-libs-compat-5.7.24-1.el7.x86_64.rpm</code></pre>
 <p>安装具体如下</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hadoopmaster mysql<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># rpm -ivh mysql-community-common-5.7.24-1.el7.x86_64.rpm </span>
 警告：mysql-community-common-5.7.24-1.el7.x86_64.rpm: 头V3 DSA/SHA1 Signature, 密钥 ID 5072e1f5: NOKEY
@@ -494,7 +498,8 @@ mysql-community-server-5.7.24-1.el7.x86_64.rpm</code></pre>
 准备中<span class="token punctuation">..</span>.                          <span class="token comment" spellcheck="true">################################# [100%]</span>
 正在升级/安装<span class="token punctuation">..</span>.
    1:mysql-community-server-5.7.24-1.e<span class="token comment" spellcheck="true">################################# [100%]</span></code></pre>
-<p><code>注意：安装mysql-community-server-5.7.24-1.el7.x86_64.rpm时可能会遇到问题:</code></p>
+<blockquote>
+<p>注意：安装mysql-community-server-5.7.24-1.el7.x86_64.rpm时可能会遇到问题:`</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hadoopmaster mysql<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># rpm -ivh mysql-community-server-5.7.24-1.el7.x86_64.rpm </span>
 警告：mysql-community-server-5.7.24-1.el7.x86_64.rpm: 头V3 DSA/SHA1 Signature, 密钥 ID 5072e1f5: NOKEY
 错误：依赖检测失败：
@@ -507,6 +512,7 @@ mysql-community-server-5.7.24-1.el7.x86_64.rpm</code></pre>
 <span class="token punctuation">[</span>root@hadoopmaster mysql<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum -y install libaio</span>
 2）缺少net-tools
 <span class="token punctuation">[</span>root@hadoopmaster mysql<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum -y install net-tools</span></code></pre>
+</blockquote>
 <h3 id="初始化数据库"><a href="#初始化数据库" class="headerlink" title="初始化数据库"></a>初始化数据库</h3><p>初始化后会在<code>/var/log/mysqld.log</code>生成随机密码</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hadoopmaster mysql<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># mysqld --initialize</span>
 <span class="token punctuation">[</span>root@hadoopmaster mysql<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cat /var/log/mysqld.log</span>
@@ -862,9 +868,15 @@ Query OK, 0 rows affected <span class="token punctuation">(</span>0.00 sec<span 
 <footer class="page-footer bg-color">
     <div class="container row center-align">
         <div class="col s12 m8 l8 copy-right">
-            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
-            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
-            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+<!--            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于-->
+<!--            <a href="https://hexo.io/" target="_blank">Hexo</a> 的-->
+<!--            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.-->
+
+            <span class="white-color">Copyright</span>
+            <i class="fa fa-copyright"></i>
+            <span class="white-color">2016 -2019</span>
+            <i class="fa fa-heart"></i>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;

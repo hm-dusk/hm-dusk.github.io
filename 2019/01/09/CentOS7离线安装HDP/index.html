@@ -439,7 +439,7 @@ hdp003
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        2,582
+                        2,551
                     </div>
                     
 
@@ -483,55 +483,10 @@ hdp003
 <td align="center">hdp003</td>
 <td align="center">192.168.171.12</td>
 </tr>
-<tr>
-<td align="center">### 环境准备</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">#### 磁盘准备</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">离线安装包共计10G左右，解压后共计11G左右，请保证有足够空间。</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">#### 配置免密登录</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">配置免密码登录教程请点击<a href="http://blog.hming.org/2018/09/16/Linux%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95/" target="_blank" rel="noopener">这里</a></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">#### 关闭防火墙</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">查看防火墙状态</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center"><code>firewall-cmd --state</code>或<code>systemctl status firewalld</code></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">临时关闭防火墙</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center"><code>systemctl stop firewalld</code></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">禁止开机启动</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center"><code>systemctl disable firewalld</code></td>
-<td align="center"></td>
-</tr>
 </tbody></table>
+<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><h4 id="磁盘准备"><a href="#磁盘准备" class="headerlink" title="磁盘准备"></a>磁盘准备</h4><p>离线安装包共计10G左右，解压后共计11G左右，请保证有足够空间。</p>
+<h4 id="配置免密登录"><a href="#配置免密登录" class="headerlink" title="配置免密登录"></a>配置免密登录</h4><p>配置免密码登录教程请点击<a href="http://blog.hming.org/2018/09/16/Linux%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95/" target="_blank" rel="noopener">这里</a></p>
+<h4 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h4><p>查看防火墙状态<br><code>firewall-cmd --state</code>或<code>systemctl status firewalld</code><br>临时关闭防火墙<br><code>systemctl stop firewalld</code><br>禁止开机启动<br><code>systemctl disable firewalld</code></p>
 <h4 id="设置SELinux模式"><a href="#设置SELinux模式" class="headerlink" title="设置SELinux模式"></a>设置SELinux模式</h4><p>不关闭可能导致Apache http服务无法访问。</p>
 <ol>
 <li>查看SELinux状态：<code>getenforce</code><br>如果是<code>Permissive</code>或者<code>Disabled</code>则可以继续安装，如果显示<code>enforcing</code>，则需要进行以下步骤修改模式</li>
@@ -542,23 +497,24 @@ hdp003
 <h4 id="安装jdk、Python（所有节点）、MySQL（安装一个即可）"><a href="#安装jdk、Python（所有节点）、MySQL（安装一个即可）" class="headerlink" title="安装jdk、Python（所有节点）、MySQL（安装一个即可）"></a>安装jdk、Python（所有节点）、MySQL（安装一个即可）</h4><ol>
 <li>配置java环境教程点击<a href="http://blog.hming.org/2018/09/14/Linux%E4%B8%8B%E5%AE%89%E8%A3%85Java/" target="_blank" rel="noopener">这里</a></li>
 <li>安装/更新Python <code>yum -y install python</code></li>
-<li>离线安装MySQL教程点击<a href="http://blog.hming.org/2018/12/08/CentOS7%E4%B8%8B%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85MySQL/" target="_blank" rel="noopener">这里</a><br>新建数据库hive、ambari（为后续安装做准备）。<pre class=" language-bash"><code class="language-bash">mysql<span class="token operator">></span> create database hive<span class="token punctuation">;</span>
-Query OK, 1 row affected <span class="token punctuation">(</span>0.00 sec<span class="token punctuation">)</span>
-</code></pre>
-</li>
+<li>离线安装MySQL教程点击<a href="http://blog.hming.org/2018/12/08/CentOS7%E4%B8%8B%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85MySQL/" target="_blank" rel="noopener">这里</a><br>新建数据库hive、ambari（为后续安装做准备）。</li>
 </ol>
-<p>mysql&gt; create database ambari;<br>Query OK, 1 row affected (0.00 sec)</p>
-<pre><code>#### 下载离线包（包含HDP、ambari、HDP-UTILS、HDP-GPL（非必须））
-[Ambari-2.7.3.0下载地址](https://docs.hortonworks.com/HDPDocuments/Ambari-2.7.3.0/bk_ambari-installation/content/ambari_repositories.html)
-[HDP-3.1.0.0相关包下载地址](https://docs.hortonworks.com/HDPDocuments/Ambari-2.7.3.0/bk_ambari-installation/content/hdp_31_repositories.html)
-&gt; 注意：ambari包大小`1.81G`左右，HDP包`8.44G`左右，HDP-UTILS包`86.4M`左右，请确保保存路径有足够空间
-#### 安装httpd服务（Apache服务，ambari-server节点安装即可）
-&gt; 注意：selinux未关闭可能导致Apache服务地址403。
+<pre class=" language-bash"><code class="language-bash">mysql<span class="token operator">></span> create database hive<span class="token punctuation">;</span>
+Query OK, 1 row affected <span class="token punctuation">(</span>0.00 sec<span class="token punctuation">)</span>
 
-```bash
-[root@hdp001 ~]# yum -y install httpd
-[root@hdp001 ~]# service httpd restart
-Redirecting to /bin/systemctl restart httpd.service</code></pre><p>访问服务器80端口，查看httpd服务是否开启。</p>
+mysql<span class="token operator">></span> create database ambari<span class="token punctuation">;</span>
+Query OK, 1 row affected <span class="token punctuation">(</span>0.00 sec<span class="token punctuation">)</span></code></pre>
+<h4 id="下载离线包（包含HDP、ambari、HDP-UTILS、HDP-GPL（非必须））"><a href="#下载离线包（包含HDP、ambari、HDP-UTILS、HDP-GPL（非必须））" class="headerlink" title="下载离线包（包含HDP、ambari、HDP-UTILS、HDP-GPL（非必须））"></a>下载离线包（包含HDP、ambari、HDP-UTILS、HDP-GPL（非必须））</h4><p><a href="https://docs.hortonworks.com/HDPDocuments/Ambari-2.7.3.0/bk_ambari-installation/content/ambari_repositories.html" target="_blank" rel="noopener">Ambari-2.7.3.0下载地址</a><br><a href="https://docs.hortonworks.com/HDPDocuments/Ambari-2.7.3.0/bk_ambari-installation/content/hdp_31_repositories.html" target="_blank" rel="noopener">HDP-3.1.0.0相关包下载地址</a></p>
+<blockquote>
+<p>注意：ambari包大小<code>1.81G</code>左右，HDP包<code>8.44G</code>左右，HDP-UTILS包<code>86.4M</code>左右，请确保保存路径有足够空间</p>
+</blockquote>
+<h4 id="安装httpd服务（Apache服务，ambari-server节点安装即可）"><a href="#安装httpd服务（Apache服务，ambari-server节点安装即可）" class="headerlink" title="安装httpd服务（Apache服务，ambari-server节点安装即可）"></a>安装httpd服务（Apache服务，ambari-server节点安装即可）</h4><blockquote>
+<p>注意：selinux未关闭可能导致Apache服务地址403。</p>
+</blockquote>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hdp001 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum -y install httpd</span>
+<span class="token punctuation">[</span>root@hdp001 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># service httpd restart</span>
+Redirecting to /bin/systemctl restart httpd.service</code></pre>
+<p>访问服务器80端口，查看httpd服务是否开启。</p>
 <blockquote>
 <p>注意：配置信息如端口、映射路径可以通过编辑<code>/etc/httpd/conf/httpd.conf</code>文件进行修改</p>
 </blockquote>
@@ -630,12 +586,12 @@ ambari ambari-2.7.3.0-centos7.tar.gz  HDP HDP-3.1.0.0-centos7-rpm.tar.gz  HDP-UT
  <span class="token punctuation">..</span>.
  <span class="token punctuation">[</span>root@hdp001 ambari<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum repolist</span>
  <span class="token punctuation">..</span>.</code></pre>
+</li>
+</ol>
 <h3 id="安装Ambari-server"><a href="#安装Ambari-server" class="headerlink" title="安装Ambari-server"></a>安装Ambari-server</h3><p>本次安装使用第三方数据库MySQL模式，默认为PostgreSQL模式（生产环境不推荐）。<br>需提前准备好MySQL数据库连接jar包，<a href="http://blog.hming.org/2018/12/09/MySQL%E8%BF%9E%E6%8E%A5%E9%A9%B1%E5%8A%A8%E5%8C%85%E4%B8%8B%E8%BD%BD%E6%96%B9%E6%B3%95/" target="_blank" rel="noopener">MySQL连接驱动包下载方法</a></p>
 <h4 id="Ambari-server节点（主节点）安装Ambari-server"><a href="#Ambari-server节点（主节点）安装Ambari-server" class="headerlink" title="Ambari-server节点（主节点）安装Ambari-server"></a>Ambari-server节点（主节点）安装Ambari-server</h4><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hdp001 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum -y install ambari-server</span>
 <span class="token punctuation">..</span>.</code></pre>
 <h4 id="初始化设置"><a href="#初始化设置" class="headerlink" title="初始化设置"></a>初始化设置</h4><p>使用<code>ambari-server setup</code>命令进行初始化操作。</p>
-</li>
-</ol>
 <blockquote>
 <p>以下代码段中<code>#(1)</code>类似标识为注解。</p>
 </blockquote>
@@ -794,11 +750,10 @@ max_reconnect_retry_delay<span class="token operator">=</span>30
 <td align="center">日志安装目录</td>
 <td align="center">/var/log</td>
 </tr>
-<tr>
-<td align="center">ambari安装的hdp路径是不能更改的，但是可以用软链接将以上路径链接到其他路径。</td>
-<td align="center"></td>
-</tr>
 </tbody></table>
+<blockquote>
+<p>ambari安装的hdp路径是不能更改的，但是可以用软链接将以上路径链接到其他路径。</p>
+</blockquote>
 
             </div>
             <hr/>
@@ -1090,9 +1045,15 @@ max_reconnect_retry_delay<span class="token operator">=</span>30
 <footer class="page-footer bg-color">
     <div class="container row center-align">
         <div class="col s12 m8 l8 copy-right">
-            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
-            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
-            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+<!--            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于-->
+<!--            <a href="https://hexo.io/" target="_blank">Hexo</a> 的-->
+<!--            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.-->
+
+            <span class="white-color">Copyright</span>
+            <i class="fa fa-copyright"></i>
+            <span class="white-color">2016 -2019</span>
+            <i class="fa fa-heart"></i>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
