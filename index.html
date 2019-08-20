@@ -306,6 +306,13 @@
 
 <div class="carousel carousel-slider center index-cover" data-indicators="true" style="margin-top: -64px;">
     
+    <div id="prev-cover" class="left waves-effect carousel-control">
+        <i class="icon fa fa-angle-left"></i>
+    </div>
+    <div id="next-cover" class="right waves-effect carousel-control">
+        <i class="icon fa fa-angle-right"></i>
+    </div>
+    
 
     <div class="carousel-item red white-text bg-cover about-cover">
         <div class="container">
@@ -368,6 +375,76 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
         </div>
     </div>
 
+    
+    
+
+    
+    
+    <div class="carousel-item amber white-text carousel-post bg-cover"
+            style="background-image: url('http://image.hming.org/logo/hadoop.jpg');">
+        <div class="container">
+            <div class="row">
+                <div class="col s10 offset-s1">
+                    <div class="title center-align">CentOS7下搭建Hadoop集群</div>
+                    <div class="description center-align">
+                    
+                        CentOS7下搭建Hadoop集群
+                    
+                    </div>
+                    <div class="cover-btns">
+                        <a href="/2018/09/16/CentOS7下搭建Hadoop集群/" class="waves-effect waves-light btn" target="_blank">
+                            <i class="icon fa fa-eye fa-fw"></i>阅读更多
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="carousel-item amber white-text carousel-post bg-cover"
+            style="background-image: url('/medias/featureimages/23.jpg');">
+        <div class="container">
+            <div class="row">
+                <div class="col s10 offset-s1">
+                    <div class="title center-align">CentOS7离线安装HDP</div>
+                    <div class="description center-align">
+                    
+                        CentOS7离线安装HDP，Ambari版本：2.7.3.0，HDP版本：3.1.0.0
+                    
+                    </div>
+                    <div class="cover-btns">
+                        <a href="/2019/01/09/CentOS7离线安装HDP/" class="waves-effect waves-light btn" target="_blank">
+                            <i class="icon fa fa-eye fa-fw"></i>阅读更多
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="carousel-item amber white-text carousel-post bg-cover"
+            style="background-image: url('/medias/featureimages/12.jpg');">
+        <div class="container">
+            <div class="row">
+                <div class="col s10 offset-s1">
+                    <div class="title center-align">CentOS7离线安装CDH</div>
+                    <div class="description center-align">
+                    
+                        CentOS7.6离线安装CDP，Cloudera Manager版本：6.3.0，CDH版本：6.3.0-1
+                    
+                    </div>
+                    <div class="cover-btns">
+                        <a href="/2019/08/16/CentOS7离线安装CDH/" class="waves-effect waves-light btn" target="_blank">
+                            <i class="icon fa fa-eye fa-fw"></i>阅读更多
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     
 </div>
 
@@ -474,22 +551,6 @@ $(function () {
                         <div class="summary block-with-text">
                             
                                 CentOS7.6离线安装CDP，Cloudera Manager版本：6.3.0，CDH版本：6.3.0-1
-
-
-本文环境
-
-
-节点
-IP地址
-
-
-
-hdp001
-192.168.171.10
-
-
-hdp002
-192.168.171.1
                             
                         </div>
                         <div class="publish-info">
@@ -516,12 +577,12 @@ hdp002
                             <span class="chip bg-color">大数据</span>
                         </a>
                         
-                        <a href="/tags/CDH/" target="_blank">
-                            <span class="chip bg-color">CDH</span>
-                        </a>
-                        
                         <a href="/tags/离线安装/" target="_blank">
                             <span class="chip bg-color">离线安装</span>
+                        </a>
+                        
+                        <a href="/tags/CDH/" target="_blank">
+                            <span class="chip bg-color">CDH</span>
                         </a>
                         
                     </div>
@@ -534,8 +595,7 @@ hdp002
                     <a href="/2019/08/06/Centos7安装VNC服务/">
                         <div class="card-image">
                             
-                            
-                            <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Centos7安装VNC服务">
+                            <img src="http://image.hming.org/logo/linux.jpg" class="responsive-img" alt="Centos7安装VNC服务">
                             
                             <span class="card-title">Centos7安装VNC服务</span>
                         </div>
@@ -545,9 +605,6 @@ hdp002
                         <div class="summary block-with-text">
                             
                                 本文介绍在Centos7.6下安装VNC Viewer并通过Windows连接远程桌面的过程
-
-安装gnome桌面如果Centos7为最小化安装，则需要单独安装gnome图形化桌面
-[root@AccessGateway ~]# yum g
                             
                         </div>
                         <div class="publish-info">
@@ -599,9 +656,6 @@ hdp002
                         <div class="summary block-with-text">
                             
                                 Hortonworks HDP与Cloudera CDH对比。
-
-HDP与CDH的对比版本更新对比HDP版本更新较快，因为Hortonworks内部大部分员工都是apache代码贡献者，尤其是Hadoop 2.0的贡献者。
-CDH版本更新比
                             
                         </div>
                         <div class="publish-info">
@@ -628,12 +682,12 @@ CDH版本更新比
                             <span class="chip bg-color">大数据</span>
                         </a>
                         
-                        <a href="/tags/CDH/" target="_blank">
-                            <span class="chip bg-color">CDH</span>
-                        </a>
-                        
                         <a href="/tags/HDP/" target="_blank">
                             <span class="chip bg-color">HDP</span>
+                        </a>
+                        
+                        <a href="/tags/CDH/" target="_blank">
+                            <span class="chip bg-color">CDH</span>
                         </a>
                         
                     </div>
@@ -657,11 +711,6 @@ CDH版本更新比
                         <div class="summary block-with-text">
                             
                                 对比多款静态网站生成工具，分析需求，找到合适的工具。
-
-需求
-要求部署一个静态网站，用于开发者文档的呈现。
-要求所有文档采用markdown格式书写，md文件保存到git仓库（github），并且目录结构必须清晰
-要求md文件解析操作是在前
                             
                         </div>
                         <div class="publish-info">
@@ -702,8 +751,7 @@ CDH版本更新比
                     <a href="/2019/04/16/SandBox-HDFS上传文件失败问题/">
                         <div class="card-image">
                             
-                            
-                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="SandBox HDFS上传文件失败问题">
+                            <img src="http://image.hming.org/logo/sandbox.png" class="responsive-img" alt="SandBox HDFS上传文件失败问题">
                             
                             <span class="card-title">SandBox HDFS上传文件失败问题</span>
                         </div>
@@ -713,8 +761,6 @@ CDH版本更新比
                         <div class="summary block-with-text">
                             
                                 SandBox上传文件到HDFS时，文件创建成功，向文件写入数据失败问题分析和解决方案。
-
-问题描述远程（非Docker容器内、非宿主机）上传文件，新建文件成功，写入文件内容失败。查看/var/log/hadoop/hdfs/hadoop-
                             
                         </div>
                         <div class="publish-info">
@@ -763,8 +809,7 @@ CDH版本更新比
                     <a href="/2019/04/04/SandBox-HDP使用详解/">
                         <div class="card-image">
                             
-                            
-                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="SandBox-HDP使用详解">
+                            <img src="http://image.hming.org/logo/sandbox.png" class="responsive-img" alt="SandBox-HDP使用详解">
                             
                             <span class="card-title">SandBox-HDP使用详解</span>
                         </div>
@@ -774,8 +819,6 @@ CDH版本更新比
                         <div class="summary block-with-text">
                             
                                 SandBox HDP版本3.0.1
-
-官方文档介绍得非常详细，本文提取一些关键点作介绍，参考官网教程：Sandbox DocsSandbox Port ForwardsSandbox ArchitectureLearning the Ro
                             
                         </div>
                         <div class="publish-info">
@@ -820,8 +863,7 @@ CDH版本更新比
                     <a href="/2019/04/02/安装SandBox-HDP（VMware版）/">
                         <div class="card-image">
                             
-                            
-                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="安装SandBox HDP（VMware版）">
+                            <img src="http://image.hming.org/logo/sandbox+vmware.png" class="responsive-img" alt="安装SandBox HDP（VMware版）">
                             
                             <span class="card-title">安装SandBox HDP（VMware版）</span>
                         </div>
@@ -831,22 +873,6 @@ CDH版本更新比
                         <div class="summary block-with-text">
                             
                                 SandBox HDP版本3.0.1，安装环境为Windows 10
-
-参考官网教程：Deploying Hortonworks Sandbox on VMWare
-环境准备
-
-
-方面
-要求
-
-
-
-软件
-安装VMware
-
-
-内存
-推荐16
                             
                         </div>
                         <div class="publish-info">
@@ -899,8 +925,7 @@ CDH版本更新比
                     <a href="/2019/04/02/安装SandBox-HDP（Docker版）/">
                         <div class="card-image">
                             
-                            
-                            <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="安装SandBox HDP（Docker版）">
+                            <img src="http://image.hming.org/logo/sandbox+docker.png" class="responsive-img" alt="安装SandBox HDP（Docker版）">
                             
                             <span class="card-title">安装SandBox HDP（Docker版）</span>
                         </div>
@@ -910,22 +935,6 @@ CDH版本更新比
                         <div class="summary block-with-text">
                             
                                 SandBox HDP版本3.0.1，安装环境为CentOS7
-
-参考官网教程：Deploying Hortonworks Sandbox on Docker
-环境准备
-
-
-方面
-要求
-
-
-
-软件
-安装docker
-
-
-内存
-官方推荐doc
                             
                         </div>
                         <div class="publish-info">
@@ -974,8 +983,7 @@ CDH版本更新比
                     <a href="/2019/03/29/Linux制作离线yum源/">
                         <div class="card-image">
                             
-                            
-                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Linux制作离线yum源">
+                            <img src="http://image.hming.org/logo/linux.jpg" class="responsive-img" alt="Linux制作离线yum源">
                             
                             <span class="card-title">Linux制作离线yum源</span>
                         </div>
@@ -985,11 +993,6 @@ CDH版本更新比
                         <div class="summary block-with-text">
                             
                                 制作离线yum源的方法
-
-参考
-基本步骤
-制作或挂载一个本地yum源目录
-修改或增加repo配置文件指向离线yum包制作利用官方包下载ISO文件到官网http://isoredirect.centos.org/下载镜像包，尽量下载Every
                             
                         </div>
                         <div class="publish-info">
@@ -1034,8 +1037,7 @@ CDH版本更新比
                     <a href="/2019/03/29/Linux修改命令终端提示符/">
                         <div class="card-image">
                             
-                            
-                            <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Linux修改命令终端提示符">
+                            <img src="http://image.hming.org/logo/linux.jpg" class="responsive-img" alt="Linux修改命令终端提示符">
                             
                             <span class="card-title">Linux修改命令终端提示符</span>
                         </div>
@@ -1045,10 +1047,6 @@ CDH版本更新比
                         <div class="summary block-with-text">
                             
                                 Linux命令行是操作Linux的重要手段，命令行提示符千篇一律的格式有时会让命令和输出难以辨认，本文将介绍如何修改命令行提示符的格式。
-
-命令行提示符代表含义命令行提示符一般格式含义：[root@sandbox ~]#
-
-其中@前root
                             
                         </div>
                         <div class="publish-info">
@@ -1089,8 +1087,7 @@ CDH版本更新比
                     <a href="/2019/03/06/Docker-Alpine容器介绍/">
                         <div class="card-image">
                             
-                            
-                            <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="Docker Alpine容器介绍">
+                            <img src="http://image.hming.org/logo/docker.jpg" class="responsive-img" alt="Docker Alpine容器介绍">
                             
                             <span class="card-title">Docker Alpine容器介绍</span>
                         </div>
@@ -1100,8 +1097,6 @@ CDH版本更新比
                         <div class="summary block-with-text">
                             
                                 最小化容器Alpine介绍
-
-http://www.voidcn.com/article/p-ulbbnkky-brh.htmlhttps://blog.phpgao.com/docker_alpine.htmlhttps://marsha
                             
                         </div>
                         <div class="publish-info">
@@ -1157,9 +1152,6 @@ http://www.voidcn.com/article/p-ulbbnkky-brh.htmlhttps://blog.phpgao.com/docker_
                         <div class="summary block-with-text">
                             
                                 CentOS7离线安装HDF，Ambari版本：2.7.3.0，HDF版本：3.3.1.0
-
-本文环境已存在Ambari和HDP环境，Ambari搭建参照CentOS7离线安装HDP
-下载离线包HDF仓库地址找到对应操作系统的包，下载HDF
                             
                         </div>
                         <div class="publish-info">
@@ -1186,12 +1178,12 @@ http://www.voidcn.com/article/p-ulbbnkky-brh.htmlhttps://blog.phpgao.com/docker_
                             <span class="chip bg-color">大数据</span>
                         </a>
                         
-                        <a href="/tags/离线安装/" target="_blank">
-                            <span class="chip bg-color">离线安装</span>
-                        </a>
-                        
                         <a href="/tags/HDF/" target="_blank">
                             <span class="chip bg-color">HDF</span>
+                        </a>
+                        
+                        <a href="/tags/离线安装/" target="_blank">
+                            <span class="chip bg-color">离线安装</span>
                         </a>
                         
                     </div>
@@ -1245,7 +1237,7 @@ http://www.voidcn.com/article/p-ulbbnkky-brh.htmlhttps://blog.phpgao.com/docker_
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">56.8k</span>
+                <span class="white-color">58.6k</span>
             
 
             

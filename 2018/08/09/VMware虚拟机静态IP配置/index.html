@@ -5,11 +5,10 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="VMware虚拟机静态IP配置, 博客,貍铭">
-    <meta name="description" content="使用虚拟机创建Linux服务器，固定ip地址的方法。
+    <meta name="description" content="VMware虚拟机网卡的两种模式：Bridged（桥接）和NAT（转发）。
 
-VMware虚拟机网卡的两种模式：Bridged（桥接）和NAT（转发）。
-
-Bridged（桥接模式）桥接模式可以让虚拟机的网络和物理机的网络处于平行的网络中，和物理机处于同一个网段">
+Bridged（桥接模式）桥接模式可以让虚拟机的网络和物理机的网络处于平行的网络中，和物理机处于同一个网段的其他物理机就能ping通该虚拟机。
+NAT模式该模式虚">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -268,13 +267,16 @@ Bridged（桥接模式）桥接模式可以让虚拟机的网络和物理机的�
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://image.hming.org/logo/vmware.png')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
                         VMware虚拟机静态IP配置
+                    </div>
+                    <div align="center">
+                        使用虚拟机创建Linux服务器，固定ip地址的方法。
                     </div>
                 </div>
             </div>
@@ -428,14 +430,14 @@ Bridged（桥接模式）桥接模式可以让虚拟机的网络和物理机的�
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1,111
+                        1,092
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        5 分
+                        4 分
                     </div>
                     
                 
@@ -451,9 +453,7 @@ Bridged（桥接模式）桥接模式可以让虚拟机的网络和物理机的�
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>使用虚拟机创建Linux服务器，固定ip地址的方法。</p>
-<a id="more"></a>
-<p><strong>VMware虚拟机网卡的两种模式：Bridged（桥接）和NAT（转发）。</strong></p>
+                <p><strong>VMware虚拟机网卡的两种模式：Bridged（桥接）和NAT（转发）。</strong></p>
 <ol>
 <li><strong>Bridged（桥接模式）</strong><br>桥接模式可以让虚拟机的网络和物理机的网络处于<code>平行</code>的网络中，和物理机处于同一个网段的其他物理机就能ping通该虚拟机。</li>
 <li><strong>NAT模式</strong><br>该模式虚拟机自己创建一套网络，只有物理机和虚拟机处于同一局域网内，与物理机处于同一网段的无法连接虚拟机。虚拟机通过物理机的网卡进行外网访问。</li>
@@ -637,8 +637,7 @@ HOSTNAME=hadoop001</code></pre><p>有需要就可以修改主机名。<br>配置
                 <a href="/2018/08/15/Linux常用命令/">
                     <div class="card-image">
                         
-                        
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Linux常用命令">
+                        <img src="http://image.hming.org/logo/linux.jpg" class="responsive-img" alt="Linux常用命令">
                         
                         <span class="card-title">Linux常用命令</span>
                     </div>
@@ -647,22 +646,6 @@ HOSTNAME=hadoop001</code></pre><p>有需要就可以修改主机名。<br>配置
                     <div class="summary block-with-text">
                         
                             常用Linux命令
-
-
-输入界面快捷操作（命令行快捷操作）操作方式及操作效果
-
-
-操作方式
-操作效果
-
-
-
-Ctrl+k
-剪切命令行中光标所在处之后的所有字符（包括自身）
-
-
-Ctrl+u
-剪切命令行中光标所在处之前的所有字符（不包括自身）
                         
                     </div>
                     <div class="publish-info">
@@ -706,8 +689,7 @@ Ctrl+u
                 <a href="/2017/08/17/遇到多个构造器参数时的最优解决方案/">
                     <div class="card-image">
                         
-                        
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="遇到多个构造器参数时的最优解决方案">
+                        <img src="http://image.hming.org/logo/java.jpg" class="responsive-img" alt="遇到多个构造器参数时的最优解决方案">
                         
                         <span class="card-title">遇到多个构造器参数时的最优解决方案</span>
                     </div>
@@ -873,7 +855,7 @@ MyData myData = new MyData();
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">56.8k</span>
+                <span class="white-color">58.6k</span>
             
 
             

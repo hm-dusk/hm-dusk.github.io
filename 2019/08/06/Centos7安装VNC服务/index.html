@@ -5,10 +5,9 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="Centos7安装VNC服务, 博客,貍铭">
-    <meta name="description" content="本文介绍在Centos7.6下安装VNC Viewer并通过Windows连接远程桌面的过程
-
-安装gnome桌面如果Centos7为最小化安装，则需要单独安装gnome图形化桌面
-[root@AccessGateway ~]# yum g">
+    <meta name="description" content="安装gnome桌面如果Centos7为最小化安装，则需要单独安装gnome图形化桌面
+[root@AccessGateway ~]# yum groupinstall -y &#34;GNOME Desktop&#34;
+安装vnc server[root">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -267,13 +266,16 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://image.hming.org/logo/linux.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
                         Centos7安装VNC服务
+                    </div>
+                    <div align="center">
+                        本文介绍在Centos7.6下安装VNC Viewer并通过Windows连接远程桌面的过程
                     </div>
                 </div>
             </div>
@@ -419,7 +421,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        721
+                        698
                     </div>
                     
 
@@ -442,9 +444,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>本文介绍在Centos7.6下安装VNC Viewer并通过Windows连接远程桌面的过程</p>
-<a id="more"></a>
-<h3 id="安装gnome桌面"><a href="#安装gnome桌面" class="headerlink" title="安装gnome桌面"></a>安装gnome桌面</h3><p>如果Centos7为最小化安装，则需要单独安装gnome图形化桌面</p>
+                <h3 id="安装gnome桌面"><a href="#安装gnome桌面" class="headerlink" title="安装gnome桌面"></a>安装gnome桌面</h3><p>如果Centos7为最小化安装，则需要单独安装gnome图形化桌面</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@AccessGateway ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum groupinstall -y "GNOME Desktop"</span></code></pre>
 <h3 id="安装vnc-server"><a href="#安装vnc-server" class="headerlink" title="安装vnc server"></a>安装vnc server</h3><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@AccessGateway ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum install -y tigervnc-server</span></code></pre>
 <h3 id="配置服务"><a href="#配置服务" class="headerlink" title="配置服务"></a>配置服务</h3><ol>
@@ -583,22 +583,6 @@ tcp6       0      0 :::6002                 :::*                    LISTEN      
                     <div class="summary block-with-text">
                         
                             CentOS7.6离线安装CDP，Cloudera Manager版本：6.3.0，CDH版本：6.3.0-1
-
-
-本文环境
-
-
-节点
-IP地址
-
-
-
-hdp001
-192.168.171.10
-
-
-hdp002
-192.168.171.1
                         
                     </div>
                     <div class="publish-info">
@@ -624,12 +608,12 @@ hdp002
                         <span class="chip bg-color">大数据</span>
                     </a>
                     
-                    <a href="/tags/CDH/" target="_blank">
-                        <span class="chip bg-color">CDH</span>
-                    </a>
-                    
                     <a href="/tags/离线安装/" target="_blank">
                         <span class="chip bg-color">离线安装</span>
+                    </a>
+                    
+                    <a href="/tags/CDH/" target="_blank">
+                        <span class="chip bg-color">CDH</span>
                     </a>
                     
                 </div>
@@ -656,9 +640,6 @@ hdp002
                     <div class="summary block-with-text">
                         
                             Hortonworks HDP与Cloudera CDH对比。
-
-HDP与CDH的对比版本更新对比HDP版本更新较快，因为Hortonworks内部大部分员工都是apache代码贡献者，尤其是Hadoop 2.0的贡献者。
-CDH版本更新比
                         
                     </div>
                     <div class="publish-info">
@@ -684,12 +665,12 @@ CDH版本更新比
                         <span class="chip bg-color">大数据</span>
                     </a>
                     
-                    <a href="/tags/CDH/" target="_blank">
-                        <span class="chip bg-color">CDH</span>
-                    </a>
-                    
                     <a href="/tags/HDP/" target="_blank">
                         <span class="chip bg-color">HDP</span>
+                    </a>
+                    
+                    <a href="/tags/CDH/" target="_blank">
+                        <span class="chip bg-color">CDH</span>
                     </a>
                     
                 </div>
@@ -816,7 +797,7 @@ CDH版本更新比
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">56.8k</span>
+                <span class="white-color">58.6k</span>
             
 
             

@@ -5,9 +5,7 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="SandBox HDFS上传文件失败问题, 博客,貍铭">
-    <meta name="description" content="SandBox上传文件到HDFS时，文件创建成功，向文件写入数据失败问题分析和解决方案。
-
-问题描述远程（非Docker容器内、非宿主机）上传文件，新建文件成功，写入文件内容失败。查看/var/log/hadoop/hdfs/hadoop-">
+    <meta name="description" content="问题描述远程（非Docker容器内、非宿主机）上传文件，新建文件成功，写入文件内容失败。查看/var/log/hadoop/hdfs/hadoop-hdfs-namenode-sandbox-hdp.hortonworks.com.log文">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -266,13 +264,16 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://image.hming.org/logo/sandbox.png')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
                         SandBox HDFS上传文件失败问题
+                    </div>
+                    <div align="center">
+                        SandBox上传文件到HDFS时，文件创建成功，向文件写入数据失败问题分析和解决方案。
                     </div>
                 </div>
             </div>
@@ -426,7 +427,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        2,476
+                        2,445
                     </div>
                     
 
@@ -449,9 +450,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>SandBox上传文件到HDFS时，文件创建成功，向文件写入数据失败问题分析和解决方案。</p>
-<a id="more"></a>
-<h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>远程（非Docker容器内、非宿主机）上传文件，新建文件成功，写入文件内容失败。查看<code>/var/log/hadoop/hdfs/hadoop-hdfs-namenode-sandbox-hdp.hortonworks.com.log</code>文件，发现如下错误：</p>
+                <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>远程（非Docker容器内、非宿主机）上传文件，新建文件成功，写入文件内容失败。查看<code>/var/log/hadoop/hdfs/hadoop-hdfs-namenode-sandbox-hdp.hortonworks.com.log</code>文件，发现如下错误：</p>
 <pre><code>2019-04-15 10:51:33,322 INFO  ipc.Server (Server.java:logException(2726)) - IPC Server handler 74 on 8020, call Call#4 Retry#0 org.apache.hadoop.hdfs.protocol.ClientProtocol.addBlock from 172.18.0.3:48170
 java.io.IOException: File /tmp/1.csv could only be written to 0 of the 1 minReplication nodes. There are 1 datanode(s) running and 1 node(s) are excluded in this operation.
         at org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.chooseTarget4NewBlock(BlockManager.java:2121)
@@ -804,11 +803,6 @@ DB configs consistency check: no errors and warnings were found.</code></pre>
                     <div class="summary block-with-text">
                         
                             对比多款静态网站生成工具，分析需求，找到合适的工具。
-
-需求
-要求部署一个静态网站，用于开发者文档的呈现。
-要求所有文档采用markdown格式书写，md文件保存到git仓库（github），并且目录结构必须清晰
-要求md文件解析操作是在前
                         
                     </div>
                     <div class="publish-info">
@@ -852,8 +846,7 @@ DB configs consistency check: no errors and warnings were found.</code></pre>
                 <a href="/2019/04/04/SandBox-HDP使用详解/">
                     <div class="card-image">
                         
-                        
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="SandBox-HDP使用详解">
+                        <img src="http://image.hming.org/logo/sandbox.png" class="responsive-img" alt="SandBox-HDP使用详解">
                         
                         <span class="card-title">SandBox-HDP使用详解</span>
                     </div>
@@ -862,8 +855,6 @@ DB configs consistency check: no errors and warnings were found.</code></pre>
                     <div class="summary block-with-text">
                         
                             SandBox HDP版本3.0.1
-
-官方文档介绍得非常详细，本文提取一些关键点作介绍，参考官网教程：Sandbox DocsSandbox Port ForwardsSandbox ArchitectureLearning the Ro
                         
                     </div>
                     <div class="publish-info">
@@ -1021,7 +1012,7 @@ DB configs consistency check: no errors and warnings were found.</code></pre>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">56.8k</span>
+                <span class="white-color">58.6k</span>
             
 
             

@@ -5,11 +5,10 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="CentOS7下搭建Hive, 博客,貍铭">
-    <meta name="description" content="CentOS7下搭建Hive，Hive元数据
-
-搭建Hadoop集群参考CentOS7下搭建Hadoop集群
+    <meta name="description" content="搭建Hadoop集群参考CentOS7下搭建Hadoop集群
 下载Hive压缩包找到合适版本下载hive，本文压缩包为apache-hive-2.3.4-bin.tar.gz下载地址
-解压，配">
+解压，配置环境变量
+解压到指定目录（本文目录为/home">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -268,12 +267,15 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://image.hming.org/logo/hive.png')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
+                        CentOS7下搭建Hive
+                    </div>
+                    <div align="center">
                         CentOS7下搭建Hive
                     </div>
                 </div>
@@ -424,7 +426,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        703
+                        695
                     </div>
                     
 
@@ -447,9 +449,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>CentOS7下搭建Hive，Hive元数据</p>
-<a id="more"></a>
-<h3 id="搭建Hadoop集群"><a href="#搭建Hadoop集群" class="headerlink" title="搭建Hadoop集群"></a>搭建Hadoop集群</h3><p>参考<a href="http://blog.hming.org/2018/09/16/CentOS7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop%E9%9B%86%E7%BE%A4/" target="_blank" rel="noopener">CentOS7下搭建Hadoop集群</a></p>
+                <h3 id="搭建Hadoop集群"><a href="#搭建Hadoop集群" class="headerlink" title="搭建Hadoop集群"></a>搭建Hadoop集群</h3><p>参考<a href="http://blog.hming.org/2018/09/16/CentOS7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop%E9%9B%86%E7%BE%A4/" target="_blank" rel="noopener">CentOS7下搭建Hadoop集群</a></p>
 <h3 id="下载Hive压缩包"><a href="#下载Hive压缩包" class="headerlink" title="下载Hive压缩包"></a>下载Hive压缩包</h3><p>找到合适版本下载hive，本文压缩包为<code>apache-hive-2.3.4-bin.tar.gz</code><br><a href="http://ftp.riken.jp/net/apache/hive/" target="_blank" rel="noopener">下载地址</a></p>
 <h3 id="解压，配置环境变量"><a href="#解压，配置环境变量" class="headerlink" title="解压，配置环境变量"></a>解压，配置环境变量</h3><ol>
 <li><p>解压到指定目录（本文目录为/home/hive）<br><code>tar -zxvf apache-hive-2.3.4-bin.tar.gz</code></p>
@@ -626,8 +626,7 @@ From <span class="token function">source</span> with checksum 9f2d17b212f3a05297
                 <a href="/2018/12/08/使用图形化界面工具DbVisualizer连接Hive数据库/">
                     <div class="card-image">
                         
-                        
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="使用图形化界面工具DbVisualizer连接Hive数据库">
+                        <img src="http://image.hming.org/logo/DbVisualizer.png" class="responsive-img" alt="使用图形化界面工具DbVisualizer连接Hive数据库">
                         
                         <span class="card-title">使用图形化界面工具DbVisualizer连接Hive数据库</span>
                     </div>
@@ -636,9 +635,6 @@ From <span class="token function">source</span> with checksum 9f2d17b212f3a05297
                     <div class="summary block-with-text">
                         
                             使用图形化界面工具DbVisualizer连接Hive数据库
-
-参考链接：https://www.cnblogs.com/qingyunzong/p/8715250.html
-
                         
                     </div>
                     <div class="publish-info">
@@ -686,8 +682,7 @@ From <span class="token function">source</span> with checksum 9f2d17b212f3a05297
                 <a href="/2018/12/05/使用Docker搭建Nginx图片服务器/">
                     <div class="card-image">
                         
-                        
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="使用Docker搭建Nginx图片服务器">
+                        <img src="http://image.hming.org/logo/nginx+docker.png" class="responsive-img" alt="使用Docker搭建Nginx图片服务器">
                         
                         <span class="card-title">使用Docker搭建Nginx图片服务器</span>
                     </div>
@@ -696,12 +691,6 @@ From <span class="token function">source</span> with checksum 9f2d17b212f3a05297
                     <div class="summary block-with-text">
                         
                             使用Docker搭建Nginx图片服务器
-
-安装Docker见Docker常用命令
-编写Nginx配置文件vim default.conf
-server {
-    listen       80;
-    server_name  loc
                         
                     </div>
                     <div class="publish-info">
@@ -859,7 +848,7 @@ server {
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">56.8k</span>
+                <span class="white-color">58.6k</span>
             
 
             

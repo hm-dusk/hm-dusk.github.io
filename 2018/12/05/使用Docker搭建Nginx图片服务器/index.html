@@ -5,13 +5,14 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="使用Docker搭建Nginx图片服务器, 博客,貍铭">
-    <meta name="description" content="使用Docker搭建Nginx图片服务器
-
-安装Docker见Docker常用命令
+    <meta name="description" content="安装Docker见Docker常用命令
 编写Nginx配置文件vim default.conf
 server {
     listen       80;
-    server_name  loc">
+    server_name  localhost;
+
+    #(5)
+    ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -270,12 +271,15 @@ server {
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://image.hming.org/logo/nginx+docker.png')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
+                        使用Docker搭建Nginx图片服务器
+                    </div>
+                    <div align="center">
                         使用Docker搭建Nginx图片服务器
                     </div>
                 </div>
@@ -426,7 +430,7 @@ server {
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        404
+                        394
                     </div>
                     
 
@@ -449,9 +453,7 @@ server {
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>使用Docker搭建Nginx图片服务器</p>
-<a id="more"></a>
-<h3 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h3><p>见<a href="http://blog.hming.org/2018/09/18/Docker%E6%9B%BF%E6%8D%A2%E9%95%9C%E5%83%8F%E6%BA%90%E4%B8%8E%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" target="_blank" rel="noopener">Docker常用命令</a></p>
+                <h3 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h3><p>见<a href="http://blog.hming.org/2018/09/18/Docker%E6%9B%BF%E6%8D%A2%E9%95%9C%E5%83%8F%E6%BA%90%E4%B8%8E%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" target="_blank" rel="noopener">Docker常用命令</a></p>
 <h3 id="编写Nginx配置文件"><a href="#编写Nginx配置文件" class="headerlink" title="编写Nginx配置文件"></a>编写Nginx配置文件</h3><p><code>vim default.conf</code></p>
 <pre class=" language-bash"><code class="language-bash">server <span class="token punctuation">{</span>
     listen       80<span class="token punctuation">;</span>
@@ -570,8 +572,7 @@ EXPOSE 80</code></pre>
                 <a href="/2018/12/06/CentOS7下搭建Hive/">
                     <div class="card-image">
                         
-                        
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="CentOS7下搭建Hive">
+                        <img src="http://image.hming.org/logo/hive.png" class="responsive-img" alt="CentOS7下搭建Hive">
                         
                         <span class="card-title">CentOS7下搭建Hive</span>
                     </div>
@@ -579,11 +580,7 @@ EXPOSE 80</code></pre>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            CentOS7下搭建Hive，Hive元数据
-
-搭建Hadoop集群参考CentOS7下搭建Hadoop集群
-下载Hive压缩包找到合适版本下载hive，本文压缩包为apache-hive-2.3.4-bin.tar.gz下载地址
-解压，配
+                            CentOS7下搭建Hive
                         
                     </div>
                     <div class="publish-info">
@@ -631,8 +628,7 @@ EXPOSE 80</code></pre>
                 <a href="/2018/11/19/Spring-Boot使用JDBC连接Hive/">
                     <div class="card-image">
                         
-                        
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="Spring-Boot使用JDBC连接Hive">
+                        <img src="http://image.hming.org/logo/spring-boot.png" class="responsive-img" alt="Spring-Boot使用JDBC连接Hive">
                         
                         <span class="card-title">Spring-Boot使用JDBC连接Hive</span>
                     </div>
@@ -641,9 +637,6 @@ EXPOSE 80</code></pre>
                     <div class="summary block-with-text">
                         
                             项目中需要使用SpringBoot操作Hive进行开发，这里记录SpringBoot使用JdbcTemplate连接Hive的方法。开发环境使用Maven。
-
-添加Maven依赖&lt;!-- hive -->
-&lt;dependency
                         
                     </div>
                     <div class="publish-info">
@@ -801,7 +794,7 @@ EXPOSE 80</code></pre>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">56.8k</span>
+                <span class="white-color">58.6k</span>
             
 
             

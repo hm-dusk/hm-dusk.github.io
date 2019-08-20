@@ -5,12 +5,17 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="文档网站生成工具选型, 博客,貍铭">
-    <meta name="description" content="对比多款静态网站生成工具，分析需求，找到合适的工具。
-
-需求
+    <meta name="description" content="需求
 要求部署一个静态网站，用于开发者文档的呈现。
 要求所有文档采用markdown格式书写，md文件保存到git仓库（github），并且目录结构必须清晰
-要求md文件解析操作是在前">
+要求md文件解析操作是在前端完成
+
+方案选择
+
+
+
+方式一 预先渲染HTML
+方式">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -277,6 +282,9 @@
                     <div class="description center-align post-title">
                         文档网站生成工具选型
                     </div>
+                    <div align="center">
+                        对比多款静态网站生成工具，分析需求，找到合适的工具。
+                    </div>
                 </div>
             </div>
         </div>
@@ -421,7 +429,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        610
+                        587
                     </div>
                     
 
@@ -444,9 +452,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>对比多款静态网站生成工具，分析需求，找到合适的工具。</p>
-<a id="more"></a>
-<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><ol>
+                <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><ol>
 <li>要求部署一个静态网站，用于开发者文档的呈现。</li>
 <li>要求所有文档采用markdown格式书写，md文件保存到git仓库（github），并且目录结构必须清晰</li>
 <li>要求md文件解析操作是在前端完成</li>
@@ -612,9 +618,6 @@
                     <div class="summary block-with-text">
                         
                             Hortonworks HDP与Cloudera CDH对比。
-
-HDP与CDH的对比版本更新对比HDP版本更新较快，因为Hortonworks内部大部分员工都是apache代码贡献者，尤其是Hadoop 2.0的贡献者。
-CDH版本更新比
                         
                     </div>
                     <div class="publish-info">
@@ -640,12 +643,12 @@ CDH版本更新比
                         <span class="chip bg-color">大数据</span>
                     </a>
                     
-                    <a href="/tags/CDH/" target="_blank">
-                        <span class="chip bg-color">CDH</span>
-                    </a>
-                    
                     <a href="/tags/HDP/" target="_blank">
                         <span class="chip bg-color">HDP</span>
+                    </a>
+                    
+                    <a href="/tags/CDH/" target="_blank">
+                        <span class="chip bg-color">CDH</span>
                     </a>
                     
                 </div>
@@ -662,8 +665,7 @@ CDH版本更新比
                 <a href="/2019/04/16/SandBox-HDFS上传文件失败问题/">
                     <div class="card-image">
                         
-                        
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="SandBox HDFS上传文件失败问题">
+                        <img src="http://image.hming.org/logo/sandbox.png" class="responsive-img" alt="SandBox HDFS上传文件失败问题">
                         
                         <span class="card-title">SandBox HDFS上传文件失败问题</span>
                     </div>
@@ -672,8 +674,6 @@ CDH版本更新比
                     <div class="summary block-with-text">
                         
                             SandBox上传文件到HDFS时，文件创建成功，向文件写入数据失败问题分析和解决方案。
-
-问题描述远程（非Docker容器内、非宿主机）上传文件，新建文件成功，写入文件内容失败。查看/var/log/hadoop/hdfs/hadoop-
                         
                     </div>
                     <div class="publish-info">
@@ -835,7 +835,7 @@ CDH版本更新比
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">56.8k</span>
+                <span class="white-color">58.6k</span>
             
 
             

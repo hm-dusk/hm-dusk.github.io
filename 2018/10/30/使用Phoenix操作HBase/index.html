@@ -5,10 +5,8 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="使用Phoenix操作HBase, 博客,貍铭">
-    <meta name="description" content="使用Phoenix操作HBase
-
-HBase集群环境搭建参考：CentOS7下搭建HBase集群+HBase基本操作
-下载与HBase版本兼容的Phoenixapache-phoenix-4.14.1-HBase-1.4-bin.tar.">
+    <meta name="description" content="HBase集群环境搭建参考：CentOS7下搭建HBase集群+HBase基本操作
+下载与HBase版本兼容的Phoenixapache-phoenix-4.14.1-HBase-1.4-bin.tar.gz下载地址：http://arch">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -267,12 +265,15 @@ HBase集群环境搭建参考：CentOS7下搭建HBase集群+HBase基本操作
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://image.hming.org/logo/phoenix+hbase.png')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
+                        使用Phoenix操作HBase
+                    </div>
+                    <div align="center">
                         使用Phoenix操作HBase
                     </div>
                 </div>
@@ -423,7 +424,7 @@ HBase集群环境搭建参考：CentOS7下搭建HBase集群+HBase基本操作
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        2,092
+                        2,087
                     </div>
                     
 
@@ -446,9 +447,7 @@ HBase集群环境搭建参考：CentOS7下搭建HBase集群+HBase基本操作
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>使用Phoenix操作HBase</p>
-<a id="more"></a>
-<p>HBase集群环境搭建参考：<a href="http://blog.hming.org/2018/12/15/CentOS7%E4%B8%8B%E6%90%AD%E5%BB%BAHBase%E9%9B%86%E7%BE%A4+HBase%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" target="_blank" rel="noopener">CentOS7下搭建HBase集群+HBase基本操作</a></p>
+                <p>HBase集群环境搭建参考：<a href="http://blog.hming.org/2018/12/15/CentOS7%E4%B8%8B%E6%90%AD%E5%BB%BAHBase%E9%9B%86%E7%BE%A4+HBase%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" target="_blank" rel="noopener">CentOS7下搭建HBase集群+HBase基本操作</a></p>
 <h3 id="下载与HBase版本兼容的Phoenix"><a href="#下载与HBase版本兼容的Phoenix" class="headerlink" title="下载与HBase版本兼容的Phoenix"></a>下载与HBase版本兼容的Phoenix</h3><p><code>apache-phoenix-4.14.1-HBase-1.4-bin.tar.gz</code><br>下载地址：<a href="http://archive.apache.org/dist/phoenix/" target="_blank" rel="noopener">http://archive.apache.org/dist/phoenix/</a></p>
 <h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><p>复制<code>phoenix-4.14.1-HBase-1.4-server.jar</code>到<code>hbase/lib</code>下并分发到从节点</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hadoopmaster phoenix<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># pwd</span>
@@ -750,8 +749,7 @@ sqlline version 1.2.0</code></pre>
                 <a href="/2018/10/31/CentOS7下搭建kubernetes环境/">
                     <div class="card-image">
                         
-                        
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="CentOS7下搭建Kubernetes环境">
+                        <img src="http://image.hming.org/logo/kubernetes.png" class="responsive-img" alt="CentOS7下搭建Kubernetes环境">
                         
                         <span class="card-title">CentOS7下搭建Kubernetes环境</span>
                     </div>
@@ -759,11 +757,7 @@ sqlline version 1.2.0</code></pre>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            CentOS7使用kubeadm安装kubernetes 1.11版本多主高可用（进行中）
-
-1.11多主高可用1.10kubeadm安装
-安装配置docker
-v1.11.0版本推荐使用docker v17.03,  v1.11,v1.1
+                            CentOS7使用kubeadm安装kubernetes 1.11版本多主高可用
                         
                     </div>
                     <div class="publish-info">
@@ -811,8 +805,7 @@ v1.11.0版本推荐使用docker v17.03,  v1.11,v1.1
                 <a href="/2018/10/20/Docker容器固定IP/">
                     <div class="card-image">
                         
-                        
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Docker容器固定IP">
+                        <img src="http://image.hming.org/logo/docker.jpg" class="responsive-img" alt="Docker容器固定IP">
                         
                         <span class="card-title">Docker容器固定IP</span>
                     </div>
@@ -821,8 +814,6 @@ v1.11.0版本推荐使用docker v17.03,  v1.11,v1.1
                     <div class="summary block-with-text">
                         
                             Docker启动容器后一般是分配随机ip，本文将介绍如何使用Docker生成静态ip
-
-创建自定义网络[root@hadoopmaster bin]# docker network create --subnet=172.18.0.0/16
                         
                     </div>
                     <div class="publish-info">
@@ -980,7 +971,7 @@ v1.11.0版本推荐使用docker v17.03,  v1.11,v1.1
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">56.8k</span>
+                <span class="white-color">58.6k</span>
             
 
             
