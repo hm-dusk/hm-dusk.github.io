@@ -5,7 +5,9 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="CentOS7离线安装CDH, 博客,貍铭">
-    <meta name="description" content="本文环境
+    <meta name="description" content="环境准备部分参考文章：Hadoop实操：CDH安装前置准备
+本文环境本文为搭建过程演示，所以只用了一台主机进行搭建
+
 
 
 节点
@@ -17,8 +19,8 @@ cdh.hming.org
 192.168.146.111
 
 
-环境准备磁盘准备离线安装包共计3G左右，请保证有足够空间。保证/opt目录有足够空间，至少20G
-网络准备CDH支持IPV4，不支持IPV6">
+环境准备节点数量
+最小规模，建议">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -436,14 +438,14 @@ cdh.hming.org
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        2,934
+                        4,483
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        14 分
+                        21 分
                     </div>
                     
                 
@@ -459,7 +461,9 @@ cdh.hming.org
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="本文环境"><a href="#本文环境" class="headerlink" title="本文环境"></a>本文环境</h3><table>
+                <p>环境准备部分参考文章：<a href="https://mp.weixin.qq.com/s?__biz=MzI4OTY3MTUyNg==&mid=2247485512&idx=1&sn=9e953a7eb8b3b2a64a011550ab7da184&chksm=ec2ad841db5d51573f5913d14c33135180bca023de1c349fc431f561c055d1d085527107b66e&scene=21#wechat_redirect" target="_blank" rel="noopener">Hadoop实操：CDH安装前置准备</a></p>
+<h3 id="本文环境"><a href="#本文环境" class="headerlink" title="本文环境"></a>本文环境</h3><p>本文为搭建过程演示，所以只用了一台主机进行搭建</p>
+<table>
 <thead>
 <tr>
 <th align="center">节点</th>
@@ -471,10 +475,138 @@ cdh.hming.org
 <td align="center">192.168.146.111</td>
 </tr>
 </tbody></table>
-<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><h4 id="磁盘准备"><a href="#磁盘准备" class="headerlink" title="磁盘准备"></a>磁盘准备</h4><p>离线安装包共计3G左右，请保证有足够空间。<br>保证/opt目录有足够空间，至少20G</p>
-<h4 id="网络准备"><a href="#网络准备" class="headerlink" title="网络准备"></a>网络准备</h4><p>CDH支持IPV4，不支持IPV6</p>
-<ol>
-<li>将主机名设置为全限定域名格式（FQDN：Fully Qualified Domain Name）<br><code>sudo hostnamectl set-hostname cdh.hming.org</code></li>
+<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><h4 id="节点数量"><a href="#节点数量" class="headerlink" title="节点数量"></a>节点数量</h4><ol>
+<li>最小规模，建议最小<code>4</code>台服务器，1个管理节点安装Cloudera Manager和NameNode等服务，其他3个作为工作节点，因为没有任何的高可用，所以该规模只能用于开发测试。</li>
+<li>建议规模，生产环境中建议最小<code>6</code>台服务器，3台管理节点+3台工作节点，1个管理节点安装Cloudera Manager，另外2个安装NameNode高可用，常见的较小规模生产系统一般为<code>10-20</code>台服务器。</li>
+</ol>
+<p>附：<a href="https://www.cloudera.com/documentation/enterprise/6/6.3/topics/cm_ig_host_allocations.html" target="_blank" rel="noopener">官方服务角色分配方案</a></p>
+<h4 id="硬件要求"><a href="#硬件要求" class="headerlink" title="硬件要求"></a>硬件要求</h4><p>以下Cloudera Manager，NameNode和DataNode相同：</p>
+<p>CPU：最少4 cores，推荐2路8核，2路10核，2路12核<br>内存：最小16GB，推荐128GB-256GB<br>网络：最小千兆，推荐两张万兆绑定<br>磁盘：系统盘参考下面<code>系统盘/目录分配要求</code>章节，数据盘，工作节点推荐12块1TB-4TB的SATA/SAS盘，管理节点推荐1-2块1TB-4TB的SATA/SAS盘（具体配置可根据实际情况而定）</p>
+<p>附：<a href="https://www.cloudera.com/documentation/enterprise/6/release-notes/topics/rg_hardware_requirements.html#concept_vvv_cxt_gbb" target="_blank" rel="noopener">官方硬件要求说明</a></p>
+<h4 id="系统盘-目录分配要求"><a href="#系统盘-目录分配要求" class="headerlink" title="系统盘/目录分配要求"></a>系统盘/目录分配要求</h4><p><strong>目录分配方案一：</strong><br>如果只有一个根目录<code>/</code>建议工作节点最少<code>100G</code>，管理节点因为会存放MySQL数据以及一些监控数据，可以选择<code>200G</code>以上</p>
+<p><strong>目录分配方案二：</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">目录</th>
+<th align="center">分配空间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">/</td>
+<td align="center">可以默认比如10GB</td>
+</tr>
+<tr>
+<td align="center">/opt</td>
+<td align="center">大于50GB</td>
+</tr>
+<tr>
+<td align="center">/usr</td>
+<td align="center">大于50GB</td>
+</tr>
+<tr>
+<td align="center">/var</td>
+<td align="center">大于20GB</td>
+</tr>
+<tr>
+<td align="center">/var/log</td>
+<td align="center">大于50GB</td>
+</tr>
+<tr>
+<td align="center">/var/lib</td>
+<td align="center">大于50GB</td>
+</tr>
+<tr>
+<td align="center">/tmp</td>
+<td align="center">大于20GB</td>
+</tr>
+</tbody></table>
+<p><strong>目录分配方案三：</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">目录</th>
+<th align="center">分配空间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">/</td>
+<td align="center">可以默认比如10GB</td>
+</tr>
+<tr>
+<td align="center">/opt</td>
+<td align="center">大于50GB</td>
+</tr>
+<tr>
+<td align="center">/usr</td>
+<td align="center">大于50GB</td>
+</tr>
+<tr>
+<td align="center">/var</td>
+<td align="center">大于50GB</td>
+</tr>
+<tr>
+<td align="center">/tmp</td>
+<td align="center">大于20GB</td>
+</tr>
+</tbody></table>
+<h4 id="磁盘要求"><a href="#磁盘要求" class="headerlink" title="磁盘要求"></a>磁盘要求</h4><ol>
+<li><p><a href="https://baike.baidu.com/item/%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97/1149823?fromtitle=RAID&fromid=33858" target="_blank" rel="noopener">磁盘阵列</a>要求：<br>工作节点（DataNode/NodeManager），系统盘可以使用<a href="https://baike.baidu.com/item/RAID%201" target="_blank" rel="noopener">RAID1</a>或者<a href="https://baike.baidu.com/item/RAID%2010" target="_blank" rel="noopener">RAID10</a>，数据盘不要使用<a href="https://baike.baidu.com/item/%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97/1149823?fromtitle=RAID&fromid=33858" target="_blank" rel="noopener">RAID</a>，应该为<a href="https://baike.baidu.com/item/JBOD" target="_blank" rel="noopener">JBOD</a>。<br>管理节点（NameNode，Zookeeper，JournalNode），可以使用<a href="https://baike.baidu.com/item/%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97/1149823?fromtitle=RAID&fromid=33858" target="_blank" rel="noopener">RAID</a>或者<a href="https://baike.baidu.com/item/JBOD" target="_blank" rel="noopener">JBOD</a>，因为管理节点对<code>I/O</code>延迟比较敏感，建议将NN，ZK，JN存放数据的目录配置为不同的目录，并且对应到不同的磁盘。</p>
+</li>
+<li><p>DataNode数据盘格式建议选择<code>ext4</code>或<code>xfs</code>，并配置<code>noatime</code>，比如：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cat /etc/fstab</span>
+/dev/sda1  /data/1    xfs   defaults,noatime      1 2
+/dev/sdb1  /data/2    xfs   defaults,noatime      1 2
+/dev/sdc1  /data/3    xfs   defaults,noatime      1 2
+/dev/sdd1  /data/4    xfs   defaults,noatime      1 2
+/dev/sde1  /data/5    xfs   defaults,noatime      1 2
+/dev/sdf1  /data/6    xfs   defaults,noatime      1 2
+<span class="token punctuation">..</span>.
+/dev/sdx1  /data/x    xfs    defaults,noatime      1 2
+<span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># fdisk -l</span></code></pre>
+<p>注意: <code>noatime</code>已经包含了<code>nodiratime</code>。不需要同时指定。</p>
+<blockquote>
+<p>参考：<br><a href="https://wiki.archlinux.org/index.php/Fstab_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#atime_%E5%8F%82%E6%95%B0" target="_blank" rel="noopener">fstab atime 参数</a><br><a href="https://www.linuxquestions.org/questions/linux-software-2/what-is-noatime-how-can-i-mount-a-partition-with-noatime-393617/" target="_blank" rel="noopener">what is noatime</a><br>默认的方式下linux会把文件访问的时间atime做记录，文件系统在文件被访问、创建、修改等的时候记录下了文件的一些时间戳，比如：文件创建时间、最近一次修改时间和最近一次访问时间；这在绝大部分的场合都是没有必要的。<br>因为系统运行的时候要访问大量文件，如果能减少一些动作（比如减少时间戳的记录次数等）将会显著提高磁盘 IO 的效率、提升文件系统的性能。 </p>
+</blockquote>
+</li>
+<li><p>DataNode数据盘确保没有配置分区卷LogicalVolume Manager (LVM)</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># df –h</span>
+<span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># lsblk</span>
+<span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># lvdisplay</span>
+Additionally, <span class="token function">look</span> for/dev/mapper or /dev/XX <span class="token punctuation">(</span>where XX isnot sd<span class="token punctuation">)</span>.</code></pre>
+</li>
+<li><p>确保BIOS配置正确，比如你如果使用的是SATA，请确保没有开启<code>IDE emulation</code>。</p>
+</li>
+<li><p>确保<code>controller firmware</code>是最新的，校验磁盘是否有一些潜在的问题。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># dmesg | egrep -i 'sense error'</span>
+<span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># dmesg | egrep -i 'ata bus error'</span></code></pre>
+</li>
+<li><p>目前常见的SATA读写速度大概在<code>150MB/S-180MB/S</code>，SAS或者SSD会更快，如果磁盘读写速度<code>小于70MB/S</code>，肯定是有问题的，需要检查硬件。以下为测试读写的命令，这里我们将<code>/data/01</code>挂载到<code>/dev/sda1</code>：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># hdparm –t /dev/sda1</span>
+<span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ddbs=1M count=1024 if=/dev/zero of=/data/01 oflag=direct conv=fdatasync</span>
+<span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># dd bs=1M count=1024 of=/dev/null if=/data/01 iflag=direct conv=fdatasync</span></code></pre>
+</li>
+<li><p>确保磁盘没有坏的扇区：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># badblocks -v /dev/sda1</span>
+<span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># badblocks -v /dev/sdb1</span>
+<span class="token punctuation">..</span>.
+<span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#badblocks -v /dev/sdx1</span></code></pre>
+</li>
+</ol>
+<h4 id="安装用户"><a href="#安装用户" class="headerlink" title="安装用户"></a>安装用户</h4><p>可以使用<code>root</code>用户安装，或者具有<code>sudo</code>权限的其他用户</p>
+<h4 id="网络要求"><a href="#网络要求" class="headerlink" title="网络要求"></a>网络要求</h4><p>CDH支持IPV4，不支持IPV6，确保没有开启IPV6</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># lsmod | grep ipv6 </span>
+<span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># </span></code></pre>
+<p>修改<code>/etc/sysctl.conf</code>文件添加一下内容禁用IPV6</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#disable ipv6</span>
+net.ipv6.conf.all.disable_ipv6<span class="token operator">=</span> 1
+net.ipv6.conf.default.disable_ipv6<span class="token operator">=</span> 1
+net.ipv6.conf.lo.disable_ipv6<span class="token operator">=</span> 1</code></pre>
+<p>如果是RHEL/CentOS，可以把以下内容补充到<code>/etc/sysconfig/network</code></p>
+<pre class=" language-bash"><code class="language-bash">NETWORKING_IPV6<span class="token operator">=</span>no
+IPV6INIT<span class="token operator">=</span>no</code></pre>
+<h4 id="主机名配置"><a href="#主机名配置" class="headerlink" title="主机名配置"></a>主机名配置</h4><ol>
+<li>将主机名设置为全限定域名格式<a href="https://baike.baidu.com/item/FQDN" target="_blank" rel="noopener">FQDN</a>（Fully Qualified Domain Name）<br><code>sudo hostnamectl set-hostname cdh.hming.org</code></li>
 <li>配置/etc/hosts文件，添加集群中所有全限定域名，也可以在后面继续添加非限定名</li>
 </ol>
 <pre class=" language-bash"><code class="language-bash">192.168.146.111 cdh.hming.org cdh</code></pre>
@@ -487,7 +619,42 @@ cdh.hming.org
 <li>修改<code>SELINUX=enforcing</code>行内容为<code>SELINUX=permissive</code>或者<code>SELINUX=disabled</code></li>
 <li>重启系统或者运行<code>setenforce 0</code>命令禁用SELinux</li>
 </ol>
-<h4 id="配置NTP服务"><a href="#配置NTP服务" class="headerlink" title="配置NTP服务"></a>配置NTP服务</h4><p>集群中所有主机必须保持时间同步，如果时间相差较大会引起各种问题，由于本文只有一个节点，故没有安装NPT<br>参考官网：<a href="https://www.cloudera.com/documentation/enterprise/6/6.3/topics/install_cdh_enable_ntp.html" target="_blank" rel="noopener">https://www.cloudera.com/documentation/enterprise/6/6.3/topics/install_cdh_enable_ntp.html</a></p>
+<h4 id="设置SWAP"><a href="#设置SWAP" class="headerlink" title="设置SWAP"></a>设置SWAP</h4><p>参考官网：<a href="https://www.cloudera.com/documentation/enterprise/latest/topics/cdh_admin_performance.html#cdh_performance__section_xpq_sdf_jq" target="_blank" rel="noopener">https://www.cloudera.com/documentation/enterprise/latest/topics/cdh_admin_performance.html#cdh_performance__section_xpq_sdf_jq</a><br>运行命令<code>sysctl -w vm.swappiness=1</code>临时生效<br>或者修改<code>/etc/sysctl.conf</code>配置文件，增加如下配置，永久生效</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 配置为1时表示当内存使用超过99时，才使用交换空间，这里可以配置为1-10</span>
+vm.swappiness <span class="token operator">=</span> 1</code></pre>
+<p>检查是否生效</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cat /proc/sys/vm/swappiness</span>
+1</code></pre>
+<h4 id="关闭透明大页面"><a href="#关闭透明大页面" class="headerlink" title="关闭透明大页面"></a>关闭透明大页面</h4><p>参考官网：<a href="https://www.cloudera.com/documentation/enterprise/latest/topics/cdh_admin_performance.html#cdh_performance__section_hw3_sdf_jq" target="_blank" rel="noopener">https://www.cloudera.com/documentation/enterprise/latest/topics/cdh_admin_performance.html#cdh_performance__section_hw3_sdf_jq</a><br>查看透明大页面配置，发现目前为开启状态<code>always</code></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cat /sys/kernel/mm/transparent_hugepage/defrag </span>
+<span class="token punctuation">[</span>always<span class="token punctuation">]</span> madvise never
+<span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cat /sys/kernel/mm/transparent_hugepage/enabled </span>
+<span class="token punctuation">[</span>always<span class="token punctuation">]</span> madvise never</code></pre>
+<p>执行命令关闭透明大页面，使其立即生效</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># echo never > /sys/kernel/mm/transparent_hugepage/enabled </span>
+<span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># echo never > /sys/kernel/mm/transparent_hugepage/defrag </span></code></pre>
+<p>再次查看，确认已经修改为<code>never</code></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cat /sys/kernel/mm/transparent_hugepage/enabled </span>
+always madvise <span class="token punctuation">[</span>never<span class="token punctuation">]</span>
+<span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cat /sys/kernel/mm/transparent_hugepage/defrag </span>
+always madvise <span class="token punctuation">[</span>never<span class="token punctuation">]</span></code></pre>
+<p>在<code>/etc/rc.d/rc.local</code>脚本文件中添加以下代码，使其永久生效</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token keyword">if</span> <span class="token function">test</span> -f /sys/kernel/mm/transparent_hugepage/enabled<span class="token punctuation">;</span> <span class="token keyword">then</span>
+   <span class="token keyword">echo</span> never <span class="token operator">></span> /sys/kernel/mm/transparent_hugepage/enabled
+<span class="token keyword">fi</span>
+<span class="token keyword">if</span> <span class="token function">test</span> -f /sys/kernel/mm/transparent_hugepage/defrag<span class="token punctuation">;</span> <span class="token keyword">then</span>
+   <span class="token keyword">echo</span> never <span class="token operator">></span> /sys/kernel/mm/transparent_hugepage/defrag
+<span class="token keyword">fi</span></code></pre>
+<p>赋予<code>rc.local</code>脚本可执行权限</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># chmod +x /etc/rc.d/rc.local</span></code></pre>
+<h4 id="配置NTP服务（时钟同步）"><a href="#配置NTP服务（时钟同步）" class="headerlink" title="配置NTP服务（时钟同步）"></a>配置NTP服务（时钟同步）</h4><p>参考官网：<a href="https://www.cloudera.com/documentation/enterprise/6/6.3/topics/install_cdh_enable_ntp.html" target="_blank" rel="noopener">https://www.cloudera.com/documentation/enterprise/6/6.3/topics/install_cdh_enable_ntp.html</a><br>参考其他文章：<a href="https://blog.csdn.net/u010003835/article/details/84962098" target="_blank" rel="noopener">https://blog.csdn.net/u010003835/article/details/84962098</a><br>集群中所有主机必须保持时间同步，如果时间相差较大会引起各种问题，如果企业有自己的NTP Server则可以集群中所有节点可配置企业NTP Server，如果没有自己的NTP服务器则在集群中选用一台服务器作为NTP Server，其它服务器与其保持同步</p>
+<h4 id="下载离线包"><a href="#下载离线包" class="headerlink" title="下载离线包"></a>下载离线包</h4><h5 id="Cloudera-Manager安装包"><a href="#Cloudera-Manager安装包" class="headerlink" title="Cloudera Manager安装包"></a>Cloudera Manager安装包</h5><p>到官网下载rpm包：<a href="https://archive.cloudera.com/cm6/6.3.0/redhat7/yum/RPMS/x86_64/" target="_blank" rel="noopener">https://archive.cloudera.com/cm6/6.3.0/redhat7/yum/RPMS/x86_64/</a><br><img src="http://image.hming.org/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/cm%E5%8C%85%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80.png" alt><br>下载allkeys文件：<a href="https://archive.cloudera.com/cm6/6.3.0/" target="_blank" rel="noopener">https://archive.cloudera.com/cm6/6.3.0/</a><br><img src="http://image.hming.org/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/allkeys%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80.png" alt></p>
+<h5 id="CDH安装包"><a href="#CDH安装包" class="headerlink" title="CDH安装包"></a>CDH安装包</h5><p>官方有两种离线包可供选择：</p>
+<ol>
+<li><a href="https://www.cloudera.com/documentation/enterprise/6/6.3/topics/cm_ig_create_local_parcel_repo.html" target="_blank" rel="noopener">Parcel模式（推荐）</a>（本文使用模式）</li>
+<li><a href="https://www.cloudera.com/documentation/enterprise/6/6.3/topics/cm_ig_create_local_package_repo.html" target="_blank" rel="noopener">Package模式</a><br>到官网下载parcel包：<a href="https://archive.cloudera.com/cdh6/6.3.0/parcels/" target="_blank" rel="noopener">https://archive.cloudera.com/cdh6/6.3.0/parcels/</a>，下载图中框选的三个文件<br><img src="http://image.hming.org/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/cdh%E5%8C%85%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80.png" alt></li>
+</ol>
+<h5 id="其他parcel包（可选）"><a href="#其他parcel包（可选）" class="headerlink" title="其他parcel包（可选）"></a>其他parcel包（可选）</h5><p>YCSB：<a href="http://archive.cloudera.com/cloudera-labs/ycsb/parcels/latest/" target="_blank" rel="noopener">http://archive.cloudera.com/cloudera-labs/ycsb/parcels/latest/</a><br>Phoenix：<a href="http://archive.cloudera.com/cloudera-labs/phoenix/parcels/latest/" target="_blank" rel="noopener">http://archive.cloudera.com/cloudera-labs/phoenix/parcels/latest/</a><br>kafka: <a href="http://archive.cloudera.com/cloudera-labs/kafka/parcels/latest/" target="_blank" rel="noopener">http://archive.cloudera.com/cloudera-labs/kafka/parcels/latest/</a><br>csds: <a href="http://archive.cloudera.com/cloudera-labs/csds/" target="_blank" rel="noopener">http://archive.cloudera.com/cloudera-labs/csds/</a><br>ktrace: <a href="http://archive.cloudera.com/cloudera-labs/htrace/parcels/latest/" target="_blank" rel="noopener">http://archive.cloudera.com/cloudera-labs/htrace/parcels/latest/</a></p>
 <h4 id="安装httpd服务（Apache服务，任意一个管理节点安装即可）"><a href="#安装httpd服务（Apache服务，任意一个管理节点安装即可）" class="headerlink" title="安装httpd服务（Apache服务，任意一个管理节点安装即可）"></a>安装httpd服务（Apache服务，任意一个管理节点安装即可）</h4><blockquote>
 <p>注意：selinux未关闭可能导致Apache服务地址403。</p>
 </blockquote>
@@ -504,10 +671,11 @@ Redirecting to /bin/systemctl restart httpd.service</code></pre>
 <blockquote>
 <p>注意：配置信息如端口、映射路径可以通过编辑<code>/etc/httpd/conf/httpd.conf</code>文件进行修改</p>
 </blockquote>
-<h4 id="下载离线包"><a href="#下载离线包" class="headerlink" title="下载离线包"></a>下载离线包</h4><h5 id="Cloudera-Manager安装包"><a href="#Cloudera-Manager安装包" class="headerlink" title="Cloudera Manager安装包"></a>Cloudera Manager安装包</h5><p>到官网下载rpm包：<a href="https://archive.cloudera.com/cm6/6.3.0/redhat7/yum/RPMS/x86_64/" target="_blank" rel="noopener">https://archive.cloudera.com/cm6/6.3.0/redhat7/yum/RPMS/x86_64/</a><br><img src="http://image.hming.org/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/cm%E5%8C%85%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80.png" alt><br>下载allkeys文件：<a href="https://archive.cloudera.com/cm6/6.3.0/" target="_blank" rel="noopener">https://archive.cloudera.com/cm6/6.3.0/</a><br><img src="http://image.hming.org/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/allkeys%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80.png" alt></p>
-<p>将所有rpm包和allkeys文件一起<a href="http://blog.hming.org/2019/03/29/Linux%E5%88%B6%E4%BD%9C%E7%A6%BB%E7%BA%BFyum%E6%BA%90/#toc-heading-6" target="_blank" rel="noopener">制作离线yum源</a></p>
+<h4 id="配置本地yum源"><a href="#配置本地yum源" class="headerlink" title="配置本地yum源"></a>配置本地yum源</h4><p>httpd默认路径为：<code>/var/www/html/</code></p>
 <blockquote>
-<p>建议将离线yum源放到httpd服务路径中，方便其他节点访问</p>
+<p>如果httpd映射路径修改过，则以修改后的为准。</p>
+</blockquote>
+<h5 id="Cloudera-Manager"><a href="#Cloudera-Manager" class="headerlink" title="Cloudera Manager"></a>Cloudera Manager</h5><p>将下载的所有cm rpm包和allkeys文件一起<a href="http://blog.hming.org/2019/03/29/Linux%E5%88%B6%E4%BD%9C%E7%A6%BB%E7%BA%BFyum%E6%BA%90/#toc-heading-6" target="_blank" rel="noopener">制作离线yum源</a><br>将离线yum源放到httpd服务路径中，方便其他节点访问</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@node10 cm6.3.0<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># pwd</span>
 /var/www/html/cloudera-repos/cm6.3.0
 <span class="token punctuation">[</span>root@node10 cm6.3.0<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ls -l</span>
@@ -521,16 +689,7 @@ total 1378004
 -rw-r--r-- 1 root root  184988341 Aug 16 16:26 oracle-j2sdk1.8-1.8.0+update181-1.x86_64.rpm
 drwxr-xr-x 2 root root       4096 Aug 20 14:48 repodata
 <span class="token punctuation">[</span>root@node10 cm6.3.0<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># </span></code></pre>
-</blockquote>
-<h5 id="CDH安装包"><a href="#CDH安装包" class="headerlink" title="CDH安装包"></a>CDH安装包</h5><p>官方有两种离线包可供选择：</p>
-<ol>
-<li><a href="https://www.cloudera.com/documentation/enterprise/6/6.3/topics/cm_ig_create_local_parcel_repo.html" target="_blank" rel="noopener">Parcel模式（推荐）</a>（本文使用模式）</li>
-<li><a href="https://www.cloudera.com/documentation/enterprise/6/6.3/topics/cm_ig_create_local_package_repo.html" target="_blank" rel="noopener">Package模式</a><br>到官网下载parcel包：<a href="https://archive.cloudera.com/cdh6/6.3.0/parcels/" target="_blank" rel="noopener">https://archive.cloudera.com/cdh6/6.3.0/parcels/</a><br><img src="http://image.hming.org/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/cdh%E5%8C%85%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80.png" alt><br>下载图中框选的三个文件</li>
-</ol>
-<h4 id="将离线包移到httpd服务路径"><a href="#将离线包移到httpd服务路径" class="headerlink" title="将离线包移到httpd服务路径"></a>将离线包移到httpd服务路径</h4><p>httpd默认路径为：<code>/var/www/html/</code></p>
-<blockquote>
-<p>如果httpd映射路径修改过，则以修改后的为准。</p>
-</blockquote>
+<h5 id="CDH其他parcel包"><a href="#CDH其他parcel包" class="headerlink" title="CDH其他parcel包"></a>CDH其他parcel包</h5><p>将parcel包移到httpd服务路径</p>
 <p>创建<code>/var/www/html//cloudera-repos/cdh6.3.0/</code>目录，将parcel包放到该目录中</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@cdh cdh6.3.0<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># pwd</span>
 /var/www/html/cloudera-repos/cdh6.3.0
@@ -1004,7 +1163,7 @@ Starting cloudera-scm-agent:</code></pre>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">58.6k</span>
+                <span class="white-color">60.2k</span>
             
 
             
