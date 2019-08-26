@@ -192,8 +192,8 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>大数据</tag>
         <tag>Hive</tag>
+        <tag>大数据</tag>
         <tag>LLAP</tag>
         <tag>Tez</tag>
       </tags>
@@ -219,8 +219,8 @@
       </categories>
       <tags>
         <tag>大数据</tag>
-        <tag>HBase</tag>
         <tag>集群</tag>
+        <tag>HBase</tag>
       </tags>
   </entry>
   <entry>
@@ -243,8 +243,8 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>大数据</tag>
         <tag>Hive</tag>
+        <tag>大数据</tag>
         <tag>Spark</tag>
       </tags>
   </entry>
@@ -294,8 +294,8 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>大数据</tag>
         <tag>Hive</tag>
+        <tag>大数据</tag>
         <tag>数据仓库</tag>
       </tags>
   </entry>
@@ -333,8 +333,8 @@
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>大数据</tag>
         <tag>Hive</tag>
+        <tag>大数据</tag>
         <tag>Hadoop</tag>
       </tags>
   </entry>
@@ -346,9 +346,9 @@
         <category>容器</category>
       </categories>
       <tags>
-        <tag>集群</tag>
         <tag>K8s</tag>
         <tag>容器</tag>
+        <tag>集群</tag>
       </tags>
   </entry>
   <entry>
@@ -487,8 +487,8 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>IP</tag>
+        <tag>Linux</tag>
         <tag>虚拟机</tag>
         <tag>VMware</tag>
       </tags>

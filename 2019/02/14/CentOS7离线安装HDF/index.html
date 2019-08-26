@@ -447,7 +447,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="本文环境"><a href="#本文环境" class="headerlink" title="本文环境"></a>本文环境</h3><p>已存在Ambari和HDP环境，Ambari搭建参照<a href="https://blog.hming.org/2019/01/09/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/" target="_blank" rel="noopener">CentOS7离线安装HDP</a></p>
+                <h3 id="本文环境"><a href="#本文环境" class="headerlink" title="本文环境"></a>本文环境</h3><p>已存在Ambari和HDP环境，Ambari搭建参照<a href="https://blog.hming.org/2019/01/09/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/">CentOS7离线安装HDP</a></p>
 <h3 id="下载离线包"><a href="#下载离线包" class="headerlink" title="下载离线包"></a>下载离线包</h3><p><a href="https://docs.hortonworks.com/HDPDocuments/HDF3/HDF-3.3.1/release-notes/content/hdf_repository_locations.html" target="_blank" rel="noopener">HDF仓库地址</a><br>找到对应操作系统的包，下载HDF Management Pack与HDF RPM tarball两个包即可。（本文为CentOS7的包）</p>
 <blockquote>
 <p>注意：HDF RPM tarball包大小<code>3.6G</code>左右，HDF Management Pack包<code>96M</code>左右，请确保保存路径有足够空间</p>
@@ -459,8 +459,8 @@ drwxr-xr-x 3 root      root  4.0K Jan 16 15:00 ambari
 -rw-r--r-- 1 root      root   96M Dec 15 02:13 hdf-ambari-mpack-3.3.1.0-10.tar.gz
 drwxr-xr-x 3 ambari-qa <span class="token function">users</span> 4.0K Dec 11 11:49 HDP
 drwxr-xr-x 3 ambari-qa <span class="token function">users</span> 4.0K Aug 13  2018 HDP-UTILS</code></pre>
-<p>其中ambari、HDP、HDP-UTILS为<a href="https://blog.hming.org/2019/01/09/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/" target="_blank" rel="noopener">CentOS7离线安装HDP</a>中制作的yum本地源地址</p>
-<h3 id="制作HDF-yum镜像源"><a href="#制作HDF-yum镜像源" class="headerlink" title="制作HDF yum镜像源"></a>制作HDF yum镜像源</h3><p>参考<a href="https://blog.hming.org/2019/01/09/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/#%E5%88%B6%E4%BD%9C%E6%9C%AC%E5%9C%B0%E6%BA%90" target="_blank" rel="noopener">制作本地源</a>，将<code>HDF-3.3.1.0-centos7-rpm.tar.gz</code>包解压，制作yum本地源。</p>
+<p>其中ambari、HDP、HDP-UTILS为<a href="https://blog.hming.org/2019/01/09/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/">CentOS7离线安装HDP</a>中制作的yum本地源地址</p>
+<h3 id="制作HDF-yum镜像源"><a href="#制作HDF-yum镜像源" class="headerlink" title="制作HDF yum镜像源"></a>制作HDF yum镜像源</h3><p>参考<a href="https://blog.hming.org/2019/01/09/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/#%E5%88%B6%E4%BD%9C%E6%9C%AC%E5%9C%B0%E6%BA%90">制作本地源</a>，将<code>HDF-3.3.1.0-centos7-rpm.tar.gz</code>包解压，制作yum本地源。</p>
 <ol>
 <li>解压到<code>httpd</code>服务路径(本文httpd服务路径为<code>/cloud/ambari</code>)</li>
 </ol>

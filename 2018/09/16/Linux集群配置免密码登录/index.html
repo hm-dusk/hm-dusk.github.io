@@ -525,7 +525,7 @@ ssh-rsa AAAAB.....TnYjJ root@hadoop001
 ssh-rsa AAAAB.....Ah+n9 root@hadoopmaster
 [root@hadoop001 .ssh]# </code></pre>
 <blockquote>
-<p>关于scp命令请点击<a href="http://blog.hming.org/2018/08/15/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" target="_blank" rel="noopener">这里</a>查看</p>
+<p>关于scp命令请点击<a href="http://blog.hming.org/2018/08/15/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">这里</a>查看</p>
 </blockquote>
 <h5 id="重复上一步动作，将每个节点的ssh秘钥都加入authorized-keys文件中"><a href="#重复上一步动作，将每个节点的ssh秘钥都加入authorized-keys文件中" class="headerlink" title="重复上一步动作，将每个节点的ssh秘钥都加入authorized_keys文件中"></a>重复上一步动作，将每个节点的ssh秘钥都加入<code>authorized_keys</code>文件中</h5><h5 id="将最后节点生成的authorized-keys文件复制到每个节点下即可"><a href="#将最后节点生成的authorized-keys文件复制到每个节点下即可" class="headerlink" title="将最后节点生成的authorized_keys文件复制到每个节点下即可"></a>将最后节点生成的<code>authorized_keys</code>文件复制到每个节点下即可</h5><pre class=" language-shell"><code class="language-shell">[root@hadoop002 .ssh]# scp authorized_keys root@hadoopmaster:/root/.ssh
 ...
