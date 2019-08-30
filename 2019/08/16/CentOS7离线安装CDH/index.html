@@ -405,12 +405,12 @@ master3.hm">
                                 <span class="chip bg-color">大数据</span>
                             </a>
                         
-                            <a href="/tags/离线安装/" target="_blank">
-                                <span class="chip bg-color">离线安装</span>
-                            </a>
-                        
                             <a href="/tags/CDH/" target="_blank">
                                 <span class="chip bg-color">CDH</span>
+                            </a>
+                        
+                            <a href="/tags/离线安装/" target="_blank">
+                                <span class="chip bg-color">离线安装</span>
                             </a>
                         
                     </div>
@@ -440,14 +440,14 @@ master3.hm">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        4,845
+                        5,105
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        23 分
+                        24 分
                     </div>
                     
                 
@@ -603,10 +603,31 @@ Additionally, <span class="token function">look</span> for/dev/mapper or /dev/XX
 <pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># dmesg | egrep -i 'sense error'</span>
 <span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># dmesg | egrep -i 'ata bus error'</span></code></pre>
 </li>
-<li><p>目前常见的SATA读写速度大概在<code>150MB/S-180MB/S</code>，SAS或者SSD会更快，如果磁盘读写速度<code>小于70MB/S</code>，肯定是有问题的，需要检查硬件。以下为测试读写的命令，这里我们将<code>/data/01</code>挂载到<code>/dev/sda1</code>：</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># hdparm –t /dev/sda1</span>
-<span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ddbs=1M count=1024 if=/dev/zero of=/data/01 oflag=direct conv=fdatasync</span>
-<span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># dd bs=1M count=1024 of=/dev/null if=/data/01 iflag=direct conv=fdatasync</span></code></pre>
+<li><p>目前常见的SATA读写速度大概在<code>150MB/S-180MB/S</code>，SAS或者SSD会更快，如果磁盘读写速度<code>小于70MB/S</code>，肯定是有问题的，需要检查硬件。<br>以下为测试读写的命令，这里我们将<code>/mnt/data01</code>挂载到<code>/dev/sdb1</code>：</p>
+<ul>
+<li><p><code>hdparm</code>仅用于Linux系统。现在主要用来测试SSD固态硬盘读取速度。</p>
+<pre class=" language-bash"><code class="language-bash">  <span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># hdparm -t --direct /dev/sdb1</span>
+  /dev/sdb1:
+   Timing O_DIRECT disk reads: 456 MB <span class="token keyword">in</span>  3.01 seconds <span class="token operator">=</span> 151.67 MB/sec</code></pre>
+</li>
+<li><p><code>dd</code>命令不是专业测试磁盘工具，它没考虑到缓存和物理读的区分，测试的结果仅作参考，不算权威。但是它通用于所有的Linux系统中。<br>  两个特殊设备：（不产生IO，就能单独测试写速度和读速度）<br>  <code>/dev/null</code> 伪设备,回收站.写该文件不会产生IO<br>  <code>/dev/zero</code> 伪设备,会产生空字符流,对它不会产生IO<br>  测试写入速度</p>
+<pre class=" language-bash"><code class="language-bash">  <span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># dd bs=1M count=1024 if=/dev/zero of=/mnt/data01/test.dbf oflag=direct conv=fdatasync</span>
+  1024+0 records <span class="token keyword">in</span>
+  1024+0 records out
+  1073741824 bytes <span class="token punctuation">(</span>1.1 GB<span class="token punctuation">)</span> copied, 7.05097 s, 152 MB/s</code></pre>
+<p>  测试读取速度</p>
+<pre class=" language-bash"><code class="language-bash">  <span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># dd bs=1M count=1024 of=/dev/null if=/mnt/data01/test.dbf iflag=direct conv=fdatasync</span>
+  dd: fsync failed <span class="token keyword">for</span> ‘/dev/null’: Invalid argument
+  1024+0 records <span class="token keyword">in</span>
+  1024+0 records out
+  1073741824 bytes <span class="token punctuation">(</span>1.1 GB<span class="token punctuation">)</span> copied, 6.77791 s, 158 MB/s</code></pre>
+<p>  测试读写速度</p>
+<pre class=" language-bash"><code class="language-bash">  <span class="token punctuation">[</span>root@node10 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># dd if=/mnt/data01/test.dbf of=/mnt/data01/test_w.dbf bs=8k count=300000</span>
+  131072+0 records <span class="token keyword">in</span>
+  131072+0 records out
+  1073741824 bytes <span class="token punctuation">(</span>1.1 GB<span class="token punctuation">)</span> copied, 7.39375 s, 145 MB/s</code></pre>
+</li>
+</ul>
 </li>
 <li><p>确保磁盘没有坏的扇区：</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># badblocks -v /dev/sda1</span>
@@ -999,30 +1020,29 @@ Redirecting to /bin/systemctl start rngd.service</code></pre>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6 overflow-policy" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/08/16/CentOS7离线安装CDH/">
+                <a href="/2019/08/27/如何给CDH集群分配角色/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="CentOS7离线安装CDH">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="如何给CDH集群分配角色">
                         
-                        <span class="card-title">CentOS7离线安装CDH</span>
+                        <span class="card-title">如何给CDH集群分配角色</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            CentOS7.6离线安装CDP，Cloudera Manager版本：6.3.0，CDH版本：6.3.0-1
+                            本文主要介绍由Cloudera Manager管理的CDH集群的角色划分
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-16
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-27
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -1035,7 +1055,6 @@ Redirecting to /bin/systemctl start rngd.service</code></pre>
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1043,12 +1062,12 @@ Redirecting to /bin/systemctl start rngd.service</code></pre>
                         <span class="chip bg-color">大数据</span>
                     </a>
                     
-                    <a href="/tags/离线安装/" target="_blank">
-                        <span class="chip bg-color">离线安装</span>
-                    </a>
-                    
                     <a href="/tags/CDH/" target="_blank">
                         <span class="chip bg-color">CDH</span>
+                    </a>
+                    
+                    <a href="/tags/角色分配/" target="_blank">
+                        <span class="chip bg-color">角色分配</span>
                     </a>
                     
                 </div>
@@ -1227,7 +1246,7 @@ Redirecting to /bin/systemctl start rngd.service</code></pre>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">60.5k</span>
+                <span class="white-color">63.6k</span>
             
 
             

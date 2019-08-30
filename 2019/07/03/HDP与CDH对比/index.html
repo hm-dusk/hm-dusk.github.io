@@ -390,12 +390,12 @@ CDH版本更新比Apache版本慢。
                                 <span class="chip bg-color">大数据</span>
                             </a>
                         
-                            <a href="/tags/HDP/" target="_blank">
-                                <span class="chip bg-color">HDP</span>
-                            </a>
-                        
                             <a href="/tags/CDH/" target="_blank">
                                 <span class="chip bg-color">CDH</span>
+                            </a>
+                        
+                            <a href="/tags/HDP/" target="_blank">
+                                <span class="chip bg-color">HDP</span>
                             </a>
                         
                     </div>
@@ -425,7 +425,7 @@ CDH版本更新比Apache版本慢。
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1,414
+                        1,424
                     </div>
                     
 
@@ -453,12 +453,14 @@ CDH版本更新比Apache版本慢。
 <p>目前Apache社区Hadoop最新版本：3.2.0</p>
 <p>目前CDH最新版支持Hadoop版本：3.0.0</p>
 <p>目前HDP最新版支持Hadoop版本：3.1.1</p>
+<h4 id="架构对比"><a href="#架构对比" class="headerlink" title="架构对比"></a>架构对比</h4><h5 id="CDH"><a href="#CDH" class="headerlink" title="CDH"></a>CDH</h5><p><img src="http://image.hming.org/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/CDH%E6%9E%B6%E6%9E%84.png" alt></p>
+<h5 id="HDP"><a href="#HDP" class="headerlink" title="HDP"></a>HDP</h5><p><img src="http://image.hming.org/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/HDP%E6%9E%B6%E6%9E%84.png" alt></p>
 <h4 id="原装支持组件对比"><a href="#原装支持组件对比" class="headerlink" title="原装支持组件对比"></a>原装支持组件对比</h4><p><img src="http://image.hming.org/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/%E7%BB%84%E4%BB%B6%E5%AF%B9%E6%AF%94.png" alt></p>
 <ul>
 <li>CDH支持的存储组件更丰富</li>
 <li>HDP支持的数据分析组件更丰富</li>
 <li>HDP对多维分析及可视化有了支持，引入Druid和Superset</li>
-<li>HDP的HBase数据使用Phoenix的jdbc查询；CDH的HBase数据使用映射Hive到Impala的jdbc查询，但分析数据可以存储Impala内部表，提高查询响应</li>
+<li>HDP的HBase数据使用Phoenix的jdbc查询；CDH的HBase数据使用映射Hive到Impala的jdbc查询（CDH6.2支持Phoenix5），但分析数据可以存储Impala内部表，提高查询响应</li>
 <li>多维分析Druid纳入集群，会方便管理；但可视化工具Superset可以单独安装使用</li>
 <li>CDH没有时序数据库，HDP将Druid作为时序数据库使用</li>
 </ul>
@@ -468,7 +470,7 @@ CDH版本更新比Apache版本慢。
 <li><p>CDH<br>包含Sentry组件，Sentry与Ranger差别较大，Sentry没有图像化界面，只负责同步组件间的ACL授权。Cloudera express免费版只支持集成Kerberos，需要Ldap支持的需要企业版（<a href="#CDH免费版和企业版区别">CDH免费版和企业版区别对比</a>）。</p>
 </li>
 </ol>
-<h4 id="运维管理对比"><a href="#运维管理对比" class="headerlink" title="运维管理对比"></a>运维管理对比</h4><h5 id="HDP"><a href="#HDP" class="headerlink" title="HDP"></a>HDP</h5><p>采用Apache Ambari进行统一管理，Ambari2.7之后的版本相对2.6有很大的改动，2.6个人看来也不够人性化，2.7界面布局更加人性化。</p>
+<h4 id="运维管理对比"><a href="#运维管理对比" class="headerlink" title="运维管理对比"></a>运维管理对比</h4><h5 id="HDP-1"><a href="#HDP-1" class="headerlink" title="HDP"></a>HDP</h5><p>采用Apache Ambari进行统一管理，Ambari2.7之后的版本相对2.6有很大的改动，2.6个人看来也不够人性化，2.7界面布局更加人性化。</p>
 <ol>
 <li>Ambari不支持中文，整个管理页面都是英文呈现。</li>
 <li>组件比较重要的基本配置都以图形化的方式呈现，比直接配文字版体验效果好。<br><img src="http://image.hming.org/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/HDP%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A21.png" alt><br><img src="http://image.hming.org/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/HDP%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A22.png" alt><br>鼠标hover到配置项上面会有该项配置的说明。<br><img src="http://image.hming.org/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/HDP%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A22-1.png" alt></li>
@@ -477,7 +479,7 @@ CDH版本更新比Apache版本慢。
 <li>部分组件可以看到链接地址，比如Hive。<br><img src="http://image.hming.org/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/HDP%E7%BB%84%E4%BB%B6%E7%95%8C%E9%9D%A22.png" alt></li>
 <li>Ambari服务本身不支持高可用。</li>
 </ol>
-<h5 id="CDH"><a href="#CDH" class="headerlink" title="CDH"></a>CDH</h5><p>采用Cloudera Manager（下文统一用cm代替）进行统一管理。</p>
+<h5 id="CDH-1"><a href="#CDH-1" class="headerlink" title="CDH"></a>CDH</h5><p>采用Cloudera Manager（下文统一用cm代替）进行统一管理。</p>
 <ol>
 <li>cm可以根据浏览器配置进行语言选择，支持中文。<br><img src="http://image.hming.org/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/CDH%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A20.png" alt></li>
 <li>配置界面左边将所有配置按照范围、类别、状态进行分类，也能很方便的找到配置。<br><img src="http://image.hming.org/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/CDH%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A22.png" alt><br>右边提供每个配置的说明，点看可以看到各项配置的说明。<br><img src="http://image.hming.org/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/CDH%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A22-1.png" alt></li>
@@ -891,7 +893,7 @@ CDH版本更新比Apache版本慢。
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">60.5k</span>
+                <span class="white-color">63.6k</span>
             
 
             
