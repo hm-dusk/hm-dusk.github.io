@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[CDH集群Yarn内存调优]]></title>
     <url>%2F2019%2F08%2F30%2FCDH%E9%9B%86%E7%BE%A4Yarn%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98%2F</url>
-    <content type="text"><![CDATA[DRFDRF: Dominant Resource Fairness，根据CPU和内存公平调度资源。CDH动态资源池默认采用的DRF计划策略。简单的理解就是内存不够的时候，多余的CPU就不会分配任务了，就让他空着；CPU不够的时候，多出来的内存也不会再启动任务了。 相关参数 yarn.scheduler.minimum-allocation-mb，分配给AM单个容器可申请的最小内存，如果申请的容器内存小于该值，则系统将调整至该值（可以用于计算一个节点最大Container数量） yarn.scheduler.maximum-allocation-mb，分配给AM单个容器可申请的最大内存 上面两个值均不能超过yarn.nodemanager.resource.memory-mb值 mapreduce.map.memory.mb ，map任务内存，cdh默认1G mapreduce.map.cpu.vcores ，map任务虚拟CPU核数，cdh默认1 mapreduce.reduce.memory.mb ，reduce任务内存，cdh默认1G mapreduce.reduce.cpu.vcores ，reduce任务虚拟CPU核数，cdh默认1 yarn.nodemanager.resource.memory-mb ，容器内存，cdh默认8G yarn.nodemanager.resource.cpu-vcores ，容器虚拟CPU核数，cdh默认8，但CM会自动检测内核数并修改 测试情况Yarn资源分配情况，虚拟CPU共分配了24核，内存则是他的两倍48G 执行任务，队列调度策略为DRF，查看内存和CPU使用情况可以发现，内存使用受限于cpu，与DRF策略吻合 总结Yarn队列如果采用的是DRF调度策略，则vcpu和内存最好按照1:1比例进行分配，因为多余的资源根本不会用到。]]></content>
+    <content type="text"><![CDATA[HDP的内存调优建议：http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.1.1/bk_installing_manually_book/content/rpm-chap1-11.html DRFDRF: Dominant Resource Fairness，根据CPU和内存公平调度资源。CDH动态资源池默认采用的DRF计划策略。简单的理解就是内存不够的时候，多余的CPU就不会分配任务了，就让他空着；CPU不够的时候，多出来的内存也不会再启动任务了。 相关参数 yarn.scheduler.minimum-allocation-mb，分配给AM单个容器可申请的最小内存，如果申请的容器内存小于该值，则系统将调整至该值（可以用于计算一个节点最大Container数量） yarn.scheduler.maximum-allocation-mb，分配给AM单个容器可申请的最大内存 上面两个值均不能超过yarn.nodemanager.resource.memory-mb值 mapreduce.map.memory.mb ，map任务内存，cdh默认1G mapreduce.map.cpu.vcores ，map任务虚拟CPU核数，cdh默认1 mapreduce.reduce.memory.mb ，reduce任务内存，cdh默认1G mapreduce.reduce.cpu.vcores ，reduce任务虚拟CPU核数，cdh默认1 yarn.nodemanager.resource.memory-mb ，容器内存，cdh默认8G yarn.nodemanager.resource.cpu-vcores ，容器虚拟CPU核数，cdh默认8，但CM会自动检测内核数并修改 测试情况Yarn资源分配情况，虚拟CPU共分配了24核，内存则是他的两倍48G 执行任务，队列调度策略为DRF，查看内存和CPU使用情况可以发现，内存使用受限于cpu，与DRF策略吻合 总结Yarn队列如果采用的是DRF调度策略，则vcpu和内存最好按照1:1比例进行分配，因为多余的资源根本不会用到。]]></content>
       <categories>
         <category>大数据</category>
       </categories>
@@ -221,8 +221,8 @@
       <tags>
         <tag>大数据</tag>
         <tag>Hive</tag>
-        <tag>LLAP</tag>
         <tag>Tez</tag>
+        <tag>LLAP</tag>
       </tags>
   </entry>
   <entry>

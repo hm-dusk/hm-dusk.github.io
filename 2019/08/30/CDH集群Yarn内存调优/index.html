@@ -5,7 +5,7 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="CDH集群Yarn内存调优, 博客,貍铭">
-    <meta name="description" content="DRFDRF: Dominant Resource Fairness，根据CPU和内存公平调度资源。CDH动态资源池默认采用的DRF计划策略。简单的理解就是内存不够的时候，多余的CPU就不会分配任务了，就让他空着；CPU不够的时候，多出来的">
+    <meta name="description" content="HDP的内存调优建议：http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.1.1/bk_installing_manually_book/content/rpm-chap1-11.html">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -427,7 +427,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        386
+                        410
                     </div>
                     
 
@@ -450,7 +450,8 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="DRF"><a href="#DRF" class="headerlink" title="DRF"></a>DRF</h3><p>DRF: <code>Dominant Resource Fairness</code>，根据CPU和内存公平调度资源。CDH动态资源池默认采用的DRF计划策略。简单的理解就是内存不够的时候，多余的CPU就不会分配任务了，就让他空着；CPU不够的时候，多出来的内存也不会再启动任务了。</p>
+                <p>HDP的内存调优建议：<a href="http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.1.1/bk_installing_manually_book/content/rpm-chap1-11.html" target="_blank" rel="noopener">http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.1.1/bk_installing_manually_book/content/rpm-chap1-11.html </a></p>
+<h3 id="DRF"><a href="#DRF" class="headerlink" title="DRF"></a>DRF</h3><p>DRF: <code>Dominant Resource Fairness</code>，根据CPU和内存公平调度资源。CDH动态资源池默认采用的DRF计划策略。简单的理解就是内存不够的时候，多余的CPU就不会分配任务了，就让他空着；CPU不够的时候，多出来的内存也不会再启动任务了。</p>
 <h3 id="相关参数"><a href="#相关参数" class="headerlink" title="相关参数"></a>相关参数</h3><ul>
 <li><strong>yarn.scheduler.minimum-allocation-mb</strong>，分配给AM单个容器可申请的最小内存，如果申请的容器内存小于该值，则系统将调整至该值（<code>可以用于计算一个节点最大Container数量</code>）</li>
 <li><strong>yarn.scheduler.maximum-allocation-mb</strong>，分配给AM单个容器可申请的最大内存<blockquote>

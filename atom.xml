@@ -23,13 +23,13 @@
     <published>2019-08-30T01:13:32.000Z</published>
     <updated>2019-08-30T01:13:32.000Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="DRF"><a href="#DRF" class="headerlink" title="DRF"></a>DRF</h3><p>DRF: <code>Dominant Resource Fairness</code>，根据CPU和内存公平调度资源。CDH动态资源池默认采用的DRF计划策略。简单的理解就是内存不够的时候，多余的CPU就不会分配任务了，就让他空着；CPU不够的时候，多出来的内存也不会再启动任务了。</p><h3 id="相关参数"><a href="#相关参数" class="headerlink" title="相关参数"></a>相关参数</h3><ul><li><strong>yarn.scheduler.minimum-allocation-mb</strong>，分配给AM单个容器可申请的最小内存，如果申请的容器内存小于该值，则系统将调整至该值（<code>可以用于计算一个节点最大Container数量</code>）</li><li><strong>yarn.scheduler.maximum-allocation-mb</strong>，分配给AM单个容器可申请的最大内存<blockquote><p>上面两个值均不能超过<strong>yarn.nodemanager.resource.memory-mb</strong>值</p></blockquote></li></ul><ul><li><strong>mapreduce.map.memory.mb</strong> ，map任务内存，cdh默认1G</li><li><strong>mapreduce.map.cpu.vcores</strong> ，map任务虚拟CPU核数，cdh默认1</li><li><strong>mapreduce.reduce.memory.mb</strong> ，reduce任务内存，cdh默认1G</li><li><strong>mapreduce.reduce.cpu.vcores</strong> ，reduce任务虚拟CPU核数，cdh默认1</li><li><strong>yarn.nodemanager.resource.memory-mb</strong> ，容器内存，cdh默认8G</li><li><strong>yarn.nodemanager.resource.cpu-vcores</strong> ，容器虚拟CPU核数，cdh默认8，但CM会自动检测内核数并修改</li></ul><h3 id="测试情况"><a href="#测试情况" class="headerlink" title="测试情况"></a>测试情况</h3><p>Yarn资源分配情况，虚拟CPU共分配了24核，内存则是他的两倍48G<br><img src="http://image.hming.org/CDH%E9%9B%86%E7%BE%A4Yarn%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98/yarn%E8%B5%84%E6%BA%90%E9%85%8D%E7%BD%AE.png" alt></p><p>执行任务，队列调度策略为DRF，查看内存和CPU使用情况<br><img src="http://image.hming.org/CDH%E9%9B%86%E7%BE%A4Yarn%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98/%E5%86%85%E5%AD%98CPU%E4%BD%BF%E7%94%A8%E5%AF%B9%E6%AF%94.png" alt><br><img src="http://image.hming.org/CDH%E9%9B%86%E7%BE%A4Yarn%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98/%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5.png" alt><br><img src="http://image.hming.org/CDH%E9%9B%86%E7%BE%A4Yarn%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98/CPU%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5.png" alt><br>可以发现，内存使用受限于cpu，与DRF策略吻合</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><strong>Yarn队列如果采用的是DRF调度策略，则vcpu和内存最好按照1:1比例进行分配，因为多余的资源根本不会用到。</strong></p>]]></content>
+    <content type="html"><![CDATA[<p>HDP的内存调优建议：<a href="http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.1.1/bk_installing_manually_book/content/rpm-chap1-11.html" target="_blank" rel="noopener">http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.1.1/bk_installing_manually_book/content/rpm-chap1-11.html </a></p><h3 id="DRF"><a href="#DRF" class="headerlink" title="DRF"></a>DRF</h3><p>DRF: <code>Dominant Resource Fairness</code>，根据CPU和内存公平调度资源。CDH动态资源池默认采用的DRF计划策略。简单的理解就是内存不够的时候，多余的CPU就不会分配任务了，就让他空着；CPU不够的时候，多出来的内存也不会再启动任务了。</p><h3 id="相关参数"><a href="#相关参数" class="headerlink" title="相关参数"></a>相关参数</h3><ul><li><strong>yarn.scheduler.minimum-allocation-mb</strong>，分配给AM单个容器可申请的最小内存，如果申请的容器内存小于该值，则系统将调整至该值（<code>可以用于计算一个节点最大Container数量</code>）</li><li><strong>yarn.scheduler.maximum-allocation-mb</strong>，分配给AM单个容器可申请的最大内存<blockquote><p>上面两个值均不能超过<strong>yarn.nodemanager.resource.memory-mb</strong>值</p></blockquote></li></ul><ul><li><strong>mapreduce.map.memory.mb</strong> ，map任务内存，cdh默认1G</li><li><strong>mapreduce.map.cpu.vcores</strong> ，map任务虚拟CPU核数，cdh默认1</li><li><strong>mapreduce.reduce.memory.mb</strong> ，reduce任务内存，cdh默认1G</li><li><strong>mapreduce.reduce.cpu.vcores</strong> ，reduce任务虚拟CPU核数，cdh默认1</li><li><strong>yarn.nodemanager.resource.memory-mb</strong> ，容器内存，cdh默认8G</li><li><strong>yarn.nodemanager.resource.cpu-vcores</strong> ，容器虚拟CPU核数，cdh默认8，但CM会自动检测内核数并修改</li></ul><h3 id="测试情况"><a href="#测试情况" class="headerlink" title="测试情况"></a>测试情况</h3><p>Yarn资源分配情况，虚拟CPU共分配了24核，内存则是他的两倍48G<br><img src="http://image.hming.org/CDH%E9%9B%86%E7%BE%A4Yarn%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98/yarn%E8%B5%84%E6%BA%90%E9%85%8D%E7%BD%AE.png" alt></p><p>执行任务，队列调度策略为DRF，查看内存和CPU使用情况<br><img src="http://image.hming.org/CDH%E9%9B%86%E7%BE%A4Yarn%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98/%E5%86%85%E5%AD%98CPU%E4%BD%BF%E7%94%A8%E5%AF%B9%E6%AF%94.png" alt><br><img src="http://image.hming.org/CDH%E9%9B%86%E7%BE%A4Yarn%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98/%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5.png" alt><br><img src="http://image.hming.org/CDH%E9%9B%86%E7%BE%A4Yarn%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98/CPU%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5.png" alt><br>可以发现，内存使用受限于cpu，与DRF策略吻合</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><strong>Yarn队列如果采用的是DRF调度策略，则vcpu和内存最好按照1:1比例进行分配，因为多余的资源根本不会用到。</strong></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h3 id=&quot;DRF&quot;&gt;&lt;a href=&quot;#DRF&quot; class=&quot;headerlink&quot; title=&quot;DRF&quot;&gt;&lt;/a&gt;DRF&lt;/h3&gt;&lt;p&gt;DRF: &lt;code&gt;Dominant Resource Fairness&lt;/code&gt;，根据CPU和内存公平调度资源。CDH动态资
+        &lt;p&gt;HDP的内存调优建议：&lt;a href=&quot;http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.1.1/bk_installing_manually_book/content/rpm-chap1-11.html&quot; target
       
     
     </summary>
@@ -522,9 +522,9 @@
     
       <category term="Hive" scheme="http://blog.hming.org/tags/Hive/"/>
     
-      <category term="LLAP" scheme="http://blog.hming.org/tags/LLAP/"/>
-    
       <category term="Tez" scheme="http://blog.hming.org/tags/Tez/"/>
+    
+      <category term="LLAP" scheme="http://blog.hming.org/tags/LLAP/"/>
     
   </entry>
   
