@@ -440,14 +440,14 @@ master3.hm">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        6,088
+                        6,281
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        29 分
+                        30 分
                     </div>
                     
                 
@@ -793,6 +793,14 @@ synchronised to local net at stratum 6
 synchronised to NTP server <span class="token punctuation">(</span>172.16.0.2<span class="token punctuation">)</span> at stratum 7 
    <span class="token function">time</span> correct to within 17 ms
    polling server every 64 s</code></pre>
+<blockquote>
+<p>查看状态时有可能遇到以下情况：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@node8 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ntpstat</span>
+unsynchronised
+  <span class="token function">time</span> server re-starting
+   polling server every 8 s</code></pre>
+<p>这种情况属于正常情况，ntp服务器配置完毕后，需要等待5-10分钟才能与/etc/ntp.conf中配置的标准时间进行同步。<br>等一段时间之后，再次使用<code>ntpstat</code>命令查看状态，就会变成正常结果</p>
+</blockquote>
 <p>master1节点</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@master1 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ntpq -p</span>
      remote           refid      st t when poll reach   delay   offset  jitter
@@ -803,6 +811,12 @@ synchronised to NTP server <span class="token punctuation">(</span>172.16.0.2<sp
      remote           refid      st t when poll reach   delay   offset  jitter
 <span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span>
 *master1.hming.org LOCAL<span class="token punctuation">(</span>0<span class="token punctuation">)</span>         6 u   31   64  377    0.160   -3.417   1.363</code></pre>
+<h5 id="6-注意事项"><a href="#6-注意事项" class="headerlink" title="6.注意事项"></a>6.注意事项</h5><p>安装集群完成后可能会报错：</p>
+<blockquote>
+<p><strong>不良 : 无法找到主机的 NTP 服务，或该服务未响应时钟偏差请求。</strong></p>
+</blockquote>
+<p>因为Centos7.2之后默认使用<code>chrony</code>来进行时钟同步，所以如果系统中安装有<code>chrony</code>或者正在运行，要么把<code>ntp</code>换成<code>chrony</code>，要么彻底删除<code>chrony</code></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@master1 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum -y remove chrony </span></code></pre>
 <h4 id="下载离线包"><a href="#下载离线包" class="headerlink" title="下载离线包"></a>下载离线包</h4><h5 id="Cloudera-Manager安装包"><a href="#Cloudera-Manager安装包" class="headerlink" title="Cloudera Manager安装包"></a>Cloudera Manager安装包</h5><p>到官网下载rpm包：<a href="https://archive.cloudera.com/cm6/6.3.0/redhat7/yum/RPMS/x86_64/" target="_blank" rel="noopener">https://archive.cloudera.com/cm6/6.3.0/redhat7/yum/RPMS/x86_64/</a><br><img src="http://image.hming.org/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/cm%E5%8C%85%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80.png" alt><br>下载allkeys文件：<a href="https://archive.cloudera.com/cm6/6.3.0/" target="_blank" rel="noopener">https://archive.cloudera.com/cm6/6.3.0/</a><br><img src="http://image.hming.org/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/allkeys%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80.png" alt></p>
 <h5 id="CDH安装包"><a href="#CDH安装包" class="headerlink" title="CDH安装包"></a>CDH安装包</h5><p>官方有两种离线包可供选择：</p>
 <ol>
@@ -1353,7 +1367,7 @@ Redirecting to /bin/systemctl start rngd.service</code></pre>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">64.6k</span>
+                <span class="white-color">64.8k</span>
             
 
             
