@@ -440,14 +440,14 @@ master3.hm">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        5,443
+                        6,088
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        26 分
+                        29 分
                     </div>
                     
                 
@@ -633,7 +633,7 @@ Additionally, <span class="token function">look</span> for/dev/mapper or /dev/XX
 <pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># badblocks -v /dev/sda1</span>
 <span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># badblocks -v /dev/sdb1</span>
 <span class="token punctuation">..</span>.
-<span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#badblocks -v /dev/sdx1</span></code></pre>
+<span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># badblocks -v /dev/sdx1</span></code></pre>
 </li>
 </ol>
 <h4 id="安装用户"><a href="#安装用户" class="headerlink" title="安装用户"></a>安装用户</h4><p>可以使用<code>root</code>用户安装，或者具有<code>sudo</code>权限的其他用户</p>
@@ -731,6 +731,78 @@ always madvise <span class="token punctuation">[</span>never<span class="token p
 <p>赋予<code>rc.local</code>脚本可执行权限</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># chmod +x /etc/rc.d/rc.local</span></code></pre>
 <h4 id="配置NTP服务（时钟同步）"><a href="#配置NTP服务（时钟同步）" class="headerlink" title="配置NTP服务（时钟同步）"></a>配置NTP服务（时钟同步）</h4><p>参考官网：<a href="https://www.cloudera.com/documentation/enterprise/6/6.3/topics/install_cdh_enable_ntp.html" target="_blank" rel="noopener">https://www.cloudera.com/documentation/enterprise/6/6.3/topics/install_cdh_enable_ntp.html</a><br>参考其他文章：<a href="https://blog.csdn.net/u010003835/article/details/84962098" target="_blank" rel="noopener">https://blog.csdn.net/u010003835/article/details/84962098</a><br>集群中所有主机必须保持时间同步，如果时间相差较大会引起各种问题，如果企业有自己的NTP Server则可以集群中所有节点可配置企业NTP Server，如果没有自己的NTP服务器则在集群中选用一台服务器作为NTP Server，其它服务器与其保持同步</p>
+<blockquote>
+<p>本文在<code>master1</code>上安装NTP服务，其他节点和<code>master1</code>节点同步</p>
+</blockquote>
+<h5 id="1-所有节点安装ntp服务"><a href="#1-所有节点安装ntp服务" class="headerlink" title="1.所有节点安装ntp服务"></a>1.所有节点安装ntp服务</h5><p><code>yum -y install ntp</code></p>
+<h5 id="2-修改配置文件"><a href="#2-修改配置文件" class="headerlink" title="2.修改配置文件"></a>2.修改配置文件</h5><p><code>vim /etc/ntp.conf</code></p>
+<ol>
+<li>所有主机在restrict附近增加下面两行</li>
+</ol>
+<pre class=" language-bash"><code class="language-bash">restrict 172.16.0.3 nomodify notrap nopeer noquery  <span class="token comment" spellcheck="true"># ip地址为本机主机ip</span>
+restrict 172.16.0.1 mask 255.255.255.0 nomodify notrap  <span class="token comment" spellcheck="true"># 网关地址和子网掩码</span>
+
+restrict 127.0.0.1  <span class="token comment" spellcheck="true"># 原本文件中的两行不要删</span>
+restrict ::1</code></pre>
+<ol start="2">
+<li>作为NTP服务的节点（master1节点）注释所有server行，增加下面两行</li>
+</ol>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#server 0.centos.pool.ntp.org iburst</span>
+<span class="token comment" spellcheck="true">#server 1.centos.pool.ntp.org iburst</span>
+<span class="token comment" spellcheck="true">#server 2.centos.pool.ntp.org iburst</span>
+<span class="token comment" spellcheck="true">#server 3.centos.pool.ntp.org iburst</span>
+server 127.127.1.0      <span class="token comment" spellcheck="true"># 这里如果有已经存在的NTP服务，则可以填写相应地址</span>
+Fudge 127.127.1.0 stratum 10</code></pre>
+<ol start="3">
+<li>其他节点注释所有server行，增加下面两行</li>
+</ol>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#server 0.centos.pool.ntp.org iburst</span>
+<span class="token comment" spellcheck="true">#server 1.centos.pool.ntp.org iburst</span>
+<span class="token comment" spellcheck="true">#server 2.centos.pool.ntp.org iburst</span>
+<span class="token comment" spellcheck="true">#server 3.centos.pool.ntp.org iburst</span>
+server 172.16.0.2      <span class="token comment" spellcheck="true"># 将时钟同步服务器地址指向master1的地址</span>
+Fudge 172.16.0.2 stratum 10</code></pre>
+<h5 id="3-所有节点启动ntp服务"><a href="#3-所有节点启动ntp服务" class="headerlink" title="3.所有节点启动ntp服务"></a>3.所有节点启动ntp服务</h5><p><code>systemctl start ntpd</code></p>
+<h5 id="4-查看服务状态"><a href="#4-查看服务状态" class="headerlink" title="4.查看服务状态"></a>4.查看服务状态</h5><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@master1 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl status ntpd</span>
+● ntpd.service - Network Time Service
+   Loaded: loaded <span class="token punctuation">(</span>/usr/lib/systemd/system/ntpd.service<span class="token punctuation">;</span> enabled<span class="token punctuation">;</span> vendor preset: disabled<span class="token punctuation">)</span>
+   Active: active <span class="token punctuation">(</span>running<span class="token punctuation">)</span> since Tue 2019-09-03 06:58:01 EDT<span class="token punctuation">;</span> 29s ago
+  Process: 33823 ExecStart<span class="token operator">=</span>/usr/sbin/ntpd -u ntp:ntp <span class="token variable">$OPTIONS</span> <span class="token punctuation">(</span>code<span class="token operator">=</span>exited, status<span class="token operator">=</span>0/SUCCESS<span class="token punctuation">)</span>
+ Main PID: 33824 <span class="token punctuation">(</span>ntpd<span class="token punctuation">)</span>
+   CGroup: /system.slice/ntpd.service
+           └─33824 /usr/sbin/ntpd -u ntp:ntp -g
+
+Sep 03 06:58:01 master1.hming.org ntpd<span class="token punctuation">[</span>33824<span class="token punctuation">]</span>: Listen and drop on<span class="token punctuation">..</span>.
+Sep 03 06:58:01 master1.hming.org ntpd<span class="token punctuation">[</span>33824<span class="token punctuation">]</span>: Listen normally on<span class="token punctuation">..</span>.
+Sep 03 06:58:01 master1.hming.org ntpd<span class="token punctuation">[</span>33824<span class="token punctuation">]</span>: Listen normally on<span class="token punctuation">..</span>.
+Sep 03 06:58:01 master1.hming.org ntpd<span class="token punctuation">[</span>33824<span class="token punctuation">]</span>: Listen normally on<span class="token punctuation">..</span>.
+Sep 03 06:58:01 master1.hming.org ntpd<span class="token punctuation">[</span>33824<span class="token punctuation">]</span>: Listen normally on<span class="token punctuation">..</span>.
+Sep 03 06:58:01 master1.hming.org ntpd<span class="token punctuation">[</span>33824<span class="token punctuation">]</span>: Listening on routi<span class="token punctuation">..</span>.
+Sep 03 06:58:01 master1.hming.org ntpd<span class="token punctuation">[</span>33824<span class="token punctuation">]</span>: 0.0.0.0 c016 06 re<span class="token punctuation">..</span>.
+Sep 03 06:58:01 master1.hming.org ntpd<span class="token punctuation">[</span>33824<span class="token punctuation">]</span>: 0.0.0.0 c012 02 fr<span class="token punctuation">..</span>.
+Sep 03 06:58:01 master1.hming.org ntpd<span class="token punctuation">[</span>33824<span class="token punctuation">]</span>: 0.0.0.0 c011 01 fr<span class="token punctuation">..</span>.
+Sep 03 06:58:02 master1.hming.org ntpd<span class="token punctuation">[</span>33824<span class="token punctuation">]</span>: 0.0.0.0 c514 04 fr<span class="token punctuation">..</span>.
+Hint: Some lines were ellipsized, use -l to show <span class="token keyword">in</span> full.</code></pre>
+<h5 id="5-查看服务状态"><a href="#5-查看服务状态" class="headerlink" title="5.查看服务状态"></a>5.查看服务状态</h5><p>master1节点</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@master1 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ntpstat</span>
+synchronised to local net at stratum 6 
+   <span class="token function">time</span> correct to within 11 ms
+   polling server every 64 s</code></pre>
+<p>其他节点</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@master2 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ntpstat</span>
+synchronised to NTP server <span class="token punctuation">(</span>172.16.0.2<span class="token punctuation">)</span> at stratum 7 
+   <span class="token function">time</span> correct to within 17 ms
+   polling server every 64 s</code></pre>
+<p>master1节点</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@master1 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ntpq -p</span>
+     remote           refid      st t when poll reach   delay   offset  jitter
+<span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span>
+*LOCAL<span class="token punctuation">(</span>0<span class="token punctuation">)</span>        .LOCL.           5 l    9   64  377    0.000    0.000   0.000</code></pre>
+<p>其他节点</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@master2 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ntpq -p</span>
+     remote           refid      st t when poll reach   delay   offset  jitter
+<span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span>
+*master1.hming.org LOCAL<span class="token punctuation">(</span>0<span class="token punctuation">)</span>         6 u   31   64  377    0.160   -3.417   1.363</code></pre>
 <h4 id="下载离线包"><a href="#下载离线包" class="headerlink" title="下载离线包"></a>下载离线包</h4><h5 id="Cloudera-Manager安装包"><a href="#Cloudera-Manager安装包" class="headerlink" title="Cloudera Manager安装包"></a>Cloudera Manager安装包</h5><p>到官网下载rpm包：<a href="https://archive.cloudera.com/cm6/6.3.0/redhat7/yum/RPMS/x86_64/" target="_blank" rel="noopener">https://archive.cloudera.com/cm6/6.3.0/redhat7/yum/RPMS/x86_64/</a><br><img src="http://image.hming.org/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/cm%E5%8C%85%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80.png" alt><br>下载allkeys文件：<a href="https://archive.cloudera.com/cm6/6.3.0/" target="_blank" rel="noopener">https://archive.cloudera.com/cm6/6.3.0/</a><br><img src="http://image.hming.org/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/allkeys%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80.png" alt></p>
 <h5 id="CDH安装包"><a href="#CDH安装包" class="headerlink" title="CDH安装包"></a>CDH安装包</h5><p>官方有两种离线包可供选择：</p>
 <ol>
@@ -1281,7 +1353,7 @@ Redirecting to /bin/systemctl start rngd.service</code></pre>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">64.0k</span>
+                <span class="white-color">64.6k</span>
             
 
             
