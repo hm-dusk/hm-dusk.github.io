@@ -462,34 +462,26 @@
 <p>3.<strong>边缘节点（Edge Hosts）</strong>：用于集群中启动作业的客户端机器，边缘节点的数量取决于工作负载的类型和数量。</p>
 <p>4.<strong>工作节点（Worker Hosts）</strong>：主要用于运行DataNode以及其他分布式进程，比如ImpalaD。</p>
 <p>本文会从测试/开发集群（小于10台），小规模集群（10-20台），中小规模集群（20-50台），中等规模集群（50-100台），大型集群（100-200台），超大规模集群（200-500台），巨型规模集群（500台以上）来分别讲述角色划分。以下角色划分场景都不包括Kafka，Kafka角色我们一般都会采用单独的机器部署。</p>
-<h3 id="2-集群角色划分"><a href="#2-集群角色划分" class="headerlink" title="2.集群角色划分"></a>2.集群角色划分</h3><h4 id="2-1-小于10台"><a href="#2-1-小于10台" class="headerlink" title="2.1.小于10台"></a>2.1.小于10台</h4><p>一般用于测试/开发集群，我们建议至少5台机器，没有高可用。一个管理节点主要用于安装NameNode和ResourceManager，工具节点和边缘节点复用一个，主要用于安装Cloudera Manager等，剩余3-7台工作节点。<br><img src="http://image.hming.org/%E5%A6%82%E4%BD%95%E7%BB%99CDH%E9%9B%86%E7%BE%A4%E5%88%86%E9%85%8D%E8%A7%92%E8%89%B2/%E5%B0%8F%E4%BA%8E10%E5%8F%B0.jpeg" alt></p>
-<h4 id="2-2-10-20台"><a href="#2-2-10-20台" class="headerlink" title="2.2.10-20台"></a>2.2.10-20台</h4><p>这是最小规模的生产系统，必须启用高可用。我们会用2个管理节点用于安装2个NameNode，一个工具节点用于安装Cloudera Manager等，如果机器充足或者Hue/HiveServer2/Flume的负载特别高，可以考虑独立出边缘节点用于部署这些角色，否则也可以跟Cloudera Manager复用。最后还剩下7-17个工作节点。<br><img src="http://image.hming.org/%E5%A6%82%E4%BD%95%E7%BB%99CDH%E9%9B%86%E7%BE%A4%E5%88%86%E9%85%8D%E8%A7%92%E8%89%B2/10-20%E5%8F%B0.jpeg" alt></p>
+<h3 id="2-集群角色划分"><a href="#2-集群角色划分" class="headerlink" title="2.集群角色划分"></a>2.集群角色划分</h3><h4 id="2-1-小于10台"><a href="#2-1-小于10台" class="headerlink" title="2.1.小于10台"></a>2.1.小于10台</h4><p>一般用于测试/开发集群，我们建议至少5台机器，没有高可用。一个管理节点主要用于安装NameNode和ResourceManager，工具节点和边缘节点复用一个，主要用于安装Cloudera Manager等，剩余3-7台工作节点。<br><img src="http://47.106.179.244/%E5%A6%82%E4%BD%95%E7%BB%99CDH%E9%9B%86%E7%BE%A4%E5%88%86%E9%85%8D%E8%A7%92%E8%89%B2/%E5%B0%8F%E4%BA%8E10%E5%8F%B0.jpeg" alt></p>
+<h4 id="2-2-10-20台"><a href="#2-2-10-20台" class="headerlink" title="2.2.10-20台"></a>2.2.10-20台</h4><p>这是最小规模的生产系统，必须启用高可用。我们会用2个管理节点用于安装2个NameNode，一个工具节点用于安装Cloudera Manager等，如果机器充足或者Hue/HiveServer2/Flume的负载特别高，可以考虑独立出边缘节点用于部署这些角色，否则也可以跟Cloudera Manager复用。最后还剩下7-17个工作节点。<br><img src="http://47.106.179.244/%E5%A6%82%E4%BD%95%E7%BB%99CDH%E9%9B%86%E7%BE%A4%E5%88%86%E9%85%8D%E8%A7%92%E8%89%B2/10-20%E5%8F%B0.jpeg" alt></p>
 <p>注：根据实际情况选择是否需要单独的边缘节点。</p>
 <p>MySQL主备参考《如何实现CDH元数据库MySQL的主备》，《如何实现CDH元数据库MySQL的主主互备》和《如何实现CDH元数据库MySQL的高可用》</p>
 <p>OpenLDAP主备参考《3.如何实现OpenLDAP的主主同步》</p>
 <p>Kerberos主备参考《如何配置Kerberos服务的高可用》</p>
-<h4 id="2-3-20-50台"><a href="#2-3-20-50台" class="headerlink" title="2.3.20-50台"></a>2.3.20-50台</h4><p>这是中小规模的生产集群，必须启用高可用，与小规模集群角色划分差别不大。我们会用3个管理节点用于安装NameNode和Zookeeper等，一个工具节点用于安装ClouderaManager等，如果机器充足或者Hue/HiveServer2/Flume的负载特别高，可以考虑独立出边缘节点用于部署这些角色，否则也可以跟Cloudera Manager复用。最后还剩下16-46个工作节点。<br><img src="http://image.hming.org/%E5%A6%82%E4%BD%95%E7%BB%99CDH%E9%9B%86%E7%BE%A4%E5%88%86%E9%85%8D%E8%A7%92%E8%89%B2/20-50%E5%8F%B0.jpeg" alt></p>
+<h4 id="2-3-20-50台"><a href="#2-3-20-50台" class="headerlink" title="2.3.20-50台"></a>2.3.20-50台</h4><p>这是中小规模的生产集群，必须启用高可用，与小规模集群角色划分差别不大。我们会用3个管理节点用于安装NameNode和Zookeeper等，一个工具节点用于安装ClouderaManager等，如果机器充足或者Hue/HiveServer2/Flume的负载特别高，可以考虑独立出边缘节点用于部署这些角色，否则也可以跟Cloudera Manager复用。最后还剩下16-46个工作节点。<br><img src="http://47.106.179.244/%E5%A6%82%E4%BD%95%E7%BB%99CDH%E9%9B%86%E7%BE%A4%E5%88%86%E9%85%8D%E8%A7%92%E8%89%B2/20-50%E5%8F%B0.jpeg" alt></p>
 <p>注：根据实际情况选择是否需要单独的边缘节点。</p>
 <p>Zookeeper和JournalNode需配置专有的数据盘</p>
 <p>MySQL主备参考《如何实现CDH元数据库MySQL的主备》，《如何实现CDH元数据库MySQL的主主互备》和《如何实现CDH元数据库MySQL的高可用》</p>
 <p>OpenLDAP主备参考《3.如何实现OpenLDAP的主主同步》</p>
 <p>Kerberos主备参考《如何配置Kerberos服务的高可用》</p>
 <p>HiveServer2和Impala Daemon的负载均衡参考《如何使用HAProxy实现Impala的负载均衡》，《如何使用HAProxy实现HiveServer2负载均衡》，《如何使用HAProxy实现Kerberos环境下的Impala负载均衡》，《如何使用Nginx实现Impala负载均衡》和《如何使用Zookeeper实现HiveServer2的HA》</p>
-<h4 id="2-4-50-100台"><a href="#2-4-50-100台" class="headerlink" title="2.4.50-100台"></a>2.4.50-100台</h4><p>这是中等规模的生产集群，必须启用高可用。我们会用3个管理节点用于安装NameNode和Zookeeper等，一个工具节点用于安装Cloudera Manager，一个工具节点用于安装ClouderaManagement Service和Navigator等。使用三个节点安装Hue/HiveServer2/Flume，作为边缘节点，使用两个节点安装负载均衡软件比如F5或者HAProxy并配置为KeepAlive的主主模式，该负载均衡可同时用于HiveServer2和Impala Daemon。最后还剩下42-92个工作节点。<br><img src="http://image.hming.org/%E5%A6%82%E4%BD%95%E7%BB%99CDH%E9%9B%86%E7%BE%A4%E5%88%86%E9%85%8D%E8%A7%92%E8%89%B2/50-100%E5%8F%B0.jpeg" alt></p>
+<h4 id="2-4-50-100台"><a href="#2-4-50-100台" class="headerlink" title="2.4.50-100台"></a>2.4.50-100台</h4><p>这是中等规模的生产集群，必须启用高可用。我们会用3个管理节点用于安装NameNode和Zookeeper等，一个工具节点用于安装Cloudera Manager，一个工具节点用于安装ClouderaManagement Service和Navigator等。使用三个节点安装Hue/HiveServer2/Flume，作为边缘节点，使用两个节点安装负载均衡软件比如F5或者HAProxy并配置为KeepAlive的主主模式，该负载均衡可同时用于HiveServer2和Impala Daemon。最后还剩下42-92个工作节点。<br><img src="http://47.106.179.244/%E5%A6%82%E4%BD%95%E7%BB%99CDH%E9%9B%86%E7%BE%A4%E5%88%86%E9%85%8D%E8%A7%92%E8%89%B2/50-100%E5%8F%B0.jpeg" alt></p>
 <p>注：Zookeeper和JournalNode需配置专有的数据盘</p>
 <p>MySQL主备参考《如何实现CDH元数据库MySQL的主备》，《如何实现CDH元数据库MySQL的主主互备》和《如何实现CDH元数据库MySQL的高可用》</p>
 <p>OpenLDAP主备参考《3.如何实现OpenLDAP的主主同步》</p>
 <p>Kerberos主备参考《如何配置Kerberos服务的高可用》</p>
 <p>HiveServer2和Impala Daemon的负载均衡参考《如何使用HAProxy实现Impala的负载均衡》，《如何使用HAProxy实现HiveServer2负载均衡》，《如何使用HAProxy实现Kerberos环境下的Impala负载均衡》，《如何使用Nginx实现Impala负载均衡》和《如何使用Zookeeper实现HiveServer2的HA》</p>
-<h4 id="2-5-100-200台"><a href="#2-5-100-200台" class="headerlink" title="2.5.100-200台"></a>2.5.100-200台</h4><p>属于大规模的生产集群，必须启用高可用。我们会用5个管理节点用于安装NameNode和Zookeeper等，1个工具节点用于安装Cloudera Manager，再使用4个工具节点分别安装HMS，Activity Monitor，Navigator等。使用3个以上节点安装Hue/HiveServer2/Flume，作为边缘节点，使用2个节点安装负载均衡软件比如F5或者HAProxy并配置为KeepAlive的主主模式，该负载均衡可同时用于HiveServer2和Impala Daemon。最后还剩下85-185个工作节点。<br><img src="http://image.hming.org/%E5%A6%82%E4%BD%95%E7%BB%99CDH%E9%9B%86%E7%BE%A4%E5%88%86%E9%85%8D%E8%A7%92%E8%89%B2/100-200%E5%8F%B0.jpeg" alt></p>
-<p>注：Zookeeper和JournalNode需配置专有的数据盘</p>
-<p>Kudu Master不超过3个</p>
-<p>Kudu Tablet Server不超过100个</p>
-<p>MySQL主备参考《如何实现CDH元数据库MySQL的主备》，《如何实现CDH元数据库MySQL的主主互备》和《如何实现CDH元数据库MySQL的高可用》</p>
-<p>OpenLDAP主备参考《3.如何实现OpenLDAP的主主同步》</p>
-<p>Kerberos主备参考《如何配置Kerberos服务的高可用》</p>
-<p>HiveServer2和Impala Daemon的负载均衡参考《如何使用HAProxy实现Impala的负载均衡》，《如何使用HAProxy实现HiveServer2负载均衡》，《如何使用HAProxy实现Kerberos环境下的Impala负载均衡》，《如何使用Nginx实现Impala负载均衡》和《如何使用Zookeeper实现HiveServer2的HA》</p>
-<h4 id="2-6-200-500台"><a href="#2-6-200-500台" class="headerlink" title="2.6.200-500台"></a>2.6.200-500台</h4><p>属于超大规模的生产集群，必须启用高可用。我们会用7个管理节点用于安装NameNode和Zookeeper等，1个工具节点用于安装Cloudera Manager，再使用7个工具节点分别安装HMS，Activity Monitor，Navigator等。使用3个以上节点安装Hue/HiveServer2/Flume，作为边缘节点，使用2个节点安装负载均衡软件比如F5或者HAProxy并配置为KeepAlive的主主模式，该负载均衡可同时用于HiveServer2和Impala Daemon。最后还剩下180-480个工作节点。<br><img src="http://image.hming.org/%E5%A6%82%E4%BD%95%E7%BB%99CDH%E9%9B%86%E7%BE%A4%E5%88%86%E9%85%8D%E8%A7%92%E8%89%B2/200-500%E5%8F%B0.jpeg" alt></p>
+<h4 id="2-5-100-200台"><a href="#2-5-100-200台" class="headerlink" title="2.5.100-200台"></a>2.5.100-200台</h4><p>属于大规模的生产集群，必须启用高可用。我们会用5个管理节点用于安装NameNode和Zookeeper等，1个工具节点用于安装Cloudera Manager，再使用4个工具节点分别安装HMS，Activity Monitor，Navigator等。使用3个以上节点安装Hue/HiveServer2/Flume，作为边缘节点，使用2个节点安装负载均衡软件比如F5或者HAProxy并配置为KeepAlive的主主模式，该负载均衡可同时用于HiveServer2和Impala Daemon。最后还剩下85-185个工作节点。<br><img src="http://47.106.179.244/%E5%A6%82%E4%BD%95%E7%BB%99CDH%E9%9B%86%E7%BE%A4%E5%88%86%E9%85%8D%E8%A7%92%E8%89%B2/100-200%E5%8F%B0.jpeg" alt></p>
 <p>注：Zookeeper和JournalNode需配置专有的数据盘</p>
 <p>Kudu Master不超过3个</p>
 <p>Kudu Tablet Server不超过100个</p>
@@ -497,7 +489,15 @@
 <p>OpenLDAP主备参考《3.如何实现OpenLDAP的主主同步》</p>
 <p>Kerberos主备参考《如何配置Kerberos服务的高可用》</p>
 <p>HiveServer2和Impala Daemon的负载均衡参考《如何使用HAProxy实现Impala的负载均衡》，《如何使用HAProxy实现HiveServer2负载均衡》，《如何使用HAProxy实现Kerberos环境下的Impala负载均衡》，《如何使用Nginx实现Impala负载均衡》和《如何使用Zookeeper实现HiveServer2的HA》</p>
-<h4 id="2-7-500台以上"><a href="#2-7-500台以上" class="headerlink" title="2.7.500台以上"></a>2.7.500台以上</h4><p>属于巨型规模的生产集群，必须启用高可用。我们会用20个管理节点用于安装NameNode和Zookeeper等，1个工具节点用于安装Cloudera Manager，再使用7个工具节点分别安装HMS，Activity Monitor，Navigator等。使用3个以上节点安装Hue/HiveServer2/Flume，作为边缘节点，使用2个节点安装负载均衡软件比如F5或者HAProxy并配置为KeepAlive的主主模式，该负载均衡可同时用于HiveServer2和Impala Daemon。最后还剩下至少467个工作节点。<br><img src="http://image.hming.org/%E5%A6%82%E4%BD%95%E7%BB%99CDH%E9%9B%86%E7%BE%A4%E5%88%86%E9%85%8D%E8%A7%92%E8%89%B2/500%E5%8F%B0%E4%BB%A5%E4%B8%8A.jpeg" alt></p>
+<h4 id="2-6-200-500台"><a href="#2-6-200-500台" class="headerlink" title="2.6.200-500台"></a>2.6.200-500台</h4><p>属于超大规模的生产集群，必须启用高可用。我们会用7个管理节点用于安装NameNode和Zookeeper等，1个工具节点用于安装Cloudera Manager，再使用7个工具节点分别安装HMS，Activity Monitor，Navigator等。使用3个以上节点安装Hue/HiveServer2/Flume，作为边缘节点，使用2个节点安装负载均衡软件比如F5或者HAProxy并配置为KeepAlive的主主模式，该负载均衡可同时用于HiveServer2和Impala Daemon。最后还剩下180-480个工作节点。<br><img src="http://47.106.179.244/%E5%A6%82%E4%BD%95%E7%BB%99CDH%E9%9B%86%E7%BE%A4%E5%88%86%E9%85%8D%E8%A7%92%E8%89%B2/200-500%E5%8F%B0.jpeg" alt></p>
+<p>注：Zookeeper和JournalNode需配置专有的数据盘</p>
+<p>Kudu Master不超过3个</p>
+<p>Kudu Tablet Server不超过100个</p>
+<p>MySQL主备参考《如何实现CDH元数据库MySQL的主备》，《如何实现CDH元数据库MySQL的主主互备》和《如何实现CDH元数据库MySQL的高可用》</p>
+<p>OpenLDAP主备参考《3.如何实现OpenLDAP的主主同步》</p>
+<p>Kerberos主备参考《如何配置Kerberos服务的高可用》</p>
+<p>HiveServer2和Impala Daemon的负载均衡参考《如何使用HAProxy实现Impala的负载均衡》，《如何使用HAProxy实现HiveServer2负载均衡》，《如何使用HAProxy实现Kerberos环境下的Impala负载均衡》，《如何使用Nginx实现Impala负载均衡》和《如何使用Zookeeper实现HiveServer2的HA》</p>
+<h4 id="2-7-500台以上"><a href="#2-7-500台以上" class="headerlink" title="2.7.500台以上"></a>2.7.500台以上</h4><p>属于巨型规模的生产集群，必须启用高可用。我们会用20个管理节点用于安装NameNode和Zookeeper等，1个工具节点用于安装Cloudera Manager，再使用7个工具节点分别安装HMS，Activity Monitor，Navigator等。使用3个以上节点安装Hue/HiveServer2/Flume，作为边缘节点，使用2个节点安装负载均衡软件比如F5或者HAProxy并配置为KeepAlive的主主模式，该负载均衡可同时用于HiveServer2和Impala Daemon。最后还剩下至少467个工作节点。<br><img src="http://47.106.179.244/%E5%A6%82%E4%BD%95%E7%BB%99CDH%E9%9B%86%E7%BE%A4%E5%88%86%E9%85%8D%E8%A7%92%E8%89%B2/500%E5%8F%B0%E4%BB%A5%E4%B8%8A.jpeg" alt></p>
 <p>注：这个规模的规划仅供参考，这种巨型规模的生产集群的角色划分依赖因素非常多，比如是否考虑NN和RM的联邦等</p>
 <p>Zookeeper和JournalNode需配置专有的数据盘</p>
 <p>Kudu Master不超过3个</p>
@@ -801,7 +801,7 @@
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">64.8k</span>
+                <span class="white-color">66.3k</span>
             
 
             

@@ -268,7 +268,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('http://image.hming.org/logo/algorithms.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://47.106.179.244/logo/algorithms.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -446,10 +446,10 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>8种排序之间的关系<br><img src="http://image.hming.org/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB.JPG" alt></p>
+                <p>8种排序之间的关系<br><img src="http://47.106.179.244/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB.JPG" alt></p>
 <h2 id="一、插入排序"><a href="#一、插入排序" class="headerlink" title="一、插入排序"></a>一、插入排序</h2><h3 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a>直接插入排序</h3><ol>
 <li>思想：<br>在要排序的一堆数组中，假设前面的（n-1）[n&gt;=2]个数已经是排好序的，现在要把第n个数插入到之前的有序数中，使得这n个数也是排好序的。如此反复直到所有的数都排好顺序。</li>
-<li>实例：<br><img src="http://image.hming.org/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E7%9B%B4%E6%8E%A5%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F%E5%AE%9E%E4%BE%8B.JPG" alt></li>
+<li>实例：<br><img src="http://47.106.179.244/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E7%9B%B4%E6%8E%A5%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F%E5%AE%9E%E4%BE%8B.JPG" alt></li>
 <li>用java实现：</li>
 </ol>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">insertSort</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -477,7 +477,7 @@
 </blockquote>
 <p> 先将要排序的一组数按某个增量d（n/2，n为要排序数的个数，除不尽向上取整）分成若干组（<em>这里暂且称它为划分组</em>），每个划分组有d个数据（<em>最后一组可能小于d</em>），再取每划分组中对应的元素组成新的组（<code>每一组的第i个为新的一组，如：每一组的第一个组成一组</code>，<em>这里暂且称它为排序组</em>），对形成的排序组每组作直接插入排序。然后再用较小的增量<code>d/2</code>对它进行分划分组、排序组，每个排序组中再进行直接插入排序，直到增量减小到1，再最后进行一次直接插入排序。</p>
 </li>
-<li><p>实例：<br><img src="http://image.hming.org/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F%E5%AE%9E%E4%BE%8B.jpg" alt></p>
+<li><p>实例：<br><img src="http://47.106.179.244/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F%E5%AE%9E%E4%BE%8B.jpg" alt></p>
 </li>
 <li><p>用java实现：</p>
 </li>
@@ -513,7 +513,7 @@
 <span class="token punctuation">}</span></code></pre>
 <h2 id="二、选择排序"><a href="#二、选择排序" class="headerlink" title="二、选择排序"></a>二、选择排序</h2><h3 id="简单选择排序"><a href="#简单选择排序" class="headerlink" title="简单选择排序"></a>简单选择排序</h3><h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><h2 id="三、交换排序"><a href="#三、交换排序" class="headerlink" title="三、交换排序"></a>三、交换排序</h2><h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><ol>
 <li>基本思路：<br>对需要排序的数组自上而下对相邻的两个数进行比较，让较大的数往下沉，较小的数往上冒。即：每当相邻的两个数不满足要求的排序时，将它们<code>交换</code></li>
-<li>实例：<br><img src="http://image.hming.org/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%E5%AE%9E%E4%BE%8B.jpg" alt></li>
+<li>实例：<br><img src="http://47.106.179.244/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%E5%AE%9E%E4%BE%8B.jpg" alt></li>
 <li>用java实现：</li>
 </ol>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">bubbleSort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -598,7 +598,7 @@
                 <a href="/2017/08/17/遇到多个构造器参数时的最优解决方案/">
                     <div class="card-image">
                         
-                        <img src="http://image.hming.org/logo/java.jpg" class="responsive-img" alt="遇到多个构造器参数时的最优解决方案">
+                        <img src="http://47.106.179.244/logo/java.jpg" class="responsive-img" alt="遇到多个构造器参数时的最优解决方案">
                         
                         <span class="card-title">遇到多个构造器参数时的最优解决方案</span>
                     </div>
@@ -654,7 +654,7 @@ MyData myData = new MyData();
                 <a href="/2017/08/09/HTTP协议/">
                     <div class="card-image">
                         
-                        <img src="http://image.hming.org/logo/http.jpg" class="responsive-img" alt="HTTP协议">
+                        <img src="http://47.106.179.244/logo/http.jpg" class="responsive-img" alt="HTTP协议">
                         
                         <span class="card-title">HTTP协议</span>
                     </div>
@@ -816,7 +816,7 @@ MyData myData = new MyData();
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">64.8k</span>
+                <span class="white-color">66.3k</span>
             
 
             

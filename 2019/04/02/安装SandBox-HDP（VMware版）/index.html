@@ -281,7 +281,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('http://image.hming.org/logo/sandbox+vmware.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://47.106.179.244/logo/sandbox+vmware.png')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -409,16 +409,16 @@
                                 <span class="chip bg-color">HDP</span>
                             </a>
                         
-                            <a href="/tags/SandBox/" target="_blank">
-                                <span class="chip bg-color">SandBox</span>
-                            </a>
-                        
                             <a href="/tags/虚拟机/" target="_blank">
                                 <span class="chip bg-color">虚拟机</span>
                             </a>
                         
                             <a href="/tags/VMware/" target="_blank">
                                 <span class="chip bg-color">VMware</span>
+                            </a>
+                        
+                            <a href="/tags/SandBox/" target="_blank">
+                                <span class="chip bg-color">SandBox</span>
                             </a>
                         
                     </div>
@@ -494,11 +494,11 @@ REPOSITORY                         TAG     IMAGE ID        CREATED        SIZE
 hortonworks/sandbox-proxy          1.0     ca272ae0e63a    4 months ago   109MB
 hortonworks/sandbox-hdp-security   3.0     ae1d1779b081    4 months ago   27.5GB</code></pre>
 <p><code>sandbox-proxy</code>容器负责代理转发一些端口<br><code>sandbox-hdp-security</code>容器则是HDP环境<br>所以，要对HDP环境进行修改，比如修改ambari管理员密码，就需要进入docker容器里面<br>可以通过<code>ssh</code>登录<code>2222</code>端口，也可以通过<code>docker exec</code>命令进入，docker相关命令参考<a href="http://blog.hming.org/2018/09/18/Docker%E6%9B%BF%E6%8D%A2%E9%95%9C%E5%83%8F%E6%BA%90%E4%B8%8E%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Docker替换镜像源与常用命令</a></p>
-<h3 id="下载镜像文件"><a href="#下载镜像文件" class="headerlink" title="下载镜像文件"></a>下载镜像文件</h3><p>到<a href="https://hortonworks.com/downloads/#sandbox" target="_blank" rel="noopener">官网</a>下载ova格式的镜像文件（HDP_3.0.1_vmware_181205.ova 20.5G）<br><img src="http://image.hming.org/%E5%AE%89%E8%A3%85sandbox-VMware/VMware%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD.png" alt="镜像文件下载"><br>下载可能需要注册，随便填就行了</p>
+<h3 id="下载镜像文件"><a href="#下载镜像文件" class="headerlink" title="下载镜像文件"></a>下载镜像文件</h3><p>到<a href="https://hortonworks.com/downloads/#sandbox" target="_blank" rel="noopener">官网</a>下载ova格式的镜像文件（HDP_3.0.1_vmware_181205.ova 20.5G）<br><img src="http://47.106.179.244/%E5%AE%89%E8%A3%85sandbox-VMware/VMware%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD.png" alt="镜像文件下载"><br>下载可能需要注册，随便填就行了</p>
 <h3 id="将-ova镜像导入到VMware中"><a href="#将-ova镜像导入到VMware中" class="headerlink" title="将.ova镜像导入到VMware中"></a>将.ova镜像导入到VMware中</h3><ol>
-<li>打开VMware，点击<code>文件</code>-&gt;<code>打开</code>，导入刚才下载的文件：<code>HDP_3.0.1_vmware_181205.ova</code><br><img src="http://image.hming.org/%E5%AE%89%E8%A3%85sandbox-VMware/VMware%E5%AF%BC%E5%85%A5%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6.png" alt="导入镜像文件"></li>
-<li>开启虚拟机（这里可以看到虚拟机的一些信息，包括内存磁盘等）<br><img src="http://image.hming.org/%E5%AE%89%E8%A3%85sandbox-VMware/VMware%E5%BC%80%E5%90%AF%E8%99%9A%E6%8B%9F%E6%9C%BA.png" alt="开启虚拟机"></li>
-<li>开启后可能会遇到无法连接网络的问题，这时候选择桥接模式，重启一下就行<br><img src="http://image.hming.org/%E5%AE%89%E8%A3%85sandbox-VMware/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E6%96%B9%E5%BC%8F.png" alt="虚拟机网络连接方式"><h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3>成功运行后窗口会打印一些信息，可以通过这些信息连接到虚拟机<br><img src="http://image.hming.org/%E5%AE%89%E8%A3%85sandbox-VMware/%E8%BF%90%E8%A1%8C%E6%88%90%E5%8A%9F%E5%90%8E%E6%89%93%E5%8D%B0%E4%BF%A1%E6%81%AF.png" alt="运行成功后打印信息"><br>上图中的1080端口为sandbox端口，可以通过浏览器访问该端口，得到以下界面：<br><img src="http://image.hming.org/sandbox-hdp%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/sandbox%E9%A1%B5%E9%9D%A2.png" alt="sandbox页面"><br>左侧launch dashboard直接进入ambari管理界面，右侧则是一些链接，包括ambari管理地址、Ranger地址、DAS地址等<br>4200端口则提供了一个浏览器访问命令行的接口：<br><img src="http://image.hming.org/sandbox-hdp%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AE%BF%E9%97%AEhdp%E5%AE%B9%E5%99%A8.png" alt="浏览器访问hdp容器"><br>使用<code>root</code>登录，默认密码为<code>hadoop</code>，第一次登录会提示修改root密码，对密码强度会有要求</li>
+<li>打开VMware，点击<code>文件</code>-&gt;<code>打开</code>，导入刚才下载的文件：<code>HDP_3.0.1_vmware_181205.ova</code><br><img src="http://47.106.179.244/%E5%AE%89%E8%A3%85sandbox-VMware/VMware%E5%AF%BC%E5%85%A5%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6.png" alt="导入镜像文件"></li>
+<li>开启虚拟机（这里可以看到虚拟机的一些信息，包括内存磁盘等）<br><img src="http://47.106.179.244/%E5%AE%89%E8%A3%85sandbox-VMware/VMware%E5%BC%80%E5%90%AF%E8%99%9A%E6%8B%9F%E6%9C%BA.png" alt="开启虚拟机"></li>
+<li>开启后可能会遇到无法连接网络的问题，这时候选择桥接模式，重启一下就行<br><img src="http://47.106.179.244/%E5%AE%89%E8%A3%85sandbox-VMware/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E6%96%B9%E5%BC%8F.png" alt="虚拟机网络连接方式"><h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3>成功运行后窗口会打印一些信息，可以通过这些信息连接到虚拟机<br><img src="http://47.106.179.244/%E5%AE%89%E8%A3%85sandbox-VMware/%E8%BF%90%E8%A1%8C%E6%88%90%E5%8A%9F%E5%90%8E%E6%89%93%E5%8D%B0%E4%BF%A1%E6%81%AF.png" alt="运行成功后打印信息"><br>上图中的1080端口为sandbox端口，可以通过浏览器访问该端口，得到以下界面：<br><img src="http://47.106.179.244/sandbox-hdp%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/sandbox%E9%A1%B5%E9%9D%A2.png" alt="sandbox页面"><br>左侧launch dashboard直接进入ambari管理界面，右侧则是一些链接，包括ambari管理地址、Ranger地址、DAS地址等<br>4200端口则提供了一个浏览器访问命令行的接口：<br><img src="http://47.106.179.244/sandbox-hdp%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AE%BF%E9%97%AEhdp%E5%AE%B9%E5%99%A8.png" alt="浏览器访问hdp容器"><br>使用<code>root</code>登录，默认密码为<code>hadoop</code>，第一次登录会提示修改root密码，对密码强度会有要求</li>
 </ol>
 <p>本文到此为止，更详细的使用教程，请参照<a href="http://blog.hming.org/2019/04/04/SandBox-HDP使用详解/">SandBox-HDP使用详解</a></p>
 
@@ -567,7 +567,7 @@ hortonworks/sandbox-hdp-security   3.0     ae1d1779b081    4 months ago   27.5GB
                 <a href="/2019/04/04/SandBox-HDP使用详解/">
                     <div class="card-image">
                         
-                        <img src="http://image.hming.org/logo/sandbox.png" class="responsive-img" alt="SandBox-HDP使用详解">
+                        <img src="http://47.106.179.244/logo/sandbox.png" class="responsive-img" alt="SandBox-HDP使用详解">
                         
                         <span class="card-title">SandBox-HDP使用详解</span>
                     </div>
@@ -623,7 +623,7 @@ hortonworks/sandbox-hdp-security   3.0     ae1d1779b081    4 months ago   27.5GB
                 <a href="/2019/04/02/安装SandBox-HDP（Docker版）/">
                     <div class="card-image">
                         
-                        <img src="http://image.hming.org/logo/sandbox+docker.png" class="responsive-img" alt="安装SandBox HDP（Docker版）">
+                        <img src="http://47.106.179.244/logo/sandbox+docker.png" class="responsive-img" alt="安装SandBox HDP（Docker版）">
                         
                         <span class="card-title">安装SandBox HDP（Docker版）</span>
                     </div>
@@ -793,7 +793,7 @@ hortonworks/sandbox-hdp-security   3.0     ae1d1779b081    4 months ago   27.5GB
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">64.8k</span>
+                <span class="white-color">66.3k</span>
             
 
             

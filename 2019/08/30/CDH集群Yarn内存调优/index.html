@@ -427,7 +427,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        410
+                        564
                     </div>
                     
 
@@ -452,23 +452,32 @@
             <div id="articleContent">
                 <p>HDP的内存调优建议：<a href="http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.1.1/bk_installing_manually_book/content/rpm-chap1-11.html" target="_blank" rel="noopener">http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.1.1/bk_installing_manually_book/content/rpm-chap1-11.html </a></p>
 <h3 id="DRF"><a href="#DRF" class="headerlink" title="DRF"></a>DRF</h3><p>DRF: <code>Dominant Resource Fairness</code>，根据CPU和内存公平调度资源。CDH动态资源池默认采用的DRF计划策略。简单的理解就是内存不够的时候，多余的CPU就不会分配任务了，就让他空着；CPU不够的时候，多出来的内存也不会再启动任务了。</p>
-<h3 id="相关参数"><a href="#相关参数" class="headerlink" title="相关参数"></a>相关参数</h3><ul>
-<li><strong>yarn.scheduler.minimum-allocation-mb</strong>，分配给AM单个容器可申请的最小内存，如果申请的容器内存小于该值，则系统将调整至该值（<code>可以用于计算一个节点最大Container数量</code>）</li>
-<li><strong>yarn.scheduler.maximum-allocation-mb</strong>，分配给AM单个容器可申请的最大内存<blockquote>
-<p>上面两个值均不能超过<strong>yarn.nodemanager.resource.memory-mb</strong>值</p>
+<h3 id="相关参数"><a href="#相关参数" class="headerlink" title="相关参数"></a>相关参数</h3><h4 id="RM的内存资源配置-配置的是资源调度相关"><a href="#RM的内存资源配置-配置的是资源调度相关" class="headerlink" title="RM的内存资源配置, 配置的是资源调度相关"></a>RM的内存资源配置, 配置的是资源调度相关</h4><ul>
+<li><code>RM1</code>：<strong>yarn.app.mapreduce.am.resource.mb</strong>， ApplicationMaster自身的物理内存要求</li>
+<li><code>RM2</code>：<strong>yarn.scheduler.minimum-allocation-mb</strong>，分配给AM单个容器可申请的最小内存，如果申请的容器内存小于该值，则系统将调整至该值</li>
+<li><code>RM3</code>：<strong>yarn.scheduler.maximum-allocation-mb</strong>，分配给AM单个容器可申请的最大内存<blockquote>
+<p>上面三个值均不能超过<code>NM1</code>值<br>由于AM也是容器，所以<code>RM1</code>的值需要在<code>RM2</code>、<code>RM3</code>范围内。</p>
 </blockquote>
 </li>
 </ul>
-<ul>
-<li><strong>mapreduce.map.memory.mb</strong> ，map任务内存，cdh默认1G</li>
-<li><strong>mapreduce.map.cpu.vcores</strong> ，map任务虚拟CPU核数，cdh默认1</li>
-<li><strong>mapreduce.reduce.memory.mb</strong> ，reduce任务内存，cdh默认1G</li>
-<li><strong>mapreduce.reduce.cpu.vcores</strong> ，reduce任务虚拟CPU核数，cdh默认1</li>
-<li><strong>yarn.nodemanager.resource.memory-mb</strong> ，容器内存，cdh默认8G</li>
-<li><strong>yarn.nodemanager.resource.cpu-vcores</strong> ，容器虚拟CPU核数，cdh默认8，但CM会自动检测内核数并修改</li>
+<h4 id="NM的内存资源配置，配置的是硬件资源相关"><a href="#NM的内存资源配置，配置的是硬件资源相关" class="headerlink" title="NM的内存资源配置，配置的是硬件资源相关"></a>NM的内存资源配置，配置的是硬件资源相关</h4><ul>
+<li><code>NM1</code>：<strong>yarn.nodemanager.resource.memory-mb</strong> ，NodeManager节点分配给容器的内存，cdh默认8G</li>
+<li><code>NM2</code>：<strong>yarn.nodemanager.resource.cpu-vcores</strong> ，NodeManager节点分配给容器虚拟CPU核数，cdh默认8，但CM会自动检测内核数并修改<blockquote>
+<p><code>NM1</code>可以计算节点最大最大Container数量，max(Container)=<code>NM1</code>/<code>RM2</code></p>
+</blockquote>
+</li>
 </ul>
-<h3 id="测试情况"><a href="#测试情况" class="headerlink" title="测试情况"></a>测试情况</h3><p>Yarn资源分配情况，虚拟CPU共分配了24核，内存则是他的两倍48G<br><img src="http://image.hming.org/CDH%E9%9B%86%E7%BE%A4Yarn%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98/yarn%E8%B5%84%E6%BA%90%E9%85%8D%E7%BD%AE.png" alt></p>
-<p>执行任务，队列调度策略为DRF，查看内存和CPU使用情况<br><img src="http://image.hming.org/CDH%E9%9B%86%E7%BE%A4Yarn%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98/%E5%86%85%E5%AD%98CPU%E4%BD%BF%E7%94%A8%E5%AF%B9%E6%AF%94.png" alt><br><img src="http://image.hming.org/CDH%E9%9B%86%E7%BE%A4Yarn%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98/%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5.png" alt><br><img src="http://image.hming.org/CDH%E9%9B%86%E7%BE%A4Yarn%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98/CPU%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5.png" alt><br>可以发现，内存使用受限于cpu，与DRF策略吻合</p>
+<h4 id="AM内存配置相关参数，配置的是任务相关"><a href="#AM内存配置相关参数，配置的是任务相关" class="headerlink" title="AM内存配置相关参数，配置的是任务相关"></a>AM内存配置相关参数，配置的是任务相关</h4><ul>
+<li><code>AM1</code>：<strong>mapreduce.map.memory.mb</strong> ，map任务内存，cdh默认1G（不能超过容器最大内存限制）</li>
+<li><code>AM2</code>：<strong>mapreduce.map.cpu.vcores</strong> ，map任务虚拟CPU核数，cdh默认1</li>
+<li><code>AM3</code>：<strong>mapreduce.reduce.memory.mb</strong> ，reduce任务内存，cdh默认1G（不能超过容器最大内存限制）</li>
+<li><code>AM4</code>：<strong>mapreduce.reduce.cpu.vcores</strong> ，reduce任务虚拟CPU核数，cdh默认1<blockquote>
+<p><code>AM1</code>、<code>AM3</code>这两个值应该在<code>RM2</code>和<code>RM3</code>这两个值之间<br><code>AM3</code>的值最好为<code>AM1</code>的两倍</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="测试情况"><a href="#测试情况" class="headerlink" title="测试情况"></a>测试情况</h3><p>Yarn资源分配情况，虚拟CPU共分配了24核，内存则是他的两倍48G<br><img src="http://47.106.179.244/CDH%E9%9B%86%E7%BE%A4Yarn%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98/yarn%E8%B5%84%E6%BA%90%E9%85%8D%E7%BD%AE.png" alt></p>
+<p>执行任务，队列调度策略为DRF，查看内存和CPU使用情况<br><img src="http://47.106.179.244/CDH%E9%9B%86%E7%BE%A4Yarn%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98/%E5%86%85%E5%AD%98CPU%E4%BD%BF%E7%94%A8%E5%AF%B9%E6%AF%94.png" alt><br><img src="http://47.106.179.244/CDH%E9%9B%86%E7%BE%A4Yarn%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98/%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5.png" alt><br><img src="http://47.106.179.244/CDH%E9%9B%86%E7%BE%A4Yarn%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98/CPU%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5.png" alt><br>可以发现，内存使用受限于cpu，与DRF策略吻合</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><strong>Yarn队列如果采用的是DRF调度策略，则vcpu和内存最好按照1:1比例进行分配，因为多余的资源根本不会用到。</strong></p>
 
             </div>
@@ -529,30 +538,29 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6 overflow-policy" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/08/30/CDH集群Yarn内存调优/">
+                <a href="/2019/09/10/Impala配置自动同步Hive元数据/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="CDH集群Yarn内存调优">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Impala配置自动同步Hive元数据">
                         
-                        <span class="card-title">CDH集群Yarn内存调优</span>
+                        <span class="card-title">Impala配置自动同步Hive元数据</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            关于CDH集群中的Yarn内存参数调优，CDH版本6.x
+                            Impala同步Hive元数据是一大问题，好在CDH6.3.0推出了自动同步的配置
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-30
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-10
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -565,7 +573,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -577,12 +584,12 @@
                         <span class="chip bg-color">CDH</span>
                     </a>
                     
-                    <a href="/tags/Yarn/" target="_blank">
-                        <span class="chip bg-color">Yarn</span>
+                    <a href="/tags/Impala/" target="_blank">
+                        <span class="chip bg-color">Impala</span>
                     </a>
                     
-                    <a href="/tags/参数调优/" target="_blank">
-                        <span class="chip bg-color">参数调优</span>
+                    <a href="/tags/元数据/" target="_blank">
+                        <span class="chip bg-color">元数据</span>
                     </a>
                     
                 </div>
@@ -766,7 +773,7 @@
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">64.8k</span>
+                <span class="white-color">66.3k</span>
             
 
             
