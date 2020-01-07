@@ -440,14 +440,14 @@ master3.hm">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        6,273
+                        7,017
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        30 分
+                        34 分
                     </div>
                     
                 
@@ -1014,6 +1014,75 @@ Loading mirror speeds from cached hostfile
  * updates: mirrors.aliyun.com
 <span class="token punctuation">..</span>.
 Complete<span class="token operator">!</span></code></pre>
+<blockquote>
+<p><strong>安装agent时可能遇到的问题：</strong><br>如果不是纯净的Centos镜像包（经过修改或升级）安装的操作系统，则可能遇到以下问题：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum -y install cloudera-manager-agent</span>
+<span class="token punctuation">..</span>.
+Error: Package: krb5-devel-1.15.1-34.el7.x86_64 <span class="token punctuation">(</span>iso-7.6<span class="token punctuation">)</span>
+           Requires: krb5-libs<span class="token punctuation">(</span>x86-64<span class="token punctuation">)</span> <span class="token operator">=</span> 1.15.1-34.el7
+           Installed: krb5-libs-1.15.1-37.el7_6.x86_64 <span class="token punctuation">(</span>@updates<span class="token punctuation">)</span>
+               krb5-libs<span class="token punctuation">(</span>x86-64<span class="token punctuation">)</span> <span class="token operator">=</span> 1.15.1-37.el7_6
+           Available: krb5-libs-1.15.1-18.el7.x86_64 <span class="token punctuation">(</span>iso<span class="token punctuation">)</span>
+               krb5-libs<span class="token punctuation">(</span>x86-64<span class="token punctuation">)</span> <span class="token operator">=</span> 1.15.1-18.el7
+           Available: krb5-libs-1.15.1-34.el7.x86_64 <span class="token punctuation">(</span>iso-7.6<span class="token punctuation">)</span>
+               krb5-libs<span class="token punctuation">(</span>x86-64<span class="token punctuation">)</span> <span class="token operator">=</span> 1.15.1-34.el7
+Error: Package: 1:openssl-devel-1.0.2k-16.el7.x86_64 <span class="token punctuation">(</span>iso-7.6<span class="token punctuation">)</span>
+           Requires: openssl-libs<span class="token punctuation">(</span>x86-64<span class="token punctuation">)</span> <span class="token operator">=</span> 1:1.0.2k-16.el7
+           Installed: 1:openssl-libs-1.0.2k-16.el7_6.1.x86_64 <span class="token punctuation">(</span>@updates<span class="token punctuation">)</span>
+               openssl-libs<span class="token punctuation">(</span>x86-64<span class="token punctuation">)</span> <span class="token operator">=</span> 1:1.0.2k-16.el7_6.1
+           Available: 1:openssl-libs-1.0.2k-12.el7.x86_64 <span class="token punctuation">(</span>iso<span class="token punctuation">)</span>
+               openssl-libs<span class="token punctuation">(</span>x86-64<span class="token punctuation">)</span> <span class="token operator">=</span> 1:1.0.2k-12.el7
+           Available: 1:openssl-libs-1.0.2k-16.el7.x86_64 <span class="token punctuation">(</span>iso-7.6<span class="token punctuation">)</span>
+               openssl-libs<span class="token punctuation">(</span>x86-64<span class="token punctuation">)</span> <span class="token operator">=</span> 1:1.0.2k-16.el7
+Error: Package: 32:bind-libs-9.9.4-72.el7.x86_64 <span class="token punctuation">(</span>iso-7.6<span class="token punctuation">)</span>
+           Requires: bind-license <span class="token operator">=</span> 32:9.9.4-72.el7
+           Installed: 32:bind-license-9.9.4-74.el7_6.1.noarch <span class="token punctuation">(</span>@updates<span class="token punctuation">)</span>
+               bind-license <span class="token operator">=</span> 32:9.9.4-74.el7_6.1
+           Available: 32:bind-license-9.9.4-61.el7.noarch <span class="token punctuation">(</span>iso<span class="token punctuation">)</span>
+               bind-license <span class="token operator">=</span> 32:9.9.4-61.el7
+           Available: 32:bind-license-9.9.4-72.el7.noarch <span class="token punctuation">(</span>iso-7.6<span class="token punctuation">)</span>
+               bind-license <span class="token operator">=</span> 32:9.9.4-72.el7
+Error: Package: libkadm5-1.15.1-34.el7.x86_64 <span class="token punctuation">(</span>iso-7.6<span class="token punctuation">)</span>
+           Requires: krb5-libs<span class="token punctuation">(</span>x86-64<span class="token punctuation">)</span> <span class="token operator">=</span> 1.15.1-34.el7
+           Installed: krb5-libs-1.15.1-37.el7_6.x86_64 <span class="token punctuation">(</span>@updates<span class="token punctuation">)</span>
+               krb5-libs<span class="token punctuation">(</span>x86-64<span class="token punctuation">)</span> <span class="token operator">=</span> 1.15.1-37.el7_6
+           Available: krb5-libs-1.15.1-18.el7.x86_64 <span class="token punctuation">(</span>iso<span class="token punctuation">)</span>
+               krb5-libs<span class="token punctuation">(</span>x86-64<span class="token punctuation">)</span> <span class="token operator">=</span> 1.15.1-18.el7
+           Available: krb5-libs-1.15.1-34.el7.x86_64 <span class="token punctuation">(</span>iso-7.6<span class="token punctuation">)</span>
+               krb5-libs<span class="token punctuation">(</span>x86-64<span class="token punctuation">)</span> <span class="token operator">=</span> 1.15.1-34.el7
+ You could try using --skip-broken to work around the problem
+ You could try running: rpm -Va --nofiles --nodigest
+<span class="token punctuation">..</span>.</code></pre>
+<p>根据提示可以看处是yum依赖包冲突，已经安装了更高的版本，解决方法是对相关rpm包降级。<br>以下解决krb5-devel包的冲突，其他包操作步骤类似：<br>根据保存提示可以知道，krb5-devel依赖的krb5-libs包需要的版本为34，但是已经安装了37版本，高于要求的版本<br>1)搜索目前可用的版本</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum search --showduplicates krb5-libs</span>
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+<span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span> N/S matched: krb5-libs <span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span>
+krb5-libs-1.15.1-18.el7.i686 <span class="token keyword">:</span> The non-admin shared libraries used by Kerberos 5
+krb5-libs-1.15.1-18.el7.x86_64 <span class="token keyword">:</span> The non-admin shared libraries used by Kerberos 5
+krb5-libs-1.15.1-34.el7.i686 <span class="token keyword">:</span> The non-admin shared libraries used by Kerberos 5
+krb5-libs-1.15.1-34.el7.x86_64 <span class="token keyword">:</span> The non-admin shared libraries used by Kerberos 5
+krb5-libs-1.15.1-37.el7_6.x86_64 <span class="token keyword">:</span> The non-admin shared libraries used by Kerberos 5
+
+  Name and summary matches only, use <span class="token string">"search all"</span> <span class="token keyword">for</span> everything.</code></pre>
+<p>2)将包降级为34版本</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum -y downgrade krb5-libs-1.15.1-34.el7.x86_64</span>
+<span class="token punctuation">..</span>.
+Removed:
+  krb5-libs.x86_64 0:1.15.1-37.el7_6                  
+
+Installed:
+  krb5-libs.x86_64 0:1.15.1-34.el7                 
+
+Complete<span class="token operator">!</span></code></pre>
+<p>注：如果降级还是报冲突错误，则可以将包卸载后重新安装：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#查看已安装版本</span>
+rpm -qa <span class="token operator">|</span> <span class="token function">grep</span> bind-libs
+<span class="token comment" spellcheck="true">#卸载已安装版本</span>
+rpm -e --nodeps <span class="token punctuation">[</span>完整包名<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true">#安装需要的版本</span>
+rpm -ivh <span class="token punctuation">[</span>需要安装的rpm包rpm文件<span class="token punctuation">]</span></code></pre>
+</blockquote>
 <h3 id="初始化Cloudera-Manager数据库"><a href="#初始化Cloudera-Manager数据库" class="headerlink" title="初始化Cloudera Manager数据库"></a>初始化Cloudera Manager数据库</h3><p>参照官网：<a href="https://www.cloudera.com/documentation/enterprise/6/6.3/topics/prepare_cm_database.html" target="_blank" rel="noopener">https://www.cloudera.com/documentation/enterprise/6/6.3/topics/prepare_cm_database.html</a><br>由于我们MySQL是安装在本地，所以直接执行</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@cdh ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># /opt/cloudera/cm/schema/scm_prepare_database.sh mysql scm scm</span>
 Enter SCM password:  <span class="token comment" spellcheck="true"># 输入创建数据库时的密码</span>
@@ -1360,13 +1429,13 @@ Redirecting to /bin/systemctl start rngd.service</code></pre>
 
             <span class="white-color">Copyright</span>
             <i class="fa fa-copyright"></i>
-            <span class="white-color">2016 -2019</span>
+            <span class="white-color">2016 -2020</span>
             <i class="fa fa-heart"></i>
             
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">66.3k</span>
+                <span class="white-color">67.1k</span>
             
 
             
