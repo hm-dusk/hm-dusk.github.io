@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[hive注释中文乱码问题]]></title>
-    <url>%2F2019%2F09%2F26%2Fhive%E6%B3%A8%E9%87%8A%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98%2F</url>
-    <content type="text"><![CDATA[在安装CDH中Hive时，虽然设置了Hive元数据库编码为UTF-8，但是创建Hive表注释依然会有乱码问题，本文介绍乱码原因以及解决方法。 乱码原因查看Hive元数据库（本文为MySQL中metastore），发现虽然数据库编码为UTF-8，但是库下面的表编码却还是latin1，这是因为虽然创建metastore库时指定了编码UTF-8，但是CDH在安装Hive时却还是以latin1编码去创建表的，所以导致Hive表存在中文乱码问题。 解决方法步骤登录MySQL，进入Hive元数据库use metastore; 修改字段注释字符集alter table COLUMNS_V2 modify column COMMENT varchar(256) character set utf8; 修改表注释字符集alter table TABLE_PARAMS modify column PARAM_VALUE varchar(40000) character set utf8; 修改分区参数，支持分区建用中文表示alter table PARTITION_PARAMS modify column PARAM_VALUE varchar(40000) character set utf8; alter table PARTITION_KEYS modify column PKEY_COMMENT varchar(40000) character set utf8; 修改表名注释，支持中文表示alter table INDEX_PARAMS modify column PARAM_VALUE varchar(4000) character set utf8; 修改视图，支持视图中文ALTER TABLE TBLS modify COLUMN VIEW_EXPANDED_TEXT mediumtext CHARACTER SET utf8; ALTER TABLE TBLS modify COLUMN VIEW_ORIGINAL_TEXT mediumtext CHARACTER SET utf8;]]></content>
+    <title><![CDATA['使用Zookeeper实现HiveServer2的HA']]></title>
+    <url>%2F2020%2F01%2F16%2F%E4%BD%BF%E7%94%A8Zookeeper%E5%AE%9E%E7%8E%B0HiveServer2%E7%9A%84HA%2F</url>
+    <content type="text"><![CDATA[本文主要讲述如何使用Zookeeper实现HiveServer2的HA 配置过程修改hive配置登录Cloduera Manager，进入Hive服务，在配置中搜索hive-site.xml，找到hive-site.xml 的 HiveServer2 高级配置代码段（安全阀），增加如下配置（Zookeeper地址修改为当前的地址） &lt;property> &lt;name>hive.server2.support.dynamic.service.discovery&lt;/name> &lt;value>true&lt;/value> &lt;/property> &lt;property> &lt;name>hive.server2.zookeeper.namespace&lt;/name> &lt;value>hiveserver2_zk&lt;/value> &lt;/property> &lt;property> &lt;name>hive.zookeeper.quorum&lt;/name> &lt;value>master1:2181,master2:2181,master3:2181&lt;/value> &lt;/property> &lt;property> &lt;name>hive.zookeeper.client.port&lt;/name> &lt;value>2181&lt;/value> &lt;/property> 修改后点击保存 重启hive服务根据提示重启hive服务 测试是否配置成功查看Zookeeper注册情况用zookeeper-client命令进入zookeeper查看hiveserver2_zk节点下所有HiveServer2节点是否注册成功 [zk: localhost:2181(CONNECTED) 1] ls /hiveserver2_zk [serverUri=master3.segma.tech:10000;version=2.1.1-cdh6.3.0;sequence=0000000001, serverUri=master2.segma.tech:10000;version=2.1.1-cdh6.3.0;sequence=0000000000] 使用连接地址测试连接连接地址格式为： jdbc:hive2://&lt;zookeeper quorum>/&lt;dbName>;ServiceDiscoveryMode=zookeeper;zooKeeperNameSpace=hiveserver2_zk 数据库名可以为空 用beeline测试连接情况： [root@master1 ~]# beeline WARNING: Use "yarn jar" to launch YARN applications. SLF4J: Class path contains multiple SLF4J bindings. SLF4J: Found binding in [jar:file:/mnt/disk/opt/cloudera/parcels/CDH-6.3.0-1.cdh6.3.0.p0.1279813/jars/log4j-slf4j-impl-2.8.2.jar!/org/slf4j/impl/StaticLoggerBinder.class] SLF4J: Found binding in [jar:file:/mnt/disk/opt/cloudera/parcels/CDH-6.3.0-1.cdh6.3.0.p0.1279813/jars/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class] SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation. SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory] Beeline version 2.1.1-cdh6.3.0 by Apache Hive beeline> !connect jdbc:hive2://master1:2181,master2:2181,master3:2181/default;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2_zk Connecting to jdbc:hive2://master1:2181,master2:2181,master3:2181/default;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2_zk Enter username for jdbc:hive2://master1:2181,master2:2181,master3:2181/default: hvie Enter password for jdbc:hive2://master1:2181,master2:2181,master3:2181/default: 20/01/16 16:02:33 [main]: INFO jdbc.HiveConnection: Connected to master2.segma.tech:10000 Connected to: Apache Hive (version 2.1.1-cdh6.3.0) Driver: Hive JDBC (version 2.1.1-cdh6.3.0) Transaction isolation: TRANSACTION_REPEATABLE_READ 0: jdbc:hive2://master1:2181,master2:2181> show databases; INFO : Compiling command(queryId=hive_20200116160255_735faaf6-18dd-4de0-8a11-6e12aae92dff): show databases INFO : Semantic Analysis Completed INFO : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:database_name, type:string, comment:from deserializer)], properties:null) INFO : Completed compiling command(queryId=hive_20200116160255_735faaf6-18dd-4de0-8a11-6e12aae92dff); Time taken: 1.007 seconds INFO : Executing command(queryId=hive_20200116160255_735faaf6-18dd-4de0-8a11-6e12aae92dff): show databases INFO : Starting task [Stage-0:DDL] in serial mode INFO : Completed executing command(queryId=hive_20200116160255_735faaf6-18dd-4de0-8a11-6e12aae92dff); Time taken: 0.025 seconds INFO : OK +----------------+ | database_name | +----------------+ | default | +----------------+ 1 row selected (1.403 seconds)]]></content>
       <categories>
         <category>大数据</category>
       </categories>
       <tags>
         <tag>大数据</tag>
-        <tag>CDH</tag>
         <tag>Hive</tag>
+        <tag>CDH</tag>
+        <tag>Zookeeper</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hive注释中文乱码问题]]></title>
+    <url>%2F2019%2F09%2F26%2Fhive%E6%B3%A8%E9%87%8A%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[在安装CDH中Hive时，虽然设置了Hive元数据库编码为UTF-8，但是创建Hive表注释依然会有乱码问题，本文介绍乱码原因以及解决方法。 乱码原因查看Hive元数据库（本文为MySQL中metastore），发现虽然数据库编码为UTF-8，但是库下面的表编码却还是latin1，这是因为虽然创建metastore库时指定了编码UTF-8，但是CDH在安装Hive时却还是以latin1编码去创建表的，所以导致Hive表存在中文乱码问题。 解决方法步骤登录MySQL，进入Hive元数据库use metastore; 修改字段注释字符集alter table COLUMNS_V2 modify column COMMENT varchar(256) character set utf8; 修改表注释字符集alter table TABLE_PARAMS modify column PARAM_VALUE varchar(4000) character set utf8; 修改分区参数，支持分区建用中文表示alter table PARTITION_PARAMS modify column PARAM_VALUE varchar(4000) character set utf8; alter table PARTITION_KEYS modify column PKEY_COMMENT varchar(4000) character set utf8; 修改表名注释，支持中文表示alter table INDEX_PARAMS modify column PARAM_VALUE varchar(4000) character set utf8; 修改视图，支持视图中文ALTER TABLE TBLS modify COLUMN VIEW_EXPANDED_TEXT mediumtext CHARACTER SET utf8; ALTER TABLE TBLS modify COLUMN VIEW_ORIGINAL_TEXT mediumtext CHARACTER SET utf8;]]></content>
+      <categories>
+        <category>大数据</category>
+      </categories>
+      <tags>
+        <tag>大数据</tag>
+        <tag>Hive</tag>
+        <tag>CDH</tag>
         <tag>乱码</tag>
       </tags>
   </entry>
@@ -91,8 +105,8 @@
       </categories>
       <tags>
         <tag>大数据</tag>
-        <tag>CDH</tag>
         <tag>离线安装</tag>
+        <tag>CDH</tag>
       </tags>
   </entry>
   <entry>
@@ -569,8 +583,8 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>IP</tag>
+        <tag>Linux</tag>
         <tag>虚拟机</tag>
         <tag>VMware</tag>
       </tags>

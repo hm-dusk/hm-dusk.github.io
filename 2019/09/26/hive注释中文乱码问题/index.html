@@ -389,12 +389,12 @@
                                 <span class="chip bg-color">大数据</span>
                             </a>
                         
-                            <a href="/tags/CDH/" target="_blank">
-                                <span class="chip bg-color">CDH</span>
-                            </a>
-                        
                             <a href="/tags/Hive/" target="_blank">
                                 <span class="chip bg-color">Hive</span>
+                            </a>
+                        
+                            <a href="/tags/CDH/" target="_blank">
+                                <span class="chip bg-color">CDH</span>
                             </a>
                         
                             <a href="/tags/乱码/" target="_blank">
@@ -455,9 +455,9 @@
 <h3 id="乱码原因"><a href="#乱码原因" class="headerlink" title="乱码原因"></a>乱码原因</h3><p>查看Hive元数据库（本文为MySQL中metastore），发现虽然数据库编码为UTF-8，但是库下面的表编码却还是latin1，这是因为虽然创建metastore库时指定了编码UTF-8，但是CDH在安装Hive时却还是以latin1编码去创建表的，所以导致Hive表存在中文乱码问题。</p>
 <h3 id="解决方法步骤"><a href="#解决方法步骤" class="headerlink" title="解决方法步骤"></a>解决方法步骤</h3><h4 id="登录MySQL，进入Hive元数据库"><a href="#登录MySQL，进入Hive元数据库" class="headerlink" title="登录MySQL，进入Hive元数据库"></a>登录MySQL，进入Hive元数据库</h4><pre class=" language-sql"><code class="language-sql"><span class="token keyword">use</span> metastore<span class="token punctuation">;</span></code></pre>
 <h4 id="修改字段注释字符集"><a href="#修改字段注释字符集" class="headerlink" title="修改字段注释字符集"></a>修改字段注释字符集</h4><pre class=" language-sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> COLUMNS_V2 <span class="token keyword">modify</span> <span class="token keyword">column</span> <span class="token keyword">COMMENT</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">256</span><span class="token punctuation">)</span> <span class="token keyword">character set</span> utf8<span class="token punctuation">;</span></code></pre>
-<h4 id="修改表注释字符集"><a href="#修改表注释字符集" class="headerlink" title="修改表注释字符集"></a>修改表注释字符集</h4><pre class=" language-sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> TABLE_PARAMS <span class="token keyword">modify</span> <span class="token keyword">column</span> PARAM_VALUE <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">40000</span><span class="token punctuation">)</span>     <span class="token keyword">character set</span> utf8<span class="token punctuation">;</span></code></pre>
-<h4 id="修改分区参数，支持分区建用中文表示"><a href="#修改分区参数，支持分区建用中文表示" class="headerlink" title="修改分区参数，支持分区建用中文表示"></a>修改分区参数，支持分区建用中文表示</h4><pre class=" language-sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> PARTITION_PARAMS <span class="token keyword">modify</span> <span class="token keyword">column</span> PARAM_VALUE <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">40000</span><span class="token punctuation">)</span> <span class="token keyword">character set</span> utf8<span class="token punctuation">;</span>
-<span class="token keyword">alter</span> <span class="token keyword">table</span> PARTITION_KEYS <span class="token keyword">modify</span> <span class="token keyword">column</span> PKEY_COMMENT <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">40000</span><span class="token punctuation">)</span> <span class="token keyword">character set</span> utf8<span class="token punctuation">;</span></code></pre>
+<h4 id="修改表注释字符集"><a href="#修改表注释字符集" class="headerlink" title="修改表注释字符集"></a>修改表注释字符集</h4><pre class=" language-sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> TABLE_PARAMS <span class="token keyword">modify</span> <span class="token keyword">column</span> PARAM_VALUE <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">4000</span><span class="token punctuation">)</span>     <span class="token keyword">character set</span> utf8<span class="token punctuation">;</span></code></pre>
+<h4 id="修改分区参数，支持分区建用中文表示"><a href="#修改分区参数，支持分区建用中文表示" class="headerlink" title="修改分区参数，支持分区建用中文表示"></a>修改分区参数，支持分区建用中文表示</h4><pre class=" language-sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> PARTITION_PARAMS <span class="token keyword">modify</span> <span class="token keyword">column</span> PARAM_VALUE <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">4000</span><span class="token punctuation">)</span> <span class="token keyword">character set</span> utf8<span class="token punctuation">;</span>
+<span class="token keyword">alter</span> <span class="token keyword">table</span> PARTITION_KEYS <span class="token keyword">modify</span> <span class="token keyword">column</span> PKEY_COMMENT <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">4000</span><span class="token punctuation">)</span> <span class="token keyword">character set</span> utf8<span class="token punctuation">;</span></code></pre>
 <h4 id="修改表名注释，支持中文表示"><a href="#修改表名注释，支持中文表示" class="headerlink" title="修改表名注释，支持中文表示"></a>修改表名注释，支持中文表示</h4><pre class=" language-sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> INDEX_PARAMS <span class="token keyword">modify</span> <span class="token keyword">column</span> PARAM_VALUE <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">4000</span><span class="token punctuation">)</span> <span class="token keyword">character set</span> utf8<span class="token punctuation">;</span></code></pre>
 <h4 id="修改视图，支持视图中文"><a href="#修改视图，支持视图中文" class="headerlink" title="修改视图，支持视图中文"></a>修改视图，支持视图中文</h4><pre class=" language-sql"><code class="language-sql"><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> TBLS <span class="token keyword">modify</span> <span class="token keyword">COLUMN</span> VIEW_EXPANDED_TEXT <span class="token keyword">mediumtext</span> <span class="token keyword">CHARACTER SET</span> utf8<span class="token punctuation">;</span>
 <span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> TBLS <span class="token keyword">modify</span> <span class="token keyword">COLUMN</span> VIEW_ORIGINAL_TEXT <span class="token keyword">mediumtext</span> <span class="token keyword">CHARACTER SET</span> utf8<span class="token punctuation">;</span></code></pre>
@@ -520,30 +520,29 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6 overflow-policy" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/09/26/hive注释中文乱码问题/">
+                <a href="/2020/01/16/使用Zookeeper实现HiveServer2的HA/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="hive注释中文乱码问题">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="'使用Zookeeper实现HiveServer2的HA'">
                         
-                        <span class="card-title">hive注释中文乱码问题</span>
+                        <span class="card-title">'使用Zookeeper实现HiveServer2的HA'</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文环境：CDH6.3.0，Hive2.1.1
+                            本文环境：CDH6.3.0，Hive2.1.1，Zookeeper3.4.5
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-26
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-01-16
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -556,7 +555,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -564,16 +562,16 @@
                         <span class="chip bg-color">大数据</span>
                     </a>
                     
-                    <a href="/tags/CDH/" target="_blank">
-                        <span class="chip bg-color">CDH</span>
-                    </a>
-                    
                     <a href="/tags/Hive/" target="_blank">
                         <span class="chip bg-color">Hive</span>
                     </a>
                     
-                    <a href="/tags/乱码/" target="_blank">
-                        <span class="chip bg-color">乱码</span>
+                    <a href="/tags/CDH/" target="_blank">
+                        <span class="chip bg-color">CDH</span>
+                    </a>
+                    
+                    <a href="/tags/Zookeeper/" target="_blank">
+                        <span class="chip bg-color">Zookeeper</span>
                     </a>
                     
                 </div>
@@ -761,7 +759,7 @@
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">67.1k</span>
+                <span class="white-color">67.7k</span>
             
 
             
