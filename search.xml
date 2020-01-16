@@ -9,8 +9,8 @@
       </categories>
       <tags>
         <tag>大数据</tag>
-        <tag>Hive</tag>
         <tag>CDH</tag>
+        <tag>Hive</tag>
         <tag>Zookeeper</tag>
       </tags>
   </entry>
@@ -23,8 +23,8 @@
       </categories>
       <tags>
         <tag>大数据</tag>
-        <tag>Hive</tag>
         <tag>CDH</tag>
+        <tag>Hive</tag>
         <tag>乱码</tag>
       </tags>
   </entry>
@@ -105,8 +105,8 @@
       </categories>
       <tags>
         <tag>大数据</tag>
-        <tag>离线安装</tag>
         <tag>CDH</tag>
+        <tag>离线安装</tag>
       </tags>
   </entry>
   <entry>
@@ -583,8 +583,8 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>IP</tag>
         <tag>Linux</tag>
+        <tag>IP</tag>
         <tag>虚拟机</tag>
         <tag>VMware</tag>
       </tags>
