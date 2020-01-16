@@ -5,10 +5,8 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="Impala配置自动同步Hive元数据, 博客,貍铭">
-    <meta name="description" content="原理解释Impala使用Catalog服务进行元数据的管理，Catalog使用StateStore进行元数据同步分发到各个Impalad服务。Impala使用两个元数据：
-
-来自Hive Metastore的目录信息
-来自NameNode的">
+    <meta name="description" content="参考官方文档：Automatic Invalidation/Refresh of Metadata
+原理解释Impala使用Catalog服务进行元数据的管理，Catalog使用StateStore进行元数据同步分发到各个Impalad服务">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -430,14 +428,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        423
+                        675
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        2 分
+                        3 分
                     </div>
                     
                 
@@ -453,7 +451,8 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="原理解释"><a href="#原理解释" class="headerlink" title="原理解释"></a>原理解释</h3><p>Impala使用Catalog服务进行元数据的管理，Catalog使用StateStore进行元数据同步分发到各个Impalad服务。<br>Impala使用两个元数据：</p>
+                <p>参考官方文档：<a href="https://docs.cloudera.com/documentation/enterprise/6/6.3/topics/impala_metadata.html#auto_poll_hms_notification" target="_blank" rel="noopener">Automatic Invalidation/Refresh of Metadata</a></p>
+<h3 id="原理解释"><a href="#原理解释" class="headerlink" title="原理解释"></a>原理解释</h3><p>Impala使用Catalog服务进行元数据的管理，Catalog使用StateStore进行元数据同步分发到各个Impalad服务。<br>Impala使用两个元数据：</p>
 <ul>
 <li>来自Hive Metastore的目录信息</li>
 <li>来自NameNode的文件元数据。</li>
@@ -464,15 +463,53 @@
 <li><a href="https://www.cloudera.com/documentation/enterprise/6/6.3/topics/impala_invalidate_metadata.html" target="_blank" rel="noopener">INVALIDATE METADATA</a></li>
 </ul>
 <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>由于全局刷新<code>invalidate metadata</code>语句会丢弃所有的元数据，导致没有更新的表再次查询也会去拉取元数据（造成延迟），所以不能采用这种方式（官网不推荐）。<br>所以只能使用<code>invalidate metadata [表名]</code>或者<code>refresh [表名]</code>的方式。但是这样会有一个问题，需要知道表名，</p>
-<h3 id="配置步骤"><a href="#配置步骤" class="headerlink" title="配置步骤"></a>配置步骤</h3><ol>
-<li>查看<code>impala catalog server web UI</code><br><code>/metrics</code><br><code>events</code><br>发现只有一个<code>events-processor.status</code>为<code>DISABLED</code></li>
-<li>在impala配置中找 <code>Catalog Server 命令行参数高级配置代码段（安全阀）</code><br>加入 <code>--hms_event_polling_interval_s=1</code>（短横线中间不能有空格）</li>
-<li>此时直接重启impala会报错</li>
-<li>进入hive配置页面<br>勾选 <code>启用数据库中的存储通知</code><br>在搜索框输入<code>hive-site.xml</code><br>在 <code>hive-site.xml 的 Hive Metastore Server 高级配置代码段（安全阀）</code> 中添加两个值<br>Name: hive.metastore.notifications.add.thrift.objects<br>Value: true<br>Name: hive.metastore.alter.notifications.basic<br>Value: false</li>
+<h3 id="配置步骤"><a href="#配置步骤" class="headerlink" title="配置步骤"></a>配置步骤</h3><h4 id="impala配置修改"><a href="#impala配置修改" class="headerlink" title="impala配置修改"></a>impala配置修改</h4><ol>
+<li><p>查看<code>impala catalog server web UI</code><br><code>/metrics</code><br><code>events</code><br>发现只有一个<code>events-processor.status</code>为<code>DISABLED</code></p>
+</li>
+<li><p>在impala配置中找 <code>Catalog Server 命令行参数高级配置代码段（安全阀）</code><br>加入一下代码 （短横线中间不能有空格）：</p>
+<pre class=" language-ini"><code class="language-ini"><span class="token constant"> --hms_event_polling_interval_s</span><span class="token attr-value"><span class="token punctuation">=</span>1</span></code></pre>
+<blockquote>
+<p>此时直接重启impala会报错，先修改hive配置</p>
+</blockquote>
+</li>
 </ol>
-<p>在 <code>hive-site.xml 的 Hive 服务高级配置代码段（安全阀）</code> 中添加<br>Name: hive.metastore.dml.events<br>Value: true</p>
-<p>在 <code>hive-site.xml 的 Hive 客户端高级配置代码段（安全阀）</code> 中添加<br>Name: hive.metastore.dml.events<br>Value: true</p>
-<h3 id="剩余的坑"><a href="#剩余的坑" class="headerlink" title="剩余的坑"></a>剩余的坑</h3>
+<h4 id="hive配置修改"><a href="#hive配置修改" class="headerlink" title="hive配置修改"></a>hive配置修改</h4><p>进入hive配置页面</p>
+<ol>
+<li><p>勾选 <code>启用数据库中的存储通知</code></p>
+</li>
+<li><p>在搜索框输入<code>hive-site.xml</code><br>在 <code>hive-site.xml 的 Hive Metastore Server 高级配置代码段（安全阀）</code> 中添加两个值</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>hive.metastore.notifications.add.thrift.objects<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>description</span><span class="token punctuation">></span></span>set auto invalidate metadata on hive events<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>description</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>hive.metastore.alter.notifications.basic<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>false<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>description</span><span class="token punctuation">></span></span>set auto invalidate metadata on hive events<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>description</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span></code></pre>
+</li>
+<li><p>在 <code>hive-site.xml 的 Hive 服务高级配置代码段（安全阀）</code> 中添加</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>hive.metastore.dml.events<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>description</span><span class="token punctuation">></span></span>set auto invalidate metadata on hive events<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>description</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span></code></pre>
+</li>
+<li><p>在 <code>hive-site.xml 的 Hive 客户端高级配置代码段（安全阀）</code> 中添加</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>hive.metastore.dml.events<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>description</span><span class="token punctuation">></span></span>set auto invalidate metadata on hive events<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>description</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span></code></pre>
+</li>
+</ol>
+<h3 id="剩余的坑"><a href="#剩余的坑" class="headerlink" title="剩余的坑"></a>剩余的坑</h3><p><a href="https://docs.cloudera.com/documentation/enterprise/6/6.3/topics/impala_metadata.html#auto_poll_hms_notification" target="_blank" rel="noopener">官方文档</a>里面说<code>insert</code>操作触发的是<code>refresh</code>，但是据实际测试情况来看，触发的是<code>invalidate metadata [table]</code>，两者的区别在于<code>refresh</code>几乎没有延迟，而<code>invalidate metadata [table]</code>下次进行查询时impala会去拉取元数据信息，会有延迟。</p>
+<p>经过官方人员确认，表示insert确实是invalidate的效果，回复原话如下：</p>
+<blockquote>
+<p>这个功能现在还比较粗暴，这块确实还是invalidate的效果……因为insert非partition表的时候hive发出来的是一个alter事件后接一个insert事件，接到alter事件后就执行invalidate了；insert partition的时候hive发出来的是一个insert事件后接一个alter事件，于是最终又会执行一次invalidate……</p>
+</blockquote>
+
             </div>
             <hr/>
 
@@ -766,7 +803,7 @@
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">67.7k</span>
+                <span class="white-color">68.0k</span>
             
 
             

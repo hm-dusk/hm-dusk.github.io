@@ -428,7 +428,7 @@ HDFS快">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        221
+                        294
                     </div>
                     
 
@@ -453,7 +453,13 @@ HDFS快">
             <div id="articleContent">
                 <p>参考官网文档：<br>Impala安装后的推荐配置<a href="https://www.cloudera.com/documentation/enterprise/6/6.3/topics/impala_config_performance.html" target="_blank" rel="noopener">https://www.cloudera.com/documentation/enterprise/6/6.3/topics/impala_config_performance.html</a></p>
 <h3 id="HDFS快速读取"><a href="#HDFS快速读取" class="headerlink" title="HDFS快速读取"></a>HDFS快速读取</h3><p>启用快速读取允许Impala直接从文件系统读取本地数据。不再需要通过DataNode进行通信，从而提高了性能。<br>cloudera manager进入impala配置页面，搜索<code>dfs.client.read.shortcircuit</code>，勾选后重启。</p>
-<h3 id="设置内存限制"><a href="#设置内存限制" class="headerlink" title="设置内存限制"></a>设置内存限制</h3><h3 id="设置连接超时时间"><a href="#设置连接超时时间" class="headerlink" title="设置连接超时时间"></a>设置连接超时时间</h3><h3 id="设置连接数"><a href="#设置连接数" class="headerlink" title="设置连接数"></a>设置连接数</h3><h3 id="使用HDFS缓存"><a href="#使用HDFS缓存" class="headerlink" title="使用HDFS缓存"></a>使用HDFS缓存</h3><p>参考官网文档：<br>使用Impala时设置HDFS缓存<a href="https://www.cloudera.com/documentation/enterprise/6/6.3/topics/impala_perf_hdfs_caching.html#hdfs_caching" target="_blank" rel="noopener">https://www.cloudera.com/documentation/enterprise/6/6.3/topics/impala_perf_hdfs_caching.html#hdfs_caching</a></p>
+<h3 id="设置内存限制"><a href="#设置内存限制" class="headerlink" title="设置内存限制"></a>设置内存限制</h3><p>进入impala配置页面，搜索<code>mem_limit</code></p>
+<h3 id="设置连接超时时间"><a href="#设置连接超时时间" class="headerlink" title="设置连接超时时间"></a>设置连接超时时间</h3><p>进入impala配置页面，搜索<code>idle_session_timeout</code></p>
+<blockquote>
+<p>注意：超时时间设置过短可能导致服务端连接关闭而客户端未关闭，可能造成客户端无法使用impala的问题</p>
+</blockquote>
+<h3 id="设置连接数"><a href="#设置连接数" class="headerlink" title="设置连接数"></a>设置连接数</h3><p>进入impala配置页面，搜索<code>fe_service_threads</code></p>
+<h3 id="使用HDFS缓存"><a href="#使用HDFS缓存" class="headerlink" title="使用HDFS缓存"></a>使用HDFS缓存</h3><p>参考官网文档：<br>使用Impala时设置HDFS缓存<a href="https://www.cloudera.com/documentation/enterprise/6/6.3/topics/impala_perf_hdfs_caching.html#hdfs_caching" target="_blank" rel="noopener">https://www.cloudera.com/documentation/enterprise/6/6.3/topics/impala_perf_hdfs_caching.html#hdfs_caching</a></p>
 <h3 id="配置Impala负载均衡"><a href="#配置Impala负载均衡" class="headerlink" title="配置Impala负载均衡"></a>配置Impala负载均衡</h3><p>参考官网文档：<br><a href="https://docs.cloudera.com/documentation/enterprise/6/6.3/topics/impala_proxy.html" target="_blank" rel="noopener">Using Impala through a Proxy for High Availability</a><br>参考微信公众hadoop实操文章：<br><a href="https://mp.weixin.qq.com/s/LX4PTr4XcZEOwjZRytroCQ" target="_blank" rel="noopener">如何使用HAProxy实现Impala的负载均衡</a></p>
 <h3 id="Impala-timestamp类型时区问题"><a href="#Impala-timestamp类型时区问题" class="headerlink" title="Impala timestamp类型时区问题"></a>Impala timestamp类型时区问题</h3><p>参考微信公众hadoop实操文章：<br><a href="https://cloud.tencent.com/developer/article/1078478" target="_blank" rel="noopener">Hive中的Timestamp类型日期与Impala中显示不一致分析（补充）</a></p>
 
@@ -750,7 +756,7 @@ HDFS快">
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">67.7k</span>
+                <span class="white-color">68.0k</span>
             
 
             
