@@ -428,7 +428,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        288
+                        312
                     </div>
                     
 
@@ -461,6 +461,7 @@
 <h4 id="修改表名注释，支持中文表示"><a href="#修改表名注释，支持中文表示" class="headerlink" title="修改表名注释，支持中文表示"></a>修改表名注释，支持中文表示</h4><pre class=" language-sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> INDEX_PARAMS <span class="token keyword">modify</span> <span class="token keyword">column</span> PARAM_VALUE <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">4000</span><span class="token punctuation">)</span> <span class="token keyword">character set</span> utf8<span class="token punctuation">;</span></code></pre>
 <h4 id="修改视图，支持视图中文"><a href="#修改视图，支持视图中文" class="headerlink" title="修改视图，支持视图中文"></a>修改视图，支持视图中文</h4><pre class=" language-sql"><code class="language-sql"><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> TBLS <span class="token keyword">modify</span> <span class="token keyword">COLUMN</span> VIEW_EXPANDED_TEXT <span class="token keyword">mediumtext</span> <span class="token keyword">CHARACTER SET</span> utf8<span class="token punctuation">;</span>
 <span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> TBLS <span class="token keyword">modify</span> <span class="token keyword">COLUMN</span> VIEW_ORIGINAL_TEXT <span class="token keyword">mediumtext</span> <span class="token keyword">CHARACTER SET</span> utf8<span class="token punctuation">;</span></code></pre>
+<h4 id="修改数据库注释，支持中文表示"><a href="#修改数据库注释，支持中文表示" class="headerlink" title="修改数据库注释，支持中文表示"></a>修改数据库注释，支持中文表示</h4><pre class=" language-sql"><code class="language-sql"><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> DBS <span class="token keyword">MODIFY</span> <span class="token keyword">COLUMN</span> <span class="token punctuation">`</span><span class="token keyword">DESC</span><span class="token punctuation">`</span> <span class="token keyword">VARCHAR</span> <span class="token punctuation">(</span><span class="token number">4000</span><span class="token punctuation">)</span> <span class="token keyword">CHARACTER SET</span> utf8<span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
