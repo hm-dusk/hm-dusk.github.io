@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 
 
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
     <meta charset="utf-8">
     <meta name="keywords" content="HDP与CDH对比, 博客,貍铭">
     <meta name="description" content="HDP与CDH的对比版本更新对比HDP版本更新较快，因为Hortonworks内部大部分员工都是apache代码贡献者，尤其是Hadoop 2.0的贡献者。
@@ -34,6 +34,7 @@ CDH版本更新比Apache版本慢。
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="貍铭的博客" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-xonokai.css" type="text/css"></head>
 
 
@@ -386,7 +387,7 @@ CDH版本更新比Apache版本慢。
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/大数据/" target="_blank">
+                            <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" target="_blank">
                                 <span class="chip bg-color">大数据</span>
                             </a>
                         
@@ -406,7 +407,7 @@ CDH版本更新比Apache版本慢。
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/大数据/" class="post-category" target="_blank">
+                            <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category" target="_blank">
                                 大数据
                             </a>
                         
@@ -425,7 +426,7 @@ CDH版本更新比Apache版本慢。
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1,237
+                        1.3k
                     </div>
                     
 
@@ -453,9 +454,9 @@ CDH版本更新比Apache版本慢。
 <p>目前Apache社区Hadoop最新版本：3.2.0</p>
 <p>目前CDH最新版支持Hadoop版本：3.0.0</p>
 <p>目前HDP最新版支持Hadoop版本：3.1.1</p>
-<h4 id="架构对比"><a href="#架构对比" class="headerlink" title="架构对比"></a>架构对比</h4><h5 id="CDH"><a href="#CDH" class="headerlink" title="CDH"></a>CDH</h5><p><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/CDH%E6%9E%B6%E6%9E%84.png" alt></p>
-<h5 id="HDP"><a href="#HDP" class="headerlink" title="HDP"></a>HDP</h5><p><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/HDP%E6%9E%B6%E6%9E%84.png" alt></p>
-<h4 id="原装支持组件对比"><a href="#原装支持组件对比" class="headerlink" title="原装支持组件对比"></a>原装支持组件对比</h4><p><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/%E7%BB%84%E4%BB%B6%E5%AF%B9%E6%AF%94.png" alt></p>
+<h4 id="架构对比"><a href="#架构对比" class="headerlink" title="架构对比"></a>架构对比</h4><h5 id="CDH"><a href="#CDH" class="headerlink" title="CDH"></a>CDH</h5><p><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/CDH%E6%9E%B6%E6%9E%84.png" alt=""></p>
+<h5 id="HDP"><a href="#HDP" class="headerlink" title="HDP"></a>HDP</h5><p><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/HDP%E6%9E%B6%E6%9E%84.png" alt=""></p>
+<h4 id="原装支持组件对比"><a href="#原装支持组件对比" class="headerlink" title="原装支持组件对比"></a>原装支持组件对比</h4><p><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/%E7%BB%84%E4%BB%B6%E5%AF%B9%E6%AF%94.png" alt=""></p>
 <ul>
 <li>CDH支持的存储组件更丰富</li>
 <li>HDP支持的数据分析组件更丰富</li>
@@ -473,20 +474,20 @@ CDH版本更新比Apache版本慢。
 <h4 id="运维管理对比"><a href="#运维管理对比" class="headerlink" title="运维管理对比"></a>运维管理对比</h4><h5 id="HDP-1"><a href="#HDP-1" class="headerlink" title="HDP"></a>HDP</h5><p>采用Apache Ambari进行统一管理，Ambari2.7之后的版本相对2.6有很大的改动，2.6个人看来也不够人性化，2.7界面布局更加人性化。</p>
 <ol>
 <li>Ambari不支持中文，整个管理页面都是英文呈现。</li>
-<li>组件比较重要的基本配置都以图形化的方式呈现，比直接配文字版体验效果好。<br><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/HDP%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A21.png" alt><br><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/HDP%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A22.png" alt><br>鼠标hover到配置项上面会有该项配置的说明。<br><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/HDP%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A22-1.png" alt></li>
-<li>其他配置都是按照节点（如下图中的NameNode）、配置文件（如下图中的Advanced hdfs-site）来进行组织的，方便运维人员快速定位。另外配置有版本记录，可以回退到任意版本。<br><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/HDP%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A23.png" alt></li>
-<li>组件界面可以直接看到该组件的哪些服务以及服务情况，右边就有该服务的快速链接，下图为Yarn的界面。<br><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/HDP%E7%BB%84%E4%BB%B6%E7%95%8C%E9%9D%A21.png" alt></li>
-<li>部分组件可以看到链接地址，比如Hive。<br><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/HDP%E7%BB%84%E4%BB%B6%E7%95%8C%E9%9D%A22.png" alt></li>
+<li>组件比较重要的基本配置都以图形化的方式呈现，比直接配文字版体验效果好。<br><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/HDP%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A21.png" alt=""><br><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/HDP%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A22.png" alt=""><br>鼠标hover到配置项上面会有该项配置的说明。<br><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/HDP%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A22-1.png" alt=""></li>
+<li>其他配置都是按照节点（如下图中的NameNode）、配置文件（如下图中的Advanced hdfs-site）来进行组织的，方便运维人员快速定位。另外配置有版本记录，可以回退到任意版本。<br><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/HDP%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A23.png" alt=""></li>
+<li>组件界面可以直接看到该组件的哪些服务以及服务情况，右边就有该服务的快速链接，下图为Yarn的界面。<br><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/HDP%E7%BB%84%E4%BB%B6%E7%95%8C%E9%9D%A21.png" alt=""></li>
+<li>部分组件可以看到链接地址，比如Hive。<br><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/HDP%E7%BB%84%E4%BB%B6%E7%95%8C%E9%9D%A22.png" alt=""></li>
 <li>Ambari服务本身不支持高可用。</li>
 </ol>
 <h5 id="CDH-1"><a href="#CDH-1" class="headerlink" title="CDH"></a>CDH</h5><p>采用Cloudera Manager（下文统一用cm代替）进行统一管理。</p>
 <ol>
-<li>cm可以根据浏览器配置进行语言选择，支持中文。<br><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/CDH%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A20.png" alt></li>
-<li>配置界面左边将所有配置按照范围、类别、状态进行分类，也能很方便的找到配置。<br><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/CDH%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A22.png" alt><br>右边提供每个配置的说明，点看可以看到各项配置的说明。<br><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/CDH%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A22-1.png" alt></li>
+<li>cm可以根据浏览器配置进行语言选择，支持中文。<br><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/CDH%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A20.png" alt=""></li>
+<li>配置界面左边将所有配置按照范围、类别、状态进行分类，也能很方便的找到配置。<br><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/CDH%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A22.png" alt=""><br>右边提供每个配置的说明，点看可以看到各项配置的说明。<br><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/CDH%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A22-1.png" alt=""></li>
 <li>配置版本控制免费版不支持<br>参考官网：<a href="https://www.cloudera.com/documentation/enterprise/6/6.2/topics/cm_mc_revert_configs.html" target="_blank" rel="noopener">Viewing and Reverting Configuration Changes</a></li>
-<li>组件服务的快速链接在tab页上<br><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/CDH%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A23.png" alt></li>
+<li>组件服务的快速链接在tab页上<br><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/CDH%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A23.png" alt=""></li>
 <li>cm服务可以配置高可用<br>参考官网：<a href="https://www.cloudera.com/documentation/enterprise/6/6.2/topics/admin_cm_ha_server.html" target="_blank" rel="noopener">Installing and Configuring Cloudera Manager Server for High Availability</a></li>
-<li>cm支持数据加密，无论是静态加密或保护数据传输，但是可惜的是免费版cm支持很有限。另外加密前官方强烈建议安装Kerberos<br>参考官网：<a href="https://www.cloudera.com/documentation/enterprise/6/6.2/topics/sg_enc_overview.html" target="_blank" rel="noopener">Encryption Overview</a><br><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/CDH%E5%8A%A0%E5%AF%86%E9%85%8D%E7%BD%AE%E9%A1%B5%E9%9D%A2.png" alt></li>
+<li>cm支持数据加密，无论是静态加密或保护数据传输，但是可惜的是免费版cm支持很有限。另外加密前官方强烈建议安装Kerberos<br>参考官网：<a href="https://www.cloudera.com/documentation/enterprise/6/6.2/topics/sg_enc_overview.html" target="_blank" rel="noopener">Encryption Overview</a><br><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/CDH%E5%8A%A0%E5%AF%86%E9%85%8D%E7%BD%AE%E9%A1%B5%E9%9D%A2.png" alt=""></li>
 </ol>
 <h3 id="CDH版本说明"><a href="#CDH版本说明" class="headerlink" title="CDH版本说明"></a>CDH版本说明</h3><h4 id="CDH6-X组件版本对应"><a href="#CDH6-X组件版本对应" class="headerlink" title="CDH6.X组件版本对应"></a>CDH6.X组件版本对应</h4><p><a href="https://www.cloudera.com/documentation/enterprise/6/release-notes/topics/rg_cdh_6_packaging.html" target="_blank" rel="noopener">https://www.cloudera.com/documentation/enterprise/6/release-notes/topics/rg_cdh_6_packaging.html</a></p>
 <h4 id="CDH5-X组件版本对应"><a href="#CDH5-X组件版本对应" class="headerlink" title="CDH5.X组件版本对应"></a>CDH5.X组件版本对应</h4><p><a href="https://www.cloudera.com/documentation/enterprise/release-notes/topics/cdh_vd_cdh_package_tarball.html" target="_blank" rel="noopener">https://www.cloudera.com/documentation/enterprise/release-notes/topics/cdh_vd_cdh_package_tarball.html</a></p>
@@ -602,7 +603,7 @@ CDH版本更新比Apache版本慢。
 </tr>
 </tbody></table>
 <h3 id="CDH免费版和企业版区别"><a href="#CDH免费版和企业版区别" class="headerlink" title="CDH免费版和企业版区别"></a>CDH免费版和企业版区别</h3><p><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/CDH%E5%85%8D%E8%B4%B9%E7%89%88%E5%92%8C%E4%BB%98%E8%B4%B9%E7%89%88%E5%8A%9F%E8%83%BD%E5%AF%B9%E6%AF%94%E5%9B%BE.png" alt="免费版和企业版功能对比图"><br>注：<br>1.snmp traps：SNMP是指简单网络管理协议，trap是它规定的一种通信方式，用于被管理的设备主动向充当管理者的设备报告自己的异常信息。</p>
-<p><a href="https://www.cloudera.com/content/dam/www/marketing/resources/datasheets/cloudera-enterprise-datasheet.pdf.landing.html" target="_blank" rel="noopener">官网参考地址</a><br>截图来自<a href="https://blog.csdn.net/levy_cui/article/details/51143092" target="_blank" rel="noopener">CSDN</a><br><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/%E5%AE%98%E7%BD%91%E8%A1%A81.jpg" alt><br><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/%E5%AE%98%E7%BD%91%E8%A1%A82.jpg" alt></p>
+<p><a href="https://www.cloudera.com/content/dam/www/marketing/resources/datasheets/cloudera-enterprise-datasheet.pdf.landing.html" target="_blank" rel="noopener">官网参考地址</a><br>截图来自<a href="https://blog.csdn.net/levy_cui/article/details/51143092" target="_blank" rel="noopener">CSDN</a><br><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/%E5%AE%98%E7%BD%91%E8%A1%A81.jpg" alt=""><br><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/%E5%AE%98%E7%BD%91%E8%A1%A82.jpg" alt=""></p>
 
             </div>
             <hr/>
@@ -666,7 +667,7 @@ CDH版本更新比Apache版本慢。
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/08/06/Centos7安装VNC服务/">
+                <a href="/2019/08/06/Centos7%E5%AE%89%E8%A3%85VNC%E6%9C%8D%E5%8A%A1/">
                     <div class="card-image">
                         
                         <img src="http://47.106.179.244/logo/linux.jpg" class="responsive-img" alt="Centos7安装VNC服务">
@@ -718,7 +719,7 @@ CDH版本更新比Apache版本慢。
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/05/15/文档网站生成工具选型/">
+                <a href="/2019/05/15/%E6%96%87%E6%A1%A3%E7%BD%91%E7%AB%99%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7%E9%80%89%E5%9E%8B/">
                     <div class="card-image">
                         
                         
@@ -741,7 +742,7 @@ CDH版本更新比Apache版本慢。
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/部署/" class="post-category" target="_blank">
+                            <a href="/categories/%E9%83%A8%E7%BD%B2/" class="post-category" target="_blank">
                                     部署
                                 </a>
                             
@@ -752,11 +753,11 @@ CDH版本更新比Apache版本慢。
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/文档/" target="_blank">
+                    <a href="/tags/%E6%96%87%E6%A1%A3/" target="_blank">
                         <span class="chip bg-color">文档</span>
                     </a>
                     
-                    <a href="/tags/网站生成工具/" target="_blank">
+                    <a href="/tags/%E7%BD%91%E7%AB%99%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/" target="_blank">
                         <span class="chip bg-color">网站生成工具</span>
                     </a>
                     
@@ -884,7 +885,7 @@ CDH版本更新比Apache版本慢。
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">68.0k</span>
+                <span class="white-color">75k</span>
             
 
             

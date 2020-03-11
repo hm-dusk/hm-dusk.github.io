@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 
 
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
     <meta charset="utf-8">
     <meta name="keywords" content="MySQL笔记, 博客,貍铭">
     <meta name="description" content="一、常见数据库Oracle：甲骨文（占有率最高）DB2：IBMSQL Server：微软Sybase：赛尔斯MySQL：甲骨文
@@ -36,6 +36,7 @@ DDL：数据库或">
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="貍铭的博客" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-xonokai.css" type="text/css"></head>
 
 
@@ -400,7 +401,7 @@ DDL：数据库或">
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/数据库/" class="post-category" target="_blank">
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category" target="_blank">
                                 数据库
                             </a>
                         
@@ -419,7 +420,7 @@ DDL：数据库或">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        4,781
+                        4.8k
                     </div>
                     
 
@@ -443,7 +444,7 @@ DDL：数据库或">
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="一、常见数据库"><a href="#一、常见数据库" class="headerlink" title="一、常见数据库"></a>一、常见数据库</h2><p>Oracle：甲骨文（占有率最高）<br>DB2：IBM<br>SQL Server：微软<br>Sybase：赛尔斯<br>MySQL：甲骨文</p>
-<h2 id="二、RDBMS（关系型数据库管理系统）"><a href="#二、RDBMS（关系型数据库管理系统）" class="headerlink" title="二、RDBMS（关系型数据库管理系统）"></a>二、RDBMS（关系型数据库管理系统）</h2><p><img src="http://47.106.179.244/mysql%E7%AC%94%E8%AE%B0/RDBMS.png" alt><br><img src="http://47.106.179.244/mysql%E7%AC%94%E8%AE%B0/DATABASE.png" alt><br>表结构：<br><img src="http://47.106.179.244/mysql%E7%AC%94%E8%AE%B0/%E8%A1%A8%E7%BB%93%E6%9E%84.png" alt></p>
+<h2 id="二、RDBMS（关系型数据库管理系统）"><a href="#二、RDBMS（关系型数据库管理系统）" class="headerlink" title="二、RDBMS（关系型数据库管理系统）"></a>二、RDBMS（关系型数据库管理系统）</h2><p><img src="http://47.106.179.244/mysql%E7%AC%94%E8%AE%B0/RDBMS.png" alt=""><br><img src="http://47.106.179.244/mysql%E7%AC%94%E8%AE%B0/DATABASE.png" alt=""><br>表结构：<br><img src="http://47.106.179.244/mysql%E7%AC%94%E8%AE%B0/%E8%A1%A8%E7%BB%93%E6%9E%84.png" alt=""></p>
 <h2 id="三、SQL（结构化查询语句）"><a href="#三、SQL（结构化查询语句）" class="headerlink" title="三、SQL（结构化查询语句）"></a>三、SQL（结构化查询语句）</h2><p>SQL语句分类：</p>
 <ol>
 <li>DDL：数据库或表的结构操作 <code>（重点）</code></li>
@@ -581,6 +582,7 @@ DDL：数据库或">
 </ol>
 <h3 id="三、聚合函数"><a href="#三、聚合函数" class="headerlink" title="三、聚合函数"></a>三、聚合函数</h3><blockquote>
 <p> <em>聚合函数用来做某列的纵向运算。</em></p>
+</blockquote>
 <ol>
 <li>COUNT<br><code>SELECT COUNT(*) FROM emp;</code><br>–&gt; 计算emp表中所有列都不为NULL的记录的行数<br><code>SELECT COUNT(comm) FROM emp;</code><br>–&gt; 云计算emp表中comm列不为NULL的记录的行数</li>
 <li>MAX<br><code>SELECT MAX(sal) FROM emp;</code><br>–&gt; 查询最高工资</li>
@@ -588,7 +590,6 @@ DDL：数据库或">
 <li>SUM<br><code>SELECT SUM(sal) FROM emp;</code><br>–&gt; 查询工资合</li>
 <li>AVG<br><code>SELECT AVG(sal) FROM emp;</code><br>–&gt; 查询平均工资</li>
 </ol>
-</blockquote>
 <h3 id="四、分组查询"><a href="#四、分组查询" class="headerlink" title="四、分组查询"></a>四、分组查询</h3><blockquote>
 <p>分组查询是把记录使用某一列进行分组，然后查询组信息。<br>  例如：查看所有部门的记录数。<br>  <code>SELECT deptno, COUNT(*) FROM emp GROUP BY deptno;</code><br>  –&gt; 使用deptno分组，查询部门编号和每个部门的记录数<br>  <code>SELECT job, MAX(SAL) FROM emp GROUP BY job;</code><br>  –&gt; 使用job分组，查询每种工作的最高工资</p>
 </blockquote>
@@ -707,12 +708,12 @@ gender    <span class="token keyword">VARCHAR</span><span class="token punctuati
 <p><code>关系模型：在数据库中表！！！</code></p>
 <blockquote>
 <p>当我们要完成一个软件系统时，需要把系统中的实体抽取出来，形成概念模型。<br>  例如部门、员工都是系统中的实体。概念模型中的实体最终会成为Java中的类、数据库中表。<br>  实体之间还存在着关系，关系有三种：</p>
+</blockquote>
 <ul>
 <li>1对多：例如每个员工都从属一个部门，而一个部门可以有多个员工，其中员工是多方，而部门是一方。</li>
 <li>1对1：例如老公和老婆就是一对一的关系，一个老公只能有一个老婆，而一个老婆只能有一个老公。</li>
 <li>多对多：老师与学生的关系就是多对多，一个老师可以有多个学生，一个学生可以有多个老师。</li>
 </ul>
-</blockquote>
 <p><code>概念模型：在Java中成为实体类（javaBean）</code></p>
 <blockquote>
 <p>  类就使用成员变量来完成关系，一般都是双向关联！<br>  多对一双向中关联，即员工关联部门，部门也关联员工</p>
@@ -766,21 +767,29 @@ class Department {<span class="token comment" spellcheck="true">//一方关联�
 <blockquote>
 <p>emp表中的deptno列的值表示当前员工所从属的部门编号。也就是说emp.deptno必须在dept表中是真实存在！<br>  但是我们必须要去对它进行约束，不然可能会出现员工所属的部门编号是不存在的。这种约束就是外键约束。<br>  我们需要给emp.deptno添加外键约束，约束它的值必须在dept.deptno中存在。外键必须是另一个表的主键！<br>语法：<code>CONSTRAINT 约束名称 FOREIGN KEY(外键列名) REFERENCES 关联表(关联表的主键)</code></p>
 <ul>
-<li>创建表时指定外键约束<pre class=" language-sql"><code class="language-sql"><span class="token keyword">create</span> talbe emp <span class="token punctuation">(</span>
-  empno <span class="token keyword">int</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span>
-  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-  deptno <span class="token keyword">int</span><span class="token punctuation">,</span>
-  <span class="token keyword">CONSTRAINT</span> fk_emp <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span><span class="token punctuation">(</span>mgr<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> emp<span class="token punctuation">(</span>empno<span class="token punctuation">)</span> 
-<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-</li>
-<li>修改表时添加外键约束<pre class=" language-sql"><code class="language-sql">ALERT <span class="token keyword">TABLE</span> emp
-<span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> fk_emp_deptno <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span><span class="token punctuation">(</span>deptno<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> dept<span class="token punctuation">(</span>deptno<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-</li>
-<li>修改表时删除外键约束<pre class=" language-sql"><code class="language-sql"><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> emp
-<span class="token keyword">DROP</span> <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> fk_emp_deptno<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*约束名称*/</span></code></pre>
-</li>
+<li>创建表时指定外键约束</li>
 </ul>
 </blockquote>
+<pre class=" language-sql"><code class="language-sql">  <span class="token keyword">create</span> talbe emp <span class="token punctuation">(</span>
+    empno <span class="token keyword">int</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    deptno <span class="token keyword">int</span><span class="token punctuation">,</span>
+    <span class="token keyword">CONSTRAINT</span> fk_emp <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span><span class="token punctuation">(</span>mgr<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> emp<span class="token punctuation">(</span>empno<span class="token punctuation">)</span> 
+  <span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<blockquote>
+<ul>
+<li>修改表时添加外键约束</li>
+</ul>
+</blockquote>
+<pre class=" language-sql"><code class="language-sql">  ALERT <span class="token keyword">TABLE</span> emp
+  <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> fk_emp_deptno <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span><span class="token punctuation">(</span>deptno<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> dept<span class="token punctuation">(</span>deptno<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<blockquote>
+<ul>
+<li>修改表时删除外键约束</li>
+</ul>
+</blockquote>
+<pre class=" language-sql"><code class="language-sql">  <span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> emp
+  <span class="token keyword">DROP</span> <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> fk_emp_deptno<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*约束名称*/</span></code></pre>
 <h2 id="十五、数据库关系"><a href="#十五、数据库关系" class="headerlink" title="十五、数据库关系"></a>十五、数据库关系</h2><p><em>1.一对一关系</em><br>在表中建立一对一关系比较特殊，需要让其中一张表的主键，<code>即是主键又是外键</code>。</p>
 <pre class=" language-sql"><code class="language-sql">  <span class="token keyword">create</span> <span class="token keyword">table</span> husband<span class="token punctuation">(</span>
     hid <span class="token keyword">int</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span><span class="token punctuation">,</span>
@@ -811,13 +820,13 @@ class Department {<span class="token comment" spellcheck="true">//一方关联�
   <span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <blockquote>
 <p>这时在stu_tea这个中间表中的每条记录都是来说明student和teacher表的关系<br>例如在stu_tea表中的记录：sid为1001，tid为2001，这说明编号为1001的学生有一个编号为2001的老师</p>
+</blockquote>
 <pre class=" language-sql"><code class="language-sql">  sid    tid
   <span class="token number">101</span>    <span class="token number">201</span> <span class="token comment" spellcheck="true">/*编号为101的学生有一个编号为201的老师*/</span>
   <span class="token number">101</span>    <span class="token number">202</span> <span class="token comment" spellcheck="true">/*编号为101的学生有一个编号为202的老师*/</span>
   <span class="token number">101</span>    <span class="token number">203</span> <span class="token comment" spellcheck="true">/*编号为101的学生有一个编号为203的老师*/</span>
   <span class="token number">102</span>    <span class="token number">201</span> <span class="token comment" spellcheck="true">/*编号为102的学生有一个编号为201的老师*/</span>
   <span class="token number">102</span>    <span class="token number">204</span> <span class="token comment" spellcheck="true">/*编号为102的学生有一个编号为204的老师*/</span></code></pre>
-</blockquote>
 <h2 id="十六、多表查询"><a href="#十六、多表查询" class="headerlink" title="十六、多表查询"></a>十六、多表查询</h2><p>分类：</p>
 <ul>
 <li>合并结果集(了解)</li>
@@ -948,7 +957,7 @@ class Department {<span class="token comment" spellcheck="true">//一方关联�
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2017/07/19/Java遍历Map的几种方式/">
+                <a href="/2017/07/19/Java%E9%81%8D%E5%8E%86Map%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/">
                     <div class="card-image">
                         
                         <img src="http://47.106.179.244/logo/java.jpg" class="responsive-img" alt="Java遍历Map的几种方式">
@@ -981,11 +990,11 @@ class Department {<span class="token comment" spellcheck="true">//一方关联�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/集合/" target="_blank">
+                    <a href="/tags/%E9%9B%86%E5%90%88/" target="_blank">
                         <span class="chip bg-color">集合</span>
                     </a>
                     
-                    <a href="/tags/遍历/" target="_blank">
+                    <a href="/tags/%E9%81%8D%E5%8E%86/" target="_blank">
                         <span class="chip bg-color">遍历</span>
                     </a>
                     
@@ -1000,7 +1009,7 @@ class Department {<span class="token comment" spellcheck="true">//一方关联�
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2017/07/17/代码警告/">
+                <a href="/2017/07/17/%E4%BB%A3%E7%A0%81%E8%AD%A6%E5%91%8A/">
                     <div class="card-image">
                         
                         <img src="http://47.106.179.244/logo/java.jpg" class="responsive-img" alt="那些年经历过的编码警告">
@@ -1033,7 +1042,7 @@ class Department {<span class="token comment" spellcheck="true">//一方关联�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/代码规范/" target="_blank">
+                    <a href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" target="_blank">
                         <span class="chip bg-color">代码规范</span>
                     </a>
                     
@@ -1161,7 +1170,7 @@ class Department {<span class="token comment" spellcheck="true">//一方关联�
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">68.0k</span>
+                <span class="white-color">75k</span>
             
 
             

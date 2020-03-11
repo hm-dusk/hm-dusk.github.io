@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 
 
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
     <meta charset="utf-8">
     <meta name="keywords" content="安装SandBox HDP（Docker版）, 博客,貍铭">
     <meta name="description" content="参考官网教程：Deploying Hortonworks Sandbox on Docker
@@ -50,6 +50,7 @@ docker镜像目录至少30G（s">
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="貍铭的博客" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-xonokai.css" type="text/css"></head>
 
 
@@ -402,7 +403,7 @@ docker镜像目录至少30G（s">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/大数据/" target="_blank">
+                            <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" target="_blank">
                                 <span class="chip bg-color">大数据</span>
                             </a>
                         
@@ -426,7 +427,7 @@ docker镜像目录至少30G（s">
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/大数据/" class="post-category" target="_blank">
+                            <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category" target="_blank">
                                 大数据
                             </a>
                         
@@ -445,14 +446,14 @@ docker镜像目录至少30G（s">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        974
+                        971
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        5 分
+                        4 分
                     </div>
                     
                 
@@ -489,7 +490,7 @@ docker镜像目录至少30G（s">
 <td align="center">docker镜像目录至少30G（sandbox镜像27.5G）</td>
 </tr>
 </tbody></table>
-<h3 id="下载脚本文件"><a href="#下载脚本文件" class="headerlink" title="下载脚本文件"></a>下载脚本文件</h3><p>到<a href="https://hortonworks.com/downloads/#sandbox" target="_blank" rel="noopener">官网</a>下载zip格式的shell脚本文件<br><img src="http://47.106.179.244/%E5%AE%89%E8%A3%85sandbox-docker/docker%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD.png" alt="脚本下载"><br>下载可能需要注册，随便填就行了。压缩包内容如下：<br><img src="http://47.106.179.244/%E5%AE%89%E8%A3%85sandbox-docker/docker%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E9%A2%84%E8%A7%88.png" alt><img src="http://47.106.179.244/%E5%AE%89%E8%A3%85sandbox-docker/docker%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E9%A2%84%E8%A7%882.png" alt><br>需要将脚本上传到Linux并解压</p>
+<h3 id="下载脚本文件"><a href="#下载脚本文件" class="headerlink" title="下载脚本文件"></a>下载脚本文件</h3><p>到<a href="https://hortonworks.com/downloads/#sandbox" target="_blank" rel="noopener">官网</a>下载zip格式的shell脚本文件<br><img src="http://47.106.179.244/%E5%AE%89%E8%A3%85sandbox-docker/docker%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD.png" alt="脚本下载"><br>下载可能需要注册，随便填就行了。压缩包内容如下：<br><img src="http://47.106.179.244/%E5%AE%89%E8%A3%85sandbox-docker/docker%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E9%A2%84%E8%A7%88.png" alt="">)<img src="http://47.106.179.244/%E5%AE%89%E8%A3%85sandbox-docker/docker%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E9%A2%84%E8%A7%882.png" alt=""><br>需要将脚本上传到Linux并解压</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@sandbox opt<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ls</span>
 assets  docker-deploy-hdp30.sh</code></pre>
 <h3 id="执行脚本"><a href="#执行脚本" class="headerlink" title="执行脚本"></a>执行脚本</h3><h4 id="1-在Linux中执行docker-deploy-hdp30-sh脚本，拉取镜像，运行容器"><a href="#1-在Linux中执行docker-deploy-hdp30-sh脚本，拉取镜像，运行容器" class="headerlink" title="1. 在Linux中执行docker-deploy-hdp30.sh脚本，拉取镜像，运行容器"></a>1. 在Linux中执行<code>docker-deploy-hdp30.sh</code>脚本，拉取镜像，运行容器</h4><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@sandbox opt<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># sh docker-deploy-hdp30.sh </span>
@@ -574,7 +575,7 @@ c1f52cfec560982477e4b6c69f4cc95309bd93907196761ed5eff7222744743e</code></pre>
 <blockquote>
 <p>注意：镜像文件特别大，国内拉取非常慢，可通过代理等方式拉取。</p>
 </blockquote>
-<h4 id="2-使用docker-ps查看生成的容器"><a href="#2-使用docker-ps查看生成的容器" class="headerlink" title="2. 使用docker ps查看生成的容器"></a>2. 使用<code>docker ps</code>查看生成的容器</h4><p><img src="http://47.106.179.244/%E5%AE%89%E8%A3%85sandbox-docker/docker-ps-hdp-output.jpg" alt><br>可以看到有两个容器生成正在运行<br><code>sandbox-proxy</code>容器负责将HDP中的各个端口映射到主机上<br><code>sandbox-hdp</code>则是HDP主要环境的容器，所有的hdp组件都是在这个容器里面运行</p>
+<h4 id="2-使用docker-ps查看生成的容器"><a href="#2-使用docker-ps查看生成的容器" class="headerlink" title="2. 使用docker ps查看生成的容器"></a>2. 使用<code>docker ps</code>查看生成的容器</h4><p><img src="http://47.106.179.244/%E5%AE%89%E8%A3%85sandbox-docker/docker-ps-hdp-output.jpg" alt=""><br>可以看到有两个容器生成正在运行<br><code>sandbox-proxy</code>容器负责将HDP中的各个端口映射到主机上<br><code>sandbox-hdp</code>则是HDP主要环境的容器，所有的hdp组件都是在这个容器里面运行</p>
 <h4 id="3-执行完脚本，相应的目录下会生成一个文件sandbox-flavor和一个文件夹sandbox"><a href="#3-执行完脚本，相应的目录下会生成一个文件sandbox-flavor和一个文件夹sandbox" class="headerlink" title="3. 执行完脚本，相应的目录下会生成一个文件sandbox-flavor和一个文件夹sandbox"></a>3. 执行完脚本，相应的目录下会生成一个文件<code>sandbox-flavor</code>和一个文件夹<code>sandbox</code></h4><pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@centos4 opt<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ls</span>
 assets  docker-deploy-hdp30.sh  sandbox  sandbox-flavor</code></pre>
 <h4 id="4-脚本文件只需要执行一次，如果需要停止或重启HDP环境，只需要停止-重启相应的docker容器"><a href="#4-脚本文件只需要执行一次，如果需要停止或重启HDP环境，只需要停止-重启相应的docker容器" class="headerlink" title="4. 脚本文件只需要执行一次，如果需要停止或重启HDP环境，只需要停止/重启相应的docker容器"></a>4. 脚本文件只需要执行<code>一次</code>，如果需要停止或重启HDP环境，只需要停止/重启相应的docker容器</h4><p>停止HDP集群</p>
@@ -659,7 +660,7 @@ nginx: <span class="token punctuation">[</span>emerg<span class="token punctuati
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/04/02/安装SandBox-HDP（VMware版）/">
+                <a href="/2019/04/02/%E5%AE%89%E8%A3%85SandBox-HDP%EF%BC%88VMware%E7%89%88%EF%BC%89/">
                     <div class="card-image">
                         
                         <img src="http://47.106.179.244/logo/sandbox+vmware.png" class="responsive-img" alt="安装SandBox HDP（VMware版）">
@@ -681,7 +682,7 @@ nginx: <span class="token punctuation">[</span>emerg<span class="token punctuati
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/大数据/" class="post-category" target="_blank">
+                            <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category" target="_blank">
                                     大数据
                                 </a>
                             
@@ -692,7 +693,7 @@ nginx: <span class="token punctuation">[</span>emerg<span class="token punctuati
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/大数据/" target="_blank">
+                    <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" target="_blank">
                         <span class="chip bg-color">大数据</span>
                     </a>
                     
@@ -704,7 +705,7 @@ nginx: <span class="token punctuation">[</span>emerg<span class="token punctuati
                         <span class="chip bg-color">SandBox</span>
                     </a>
                     
-                    <a href="/tags/虚拟机/" target="_blank">
+                    <a href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/" target="_blank">
                         <span class="chip bg-color">虚拟机</span>
                     </a>
                     
@@ -723,7 +724,7 @@ nginx: <span class="token punctuation">[</span>emerg<span class="token punctuati
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/03/29/Linux制作离线yum源/">
+                <a href="/2019/03/29/Linux%E5%88%B6%E4%BD%9C%E7%A6%BB%E7%BA%BFyum%E6%BA%90/">
                     <div class="card-image">
                         
                         <img src="http://47.106.179.244/logo/linux.jpg" class="responsive-img" alt="Linux制作离线yum源">
@@ -764,7 +765,7 @@ nginx: <span class="token punctuation">[</span>emerg<span class="token punctuati
                         <span class="chip bg-color">yum</span>
                     </a>
                     
-                    <a href="/tags/离线/" target="_blank">
+                    <a href="/tags/%E7%A6%BB%E7%BA%BF/" target="_blank">
                         <span class="chip bg-color">离线</span>
                     </a>
                     
@@ -892,7 +893,7 @@ nginx: <span class="token punctuation">[</span>emerg<span class="token punctuati
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">68.0k</span>
+                <span class="white-color">75k</span>
             
 
             

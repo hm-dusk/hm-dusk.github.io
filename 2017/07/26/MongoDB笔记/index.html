@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 
 
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
     <meta charset="utf-8">
     <meta name="keywords" content="MongoDB笔记, 博客,貍铭">
     <meta name="description" content="一、Mongo数据库为NoSQL数据库
@@ -61,6 +61,7 @@ Object ID（自动维护）
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="貍铭的博客" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-xonokai.css" type="text/css"></head>
 
 
@@ -425,7 +426,7 @@ Object ID（自动维护）
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/数据库/" class="post-category" target="_blank">
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category" target="_blank">
                                 数据库
                             </a>
                         
@@ -444,14 +445,14 @@ Object ID（自动维护）
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        4,292
+                        4.7k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        16 分
+                        19 分
                     </div>
                     
                 
@@ -564,7 +565,7 @@ db<span class="token punctuation">.</span>dept<span class="token punctuation">.<
 db.dept.find( {&quot;url&quot;:&quot;hm-dusk.github.io&quot;},{&quot;_id&quot;:0} );
 db.dept.find( {&quot;url&quot;:&quot;hm-dusk.github.io&quot;},{&quot;_id&quot;:0,&quot;url&quot;:1} );</code></pre><p>大部分的情况下，这种投影操作的意义不大。同时对于数据的查询也可以使用“pretty()”函数进行漂亮显示。</p>
 <pre><code>db.dept.find( {&quot;url&quot;:&quot;hm-dusk.github.io&quot;},{&quot;_id&quot;:0} ).pretty();</code></pre><p>范例：查询单个数据</p>
-<pre><code>db.dept.findOne( {&quot;url&quot;:&quot;hm-dusk.github.io&quot;},{&quot;_id&quot;:0} );</code></pre><h3 id="关系运算"><a href="#关系运算" class="headerlink" title="关系运算"></a>关系运算</h3><p>在MongoDB里面支持的关系查询操作：大于（<code>$gt</code>）、小于（<code>$lt</code>）、大于等于（<code>$gte</code>）、小于等于（<code>$lte</code>）、不等于（<code>$ne</code>）、等于（<code>key:value</code>、<code>$eq</code>）。但是要想让这些操作可以正常使用，那么需要准备出一个数据集合。<br><img src="http://47.106.179.244/mongodb%E7%AC%94%E8%AE%B0/%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE%E9%9B%86%E5%90%88.JPG" alt></p>
+<pre><code>db.dept.findOne( {&quot;url&quot;:&quot;hm-dusk.github.io&quot;},{&quot;_id&quot;:0} );</code></pre><h3 id="关系运算"><a href="#关系运算" class="headerlink" title="关系运算"></a>关系运算</h3><p>在MongoDB里面支持的关系查询操作：大于（<code>$gt</code>）、小于（<code>$lt</code>）、大于等于（<code>$gte</code>）、小于等于（<code>$lte</code>）、不等于（<code>$ne</code>）、等于（<code>key:value</code>、<code>$eq</code>）。但是要想让这些操作可以正常使用，那么需要准备出一个数据集合。<br><img src="http://47.106.179.244/mongodb%E7%AC%94%E8%AE%B0/%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE%E9%9B%86%E5%90%88.JPG" alt=""></p>
 <p>范例：查询姓名是张三的信息</p>
 <pre><code>db.students.find({&quot;name&quot;:&quot;张三&quot;}).pretty();</code></pre><p>范例：查询性别是男的信息</p>
 <pre><code>db.students.find({&quot;sex&quot;:&quot;男&quot;}).pretty();</code></pre><p>范例：查询年龄大于19岁的学生</p>
@@ -594,7 +595,7 @@ db.dept.find( {&quot;url&quot;:&quot;hm-dusk.github.io&quot;},{&quot;_id&quot;:0
 <pre><code>db.students.find({&quot;name&quot;: {&quot;$in&quot;:[&quot;张三&quot;,&quot;李四&quot;,&quot;王五&quot;]} }).pretty();</code></pre><p>范例：不在范围</p>
 <pre><code>db.students.find({&quot;name&quot;: {&quot;$nin&quot;:[&quot;张三&quot;,&quot;李四&quot;,&quot;王五&quot;]} }).pretty();</code></pre><p><em>在实际的工作之中，范围的操作很重要。</em></p>
 <h3 id="数组查询"><a href="#数组查询" class="headerlink" title="数组查询"></a>数组查询</h3><p>首先在mongoDB里面是支持数组保存的，一旦支持了数组保存，就需要针对于数组的数据进行匹配。</p>
-<p>范例：保存一部分数组内容<br><img src="http://47.106.179.244/mongodb%E7%AC%94%E8%AE%B0/%E6%95%B0%E7%BB%84%E6%95%B0%E6%8D%AE%E9%9B%86%E5%90%88.JPG" alt><br>此时的数据包含有数组内容，而后需要针对于数组数据进行判断，可以使用几个运算符：<code>$all</code>、<code>$size</code>、<code>$slice</code>、<code>$elemMatch</code>。</p>
+<p>范例：保存一部分数组内容<br><img src="http://47.106.179.244/mongodb%E7%AC%94%E8%AE%B0/%E6%95%B0%E7%BB%84%E6%95%B0%E6%8D%AE%E9%9B%86%E5%90%88.JPG" alt=""><br>此时的数据包含有数组内容，而后需要针对于数组数据进行判断，可以使用几个运算符：<code>$all</code>、<code>$size</code>、<code>$slice</code>、<code>$elemMatch</code>。</p>
 <p>范例：查询同时参加语文和数学课程的学生<br>现在两个数组内容都需要保存，所以使用“<code>{&quot;$all&quot;,[内容1,内容2,..]}</code>”</p>
 <pre><code>db.students.find({&quot;course&quot;: {&quot;$all&quot;: [&quot;语文&quot;,&quot;数学&quot;]} }).pretty();</code></pre><p>现在所有显示的学生信息里面包含语文和数学的内容，而如果差一个内容的不会显示。</p>
 <blockquote>
@@ -614,7 +615,7 @@ db.dept.find( {&quot;url&quot;:&quot;hm-dusk.github.io&quot;},{&quot;_id&quot;:0
 <p>在此时设置的两个数据里面第一个数据表示跳过的数据量，而第二个数据表示返回的数量。</p>
 </blockquote>
 <h3 id="嵌套集合运算"><a href="#嵌套集合运算" class="headerlink" title="嵌套集合运算"></a>嵌套集合运算</h3><p>在MongoDB数据里面每一个集合数据可以继续保存其它的集合数据，例如：有些学生需要保存家长信息。</p>
-<p>范例：增加数据<br><img src="http://47.106.179.244/mongodb%E7%AC%94%E8%AE%B0/%E5%B5%8C%E5%A5%97%E6%95%B0%E6%8D%AE%E9%9B%86%E5%90%88.JPG" alt><br>此时给出的内容是嵌套的集合，而这种集合的数据的判断只能够通过“<code>$elemMatch</code>”完成。</p>
+<p>范例：增加数据<br><img src="http://47.106.179.244/mongodb%E7%AC%94%E8%AE%B0/%E5%B5%8C%E5%A5%97%E6%95%B0%E6%8D%AE%E9%9B%86%E5%90%88.JPG" alt=""><br>此时给出的内容是嵌套的集合，而这种集合的数据的判断只能够通过“<code>$elemMatch</code>”完成。</p>
 <p>范例：查询出年龄大于等于19岁且父母有人是局长的信息</p>
 <pre><code>db.students.find(
     {&quot;$and&quot;:[
@@ -790,7 +791,7 @@ db.students.find({&quot;course&quot;: /语/ }).pretty();</code></pre><blockquote
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2017/07/29/MongoDB的安装以及MongoDB-Replicat-Set复制集的搭建/">
+                <a href="/2017/07/29/MongoDB%E7%9A%84%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8AMongoDB-Replicat-Set%E5%A4%8D%E5%88%B6%E9%9B%86%E7%9A%84%E6%90%AD%E5%BB%BA/">
                     <div class="card-image">
                         
                         <img src="http://47.106.179.244/logo/mongodb.png" class="responsive-img" alt="MongoDB的安装以及MongoDB Replicat Set复制集的搭建">
@@ -812,7 +813,7 @@ db.students.find({&quot;course&quot;: /语/ }).pretty();</code></pre><blockquote
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/数据库/" class="post-category" target="_blank">
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category" target="_blank">
                                     数据库
                                 </a>
                             
@@ -842,7 +843,7 @@ db.students.find({&quot;course&quot;: /语/ }).pretty();</code></pre><blockquote
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2017/07/26/Vim程式编辑器/">
+                <a href="/2017/07/26/Vim%E7%A8%8B%E5%BC%8F%E7%BC%96%E8%BE%91%E5%99%A8/">
                     <div class="card-image">
                         
                         <img src="http://47.106.179.244/logo/vim.jpg" class="responsive-img" alt="Vim程式编辑器">
@@ -879,7 +880,7 @@ db.students.find({&quot;course&quot;: /语/ }).pretty();</code></pre><blockquote
                         <span class="chip bg-color">Linux</span>
                     </a>
                     
-                    <a href="/tags/编辑器/" target="_blank">
+                    <a href="/tags/%E7%BC%96%E8%BE%91%E5%99%A8/" target="_blank">
                         <span class="chip bg-color">编辑器</span>
                     </a>
                     
@@ -1007,7 +1008,7 @@ db.students.find({&quot;course&quot;: /语/ }).pretty();</code></pre><blockquote
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">68.0k</span>
+                <span class="white-color">75k</span>
             
 
             

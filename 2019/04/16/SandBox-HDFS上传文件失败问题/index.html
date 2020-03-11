@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 
 
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
     <meta charset="utf-8">
     <meta name="keywords" content="SandBox HDFS上传文件失败问题, 博客,貍铭">
     <meta name="description" content="问题描述远程（非Docker容器内、非宿主机）上传文件，新建文件成功，写入文件内容失败。查看/var/log/hadoop/hdfs/hadoop-hdfs-namenode-sandbox-hdp.hortonworks.com.log文">
@@ -32,6 +32,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="貍铭的博客" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-xonokai.css" type="text/css"></head>
 
 
@@ -384,7 +385,7 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/大数据/" target="_blank">
+                            <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" target="_blank">
                                 <span class="chip bg-color">大数据</span>
                             </a>
                         
@@ -408,7 +409,7 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/大数据/" class="post-category" target="_blank">
+                            <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category" target="_blank">
                                 大数据
                             </a>
                         
@@ -427,14 +428,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        2,445
+                        2.4k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        13 分
+                        12 分
                     </div>
                     
                 
@@ -479,10 +480,7 @@ java.io.IOException: File /tmp/1.csv could only be written to 0 of the 1 minRepl
 conf<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">"fs.defaultFS"</span><span class="token punctuation">,</span> <span class="token string">"hdfs://10.75.4.32:8020/"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">//增加下面一行，设置返回DataNode的主机名而不是ip</span>
 conf<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">"dfs.client.use.datanode.hostname"</span><span class="token punctuation">,</span><span class="token string">"true"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p>此时还是不能访问到DataNode，因为<code>sandbox-proxy</code>容器并没有映射DataNode的端口（默认为<code>50010</code>）。</p>
-<ol start="3">
-<li>修改<code>sandbox-proxy</code>端口映射，增加<code>50010</code>端口<br>停止、删除<code>sandbox-proxy</code>容器</li>
-</ol>
+<p>此时还是不能访问到DataNode，因为<code>sandbox-proxy</code>容器并没有映射DataNode的端口（默认为<code>50010</code>）。<br>3. 修改<code>sandbox-proxy</code>端口映射，增加<code>50010</code>端口<br>停止、删除<code>sandbox-proxy</code>容器</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@sandbox-host ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker stop sandbox-proxy</span>
 sandbox-proxy
 <span class="token punctuation">[</span>root@sandbox-host ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># docker rm sandbox-proxy</span>
@@ -790,7 +788,7 @@ DB configs consistency check: no errors and warnings were found.</code></pre>
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/05/15/文档网站生成工具选型/">
+                <a href="/2019/05/15/%E6%96%87%E6%A1%A3%E7%BD%91%E7%AB%99%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7%E9%80%89%E5%9E%8B/">
                     <div class="card-image">
                         
                         
@@ -813,7 +811,7 @@ DB configs consistency check: no errors and warnings were found.</code></pre>
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/部署/" class="post-category" target="_blank">
+                            <a href="/categories/%E9%83%A8%E7%BD%B2/" class="post-category" target="_blank">
                                     部署
                                 </a>
                             
@@ -824,11 +822,11 @@ DB configs consistency check: no errors and warnings were found.</code></pre>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/文档/" target="_blank">
+                    <a href="/tags/%E6%96%87%E6%A1%A3/" target="_blank">
                         <span class="chip bg-color">文档</span>
                     </a>
                     
-                    <a href="/tags/网站生成工具/" target="_blank">
+                    <a href="/tags/%E7%BD%91%E7%AB%99%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/" target="_blank">
                         <span class="chip bg-color">网站生成工具</span>
                     </a>
                     
@@ -843,7 +841,7 @@ DB configs consistency check: no errors and warnings were found.</code></pre>
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/04/04/SandBox-HDP使用详解/">
+                <a href="/2019/04/04/SandBox-HDP%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/">
                     <div class="card-image">
                         
                         <img src="http://47.106.179.244/logo/sandbox.png" class="responsive-img" alt="SandBox-HDP使用详解">
@@ -865,7 +863,7 @@ DB configs consistency check: no errors and warnings were found.</code></pre>
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/大数据/" class="post-category" target="_blank">
+                            <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category" target="_blank">
                                     大数据
                                 </a>
                             
@@ -876,7 +874,7 @@ DB configs consistency check: no errors and warnings were found.</code></pre>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/大数据/" target="_blank">
+                    <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" target="_blank">
                         <span class="chip bg-color">大数据</span>
                     </a>
                     
@@ -1012,7 +1010,7 @@ DB configs consistency check: no errors and warnings were found.</code></pre>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">68.0k</span>
+                <span class="white-color">75k</span>
             
 
             

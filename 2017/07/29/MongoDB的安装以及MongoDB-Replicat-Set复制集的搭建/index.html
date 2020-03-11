@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 
 
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
     <meta charset="utf-8">
     <meta name="keywords" content="MongoDB的安装以及MongoDB Replicat Set复制集的搭建, 博客,貍铭">
     <meta name="description" content="一、搭建MongoDB单机环境MongoDB 是一个基于分布式文件存储的数据库。由 C++ 语言编写。旨在为 WEB 应用提供可扩展的高性能数据存储解决方案。
@@ -34,6 +34,7 @@ A、使用APT安装参考官方安装文档
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="貍铭的博客" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-xonokai.css" type="text/css"></head>
 
 
@@ -402,7 +403,7 @@ A、使用APT安装参考官方安装文档
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/数据库/" class="post-category" target="_blank">
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category" target="_blank">
                                 数据库
                             </a>
                         
@@ -421,14 +422,14 @@ A、使用APT安装参考官方安装文档
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        2,336
+                        2.3k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        10 分
+                        9 分
                     </div>
                     
                 
@@ -451,7 +452,7 @@ A、使用APT安装参考官方安装文档
 <h4 id="3-重新加载本地源"><a href="#3-重新加载本地源" class="headerlink" title="3. 重新加载本地源"></a>3. 重新加载本地源</h4><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> update</code></pre>
 <h4 id="4-安装mongodb"><a href="#4-安装mongodb" class="headerlink" title="4. 安装mongodb"></a>4. 安装mongodb</h4><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> -y mongodb-org</code></pre>
 <h4 id="5-修改配置文件"><a href="#5-修改配置文件" class="headerlink" title="5. 修改配置文件"></a>5. 修改配置文件</h4><blockquote>
-<p>配置文件默认文件目录/etc/mongod.conf<br>默认存储其数据文件/var/lib/mongodb<br>默认日志文件/var/log/mongodb/mongod.log<br><img src="http://47.106.179.244/mongodb%E5%A4%8D%E5%88%B6%E9%9B%86%E6%90%AD%E5%BB%BA/%E9%BB%98%E8%AE%A4mongodb%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.jpg" alt></p>
+<p>配置文件默认文件目录/etc/mongod.conf<br>默认存储其数据文件/var/lib/mongodb<br>默认日志文件/var/log/mongodb/mongod.log<br><img src="http://47.106.179.244/mongodb%E5%A4%8D%E5%88%B6%E9%9B%86%E6%90%AD%E5%BB%BA/%E9%BB%98%E8%AE%A4mongodb%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.jpg" alt=""></p>
 </blockquote>
 <h4 id="6-启动mongodb"><a href="#6-启动mongodb" class="headerlink" title="6. 启动mongodb"></a>6. 启动mongodb</h4><pre class=" language-bash"><code class="language-bash">mongod -f /etc/mongod.conf</code></pre>
 <h4 id="7-卸载mongodb"><a href="#7-卸载mongodb" class="headerlink" title="7. 卸载mongodb"></a>7. 卸载mongodb</h4><p>1)停止mongodb服务</p>
@@ -570,7 +571,7 @@ db.shutdownServer<span class="token punctuation">(</span><span class="token punc
 <li>查看mongodb的进程，用kill杀掉进程<br><code>不推荐这种方式，会有丢失数据的风险</code></li>
 </ol>
 <hr>
-<h2 id="二、搭建MongoDB-Replicat-Set复制集"><a href="#二、搭建MongoDB-Replicat-Set复制集" class="headerlink" title="二、搭建MongoDB Replicat Set复制集"></a>二、搭建MongoDB Replicat Set复制集</h2><p>MongoDB Replica Set是MongoDB官方推荐的主从复制和高可用方案，用于替代原有的Master-Slave主从复制方案。<br>不懂原理的可以<a href="http://www.linuxidc.com/Linux/2015-02/113296.htm" target="_blank" rel="noopener">点击这里</a>查看复制集原理（<code>推荐了解原理后再搭建</code>）<br><img src="http://47.106.179.244/mongodb%E5%A4%8D%E5%88%B6%E9%9B%86%E6%90%AD%E5%BB%BA/%E5%A4%8D%E5%88%B6%E9%9B%86.jpg" alt></p>
+<h2 id="二、搭建MongoDB-Replicat-Set复制集"><a href="#二、搭建MongoDB-Replicat-Set复制集" class="headerlink" title="二、搭建MongoDB Replicat Set复制集"></a>二、搭建MongoDB Replicat Set复制集</h2><p>MongoDB Replica Set是MongoDB官方推荐的主从复制和高可用方案，用于替代原有的Master-Slave主从复制方案。<br>不懂原理的可以<a href="http://www.linuxidc.com/Linux/2015-02/113296.htm" target="_blank" rel="noopener">点击这里</a>查看复制集原理（<code>推荐了解原理后再搭建</code>）<br><img src="http://47.106.179.244/mongodb%E5%A4%8D%E5%88%B6%E9%9B%86%E6%90%AD%E5%BB%BA/%E5%A4%8D%E5%88%B6%E9%9B%86.jpg" alt=""></p>
 <h3 id="1-搭建环境（电脑配置）"><a href="#1-搭建环境（电脑配置）" class="headerlink" title="1.搭建环境（电脑配置）"></a>1.搭建环境（电脑配置）</h3><p>在需要布置为节点的机器上安装好MongoDB环境，参照上面的教程</p>
 <table>
 <thead>
@@ -786,7 +787,7 @@ mydatabase  <span class="token number">0</span>.000GB</code></pre>
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2017/08/09/HTTP协议/">
+                <a href="/2017/08/09/HTTP%E5%8D%8F%E8%AE%AE/">
                     <div class="card-image">
                         
                         <img src="http://47.106.179.244/logo/http.jpg" class="responsive-img" alt="HTTP协议">
@@ -808,7 +809,7 @@ mydatabase  <span class="token number">0</span>.000GB</code></pre>
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/网络协议/" class="post-category" target="_blank">
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" class="post-category" target="_blank">
                                     网络协议
                                 </a>
                             
@@ -819,7 +820,7 @@ mydatabase  <span class="token number">0</span>.000GB</code></pre>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/网络/" target="_blank">
+                    <a href="/tags/%E7%BD%91%E7%BB%9C/" target="_blank">
                         <span class="chip bg-color">网络</span>
                     </a>
                     
@@ -838,7 +839,7 @@ mydatabase  <span class="token number">0</span>.000GB</code></pre>
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2017/07/26/MongoDB笔记/">
+                <a href="/2017/07/26/MongoDB%E7%AC%94%E8%AE%B0/">
                     <div class="card-image">
                         
                         <img src="http://47.106.179.244/logo/mongodb.png" class="responsive-img" alt="MongoDB笔记">
@@ -860,7 +861,7 @@ mydatabase  <span class="token number">0</span>.000GB</code></pre>
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/数据库/" class="post-category" target="_blank">
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category" target="_blank">
                                     数据库
                                 </a>
                             
@@ -999,7 +1000,7 @@ mydatabase  <span class="token number">0</span>.000GB</code></pre>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">68.0k</span>
+                <span class="white-color">75k</span>
             
 
             

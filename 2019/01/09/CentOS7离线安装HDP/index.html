@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 
 
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
     <meta charset="utf-8">
     <meta name="keywords" content="CentOS7离线安装HDP, 博客,貍铭">
     <meta name="description" content="本文环境
@@ -52,6 +52,7 @@ hdp003
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="貍铭的博客" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-xonokai.css" type="text/css"></head>
 
 
@@ -404,11 +405,11 @@ hdp003
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/大数据/" target="_blank">
+                            <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" target="_blank">
                                 <span class="chip bg-color">大数据</span>
                             </a>
                         
-                            <a href="/tags/离线安装/" target="_blank">
+                            <a href="/tags/%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/" target="_blank">
                                 <span class="chip bg-color">离线安装</span>
                             </a>
                         
@@ -424,7 +425,7 @@ hdp003
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/大数据/" class="post-category" target="_blank">
+                            <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category" target="_blank">
                                 大数据
                             </a>
                         
@@ -443,14 +444,14 @@ hdp003
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        2,532
+                        2.5k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        13 分
+                        12 分
                     </div>
                     
                 
@@ -533,7 +534,7 @@ ambari-2.7.3.0-centos7.tar.gz  HDP-3.1.0.0-centos7-rpm.tar.gz  HDP-UTILS-1.1.0.2
 <span class="token comment" spellcheck="true"># 解压...</span>
 <span class="token punctuation">[</span>root@hdp001 ambari<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ls</span>
 ambari ambari-2.7.3.0-centos7.tar.gz  HDP HDP-3.1.0.0-centos7-rpm.tar.gz  HDP-UTILS HDP-UTILS-1.1.0.22-centos7.tar.gz</code></pre>
-<p>访问服务器80端口相应/ambari/地址，可以访问到文件和文件夹即可<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/httpd%E8%AE%BF%E9%97%AEambari%E5%9C%B0%E5%9D%80.png" alt></p>
+<p>访问服务器80端口相应/ambari/地址，可以访问到文件和文件夹即可<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/httpd%E8%AE%BF%E9%97%AEambari%E5%9C%B0%E5%9D%80.png" alt=""></p>
 <h3 id="制作本地源"><a href="#制作本地源" class="headerlink" title="制作本地源"></a>制作本地源</h3><ol>
 <li><p>修改repo源文件</p>
 <pre class=" language-bash"><code class="language-bash"> <span class="token punctuation">[</span>root@hdp001 ambari<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># vim ambari/centos7/2.7.3.0-139/ambari.repo</span></code></pre>
@@ -707,7 +708,7 @@ Server started listening on 8080
 
 DB configs consistency check: no errors and warnings were found.
 Ambari Server <span class="token string">'start'</span> completed successfully.</code></pre>
-<h4 id="访问服务器8080端口"><a href="#访问服务器8080端口" class="headerlink" title="访问服务器8080端口"></a>访问服务器8080端口</h4><p>默认用户名和密码都为admin<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/ambari%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2.png" alt><br>根据提示安装集群<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E6%A0%B9%E6%8D%AE%E6%8F%90%E7%A4%BA%E5%AE%89%E8%A3%85%E9%9B%86%E7%BE%A4.png" alt><br>设置集群名字，比如my_hadoop<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E4%B8%BA%E9%9B%86%E7%BE%A4%E8%B5%B7%E5%90%8D%E5%AD%97.png" alt><br>选择HDP版本，配置yum源地址<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/HDP%E7%89%88%E6%9C%AC%E9%80%89%E6%8B%A9%E4%B8%8Eyum%E6%BA%90%E5%9C%B0%E5%9D%80%E9%85%8D%E7%BD%AE.png" alt><br>配置host与ssh<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E9%85%8D%E7%BD%AEhost%E4%B8%8Essh.png" alt><br>确认后开始在节点上安装ambari-agent<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/agent%E5%AE%89%E8%A3%85%E9%A1%B5%E9%9D%A2.png" alt></p>
+<h4 id="访问服务器8080端口"><a href="#访问服务器8080端口" class="headerlink" title="访问服务器8080端口"></a>访问服务器8080端口</h4><p>默认用户名和密码都为admin<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/ambari%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2.png" alt=""><br>根据提示安装集群<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E6%A0%B9%E6%8D%AE%E6%8F%90%E7%A4%BA%E5%AE%89%E8%A3%85%E9%9B%86%E7%BE%A4.png" alt=""><br>设置集群名字，比如my_hadoop<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E4%B8%BA%E9%9B%86%E7%BE%A4%E8%B5%B7%E5%90%8D%E5%AD%97.png" alt=""><br>选择HDP版本，配置yum源地址<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/HDP%E7%89%88%E6%9C%AC%E9%80%89%E6%8B%A9%E4%B8%8Eyum%E6%BA%90%E5%9C%B0%E5%9D%80%E9%85%8D%E7%BD%AE.png" alt=""><br>配置host与ssh<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E9%85%8D%E7%BD%AEhost%E4%B8%8Essh.png" alt=""><br>确认后开始在节点上安装ambari-agent<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/agent%E5%AE%89%E8%A3%85%E9%A1%B5%E9%9D%A2.png" alt=""></p>
 <blockquote>
 <p>安装agent时可能报错：</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token punctuation">..</span>.
@@ -728,7 +729,7 @@ connect_retry_delay<span class="token operator">=</span>10
 max_reconnect_retry_delay<span class="token operator">=</span>30
 <span class="token punctuation">..</span>.</code></pre>
 </blockquote>
-<p>ambari-agent安装成功<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/agent%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F.png" alt><br>选择hadoop组件进行安装，建议安装少量组件，之后可以再添加<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E9%80%89%E6%8B%A9%E9%9C%80%E8%A6%81%E5%AE%89%E8%A3%85%E7%9A%84hadoop%E7%BB%84%E4%BB%B6.png" alt><br>选择主节点安装位置（如NameNode）<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E9%80%89%E6%8B%A9%E4%B8%BB%E8%8A%82%E7%82%B9.png" alt><br>选择从节点安装位置（如DataNode）<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E9%80%89%E6%8B%A9%E4%BB%8E%E8%8A%82%E7%82%B9.png" alt><br>进行其他设置（如密码、数据保存路径、用户/用户组、参数配置等）<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E5%85%B6%E4%BB%96%E8%AE%BE%E7%BD%AE1.png" alt><br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E5%85%B6%E4%BB%96%E8%AE%BE%E7%BD%AE2.png" alt><br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E5%85%B6%E4%BB%96%E8%AE%BE%E7%BD%AE3.png" alt><br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E5%85%B6%E4%BB%96%E8%AE%BE%E7%BD%AE4.png" alt><br>配置完成后，查看配置项是否无误，确认无误后点击发布开始安装<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E9%85%8D%E7%BD%AE%E5%AE%8C%E6%88%90%E7%A1%AE%E8%AE%A4%E5%AE%89%E8%A3%85.png" alt><br>等待安装进度完成即可，如果安装过程中出错，可根据报错信息进行修改直到安装成功<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/hadoop%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E8%BF%9B%E5%BA%A6.png" alt></p>
+<p>ambari-agent安装成功<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/agent%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F.png" alt=""><br>选择hadoop组件进行安装，建议安装少量组件，之后可以再添加<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E9%80%89%E6%8B%A9%E9%9C%80%E8%A6%81%E5%AE%89%E8%A3%85%E7%9A%84hadoop%E7%BB%84%E4%BB%B6.png" alt=""><br>选择主节点安装位置（如NameNode）<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E9%80%89%E6%8B%A9%E4%B8%BB%E8%8A%82%E7%82%B9.png" alt=""><br>选择从节点安装位置（如DataNode）<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E9%80%89%E6%8B%A9%E4%BB%8E%E8%8A%82%E7%82%B9.png" alt=""><br>进行其他设置（如密码、数据保存路径、用户/用户组、参数配置等）<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E5%85%B6%E4%BB%96%E8%AE%BE%E7%BD%AE1.png" alt=""><br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E5%85%B6%E4%BB%96%E8%AE%BE%E7%BD%AE2.png" alt=""><br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E5%85%B6%E4%BB%96%E8%AE%BE%E7%BD%AE3.png" alt=""><br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E5%85%B6%E4%BB%96%E8%AE%BE%E7%BD%AE4.png" alt=""><br>配置完成后，查看配置项是否无误，确认无误后点击发布开始安装<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E9%85%8D%E7%BD%AE%E5%AE%8C%E6%88%90%E7%A1%AE%E8%AE%A4%E5%AE%89%E8%A3%85.png" alt=""><br>等待安装进度完成即可，如果安装过程中出错，可根据报错信息进行修改直到安装成功<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/hadoop%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E8%BF%9B%E5%BA%A6.png" alt=""></p>
 <h3 id="使用HDP"><a href="#使用HDP" class="headerlink" title="使用HDP"></a>使用HDP</h3><h4 id="HDP安装路径"><a href="#HDP安装路径" class="headerlink" title="HDP安装路径"></a>HDP安装路径</h4><table>
 <thead>
 <tr>
@@ -819,7 +820,7 @@ max_reconnect_retry_delay<span class="token operator">=</span>30
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/01/12/Maven使用Hortonworks依赖包/">
+                <a href="/2019/01/12/Maven%E4%BD%BF%E7%94%A8Hortonworks%E4%BE%9D%E8%B5%96%E5%8C%85/">
                     <div class="card-image">
                         
                         <img src="http://47.106.179.244/logo/hortonworks.png" class="responsive-img" alt="Maven使用Hortonworks依赖包">
@@ -841,7 +842,7 @@ max_reconnect_retry_delay<span class="token operator">=</span>30
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/大数据/" class="post-category" target="_blank">
+                            <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category" target="_blank">
                                     大数据
                                 </a>
                             
@@ -852,7 +853,7 @@ max_reconnect_retry_delay<span class="token operator">=</span>30
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/大数据/" target="_blank">
+                    <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" target="_blank">
                         <span class="chip bg-color">大数据</span>
                     </a>
                     
@@ -879,7 +880,7 @@ max_reconnect_retry_delay<span class="token operator">=</span>30
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/01/03/Hive2之LLAP搭建/">
+                <a href="/2019/01/03/Hive2%E4%B9%8BLLAP%E6%90%AD%E5%BB%BA/">
                     <div class="card-image">
                         
                         <img src="http://47.106.179.244/logo/hive.png" class="responsive-img" alt="Hive2之LLAP搭建">
@@ -901,7 +902,7 @@ max_reconnect_retry_delay<span class="token operator">=</span>30
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/大数据/" class="post-category" target="_blank">
+                            <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category" target="_blank">
                                     大数据
                                 </a>
                             
@@ -912,7 +913,7 @@ max_reconnect_retry_delay<span class="token operator">=</span>30
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/大数据/" target="_blank">
+                    <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" target="_blank">
                         <span class="chip bg-color">大数据</span>
                     </a>
                     
@@ -1052,7 +1053,7 @@ max_reconnect_retry_delay<span class="token operator">=</span>30
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">68.0k</span>
+                <span class="white-color">75k</span>
             
 
             
