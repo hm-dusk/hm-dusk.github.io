@@ -16,31 +16,25 @@
     <title>标签 | 貍铭的博客</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
 
-    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
     <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
     <link rel="stylesheet" type="text/css" href="/css/matery.css">
     <link rel="stylesheet" type="text/css" href="/css/my.css">
-    <style type="text/css">
-        
-        code[class*="language-"], pre[class*="language-"] {
-            white-space: pre !important;
-        }
-        
-    </style>
-
-    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="貍铭的博客" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-xonokai.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-xonokai.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
-
-<header class="navbar-fixed">
+    <header class="navbar-fixed">
     <nav id="headNav" class="bg-color nav-transparent">
-        <div id="navContainer" class="nav-wrapper container">
+        <div id="navContainer" class="nav-wrapper head-container">
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
@@ -51,68 +45,91 @@
             </div>
             
 
-<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
-<ul class="right">
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
     
-    <li class="hide-on-med-and-down">
-        <a href="/" class="waves-effect waves-light">
-            
-            <i class="fa fa-home"></i>
-            
-            <span>首页</span>
-        </a>
-    </li>
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
     
-    <li class="hide-on-med-and-down">
-        <a href="/tags" class="waves-effect waves-light">
-            
-            <i class="fa fa-tags"></i>
-            
-            <span>标签</span>
-        </a>
-    </li>
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
     
-    <li class="hide-on-med-and-down">
-        <a href="/categories" class="waves-effect waves-light">
-            
-            <i class="fa fa-bookmark"></i>
-            
-            <span>分类</span>
-        </a>
-    </li>
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
     
-    <li class="hide-on-med-and-down">
-        <a href="/archives" class="waves-effect waves-light">
-            
-            <i class="fa fa-archive"></i>
-            
-            <span>归档</span>
-        </a>
-    </li>
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
     
-    <li class="hide-on-med-and-down">
-        <a href="/about" class="waves-effect waves-light">
-            
-            <i class="fa fa-user-circle-o"></i>
-            
-            <span>关于</span>
-        </a>
-    </li>
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
     
-    <li class="hide-on-med-and-down">
-        <a href="/friends" class="waves-effect waves-light">
-            
-            <i class="fa fa-address-book"></i>
-            
-            <span>友情链接</span>
-        </a>
-    </li>
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
     
-    <li>
-        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
-            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
-        </a>
-    </li>
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
 </ul>
 
 <div id="mobile-nav" class="side-nav sidenav">
@@ -133,65 +150,88 @@
 
     <ul class="menu-list mobile-menu-list">
         
-        <li>
-            <a href="/" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-home"></i>
-                
-                首页
-            </a>
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
         </li>
         
-        <li>
-            <a href="/tags" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-tags"></i>
-                
-                标签
-            </a>
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
         </li>
         
-        <li>
-            <a href="/categories" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-bookmark"></i>
-                
-                分类
-            </a>
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
         </li>
         
-        <li>
-            <a href="/archives" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-archive"></i>
-                
-                归档
-            </a>
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
         </li>
         
-        <li>
-            <a href="/about" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-user-circle-o"></i>
-                
-                关于
-            </a>
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
         </li>
         
-        <li>
-            <a href="/friends" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-address-book"></i>
-                
-                友情链接
-            </a>
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
         </li>
         
         
         <li><div class="divider"></div></li>
         <li>
             <a href="https://github.com/hm-dusk" class="waves-effect waves-light" target="_blank">
-                <i class="fa fa-github-square fa-fw"></i>Fork Me
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
             </a>
         </li>
         
@@ -261,29 +301,44 @@
 
 </header>
 
-<div class="bg-cover pd-header about-cover">
+    <div class="bg-cover pd-header about-cover">
     <div class="container">
     <div class="row">
     <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
         <div class="brand">
             <div class="title center-align">
                 
-                    越自律，越自由
+                越自律，越自由
                 
             </div>
 
             <div class="description center-align">
                 
-                    长风破浪会有时，直挂云帆济沧海
+                <span id="subtitle"></span>
+                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+                <script>
+                    var typed = new Typed("#subtitle", {
+                        strings: ['长风破浪会有时，直挂云帆济沧海','Never really desperate, only the lost of the soul'],
+                        startDelay: 300,
+                        typeSpeed: 100,
+                        loop: true,
+                        backSpeed: 50,
+                        showCursor: true
+                    });
+                </script>
                 
             </div>
         </div>
     </div>
 </div>
+
+
 <script>
-// 每天切换 banner 图.  Switch banner image every day.
-$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+    // 每天切换 banner 图.  Switch banner image every day.
+    $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
 </script>
+
+
     </div>
 </div>
 
@@ -295,7 +350,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
     <div class="card">
         <div class="card-content">
             <div class="tag-title center-align">
-                <i class="fa fa-tags"></i>&nbsp;&nbsp;文章标签
+                <i class="fas fa-tags"></i>&nbsp;&nbsp;文章标签
             </div>
             <div class="tag-chips">
                 
@@ -318,28 +373,10 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </a>
                 
                 
-                <a href="/tags/Yarn/" title="Yarn: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="Yarn" style="background-color: #D5F5E3;">Yarn
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E5%8F%82%E6%95%B0%E8%B0%83%E4%BC%98/" title="参数调优: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="参数调优" style="background-color: #E8F8F5;">参数调优
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
                 <a href="/tags/%E5%AE%98%E7%BD%91%E9%93%BE%E6%8E%A5/" title="官网链接: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="官网链接" style="background-color: #FEF9E7;">官网链接
+                            data-tagname="官网链接" style="background-color: #D5F5E3;">官网链接
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -348,7 +385,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 <a href="/tags/HBase/" title="HBase: 2">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="HBase" style="background-color: #F8F9F9;">HBase
+                            data-tagname="HBase" style="background-color: #E8F8F5;">HBase
                         <span class="tag-length">2</span>
                     </span>
                 </a>
@@ -357,8 +394,26 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 <a href="/tags/%E9%9B%86%E7%BE%A4/" title="集群: 4">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="集群" style="background-color: #82E0AA;">集群
+                            data-tagname="集群" style="background-color: #FEF9E7;">集群
                         <span class="tag-length">4</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/Yarn/" title="Yarn: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="Yarn" style="background-color: #F8F9F9;">Yarn
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%8F%82%E6%95%B0%E8%B0%83%E4%BC%98/" title="参数调优: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="参数调优" style="background-color: #82E0AA;">参数调优
+                        <span class="tag-length">1</span>
                     </span>
                 </a>
                 
@@ -444,20 +499,20 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </a>
                 
                 
-                <a href="/tags/IP/" title="IP: 2">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="IP" style="background-color: #E8F8F5;">IP
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
                 <a href="/tags/Alpine/" title="Alpine: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
                             data-tagname="Alpine" style="background-color: #E8F8F5;">Alpine
                         <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/IP/" title="IP: 2">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="IP" style="background-color: #E8F8F5;">IP
+                        <span class="tag-length">2</span>
                     </span>
                 </a>
                 
@@ -516,6 +571,24 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </a>
                 
                 
+                <a href="/tags/Impala/" title="Impala: 2">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="Impala" style="background-color: #F8C471;">Impala
+                        <span class="tag-length">2</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E4%BC%98%E5%8C%96/" title="优化: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="优化" style="background-color: #F9E79F;">优化
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
                 <a href="/tags/Maven/" title="Maven: 2">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
@@ -539,24 +612,6 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                              chip-default "
                             data-tagname="编辑器" style="background-color: #85C1E9;">编辑器
                         <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/Impala/" title="Impala: 2">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="Impala" style="background-color: #F8C471;">Impala
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E4%BC%98%E5%8C%96/" title="优化: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="优化" style="background-color: #F9E79F;">优化
-                        <span class="tag-length">1</span>
                     </span>
                 </a>
                 
@@ -813,24 +868,6 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </a>
                 
                 
-                <a href="/tags/%E4%B8%93%E4%B8%9A%E5%90%8D%E8%AF%8D/" title="专业名词: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="专业名词" style="background-color: #82E0AA;">专业名词
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E8%A7%A3%E9%87%8A/" title="解释: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="解释" style="background-color: #82E0AA;">解释
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
                 <a href="/tags/%E6%96%87%E6%A1%A3/" title="文档: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
@@ -844,6 +881,24 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
                             data-tagname="网站生成工具" style="background-color: #F5EEF8;">网站生成工具
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E4%B8%93%E4%B8%9A%E5%90%8D%E8%AF%8D/" title="专业名词: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="专业名词" style="background-color: #82E0AA;">专业名词
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E8%A7%A3%E9%87%8A/" title="解释: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="解释" style="background-color: #82E0AA;">解释
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -894,6 +949,15 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </a>
                 
                 
+                <a href="/tags/%E5%BC%82%E5%B8%B8/" title="异常: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="异常" style="background-color: #F9EBEA;">异常
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
                 <a href="/tags/%E5%91%BD%E4%BB%A4/" title="命令: 2">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
@@ -912,20 +976,20 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </a>
                 
                 
-                <a href="/tags/Mongodb/" title="Mongodb: 2">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="Mongodb" style="background-color: #85C1E9;">Mongodb
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
                 <a href="/tags/HDFS/" title="HDFS: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
                             data-tagname="HDFS" style="background-color: #F8F9F9;">HDFS
                         <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/Mongodb/" title="Mongodb: 2">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="Mongodb" style="background-color: #85C1E9;">Mongodb
+                        <span class="tag-length">2</span>
                     </span>
                 </a>
                 
@@ -943,15 +1007,6 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
                             data-tagname="角色分配" style="background-color: #85C1E9;">角色分配
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E5%BC%82%E5%B8%B8/" title="异常: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="异常" style="background-color: #F9EBEA;">异常
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -1025,7 +1080,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 <script type="text/javascript">
     
 
-    $('#tag-wordcloud').jQCloud([{"text":"大数据","weight":27,"link":"http://blog.hming.org/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"},{"text":"CDH","weight":9,"link":"http://blog.hming.org/tags/CDH/"},{"text":"Yarn","weight":1,"link":"http://blog.hming.org/tags/Yarn/"},{"text":"参数调优","weight":1,"link":"http://blog.hming.org/tags/%E5%8F%82%E6%95%B0%E8%B0%83%E4%BC%98/"},{"text":"官网链接","weight":1,"link":"http://blog.hming.org/tags/%E5%AE%98%E7%BD%91%E9%93%BE%E6%8E%A5/"},{"text":"HBase","weight":2,"link":"http://blog.hming.org/tags/HBase/"},{"text":"集群","weight":4,"link":"http://blog.hming.org/tags/%E9%9B%86%E7%BE%A4/"},{"text":"Hive","weight":8,"link":"http://blog.hming.org/tags/Hive/"},{"text":"数据仓库","weight":1,"link":"http://blog.hming.org/tags/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/"},{"text":"K8s","weight":1,"link":"http://blog.hming.org/tags/K8s/"},{"text":"容器","weight":4,"link":"http://blog.hming.org/tags/%E5%AE%B9%E5%99%A8/"},{"text":"HDF","weight":1,"link":"http://blog.hming.org/tags/HDF/"},{"text":"离线安装","weight":3,"link":"http://blog.hming.org/tags/%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/"},{"text":"Linux","weight":11,"link":"http://blog.hming.org/tags/Linux/"},{"text":"VNC Viewer","weight":1,"link":"http://blog.hming.org/tags/VNC-Viewer/"},{"text":"Docker","weight":5,"link":"http://blog.hming.org/tags/Docker/"},{"text":"IP","weight":2,"link":"http://blog.hming.org/tags/IP/"},{"text":"Alpine","weight":1,"link":"http://blog.hming.org/tags/Alpine/"},{"text":"网络","weight":1,"link":"http://blog.hming.org/tags/%E7%BD%91%E7%BB%9C/"},{"text":"Http","weight":1,"link":"http://blog.hming.org/tags/Http/"},{"text":"Hadoop","weight":2,"link":"http://blog.hming.org/tags/Hadoop/"},{"text":"LLAP","weight":1,"link":"http://blog.hming.org/tags/LLAP/"},{"text":"Tez","weight":2,"link":"http://blog.hming.org/tags/Tez/"},{"text":"Spark","weight":1,"link":"http://blog.hming.org/tags/Spark/"},{"text":"Maven","weight":2,"link":"http://blog.hming.org/tags/Maven/"},{"text":"Idea","weight":1,"link":"http://blog.hming.org/tags/Idea/"},{"text":"编辑器","weight":2,"link":"http://blog.hming.org/tags/%E7%BC%96%E8%BE%91%E5%99%A8/"},{"text":"Impala","weight":2,"link":"http://blog.hming.org/tags/Impala/"},{"text":"优化","weight":1,"link":"http://blog.hming.org/tags/%E4%BC%98%E5%8C%96/"},{"text":"元数据","weight":1,"link":"http://blog.hming.org/tags/%E5%85%83%E6%95%B0%E6%8D%AE/"},{"text":"字符串","weight":1,"link":"http://blog.hming.org/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"},{"text":"集合","weight":1,"link":"http://blog.hming.org/tags/%E9%9B%86%E5%90%88/"},{"text":"遍历","weight":1,"link":"http://blog.hming.org/tags/%E9%81%8D%E5%8E%86/"},{"text":"Java","weight":1,"link":"http://blog.hming.org/tags/Java/"},{"text":"命令行提示符","weight":1,"link":"http://blog.hming.org/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%8F%90%E7%A4%BA%E7%AC%A6/"},{"text":"yum","weight":1,"link":"http://blog.hming.org/tags/yum/"},{"text":"离线","weight":1,"link":"http://blog.hming.org/tags/%E7%A6%BB%E7%BA%BF/"},{"text":"SSH","weight":1,"link":"http://blog.hming.org/tags/SSH/"},{"text":"HDP","weight":7,"link":"http://blog.hming.org/tags/HDP/"},{"text":"Hortonworks","weight":1,"link":"http://blog.hming.org/tags/Hortonworks/"},{"text":"MySQL","weight":3,"link":"http://blog.hming.org/tags/MySQL/"},{"text":"驱动包","weight":1,"link":"http://blog.hming.org/tags/%E9%A9%B1%E5%8A%A8%E5%8C%85/"},{"text":"连接","weight":1,"link":"http://blog.hming.org/tags/%E8%BF%9E%E6%8E%A5/"},{"text":"SandBox","weight":4,"link":"http://blog.hming.org/tags/SandBox/"},{"text":"Spring Boot","weight":1,"link":"http://blog.hming.org/tags/Spring-Boot/"},{"text":"JDBC","weight":1,"link":"http://blog.hming.org/tags/JDBC/"},{"text":"虚拟机","weight":2,"link":"http://blog.hming.org/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/"},{"text":"VMware","weight":2,"link":"http://blog.hming.org/tags/VMware/"},{"text":"乱码","weight":1,"link":"http://blog.hming.org/tags/%E4%B9%B1%E7%A0%81/"},{"text":"架构","weight":1,"link":"http://blog.hming.org/tags/%E6%9E%B6%E6%9E%84/"},{"text":"云操作系统","weight":1,"link":"http://blog.hming.org/tags/%E4%BA%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"},{"text":"代码规范","weight":1,"link":"http://blog.hming.org/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/"},{"text":"Nginx","weight":1,"link":"http://blog.hming.org/tags/Nginx/"},{"text":"服务器","weight":1,"link":"http://blog.hming.org/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"},{"text":"Zookeeper","weight":2,"link":"http://blog.hming.org/tags/Zookeeper/"},{"text":"DbVisualizer","weight":1,"link":"http://blog.hming.org/tags/DbVisualizer/"},{"text":"图形化工具","weight":1,"link":"http://blog.hming.org/tags/%E5%9B%BE%E5%BD%A2%E5%8C%96%E5%B7%A5%E5%85%B7/"},{"text":"专业名词","weight":1,"link":"http://blog.hming.org/tags/%E4%B8%93%E4%B8%9A%E5%90%8D%E8%AF%8D/"},{"text":"解释","weight":1,"link":"http://blog.hming.org/tags/%E8%A7%A3%E9%87%8A/"},{"text":"文档","weight":1,"link":"http://blog.hming.org/tags/%E6%96%87%E6%A1%A3/"},{"text":"网站生成工具","weight":1,"link":"http://blog.hming.org/tags/%E7%BD%91%E7%AB%99%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/"},{"text":"算法","weight":1,"link":"http://blog.hming.org/tags/%E7%AE%97%E6%B3%95/"},{"text":"排序","weight":1,"link":"http://blog.hming.org/tags/%E6%8E%92%E5%BA%8F/"},{"text":"精度问题","weight":1,"link":"http://blog.hming.org/tags/%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/"},{"text":"构造器","weight":1,"link":"http://blog.hming.org/tags/%E6%9E%84%E9%80%A0%E5%99%A8/"},{"text":"创建对象","weight":1,"link":"http://blog.hming.org/tags/%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1/"},{"text":"命令","weight":2,"link":"http://blog.hming.org/tags/%E5%91%BD%E4%BB%A4/"},{"text":"镜像源","weight":1,"link":"http://blog.hming.org/tags/%E9%95%9C%E5%83%8F%E6%BA%90/"},{"text":"Mongodb","weight":2,"link":"http://blog.hming.org/tags/Mongodb/"},{"text":"HDFS","weight":1,"link":"http://blog.hming.org/tags/HDFS/"},{"text":"Phoenix","weight":1,"link":"http://blog.hming.org/tags/Phoenix/"},{"text":"角色分配","weight":1,"link":"http://blog.hming.org/tags/%E8%A7%92%E8%89%B2%E5%88%86%E9%85%8D/"},{"text":"异常","weight":1,"link":"http://blog.hming.org/tags/%E5%BC%82%E5%B8%B8/"},{"text":"跑步","weight":1,"link":"http://blog.hming.org/tags/%E8%B7%91%E6%AD%A5/"},{"text":"Keep","weight":1,"link":"http://blog.hming.org/tags/Keep/"},{"text":"运动","weight":1,"link":"http://blog.hming.org/tags/%E8%BF%90%E5%8A%A8/"},{"text":"基金","weight":1,"link":"http://blog.hming.org/tags/%E5%9F%BA%E9%87%91/"},{"text":"笔记","weight":1,"link":"http://blog.hming.org/tags/%E7%AC%94%E8%AE%B0/"}], {
+    $('#tag-wordcloud').jQCloud([{"text":"大数据","weight":27,"link":"http://blog.hming.org/tags/大数据/"},{"text":"CDH","weight":9,"link":"http://blog.hming.org/tags/CDH/"},{"text":"官网链接","weight":1,"link":"http://blog.hming.org/tags/官网链接/"},{"text":"HBase","weight":2,"link":"http://blog.hming.org/tags/HBase/"},{"text":"集群","weight":4,"link":"http://blog.hming.org/tags/集群/"},{"text":"Yarn","weight":1,"link":"http://blog.hming.org/tags/Yarn/"},{"text":"参数调优","weight":1,"link":"http://blog.hming.org/tags/参数调优/"},{"text":"Hive","weight":8,"link":"http://blog.hming.org/tags/Hive/"},{"text":"数据仓库","weight":1,"link":"http://blog.hming.org/tags/数据仓库/"},{"text":"K8s","weight":1,"link":"http://blog.hming.org/tags/K8s/"},{"text":"容器","weight":4,"link":"http://blog.hming.org/tags/容器/"},{"text":"HDF","weight":1,"link":"http://blog.hming.org/tags/HDF/"},{"text":"离线安装","weight":3,"link":"http://blog.hming.org/tags/离线安装/"},{"text":"Linux","weight":11,"link":"http://blog.hming.org/tags/Linux/"},{"text":"VNC Viewer","weight":1,"link":"http://blog.hming.org/tags/VNC-Viewer/"},{"text":"Docker","weight":5,"link":"http://blog.hming.org/tags/Docker/"},{"text":"Alpine","weight":1,"link":"http://blog.hming.org/tags/Alpine/"},{"text":"IP","weight":2,"link":"http://blog.hming.org/tags/IP/"},{"text":"网络","weight":1,"link":"http://blog.hming.org/tags/网络/"},{"text":"Http","weight":1,"link":"http://blog.hming.org/tags/Http/"},{"text":"Hadoop","weight":2,"link":"http://blog.hming.org/tags/Hadoop/"},{"text":"LLAP","weight":1,"link":"http://blog.hming.org/tags/LLAP/"},{"text":"Tez","weight":2,"link":"http://blog.hming.org/tags/Tez/"},{"text":"Spark","weight":1,"link":"http://blog.hming.org/tags/Spark/"},{"text":"Impala","weight":2,"link":"http://blog.hming.org/tags/Impala/"},{"text":"优化","weight":1,"link":"http://blog.hming.org/tags/优化/"},{"text":"Maven","weight":2,"link":"http://blog.hming.org/tags/Maven/"},{"text":"Idea","weight":1,"link":"http://blog.hming.org/tags/Idea/"},{"text":"编辑器","weight":2,"link":"http://blog.hming.org/tags/编辑器/"},{"text":"元数据","weight":1,"link":"http://blog.hming.org/tags/元数据/"},{"text":"字符串","weight":1,"link":"http://blog.hming.org/tags/字符串/"},{"text":"集合","weight":1,"link":"http://blog.hming.org/tags/集合/"},{"text":"遍历","weight":1,"link":"http://blog.hming.org/tags/遍历/"},{"text":"Java","weight":1,"link":"http://blog.hming.org/tags/Java/"},{"text":"命令行提示符","weight":1,"link":"http://blog.hming.org/tags/命令行提示符/"},{"text":"yum","weight":1,"link":"http://blog.hming.org/tags/yum/"},{"text":"离线","weight":1,"link":"http://blog.hming.org/tags/离线/"},{"text":"SSH","weight":1,"link":"http://blog.hming.org/tags/SSH/"},{"text":"HDP","weight":7,"link":"http://blog.hming.org/tags/HDP/"},{"text":"Hortonworks","weight":1,"link":"http://blog.hming.org/tags/Hortonworks/"},{"text":"MySQL","weight":3,"link":"http://blog.hming.org/tags/MySQL/"},{"text":"驱动包","weight":1,"link":"http://blog.hming.org/tags/驱动包/"},{"text":"连接","weight":1,"link":"http://blog.hming.org/tags/连接/"},{"text":"SandBox","weight":4,"link":"http://blog.hming.org/tags/SandBox/"},{"text":"Spring Boot","weight":1,"link":"http://blog.hming.org/tags/Spring-Boot/"},{"text":"JDBC","weight":1,"link":"http://blog.hming.org/tags/JDBC/"},{"text":"虚拟机","weight":2,"link":"http://blog.hming.org/tags/虚拟机/"},{"text":"VMware","weight":2,"link":"http://blog.hming.org/tags/VMware/"},{"text":"乱码","weight":1,"link":"http://blog.hming.org/tags/乱码/"},{"text":"架构","weight":1,"link":"http://blog.hming.org/tags/架构/"},{"text":"云操作系统","weight":1,"link":"http://blog.hming.org/tags/云操作系统/"},{"text":"代码规范","weight":1,"link":"http://blog.hming.org/tags/代码规范/"},{"text":"Nginx","weight":1,"link":"http://blog.hming.org/tags/Nginx/"},{"text":"服务器","weight":1,"link":"http://blog.hming.org/tags/服务器/"},{"text":"Zookeeper","weight":2,"link":"http://blog.hming.org/tags/Zookeeper/"},{"text":"DbVisualizer","weight":1,"link":"http://blog.hming.org/tags/DbVisualizer/"},{"text":"图形化工具","weight":1,"link":"http://blog.hming.org/tags/图形化工具/"},{"text":"文档","weight":1,"link":"http://blog.hming.org/tags/文档/"},{"text":"网站生成工具","weight":1,"link":"http://blog.hming.org/tags/网站生成工具/"},{"text":"专业名词","weight":1,"link":"http://blog.hming.org/tags/专业名词/"},{"text":"解释","weight":1,"link":"http://blog.hming.org/tags/解释/"},{"text":"算法","weight":1,"link":"http://blog.hming.org/tags/算法/"},{"text":"排序","weight":1,"link":"http://blog.hming.org/tags/排序/"},{"text":"精度问题","weight":1,"link":"http://blog.hming.org/tags/精度问题/"},{"text":"构造器","weight":1,"link":"http://blog.hming.org/tags/构造器/"},{"text":"创建对象","weight":1,"link":"http://blog.hming.org/tags/创建对象/"},{"text":"异常","weight":1,"link":"http://blog.hming.org/tags/异常/"},{"text":"命令","weight":2,"link":"http://blog.hming.org/tags/命令/"},{"text":"镜像源","weight":1,"link":"http://blog.hming.org/tags/镜像源/"},{"text":"HDFS","weight":1,"link":"http://blog.hming.org/tags/HDFS/"},{"text":"Mongodb","weight":2,"link":"http://blog.hming.org/tags/Mongodb/"},{"text":"Phoenix","weight":1,"link":"http://blog.hming.org/tags/Phoenix/"},{"text":"角色分配","weight":1,"link":"http://blog.hming.org/tags/角色分配/"},{"text":"跑步","weight":1,"link":"http://blog.hming.org/tags/跑步/"},{"text":"Keep","weight":1,"link":"http://blog.hming.org/tags/Keep/"},{"text":"运动","weight":1,"link":"http://blog.hming.org/tags/运动/"},{"text":"基金","weight":1,"link":"http://blog.hming.org/tags/基金/"},{"text":"笔记","weight":1,"link":"http://blog.hming.org/tags/笔记/"}], {
         autoResize: true
     });
 </script>
@@ -1033,63 +1088,116 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 
 </main>
 
-<footer class="page-footer bg-color">
-    <div class="container row center-align">
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
         <div class="col s12 m8 l8 copy-right">
-<!--            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于-->
-<!--            <a href="https://hexo.io/" target="_blank">Hexo</a> 的-->
-<!--            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.-->
-
-            <span class="white-color">Copyright</span>
-            <i class="fa fa-copyright"></i>
-            <span class="white-color">2016 -2020</span>
-            <i class="fa fa-heart"></i>
+            Copyright&nbsp;&copy;
+            <span id="year">2016</span>
+            <a href="http://blog.hming.org" target="_blank">貍铭</a>
+<!--            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>-->
+<!--            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>-->
+            <br>
             
-
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">77.6k</span>&nbsp;字
             
-                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">75k</span>
             
-
             
-			
-                <br>
-                
-                <span id="busuanzi_container_site_pv">
-                    <i class="fa fa-heart-o"></i>
-                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
-                </span>
-                
-                
-                <span id="busuanzi_container_site_uv">
-                    <i class="fa fa-users"></i>
-                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
-                </span>
-                
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2016";
+                    var startMonth = "7";
+                    var startDate = "23";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
             
         </div>
         <div class="col s12 m4 l4 social-link social-statis">
     <a href="https://github.com/hm-dusk" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
-        <i class="fa fa-github"></i>
+        <i class="fab fa-github"></i>
     </a>
 
 
 
     <a href="mailto:1322260665@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
-        <i class="fa fa-envelope-open"></i>
+        <i class="fas fa-envelope-open"></i>
     </a>
 
 
 
-    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1322260665@qq.com" class="tooltipped" data-tooltip="QQ联系我: 1322260665@qq.com" data-position="top" data-delay="50">
-        <i class="fa fa-qq"></i>
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1322260665" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1322260665" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
     </a>
+
+
+
+
 
 
 
     <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
-        <i class="fa fa-rss"></i>
+        <i class="fas fa-rss"></i>
     </a>
+
 </div>
     </div>
 </footer>
@@ -1097,11 +1205,11 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 <div class="progress-bar"></div>
 
 
-<!-- 搜索遮罩框 -->
+    <!-- 搜索遮罩框 -->
 <div id="searchModal" class="modal">
     <div class="modal-content">
         <div class="search-header">
-            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
             <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
                    class="search-input">
         </div>
@@ -1115,28 +1223,80 @@ $(function () {
     searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
 });
 </script>
-<!-- 回到顶部按钮 -->
+    <!-- 回到顶部按钮 -->
 <div id="backTop" class="top-scroll">
     <a class="btn-floating btn-large waves-effect waves-light" href="#!">
-        <i class="fa fa-angle-up"></i>
+        <i class="fas fa-arrow-up"></i>
     </a>
 </div>
 
 
-<script src="/libs/materialize/materialize.min.js"></script>
-<script src="/libs/masonry/masonry.pkgd.min.js"></script>
-<script src="/libs/aos/aos.js"></script>
-<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
-<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
-<script src="/js/matery.js"></script>
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-
-
+    <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
     <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
 
+    
+
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i["DaoVoiceObject"] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            a.charset = "utf-8";
+            m.parentNode.insertBefore(a, m)
+        })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+            "//widget.daovoice.io/widget/6984b559.js", "daovoice")
+        daovoice('init', {
+            app_id: "f27de589"
+        });
+        daovoice('update');
+    </script>
+    
+
+    
+
+    
+
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
 
 </body>
+
 </html>

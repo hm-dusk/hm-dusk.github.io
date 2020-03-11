@@ -16,31 +16,25 @@
     <title>分类: Java | 貍铭的博客</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
 
-    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
     <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
     <link rel="stylesheet" type="text/css" href="/css/matery.css">
     <link rel="stylesheet" type="text/css" href="/css/my.css">
-    <style type="text/css">
-        
-        code[class*="language-"], pre[class*="language-"] {
-            white-space: pre !important;
-        }
-        
-    </style>
-
-    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="貍铭的博客" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-xonokai.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-xonokai.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
-
-<header class="navbar-fixed">
+    <header class="navbar-fixed">
     <nav id="headNav" class="bg-color nav-transparent">
-        <div id="navContainer" class="nav-wrapper container">
+        <div id="navContainer" class="nav-wrapper head-container">
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
@@ -51,68 +45,91 @@
             </div>
             
 
-<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
-<ul class="right">
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
     
-    <li class="hide-on-med-and-down">
-        <a href="/" class="waves-effect waves-light">
-            
-            <i class="fa fa-home"></i>
-            
-            <span>首页</span>
-        </a>
-    </li>
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
     
-    <li class="hide-on-med-and-down">
-        <a href="/tags" class="waves-effect waves-light">
-            
-            <i class="fa fa-tags"></i>
-            
-            <span>标签</span>
-        </a>
-    </li>
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
     
-    <li class="hide-on-med-and-down">
-        <a href="/categories" class="waves-effect waves-light">
-            
-            <i class="fa fa-bookmark"></i>
-            
-            <span>分类</span>
-        </a>
-    </li>
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
     
-    <li class="hide-on-med-and-down">
-        <a href="/archives" class="waves-effect waves-light">
-            
-            <i class="fa fa-archive"></i>
-            
-            <span>归档</span>
-        </a>
-    </li>
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
     
-    <li class="hide-on-med-and-down">
-        <a href="/about" class="waves-effect waves-light">
-            
-            <i class="fa fa-user-circle-o"></i>
-            
-            <span>关于</span>
-        </a>
-    </li>
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
     
-    <li class="hide-on-med-and-down">
-        <a href="/friends" class="waves-effect waves-light">
-            
-            <i class="fa fa-address-book"></i>
-            
-            <span>友情链接</span>
-        </a>
-    </li>
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
     
-    <li>
-        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
-            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
-        </a>
-    </li>
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
 </ul>
 
 <div id="mobile-nav" class="side-nav sidenav">
@@ -133,65 +150,88 @@
 
     <ul class="menu-list mobile-menu-list">
         
-        <li>
-            <a href="/" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-home"></i>
-                
-                首页
-            </a>
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
         </li>
         
-        <li>
-            <a href="/tags" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-tags"></i>
-                
-                标签
-            </a>
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
         </li>
         
-        <li>
-            <a href="/categories" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-bookmark"></i>
-                
-                分类
-            </a>
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
         </li>
         
-        <li>
-            <a href="/archives" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-archive"></i>
-                
-                归档
-            </a>
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
         </li>
         
-        <li>
-            <a href="/about" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-user-circle-o"></i>
-                
-                关于
-            </a>
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
         </li>
         
-        <li>
-            <a href="/friends" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-address-book"></i>
-                
-                友情链接
-            </a>
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
         </li>
         
         
         <li><div class="divider"></div></li>
         <li>
             <a href="https://github.com/hm-dusk" class="waves-effect waves-light" target="_blank">
-                <i class="fa fa-github-square fa-fw"></i>Fork Me
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
             </a>
         </li>
         
@@ -261,29 +301,44 @@
 
 </header>
 
-<div class="bg-cover pd-header about-cover">
+    <div class="bg-cover pd-header about-cover">
     <div class="container">
     <div class="row">
     <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
         <div class="brand">
             <div class="title center-align">
                 
-                    越自律，越自由
+                越自律，越自由
                 
             </div>
 
             <div class="description center-align">
                 
-                    长风破浪会有时，直挂云帆济沧海
+                <span id="subtitle"></span>
+                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+                <script>
+                    var typed = new Typed("#subtitle", {
+                        strings: ['长风破浪会有时，直挂云帆济沧海','Never really desperate, only the lost of the soul'],
+                        startDelay: 300,
+                        typeSpeed: 100,
+                        loop: true,
+                        backSpeed: 50,
+                        showCursor: true
+                    });
+                </script>
                 
             </div>
         </div>
     </div>
 </div>
+
+
 <script>
-// 每天切换 banner 图.  Switch banner image every day.
-$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+    // 每天切换 banner 图.  Switch banner image every day.
+    $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
 </script>
+
+
     </div>
 </div>
 
@@ -295,7 +350,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
     <div class="card">
         <div class="card-content">
             <div class="tag-title center-align">
-                <i class="fa fa-bookmark"></i>&nbsp;&nbsp;文章分类
+                <i class="fas fa-bookmark"></i>&nbsp;&nbsp;文章分类
             </div>
             <div class="tag-chips">
                 
@@ -355,20 +410,20 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </a>
                 
                 
-                <a href="/categories/%E7%90%86%E8%B4%A2/" title="理财: 2">
+                <a href="/categories/%E9%83%A8%E7%BD%B2/" title="部署: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #82E0AA;">理财
-                        <span class="tag-length">2</span>
+                            style="background-color: #82E0AA;">部署
+                        <span class="tag-length">1</span>
                     </span>
                 </a>
                 
                 
-                <a href="/categories/%E9%83%A8%E7%BD%B2/" title="部署: 1">
+                <a href="/categories/%E7%90%86%E8%B4%A2/" title="理财: 2">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #D7BDE2;">部署
-                        <span class="tag-length">1</span>
+                            style="background-color: #D7BDE2;">理财
+                        <span class="tag-length">2</span>
                     </span>
                 </a>
                 
@@ -401,9 +456,9 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
     <article id="articles" class="container articles">
         <div class="row tags-posts">
             
-            <div class="article tag-post col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2017/08/17/%E9%81%87%E5%88%B0%E5%A4%9A%E4%B8%AA%E6%9E%84%E9%80%A0%E5%99%A8%E5%8F%82%E6%95%B0%E6%97%B6%E7%9A%84%E6%9C%80%E4%BC%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+                    <a href="/2017/08/17/yu-dao-duo-ge-gou-zao-qi-can-shu-shi-de-zui-you-jie-jue-fang-an/">
                         <div class="card-image tag-image">
                             
                             <img src="http://47.106.179.244/logo/java.jpg" class="responsive-img" alt="遇到多个构造器参数时的最优解决方案">
@@ -423,13 +478,13 @@ MyData myData = new MyData();
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2017-08-17
+                                <i class="far fa-clock fa-fw icon-date"></i>2017-08-17
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/Java/" class="post-category" target="_blank">
+                                <a href="/categories/Java/" class="post-category">
                                     Java
                                 </a>
                                 
@@ -441,11 +496,11 @@ MyData myData = new MyData();
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E6%9E%84%E9%80%A0%E5%99%A8/" target="_blank">
+                        <a href="/tags/%E6%9E%84%E9%80%A0%E5%99%A8/">
                             <span class="chip bg-color">构造器</span>
                         </a>
                         
-                        <a href="/tags/%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1/" target="_blank">
+                        <a href="/tags/%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1/">
                             <span class="chip bg-color">创建对象</span>
                         </a>
                         
@@ -454,9 +509,9 @@ MyData myData = new MyData();
                 </div>
             </div>
             
-            <div class="article tag-post col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2017/07/25/Java%E5%8E%BB%E6%8E%89%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E7%9A%84%E6%96%B9%E6%B3%95/">
+                    <a href="/2017/07/25/java-qu-diao-zi-fu-chuan-te-shu-zi-fu-de-fang-fa/">
                         <div class="card-image tag-image">
                             
                             <img src="http://47.106.179.244/logo/java.jpg" class="responsive-img" alt="Java去掉字符串特殊字符的方法">
@@ -472,13 +527,13 @@ MyData myData = new MyData();
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2017-07-25
+                                <i class="far fa-clock fa-fw icon-date"></i>2017-07-25
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/Java/" class="post-category" target="_blank">
+                                <a href="/categories/Java/" class="post-category">
                                     Java
                                 </a>
                                 
@@ -490,7 +545,7 @@ MyData myData = new MyData();
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" target="_blank">
+                        <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">
                             <span class="chip bg-color">字符串</span>
                         </a>
                         
@@ -499,9 +554,9 @@ MyData myData = new MyData();
                 </div>
             </div>
             
-            <div class="article tag-post col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2017/07/24/%E9%82%A3%E4%BA%9B%E5%B9%B4%E7%BB%8F%E5%8E%86%E7%9A%84%E5%BC%82%E5%B8%B8%E4%BF%A1%E6%81%AF/">
+                    <a href="/2017/07/24/na-xie-nian-jing-li-de-yi-chang-xin-xi/">
                         <div class="card-image tag-image">
                             
                             <img src="http://47.106.179.244/logo/java.jpg" class="responsive-img" alt="那些年经历过的异常信息">
@@ -517,13 +572,13 @@ MyData myData = new MyData();
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2017-07-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2017-07-24
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/Java/" class="post-category" target="_blank">
+                                <a href="/categories/Java/" class="post-category">
                                     Java
                                 </a>
                                 
@@ -535,7 +590,7 @@ MyData myData = new MyData();
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E5%BC%82%E5%B8%B8/" target="_blank">
+                        <a href="/tags/%E5%BC%82%E5%B8%B8/">
                             <span class="chip bg-color">异常</span>
                         </a>
                         
@@ -544,9 +599,9 @@ MyData myData = new MyData();
                 </div>
             </div>
             
-            <div class="article tag-post col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2017/07/23/%E8%AE%A1%E7%AE%97%E4%B8%AD%E4%B8%A2%E5%A4%B1%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/">
+                    <a href="/2017/07/23/ji-suan-zhong-diu-shi-jing-du-wen-ti/">
                         <div class="card-image tag-image">
                             
                             <img src="http://47.106.179.244/logo/java.jpg" class="responsive-img" alt="浮点型计算中丢失精度问题">
@@ -562,13 +617,13 @@ MyData myData = new MyData();
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2017-07-23
+                                <i class="far fa-clock fa-fw icon-date"></i>2017-07-23
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/Java/" class="post-category" target="_blank">
+                                <a href="/categories/Java/" class="post-category">
                                     Java
                                 </a>
                                 
@@ -580,7 +635,7 @@ MyData myData = new MyData();
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/" target="_blank">
+                        <a href="/tags/%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/">
                             <span class="chip bg-color">精度问题</span>
                         </a>
                         
@@ -589,9 +644,9 @@ MyData myData = new MyData();
                 </div>
             </div>
             
-            <div class="article tag-post col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2017/07/19/Java%E9%81%8D%E5%8E%86Map%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/">
+                    <a href="/2017/07/19/java-bian-li-map-de-ji-chong-fang-shi/">
                         <div class="card-image tag-image">
                             
                             <img src="http://47.106.179.244/logo/java.jpg" class="responsive-img" alt="Java遍历Map的几种方式">
@@ -607,13 +662,13 @@ MyData myData = new MyData();
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2017-07-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2017-07-19
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/Java/" class="post-category" target="_blank">
+                                <a href="/categories/Java/" class="post-category">
                                     Java
                                 </a>
                                 
@@ -625,11 +680,11 @@ MyData myData = new MyData();
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E9%9B%86%E5%90%88/" target="_blank">
+                        <a href="/tags/%E9%9B%86%E5%90%88/">
                             <span class="chip bg-color">集合</span>
                         </a>
                         
-                        <a href="/tags/%E9%81%8D%E5%8E%86/" target="_blank">
+                        <a href="/tags/%E9%81%8D%E5%8E%86/">
                             <span class="chip bg-color">遍历</span>
                         </a>
                         
@@ -638,9 +693,9 @@ MyData myData = new MyData();
                 </div>
             </div>
             
-            <div class="article tag-post col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2017/07/17/%E4%BB%A3%E7%A0%81%E8%AD%A6%E5%91%8A/">
+                    <a href="/2017/07/17/dai-ma-jing-gao/">
                         <div class="card-image tag-image">
                             
                             <img src="http://47.106.179.244/logo/java.jpg" class="responsive-img" alt="那些年经历过的编码警告">
@@ -656,13 +711,13 @@ MyData myData = new MyData();
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2017-07-17
+                                <i class="far fa-clock fa-fw icon-date"></i>2017-07-17
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/Java/" class="post-category" target="_blank">
+                                <a href="/categories/Java/" class="post-category">
                                     Java
                                 </a>
                                 
@@ -674,7 +729,7 @@ MyData myData = new MyData();
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" target="_blank">
+                        <a href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/">
                             <span class="chip bg-color">代码规范</span>
                         </a>
                         
@@ -683,9 +738,9 @@ MyData myData = new MyData();
                 </div>
             </div>
             
-            <div class="article tag-post col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2016/07/23/Idea%E5%88%9B%E5%BB%BAMaven%E9%A1%B9%E7%9B%AE%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">
+                    <a href="/2016/07/23/idea-chuang-jian-maven-xiang-mu-zhu-yi-shi-xiang/">
                         <div class="card-image tag-image">
                             
                             <img src="http://47.106.179.244/logo/maven.jpeg" class="responsive-img" alt="Idea创建Maven项目注意事项">
@@ -703,13 +758,13 @@ MyData myData = new MyData();
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2016-07-23
+                                <i class="far fa-clock fa-fw icon-date"></i>2016-07-23
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/Java/" class="post-category" target="_blank">
+                                <a href="/categories/Java/" class="post-category">
                                     Java
                                 </a>
                                 
@@ -721,15 +776,15 @@ MyData myData = new MyData();
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/Maven/" target="_blank">
+                        <a href="/tags/Maven/">
                             <span class="chip bg-color">Maven</span>
                         </a>
                         
-                        <a href="/tags/Idea/" target="_blank">
+                        <a href="/tags/Idea/">
                             <span class="chip bg-color">Idea</span>
                         </a>
                         
-                        <a href="/tags/%E7%BC%96%E8%BE%91%E5%99%A8/" target="_blank">
+                        <a href="/tags/%E7%BC%96%E8%BE%91%E5%99%A8/">
                             <span class="chip bg-color">编辑器</span>
                         </a>
                         
@@ -743,63 +798,117 @@ MyData myData = new MyData();
 </main>
 
 
-<footer class="page-footer bg-color">
-    <div class="container row center-align">
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
         <div class="col s12 m8 l8 copy-right">
-<!--            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于-->
-<!--            <a href="https://hexo.io/" target="_blank">Hexo</a> 的-->
-<!--            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.-->
-
-            <span class="white-color">Copyright</span>
-            <i class="fa fa-copyright"></i>
-            <span class="white-color">2016 -2020</span>
-            <i class="fa fa-heart"></i>
+            Copyright&nbsp;&copy;
+            <span id="year">2016</span>
+            <a href="http://blog.hming.org" target="_blank">貍铭</a>
+<!--            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>-->
+<!--            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>-->
+            <br>
             
-
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">77.6k</span>&nbsp;字
             
-                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">75k</span>
             
-
             
-			
-                <br>
-                
-                <span id="busuanzi_container_site_pv">
-                    <i class="fa fa-heart-o"></i>
-                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
-                </span>
-                
-                
-                <span id="busuanzi_container_site_uv">
-                    <i class="fa fa-users"></i>
-                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
-                </span>
-                
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2016";
+                    var startMonth = "7";
+                    var startDate = "23";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
             
         </div>
         <div class="col s12 m4 l4 social-link social-statis">
     <a href="https://github.com/hm-dusk" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
-        <i class="fa fa-github"></i>
+        <i class="fab fa-github"></i>
     </a>
 
 
 
     <a href="mailto:1322260665@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
-        <i class="fa fa-envelope-open"></i>
+        <i class="fas fa-envelope-open"></i>
     </a>
 
 
 
-    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1322260665@qq.com" class="tooltipped" data-tooltip="QQ联系我: 1322260665@qq.com" data-position="top" data-delay="50">
-        <i class="fa fa-qq"></i>
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1322260665" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1322260665" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
     </a>
+
+
+
+
 
 
 
     <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
-        <i class="fa fa-rss"></i>
+        <i class="fas fa-rss"></i>
     </a>
+
 </div>
     </div>
 </footer>
@@ -807,11 +916,11 @@ MyData myData = new MyData();
 <div class="progress-bar"></div>
 
 
-<!-- 搜索遮罩框 -->
+    <!-- 搜索遮罩框 -->
 <div id="searchModal" class="modal">
     <div class="modal-content">
         <div class="search-header">
-            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
             <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
                    class="search-input">
         </div>
@@ -825,28 +934,80 @@ $(function () {
     searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
 });
 </script>
-<!-- 回到顶部按钮 -->
+    <!-- 回到顶部按钮 -->
 <div id="backTop" class="top-scroll">
     <a class="btn-floating btn-large waves-effect waves-light" href="#!">
-        <i class="fa fa-angle-up"></i>
+        <i class="fas fa-arrow-up"></i>
     </a>
 </div>
 
 
-<script src="/libs/materialize/materialize.min.js"></script>
-<script src="/libs/masonry/masonry.pkgd.min.js"></script>
-<script src="/libs/aos/aos.js"></script>
-<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
-<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
-<script src="/js/matery.js"></script>
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-
-
+    <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
     <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
 
+    
+
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i["DaoVoiceObject"] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            a.charset = "utf-8";
+            m.parentNode.insertBefore(a, m)
+        })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+            "//widget.daovoice.io/widget/6984b559.js", "daovoice")
+        daovoice('init', {
+            app_id: "f27de589"
+        });
+        daovoice('update');
+    </script>
+    
+
+    
+
+    
+
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
 
 </body>
+
 </html>

@@ -16,31 +16,25 @@
     <title>貍铭的博客</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
 
-    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
     <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
     <link rel="stylesheet" type="text/css" href="/css/matery.css">
     <link rel="stylesheet" type="text/css" href="/css/my.css">
-    <style type="text/css">
-        
-        code[class*="language-"], pre[class*="language-"] {
-            white-space: pre !important;
-        }
-        
-    </style>
-
-    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="貍铭的博客" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-xonokai.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-xonokai.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
-
-<header class="navbar-fixed">
+    <header class="navbar-fixed">
     <nav id="headNav" class="bg-color nav-transparent">
-        <div id="navContainer" class="nav-wrapper container">
+        <div id="navContainer" class="nav-wrapper head-container">
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
@@ -51,68 +45,91 @@
             </div>
             
 
-<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
-<ul class="right">
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
     
-    <li class="hide-on-med-and-down">
-        <a href="/" class="waves-effect waves-light">
-            
-            <i class="fa fa-home"></i>
-            
-            <span>首页</span>
-        </a>
-    </li>
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
     
-    <li class="hide-on-med-and-down">
-        <a href="/tags" class="waves-effect waves-light">
-            
-            <i class="fa fa-tags"></i>
-            
-            <span>标签</span>
-        </a>
-    </li>
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
     
-    <li class="hide-on-med-and-down">
-        <a href="/categories" class="waves-effect waves-light">
-            
-            <i class="fa fa-bookmark"></i>
-            
-            <span>分类</span>
-        </a>
-    </li>
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
     
-    <li class="hide-on-med-and-down">
-        <a href="/archives" class="waves-effect waves-light">
-            
-            <i class="fa fa-archive"></i>
-            
-            <span>归档</span>
-        </a>
-    </li>
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
     
-    <li class="hide-on-med-and-down">
-        <a href="/about" class="waves-effect waves-light">
-            
-            <i class="fa fa-user-circle-o"></i>
-            
-            <span>关于</span>
-        </a>
-    </li>
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
     
-    <li class="hide-on-med-and-down">
-        <a href="/friends" class="waves-effect waves-light">
-            
-            <i class="fa fa-address-book"></i>
-            
-            <span>友情链接</span>
-        </a>
-    </li>
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
     
-    <li>
-        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
-            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
-        </a>
-    </li>
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
 </ul>
 
 <div id="mobile-nav" class="side-nav sidenav">
@@ -133,65 +150,88 @@
 
     <ul class="menu-list mobile-menu-list">
         
-        <li>
-            <a href="/" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-home"></i>
-                
-                首页
-            </a>
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
         </li>
         
-        <li>
-            <a href="/tags" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-tags"></i>
-                
-                标签
-            </a>
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
         </li>
         
-        <li>
-            <a href="/categories" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-bookmark"></i>
-                
-                分类
-            </a>
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
         </li>
         
-        <li>
-            <a href="/archives" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-archive"></i>
-                
-                归档
-            </a>
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
         </li>
         
-        <li>
-            <a href="/about" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-user-circle-o"></i>
-                
-                关于
-            </a>
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
         </li>
         
-        <li>
-            <a href="/friends" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-address-book"></i>
-                
-                友情链接
-            </a>
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
         </li>
         
         
         <li><div class="divider"></div></li>
         <li>
             <a href="https://github.com/hm-dusk" class="waves-effect waves-light" target="_blank">
-                <i class="fa fa-github-square fa-fw"></i>Fork Me
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
             </a>
         </li>
         
@@ -261,7 +301,7 @@
 
 </header>
 
-
+    
     <div class="bg-cover pd-header about-cover">
     <div class="container">
     <div class="row">
@@ -269,27 +309,195 @@
         <div class="brand">
             <div class="title center-align">
                 
-                    越自律，越自由
+                越自律，越自由
                 
             </div>
 
             <div class="description center-align">
                 
-                    长风破浪会有时，直挂云帆济沧海
+                <span id="subtitle"></span>
+                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+                <script>
+                    var typed = new Typed("#subtitle", {
+                        strings: ['长风破浪会有时，直挂云帆济沧海','Never really desperate, only the lost of the soul'],
+                        startDelay: 300,
+                        typeSpeed: 100,
+                        loop: true,
+                        backSpeed: 50,
+                        showCursor: true
+                    });
+                </script>
                 
             </div>
         </div>
     </div>
 </div>
+
+
 <script>
-// 每天切换 banner 图.  Switch banner image every day.
-$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+    // 每天切换 banner 图.  Switch banner image every day.
+    $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
 </script>
+
+
     </div>
 </div>
 
 
 <main class="content">
+
+    
+    <div id="indexCard" class="index-card">
+        <div class="container ">
+            <div class="card">
+                <div class="card-content">
+                    
+                        <div class="dream">
+    
+    <div class="title center-align">
+        <i class="far fa-lightbulb"></i>&nbsp;&nbsp;我的梦想
+    </div>
+    
+    <div class="row">
+        <div class="col l8 offset-l2 m10 offset-m1 s10 offset-s1 center-align text">
+            不是每个人都应该像我这样去建造一座水晶大教堂，但是每个人都应该拥有自己的梦想，设计自己的梦想，追求自己的梦想，实现自己的梦想。梦想是生命的灵魂，是心灵的灯塔，是引导人走向成功的信仰。有了崇高的梦想，只要矢志不渝地追求，梦想就会成为现实，奋斗就会变成壮举，生命就会创造奇迹。——罗伯·舒乐
+        </div>
+    </div>
+</div>
+                    
+
+                    
+
+                    
+
+                    
+                    <div id="recommend-sections" class="recommend">
+                        
+
+
+
+
+
+<div class="title"><i class="far fa-thumbs-up"></i>&nbsp;&nbsp;推荐文章</div>
+
+<div class="row">
+
+    
+    
+    <div class="col s12 m6" >
+        <div class="post-card" style="background-image: url('/medias/featureimages/9.jpg')">
+            <div class="post-body">
+                <div class="post-categories">
+                    
+                        
+                            <a href="/categories/Linux/" class="category">Linux</a>
+                        
+                    
+                </div>
+                <a href="/2019/03/29/linux-xiu-gai-ming-ling-zhong-duan-ti-shi-fu/">
+                    <h3 class="post-title">Linux修改命令终端提示符</h3>
+                </a>
+                <p class="post-description">
+                    
+                        Linux命令行是操作Linux的重要手段，命令行提示符千篇一律的格式有时会让命令和输出难以辨认，本文将介绍如何修改命令行提示符的格式。
+                    
+                </p>
+                <a href="/2019/03/29/linux-xiu-gai-ming-ling-zhong-duan-ti-shi-fu/" class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #FF5E3A 0%, #FF2A68 100%)" target="_blank">
+                    <i class="icon far fa-eye fa-fw"></i>阅读更多
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="col s12 m6" >
+        <div class="post-card" style="background-image: url('/medias/featureimages/5.jpg')">
+            <div class="post-body">
+                <div class="post-categories">
+                    
+                        
+                            <a href="/categories/%E7%90%86%E8%B4%A2/" class="category">理财</a>
+                        
+                    
+                </div>
+                <a href="/2020/02/22/ji-jin-xue-xi-bi-ji/">
+                    <h3 class="post-title">基金学习笔记</h3>
+                </a>
+                <p class="post-description">
+                    
+                        理财是人生的必修课，本文章记录本人基金学习过程中遇到的知识点
+                    
+                </p>
+                <a href="/2020/02/22/ji-jin-xue-xi-bi-ji/" class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #EF4DB6 0%, #C643FC 100%)" target="_blank">
+                    <i class="icon far fa-eye fa-fw"></i>阅读更多
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="col s12 m6" data-aos="zoom-in-up">
+        <div class="post-card" style="background-image: url('/medias/featureimages/19.jpg')">
+            <div class="post-body">
+                <div class="post-categories">
+                    
+                        
+                            <a href="/categories/Linux/" class="category">Linux</a>
+                        
+                    
+                </div>
+                <a href="/2018/08/15/linux-chang-yong-ming-ling/">
+                    <h3 class="post-title">Linux常用命令</h3>
+                </a>
+                <p class="post-description">
+                    
+                        常用Linux命令（基于CentOS7）
+                    
+                </p>
+                <a href="/2018/08/15/linux-chang-yong-ming-ling/" class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #1AD6FD 0%, #1D62F0 100%)" target="_blank">
+                    <i class="icon far fa-eye fa-fw"></i>阅读更多
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="col s12 m6" data-aos="zoom-in-up">
+        <div class="post-card" style="background-image: url('/medias/featureimages/12.jpg')">
+            <div class="post-body">
+                <div class="post-categories">
+                    
+                        
+                            <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="category">大数据</a>
+                        
+                    
+                </div>
+                <a href="/2019/08/16/centos7-chi-xian-an-zhuang-cdh/">
+                    <h3 class="post-title">CentOS7离线安装CDH</h3>
+                </a>
+                <p class="post-description">
+                    
+                        CentOS7.6离线安装CDP，Cloudera Manager版本：6.3.0，CDH版本：6.3.0-1
+                    
+                </p>
+                <a href="/2019/08/16/centos7-chi-xian-an-zhuang-cdh/" class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #FFCC00 0%, #FF9500 100%)" target="_blank">
+                    <i class="icon far fa-eye fa-fw"></i>阅读更多
+                </a>
+            </div>
+        </div>
+    </div>
+    
+
+</div>
+
+
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
 
     
 
@@ -299,9 +507,9 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
     <article id="articles" class="container articles">
         <div class="row article-row">
             
-            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2019/01/03/Tez%E4%BB%A5%E5%8F%8ATez-UI%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95/">
+                    <a href="/2019/01/03/tez-yi-ji-tez-ui-an-zhuang-fang-fa/">
                         <div class="card-image">
                             
                             <img src="http://47.106.179.244/logo/tez.png" class="responsive-img" alt="Tez以及Tez UI安装方法">
@@ -318,13 +526,13 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-03
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-01-03
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category" target="_blank">
+                                <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category">
                                     大数据
                                 </a>
                                 
@@ -336,11 +544,11 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" target="_blank">
+                        <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">
                             <span class="chip bg-color">大数据</span>
                         </a>
                         
-                        <a href="/tags/Tez/" target="_blank">
+                        <a href="/tags/Tez/">
                             <span class="chip bg-color">Tez</span>
                         </a>
                         
@@ -349,9 +557,9 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </div>
             </div>
             
-            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2018/12/15/CentOS7%E4%B8%8B%E6%90%AD%E5%BB%BAHBase%E9%9B%86%E7%BE%A4+HBase%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
+                    <a href="/2018/12/15/centos7-xia-da-jian-hbase-ji-qun-hbase-ji-ben-cao-zuo/">
                         <div class="card-image">
                             
                             <img src="http://47.106.179.244/logo/hbase.jpg" class="responsive-img" alt="CentOS7下搭建HBase集群+HBase基本操作">
@@ -368,13 +576,13 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2018-12-15
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category" target="_blank">
+                                <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category">
                                     大数据
                                 </a>
                                 
@@ -386,15 +594,15 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" target="_blank">
+                        <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">
                             <span class="chip bg-color">大数据</span>
                         </a>
                         
-                        <a href="/tags/HBase/" target="_blank">
+                        <a href="/tags/HBase/">
                             <span class="chip bg-color">HBase</span>
                         </a>
                         
-                        <a href="/tags/%E9%9B%86%E7%BE%A4/" target="_blank">
+                        <a href="/tags/%E9%9B%86%E7%BE%A4/">
                             <span class="chip bg-color">集群</span>
                         </a>
                         
@@ -403,9 +611,9 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </div>
             </div>
             
-            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2018/12/15/%E6%90%AD%E5%BB%BAZookeeper%E9%9B%86%E7%BE%A4/">
+                    <a href="/2018/12/15/da-jian-zookeeper-ji-qun/">
                         <div class="card-image">
                             
                             <img src="http://47.106.179.244/logo/zookeeper.png" class="responsive-img" alt="搭建Zookeeper集群">
@@ -422,13 +630,13 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2018-12-15
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category" target="_blank">
+                                <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category">
                                     大数据
                                 </a>
                                 
@@ -440,11 +648,11 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" target="_blank">
+                        <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">
                             <span class="chip bg-color">大数据</span>
                         </a>
                         
-                        <a href="/tags/Zookeeper/" target="_blank">
+                        <a href="/tags/Zookeeper/">
                             <span class="chip bg-color">Zookeeper</span>
                         </a>
                         
@@ -453,9 +661,9 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </div>
             </div>
             
-            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2018/12/09/Hive%E4%BD%BF%E7%94%A8Spark%E5%BC%95%E6%93%8E%E6%9B%BF%E4%BB%A3MR%EF%BC%88Hive-on-Spark%EF%BC%89/">
+                    <a href="/2018/12/09/hive-shi-yong-spark-yin-qing-ti-dai-mr-hive-on-spark/">
                         <div class="card-image">
                             
                             <img src="http://47.106.179.244/logo/hive+spark.png" class="responsive-img" alt="Hive使用Spark引擎替代MR（Hive on Spark）">
@@ -472,13 +680,13 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-09
+                                <i class="far fa-clock fa-fw icon-date"></i>2018-12-09
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category" target="_blank">
+                                <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category">
                                     大数据
                                 </a>
                                 
@@ -490,15 +698,15 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" target="_blank">
+                        <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">
                             <span class="chip bg-color">大数据</span>
                         </a>
                         
-                        <a href="/tags/Hive/" target="_blank">
+                        <a href="/tags/Hive/">
                             <span class="chip bg-color">Hive</span>
                         </a>
                         
-                        <a href="/tags/Spark/" target="_blank">
+                        <a href="/tags/Spark/">
                             <span class="chip bg-color">Spark</span>
                         </a>
                         
@@ -507,9 +715,9 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </div>
             </div>
             
-            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2018/12/09/MySQL%E8%BF%9E%E6%8E%A5%E9%A9%B1%E5%8A%A8%E5%8C%85%E4%B8%8B%E8%BD%BD%E6%96%B9%E6%B3%95/">
+                    <a href="/2018/12/09/mysql-lian-jie-qu-dong-bao-xia-zai-fang-fa/">
                         <div class="card-image">
                             
                             <img src="http://47.106.179.244/logo/mysql.png" class="responsive-img" alt="MySQL连接驱动包下载方法">
@@ -526,13 +734,13 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-09
+                                <i class="far fa-clock fa-fw icon-date"></i>2018-12-09
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category" target="_blank">
+                                <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
                                     数据库
                                 </a>
                                 
@@ -544,15 +752,15 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/MySQL/" target="_blank">
+                        <a href="/tags/MySQL/">
                             <span class="chip bg-color">MySQL</span>
                         </a>
                         
-                        <a href="/tags/%E9%A9%B1%E5%8A%A8%E5%8C%85/" target="_blank">
+                        <a href="/tags/%E9%A9%B1%E5%8A%A8%E5%8C%85/">
                             <span class="chip bg-color">驱动包</span>
                         </a>
                         
-                        <a href="/tags/%E8%BF%9E%E6%8E%A5/" target="_blank">
+                        <a href="/tags/%E8%BF%9E%E6%8E%A5/">
                             <span class="chip bg-color">连接</span>
                         </a>
                         
@@ -561,9 +769,9 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </div>
             </div>
             
-            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2018/12/08/CentOS7%E4%B8%8B%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85MySQL/">
+                    <a href="/2018/12/08/centos7-xia-chi-xian-an-zhuang-mysql/">
                         <div class="card-image">
                             
                             <img src="http://47.106.179.244/logo/mysql.png" class="responsive-img" alt="CentOS7下离线安装MySQL">
@@ -580,13 +788,13 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2018-12-08
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category" target="_blank">
+                                <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
                                     数据库
                                 </a>
                                 
@@ -598,11 +806,11 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/Linux/" target="_blank">
+                        <a href="/tags/Linux/">
                             <span class="chip bg-color">Linux</span>
                         </a>
                         
-                        <a href="/tags/MySQL/" target="_blank">
+                        <a href="/tags/MySQL/">
                             <span class="chip bg-color">MySQL</span>
                         </a>
                         
@@ -611,9 +819,9 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </div>
             </div>
             
-            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2018/12/08/%E4%BD%BF%E7%94%A8%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2%E5%B7%A5%E5%85%B7DbVisualizer%E8%BF%9E%E6%8E%A5Hive%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                    <a href="/2018/12/08/shi-yong-tu-xing-hua-jie-mian-gong-ju-dbvisualizer-lian-jie-hive-shu-ju-ku/">
                         <div class="card-image">
                             
                             <img src="http://47.106.179.244/logo/DbVisualizer.png" class="responsive-img" alt="使用图形化界面工具DbVisualizer连接Hive数据库">
@@ -630,13 +838,13 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2018-12-08
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category" target="_blank">
+                                <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category">
                                     大数据
                                 </a>
                                 
@@ -648,15 +856,15 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/Hive/" target="_blank">
+                        <a href="/tags/Hive/">
                             <span class="chip bg-color">Hive</span>
                         </a>
                         
-                        <a href="/tags/DbVisualizer/" target="_blank">
+                        <a href="/tags/DbVisualizer/">
                             <span class="chip bg-color">DbVisualizer</span>
                         </a>
                         
-                        <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%8C%96%E5%B7%A5%E5%85%B7/" target="_blank">
+                        <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%8C%96%E5%B7%A5%E5%85%B7/">
                             <span class="chip bg-color">图形化工具</span>
                         </a>
                         
@@ -665,9 +873,9 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </div>
             </div>
             
-            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2018/12/06/CentOS7%E4%B8%8B%E6%90%AD%E5%BB%BAHive/">
+                    <a href="/2018/12/06/centos7-xia-da-jian-hive/">
                         <div class="card-image">
                             
                             <img src="http://47.106.179.244/logo/hive.png" class="responsive-img" alt="CentOS7下搭建Hive">
@@ -684,13 +892,13 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-06
+                                <i class="far fa-clock fa-fw icon-date"></i>2018-12-06
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category" target="_blank">
+                                <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category">
                                     大数据
                                 </a>
                                 
@@ -702,15 +910,15 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" target="_blank">
+                        <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">
                             <span class="chip bg-color">大数据</span>
                         </a>
                         
-                        <a href="/tags/Hive/" target="_blank">
+                        <a href="/tags/Hive/">
                             <span class="chip bg-color">Hive</span>
                         </a>
                         
-                        <a href="/tags/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/" target="_blank">
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/">
                             <span class="chip bg-color">数据仓库</span>
                         </a>
                         
@@ -719,9 +927,9 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </div>
             </div>
             
-            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2018/12/05/%E4%BD%BF%E7%94%A8Docker%E6%90%AD%E5%BB%BANginx%E5%9B%BE%E7%89%87%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+                    <a href="/2018/12/05/shi-yong-docker-da-jian-nginx-tu-pian-fu-wu-qi/">
                         <div class="card-image">
                             
                             <img src="http://47.106.179.244/logo/nginx+docker.png" class="responsive-img" alt="使用Docker搭建Nginx图片服务器">
@@ -738,13 +946,13 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2018-12-05
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/Linux/" class="post-category" target="_blank">
+                                <a href="/categories/Linux/" class="post-category">
                                     Linux
                                 </a>
                                 
@@ -756,15 +964,15 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/Docker/" target="_blank">
+                        <a href="/tags/Docker/">
                             <span class="chip bg-color">Docker</span>
                         </a>
                         
-                        <a href="/tags/Nginx/" target="_blank">
+                        <a href="/tags/Nginx/">
                             <span class="chip bg-color">Nginx</span>
                         </a>
                         
-                        <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" target="_blank">
+                        <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">
                             <span class="chip bg-color">服务器</span>
                         </a>
                         
@@ -773,9 +981,9 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </div>
             </div>
             
-            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2018/11/19/Spring-Boot%E4%BD%BF%E7%94%A8JDBC%E8%BF%9E%E6%8E%A5Hive/">
+                    <a href="/2018/11/19/spring-boot-shi-yong-jdbc-lian-jie-hive/">
                         <div class="card-image">
                             
                             <img src="http://47.106.179.244/logo/spring-boot.png" class="responsive-img" alt="Spring-Boot使用JDBC连接Hive">
@@ -792,13 +1000,13 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2018-11-19
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category" target="_blank">
+                                <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category">
                                     大数据
                                 </a>
                                 
@@ -810,15 +1018,15 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/Hive/" target="_blank">
+                        <a href="/tags/Hive/">
                             <span class="chip bg-color">Hive</span>
                         </a>
                         
-                        <a href="/tags/Spring-Boot/" target="_blank">
+                        <a href="/tags/Spring-Boot/">
                             <span class="chip bg-color">Spring Boot</span>
                         </a>
                         
-                        <a href="/tags/JDBC/" target="_blank">
+                        <a href="/tags/JDBC/">
                             <span class="chip bg-color">JDBC</span>
                         </a>
                         
@@ -827,9 +1035,9 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </div>
             </div>
             
-            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2018/11/16/Hadoop%E4%BF%AE%E6%94%B9%E7%AB%AF%E5%8F%A3%E5%90%8EHive%E8%BF%9E%E6%8E%A5%E6%96%B9%E6%B3%95/">
+                    <a href="/2018/11/16/hadoop-xiu-gai-duan-kou-hou-hive-lian-jie-fang-fa/">
                         <div class="card-image">
                             
                             <img src="http://47.106.179.244/logo/hadoop.jpg" class="responsive-img" alt="Hadoop修改端口后Hive连接方法">
@@ -846,13 +1054,13 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2018-11-16
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category" target="_blank">
+                                <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category">
                                     大数据
                                 </a>
                                 
@@ -864,15 +1072,15 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" target="_blank">
+                        <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">
                             <span class="chip bg-color">大数据</span>
                         </a>
                         
-                        <a href="/tags/Hive/" target="_blank">
+                        <a href="/tags/Hive/">
                             <span class="chip bg-color">Hive</span>
                         </a>
                         
-                        <a href="/tags/Hadoop/" target="_blank">
+                        <a href="/tags/Hadoop/">
                             <span class="chip bg-color">Hadoop</span>
                         </a>
                         
@@ -881,9 +1089,9 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </div>
             </div>
             
-            <div class="article col s12 m6 l4 overflow-policy" data-aos="zoom-in">
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2018/10/31/CentOS7%E4%B8%8B%E6%90%AD%E5%BB%BAkubernetes%E7%8E%AF%E5%A2%83/">
+                    <a href="/2018/10/31/centos7-xia-da-jian-kubernetes-huan-jing/">
                         <div class="card-image">
                             
                             <img src="http://47.106.179.244/logo/kubernetes.png" class="responsive-img" alt="CentOS7下搭建Kubernetes环境">
@@ -900,13 +1108,13 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-10-31
+                                <i class="far fa-clock fa-fw icon-date"></i>2018-10-31
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/%E5%AE%B9%E5%99%A8/" class="post-category" target="_blank">
+                                <a href="/categories/%E5%AE%B9%E5%99%A8/" class="post-category">
                                     容器
                                 </a>
                                 
@@ -918,15 +1126,15 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E9%9B%86%E7%BE%A4/" target="_blank">
+                        <a href="/tags/%E9%9B%86%E7%BE%A4/">
                             <span class="chip bg-color">集群</span>
                         </a>
                         
-                        <a href="/tags/K8s/" target="_blank">
+                        <a href="/tags/K8s/">
                             <span class="chip bg-color">K8s</span>
                         </a>
                         
-                        <a href="/tags/%E5%AE%B9%E5%99%A8/" target="_blank">
+                        <a href="/tags/%E5%AE%B9%E5%99%A8/">
                             <span class="chip bg-color">容器</span>
                         </a>
                         
@@ -947,7 +1155,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             <a href="/page/2/"
                class="left btn-floating btn-large waves-effect waves-light bg-color">
-                <i class="fa fa-angle-left"></i>
+                <i class="fas fa-angle-left"></i>
             </a>
             
         </div>
@@ -958,7 +1166,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             <a href="/page/4/"
                class="right btn-floating btn-large waves-effect waves-light bg-color">
-                <i class="fa fa-angle-right"></i>
+                <i class="fas fa-angle-right"></i>
             </a>
             
         </div>
@@ -967,63 +1175,116 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 
 
 
-<footer class="page-footer bg-color">
-    <div class="container row center-align">
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
         <div class="col s12 m8 l8 copy-right">
-<!--            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于-->
-<!--            <a href="https://hexo.io/" target="_blank">Hexo</a> 的-->
-<!--            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.-->
-
-            <span class="white-color">Copyright</span>
-            <i class="fa fa-copyright"></i>
-            <span class="white-color">2016 -2020</span>
-            <i class="fa fa-heart"></i>
+            Copyright&nbsp;&copy;
+            <span id="year">2016</span>
+            <a href="http://blog.hming.org" target="_blank">貍铭</a>
+<!--            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>-->
+<!--            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>-->
+            <br>
             
-
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">77.6k</span>&nbsp;字
             
-                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">75k</span>
             
-
             
-			
-                <br>
-                
-                <span id="busuanzi_container_site_pv">
-                    <i class="fa fa-heart-o"></i>
-                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
-                </span>
-                
-                
-                <span id="busuanzi_container_site_uv">
-                    <i class="fa fa-users"></i>
-                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
-                </span>
-                
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2016";
+                    var startMonth = "7";
+                    var startDate = "23";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
             
         </div>
         <div class="col s12 m4 l4 social-link social-statis">
     <a href="https://github.com/hm-dusk" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
-        <i class="fa fa-github"></i>
+        <i class="fab fa-github"></i>
     </a>
 
 
 
     <a href="mailto:1322260665@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
-        <i class="fa fa-envelope-open"></i>
+        <i class="fas fa-envelope-open"></i>
     </a>
 
 
 
-    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1322260665@qq.com" class="tooltipped" data-tooltip="QQ联系我: 1322260665@qq.com" data-position="top" data-delay="50">
-        <i class="fa fa-qq"></i>
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1322260665" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1322260665" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
     </a>
+
+
+
+
 
 
 
     <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
-        <i class="fa fa-rss"></i>
+        <i class="fas fa-rss"></i>
     </a>
+
 </div>
     </div>
 </footer>
@@ -1031,11 +1292,11 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 <div class="progress-bar"></div>
 
 
-<!-- 搜索遮罩框 -->
+    <!-- 搜索遮罩框 -->
 <div id="searchModal" class="modal">
     <div class="modal-content">
         <div class="search-header">
-            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
             <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
                    class="search-input">
         </div>
@@ -1049,28 +1310,80 @@ $(function () {
     searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
 });
 </script>
-<!-- 回到顶部按钮 -->
+    <!-- 回到顶部按钮 -->
 <div id="backTop" class="top-scroll">
     <a class="btn-floating btn-large waves-effect waves-light" href="#!">
-        <i class="fa fa-angle-up"></i>
+        <i class="fas fa-arrow-up"></i>
     </a>
 </div>
 
 
-<script src="/libs/materialize/materialize.min.js"></script>
-<script src="/libs/masonry/masonry.pkgd.min.js"></script>
-<script src="/libs/aos/aos.js"></script>
-<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
-<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
-<script src="/js/matery.js"></script>
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-
-
+    <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
     <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
 
+    
+
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i["DaoVoiceObject"] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            a.charset = "utf-8";
+            m.parentNode.insertBefore(a, m)
+        })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+            "//widget.daovoice.io/widget/6984b559.js", "daovoice")
+        daovoice('init', {
+            app_id: "f27de589"
+        });
+        daovoice('update');
+    </script>
+    
+
+    
+
+    
+
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
 
 </body>
+
 </html>

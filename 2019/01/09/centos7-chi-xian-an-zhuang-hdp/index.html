@@ -1,0 +1,1369 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="CentOS7离线安装HDP, 博客,貍铭">
+    <meta name="description" content="CentOS7离线安装HDP，Ambari版本：2.7.3.0，HDP版本：3.1.0.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>CentOS7离线安装HDP | 貍铭的博客</title>
+    <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="貍铭的博客" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-xonokai.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper head-container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/cyanide3.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">貍铭的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/cyanide3.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">貍铭的博客</div>
+        <div class="logo-desc">
+            
+            长风破浪会有时，直挂云帆济沧海
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/hm-dusk" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/hm-dusk" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">CentOS7离线安装HDP</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">
+                                <span class="chip bg-color">大数据</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/">
+                                <span class="chip bg-color">离线安装</span>
+                            </a>
+                        
+                            <a href="/tags/HDP/">
+                                <span class="chip bg-color">HDP</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category">
+                                大数据
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-01-09
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2019-04-09
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.6k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    12 分
+                </div>
+                
+				
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+            
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="本文环境"><a href="#本文环境" class="headerlink" title="本文环境"></a>本文环境</h3><table>
+<thead>
+<tr>
+<th align="center">节点</th>
+<th align="center">IP地址</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">hdp001</td>
+<td align="center">192.168.171.10</td>
+</tr>
+<tr>
+<td align="center">hdp002</td>
+<td align="center">192.168.171.11</td>
+</tr>
+<tr>
+<td align="center">hdp003</td>
+<td align="center">192.168.171.12</td>
+</tr>
+</tbody></table>
+<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><h4 id="磁盘准备"><a href="#磁盘准备" class="headerlink" title="磁盘准备"></a>磁盘准备</h4><p>离线安装包共计10G左右，解压后共计11G左右，请保证有足够空间。</p>
+<h4 id="配置免密登录"><a href="#配置免密登录" class="headerlink" title="配置免密登录"></a>配置免密登录</h4><p>配置免密码登录教程请点击<a href="http://blog.hming.org/2018/09/16/Linux%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95/">这里</a></p>
+<h4 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h4><p>查看防火墙状态<br><code>firewall-cmd --state</code>或<code>systemctl status firewalld</code><br>临时关闭防火墙<br><code>systemctl stop firewalld</code><br>禁止开机启动<br><code>systemctl disable firewalld</code></p>
+<h4 id="设置SELinux模式"><a href="#设置SELinux模式" class="headerlink" title="设置SELinux模式"></a>设置SELinux模式</h4><p>不关闭可能导致Apache http服务无法访问。</p>
+<ol>
+<li>查看SELinux状态：<code>getenforce</code><br>如果是<code>Permissive</code>或者<code>Disabled</code>则可以继续安装，如果显示<code>enforcing</code>，则需要进行以下步骤修改模式</li>
+<li>编辑<code>/etc/selinux/config</code>文件</li>
+<li>修改<code>SELINUX=enforcing</code>行内容为<code>SELINUX=permissive</code>或者<code>SELINUX=disabled</code></li>
+<li>重启系统或者运行<code>setenforce 0</code>命令禁用SELinux</li>
+</ol>
+<h4 id="安装jdk、Python（所有节点）、MySQL（安装一个即可）"><a href="#安装jdk、Python（所有节点）、MySQL（安装一个即可）" class="headerlink" title="安装jdk、Python（所有节点）、MySQL（安装一个即可）"></a>安装jdk、Python（所有节点）、MySQL（安装一个即可）</h4><ol>
+<li>配置java环境教程点击<a href="http://blog.hming.org/2018/09/14/Linux%E4%B8%8B%E5%AE%89%E8%A3%85Java/">这里</a></li>
+<li>安装/更新Python <code>yum -y install python</code></li>
+<li>离线安装MySQL教程点击<a href="http://blog.hming.org/2018/12/08/CentOS7%E4%B8%8B%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85MySQL/">这里</a><br>新建数据库hive、ambari（为后续安装做准备）。</li>
+</ol>
+<pre class="line-numbers language-bash"><code class="language-bash">mysql<span class="token operator">></span> create database hive<span class="token punctuation">;</span>
+Query OK, 1 row affected <span class="token punctuation">(</span>0.00 sec<span class="token punctuation">)</span>
+
+mysql<span class="token operator">></span> create database ambari<span class="token punctuation">;</span>
+Query OK, 1 row affected <span class="token punctuation">(</span>0.00 sec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="下载离线包（包含HDP、ambari、HDP-UTILS、HDP-GPL（非必须））"><a href="#下载离线包（包含HDP、ambari、HDP-UTILS、HDP-GPL（非必须））" class="headerlink" title="下载离线包（包含HDP、ambari、HDP-UTILS、HDP-GPL（非必须））"></a>下载离线包（包含HDP、ambari、HDP-UTILS、HDP-GPL（非必须））</h4><p><a href="https://docs.hortonworks.com/HDPDocuments/Ambari-2.7.3.0/bk_ambari-installation/content/ambari_repositories.html" target="_blank" rel="noopener">Ambari-2.7.3.0下载地址</a><br><a href="https://docs.hortonworks.com/HDPDocuments/Ambari-2.7.3.0/bk_ambari-installation/content/hdp_31_repositories.html" target="_blank" rel="noopener">HDP-3.1.0.0相关包下载地址</a></p>
+<blockquote>
+<p>注意：ambari包大小<code>1.81G</code>左右，HDP包<code>8.44G</code>左右，HDP-UTILS包<code>86.4M</code>左右，请确保保存路径有足够空间</p>
+</blockquote>
+<h4 id="安装httpd服务（Apache服务，ambari-server节点安装即可）"><a href="#安装httpd服务（Apache服务，ambari-server节点安装即可）" class="headerlink" title="安装httpd服务（Apache服务，ambari-server节点安装即可）"></a>安装httpd服务（Apache服务，ambari-server节点安装即可）</h4><blockquote>
+<p>注意：selinux未关闭可能导致Apache服务地址403。</p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hdp001 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum -y install httpd</span>
+<span class="token punctuation">[</span>root@hdp001 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># service httpd restart</span>
+Redirecting to /bin/systemctl restart httpd.service<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>访问服务器80端口，查看httpd服务是否开启。</p>
+<blockquote>
+<p>注意：配置信息如端口、映射路径可以通过编辑<code>/etc/httpd/conf/httpd.conf</code>文件进行修改</p>
+</blockquote>
+<h4 id="将压缩包解压到-var-www-html-下"><a href="#将压缩包解压到-var-www-html-下" class="headerlink" title="将压缩包解压到/var/www/html/下"></a>将压缩包解压到/var/www/html/下</h4><blockquote>
+<p>注意：<br>1.如果httpd映射路径修改过，则以修改后的为准。<br>2.解压后一共约11G左右大小，请确保有足够空间。</p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hdp001 ambari<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># pwd</span>
+/var/www/html/ambari
+<span class="token punctuation">[</span>root@hdp001 html<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># du -h -d 1</span>
+11G    ./ambari
+11G    <span class="token keyword">.</span>
+<span class="token punctuation">[</span>root@hdp001 ambari<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ls</span>
+ambari-2.7.3.0-centos7.tar.gz  HDP-3.1.0.0-centos7-rpm.tar.gz  HDP-UTILS-1.1.0.22-centos7.tar.gz
+<span class="token comment" spellcheck="true"># 解压...</span>
+<span class="token punctuation">[</span>root@hdp001 ambari<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ls</span>
+ambari ambari-2.7.3.0-centos7.tar.gz  HDP HDP-3.1.0.0-centos7-rpm.tar.gz  HDP-UTILS HDP-UTILS-1.1.0.22-centos7.tar.gz<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>访问服务器80端口相应/ambari/地址，可以访问到文件和文件夹即可<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/httpd%E8%AE%BF%E9%97%AEambari%E5%9C%B0%E5%9D%80.png" alt=""></p>
+<h3 id="制作本地源"><a href="#制作本地源" class="headerlink" title="制作本地源"></a>制作本地源</h3><ol>
+<li><p>修改repo源文件</p>
+<pre class="line-numbers language-bash"><code class="language-bash"> <span class="token punctuation">[</span>root@hdp001 ambari<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># vim ambari/centos7/2.7.3.0-139/ambari.repo</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p> 修改<code>baseurl</code>与<code>gpgkey</code>值为Apache httpd服务能访问到的地址，如下：</p>
+<pre class="line-numbers language-bash"><code class="language-bash"> <span class="token comment" spellcheck="true">#VERSION_NUMBER=2.7.3.0-139</span>
+ <span class="token punctuation">[</span>ambari-2.7.3.0<span class="token punctuation">]</span>
+ <span class="token comment" spellcheck="true">#json.url = http://public-repo-1.hortonworks.com/HDP/hdp_urlinfo.json</span>
+ name<span class="token operator">=</span>ambari Version - ambari-2.7.3.0
+ baseurl<span class="token operator">=</span>http://hdp001:80/ambari/ambari/centos7/2.7.3.0-139
+ gpgcheck<span class="token operator">=</span>1
+ gpgkey<span class="token operator">=</span>http://hdp001:80/ambari/ambari/centos7/2.7.3.0-139/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
+ priority<span class="token operator">=</span>1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p> HDP源修改方式同上</p>
+<pre class="line-numbers language-bash"><code class="language-bash"> <span class="token punctuation">[</span>root@hdp001 ambari<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># vim HDP/centos7/3.1.0.0-78/hdp.repo</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash"> <span class="token comment" spellcheck="true">#VERSION_NUMBER=3.1.0.0-78</span>
+ <span class="token punctuation">[</span>HDP-3.1.0.0<span class="token punctuation">]</span>
+ name<span class="token operator">=</span>HDP Version - HDP-3.1.0.0
+ baseurl<span class="token operator">=</span>http://hdp001:80/ambari/HDP/centos7/3.1.0.0-78
+ gpgcheck<span class="token operator">=</span>1
+ gpgkey<span class="token operator">=</span>http://hdp001:80/ambari/HDP/centos7/3.1.0.0-78/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
+ enabled<span class="token operator">=</span>1
+ priority<span class="token operator">=</span>1
+
+ <span class="token punctuation">[</span>HDP-UTILS-1.1.0.22<span class="token punctuation">]</span>
+ name<span class="token operator">=</span>HDP-UTILS Version - HDP-UTILS-1.1.0.22
+ baseurl<span class="token operator">=</span>http://hdp001:80/ambari/HDP-UTILS/centos7/1.1.0.22
+ gpgcheck<span class="token operator">=</span>1
+ gpgkey<span class="token operator">=</span>http://hdp001:80/ambari/HDP-UTILS/centos7/1.1.0.22/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
+ enabled<span class="token operator">=</span>1
+ priority<span class="token operator">=</span>1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p> 将repo文件拷贝到<code>/etc/yum.repos.d/</code>目录</p>
+<pre class="line-numbers language-bash"><code class="language-bash"> <span class="token punctuation">[</span>root@hdp001 ambari<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cp ambari/centos7/2.7.3.0-139/ambari.repo /etc/yum.repos.d/</span>
+ <span class="token punctuation">[</span>root@hdp001 ambari<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cp HDP/centos7/3.1.0.0-78/hdp.repo /etc/yum.repos.d/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li><p>将repo文件拷贝到子节点</p>
+<pre class="line-numbers language-bash"><code class="language-bash"> <span class="token punctuation">[</span>root@hdp001 ambari<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cd /etc/yum.repos.d/</span>
+ <span class="token punctuation">[</span>root@hdp001 yum.repos.d<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># pwd</span>
+ /etc/yum.repos.d
+ <span class="token punctuation">[</span>root@hdp001 yum.repos.d<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># scp ambari.repo hdp002:/etc/yum.repos.d/</span>
+ ambari.repo                                                                 100%  329   467.5KB/s   00:00    
+ <span class="token punctuation">[</span>root@hdp001 yum.repos.d<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># scp ambari.repo hdp003:/etc/yum.repos.d/</span>
+ ambari.repo                                                                 100%  329   510.4KB/s   00:00    
+ <span class="token punctuation">[</span>root@hdp001 yum.repos.d<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># scp hdp.repo hdp002:/etc/yum.repos.d/</span>
+ hdp.repo                                                                    100%  483   570.3KB/s   00:00    
+ <span class="token punctuation">[</span>root@hdp001 yum.repos.d<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># scp hdp.repo hdp003:/etc/yum.repos.d/</span>
+ hdp.repo                                                                    100%  483   352.4KB/s   00:00 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>每个节点清除yum缓存，重新建立缓存<br> 该环节遇到报错说明yum源配置不正确，检查一下所有repo文件</p>
+<pre class="line-numbers language-bash"><code class="language-bash"> <span class="token punctuation">[</span>root@hdp001 ambari<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum clean all</span>
+ <span class="token punctuation">..</span>.
+ <span class="token punctuation">[</span>root@hdp001 ambari<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum makecache</span>
+ <span class="token punctuation">..</span>.
+ <span class="token punctuation">[</span>root@hdp001 ambari<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum repolist</span>
+ <span class="token punctuation">..</span>.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ol>
+<h3 id="安装Ambari-server"><a href="#安装Ambari-server" class="headerlink" title="安装Ambari-server"></a>安装Ambari-server</h3><p>本次安装使用第三方数据库MySQL模式，默认为PostgreSQL模式（生产环境不推荐）。<br>需提前准备好MySQL数据库连接jar包，<a href="http://blog.hming.org/2018/12/09/MySQL%E8%BF%9E%E6%8E%A5%E9%A9%B1%E5%8A%A8%E5%8C%85%E4%B8%8B%E8%BD%BD%E6%96%B9%E6%B3%95/">MySQL连接驱动包下载方法</a></p>
+<h4 id="Ambari-server节点（主节点）安装Ambari-server"><a href="#Ambari-server节点（主节点）安装Ambari-server" class="headerlink" title="Ambari-server节点（主节点）安装Ambari-server"></a>Ambari-server节点（主节点）安装Ambari-server</h4><pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hdp001 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># yum -y install ambari-server</span>
+<span class="token punctuation">..</span>.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h4 id="初始化设置"><a href="#初始化设置" class="headerlink" title="初始化设置"></a>初始化设置</h4><p>使用<code>ambari-server setup</code>命令进行初始化操作。</p>
+<blockquote>
+<p>以下代码段中<code>#(1)</code>类似标识为注解。</p>
+</blockquote>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hdp001 home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ambari-server setup</span>
+Using python  /usr/bin/python
+Setup ambari-server
+Checking SELinux<span class="token punctuation">..</span>.
+SELinux status is <span class="token string">'disabled'</span>
+Customize user account <span class="token keyword">for</span> ambari-server daemon <span class="token punctuation">[</span>y/n<span class="token punctuation">]</span> <span class="token punctuation">(</span>n<span class="token punctuation">)</span>? y  <span class="token comment" spellcheck="true">#(1)选择自定义配置</span>
+Enter user account <span class="token keyword">for</span> ambari-server daemon <span class="token punctuation">(</span>root<span class="token punctuation">)</span>:  <span class="token comment" spellcheck="true">#(2)选择用户</span>
+Adjusting ambari-server permissions and ownership<span class="token punctuation">..</span>.
+Checking firewall status<span class="token punctuation">..</span>.
+Checking JDK<span class="token punctuation">..</span>.
+<span class="token punctuation">[</span>1<span class="token punctuation">]</span> Oracle JDK 1.8 + Java Cryptography Extension <span class="token punctuation">(</span>JCE<span class="token punctuation">)</span> Policy Files 8
+<span class="token punctuation">[</span>2<span class="token punctuation">]</span> Custom JDK
+<span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span>
+Enter choice <span class="token punctuation">(</span>1<span class="token punctuation">)</span>: 2  <span class="token comment" spellcheck="true">#(3)选择2，自定义jdk</span>
+WARNING: JDK must be installed on all hosts and JAVA_HOME must be valid on all hosts.
+WARNING: JCE Policy files are required <span class="token keyword">for</span> configuring Kerberos security. If you plan to use Kerberos,please <span class="token function">make</span> sure JCE Unlimited Strength Jurisdiction Policy Files are valid on all hosts.
+Path to JAVA_HOME: /home/jdk  <span class="token comment" spellcheck="true">#(4)输入自己安装的jdk路径</span>
+Validating JDK on Ambari Server<span class="token punctuation">..</span>.done.
+Check JDK version <span class="token keyword">for</span> Ambari Server<span class="token punctuation">..</span>.
+JDK version found: 8
+Minimum JDK version is 8 <span class="token keyword">for</span> Ambari. Skipping to setup different JDK <span class="token keyword">for</span> Ambari Server.
+Checking GPL software agreement<span class="token punctuation">..</span>.
+GPL License <span class="token keyword">for</span> LZO: https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
+Enable Ambari Server to download and <span class="token function">install</span> GPL Licensed LZO packages <span class="token punctuation">[</span>y/n<span class="token punctuation">]</span> <span class="token punctuation">(</span>n<span class="token punctuation">)</span>?   <span class="token comment" spellcheck="true">#(5)是否安装GPL，这里默认选择否</span>
+Completing setup<span class="token punctuation">..</span>.
+Configuring database<span class="token punctuation">..</span>.
+Enter advanced database configuration <span class="token punctuation">[</span>y/n<span class="token punctuation">]</span> <span class="token punctuation">(</span>n<span class="token punctuation">)</span>? y  <span class="token comment" spellcheck="true">#(6)高级数据库配置，选是</span>
+Configuring database<span class="token punctuation">..</span>.
+<span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span>
+Choose one of the following options:
+<span class="token punctuation">[</span>1<span class="token punctuation">]</span> - PostgreSQL <span class="token punctuation">(</span>Embedded<span class="token punctuation">)</span>
+<span class="token punctuation">[</span>2<span class="token punctuation">]</span> - Oracle
+<span class="token punctuation">[</span>3<span class="token punctuation">]</span> - MySQL / MariaDB
+<span class="token punctuation">[</span>4<span class="token punctuation">]</span> - PostgreSQL
+<span class="token punctuation">[</span>5<span class="token punctuation">]</span> - Microsoft SQL Server <span class="token punctuation">(</span>Tech Preview<span class="token punctuation">)</span>
+<span class="token punctuation">[</span>6<span class="token punctuation">]</span> - SQL Anywhere
+<span class="token punctuation">[</span>7<span class="token punctuation">]</span> - BDB
+<span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span>
+Enter choice <span class="token punctuation">(</span>1<span class="token punctuation">)</span>: 3  <span class="token comment" spellcheck="true">#(7)选择MySQL</span>
+Hostname <span class="token punctuation">(</span>localhost<span class="token punctuation">)</span>: hdp002  <span class="token comment" spellcheck="true">#(8)MySQL地址，这里选择hdp002主机上安装的MySQL</span>
+Port <span class="token punctuation">(</span>3306<span class="token punctuation">)</span>:    <span class="token comment" spellcheck="true">#(9)MySQL端口，默认3306</span>
+Database name <span class="token punctuation">(</span>ambari<span class="token punctuation">)</span>:     <span class="token comment" spellcheck="true">#(10)MySQL中数据库名称，默认ambari（之前步骤提前建好的）</span>
+Username <span class="token punctuation">(</span>ambari<span class="token punctuation">)</span>: root     <span class="token comment" spellcheck="true">#(11)MySQL用户名</span>
+Enter Database Password <span class="token punctuation">(</span>bigdata<span class="token punctuation">)</span>:  <span class="token comment" spellcheck="true">#(12)MySQL密码</span>
+Re-enter password:      <span class="token comment" spellcheck="true">#(13)再次输入密码</span>
+Configuring ambari database<span class="token punctuation">..</span>.
+Enter full path to custom jdbc driver: /home/mysql-connector-java-5.1.47.jar    <span class="token comment" spellcheck="true">#(14)这里输入提前准备好的MySQL连接包地址</span>
+Copying /home/mysql-connector-java-5.1.47.jar to /usr/share/java
+Configuring remote database connection properties<span class="token punctuation">..</span>.
+WARNING: Before starting Ambari Server, you must run the following DDL directly from the database shell to create the schema:
+/var/lib/ambari-server/resources/Ambari-DDL-MySQL-CREATE.sql     <span class="token comment" spellcheck="true">#(15)这里会提示开启ambari服务之前需要执行DDl建表语句</span>
+Proceed with configuring remote database connection properties <span class="token punctuation">[</span>y/n<span class="token punctuation">]</span> <span class="token punctuation">(</span>y<span class="token punctuation">)</span>?    <span class="token comment" spellcheck="true">#(16)继续配置远程数据库连接属性</span>
+Extracting system views<span class="token punctuation">..</span>.
+ambari-admin-2.7.3.0.139.jar
+<span class="token punctuation">..</span><span class="token punctuation">..</span>
+Ambari repo <span class="token function">file</span> contains latest json url http://public-repo-1.hortonworks.com/HDP/hdp_urlinfo.json, updating stacks repoinfos with it<span class="token punctuation">..</span>.
+Adjusting ambari-server permissions and ownership<span class="token punctuation">..</span>.
+Ambari Server <span class="token string">'setup'</span> completed successfully.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>根据上文提示执行DDL语句。<br>将<code>/var/lib/ambari-server/resources/Ambari-DDL-MySQL-CREATE.sql</code>文件拷贝到MySQL安装节点，并在ambari数据库中执行该脚本。</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hdp001 home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># scp /var/lib/ambari-server/resources/Ambari-DDL-MySQL-CREATE.sql hdp002:/home</span>
+Ambari-DDL-MySQL-CREATE.sql                                        100%   82KB  39.1MB/s   00:00<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hdp002 home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># pwd</span>
+/home
+<span class="token punctuation">[</span>root@hdp002 home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ls</span>
+Ambari-DDL-MySQL-CREATE.sql  jdk
+
+<span class="token punctuation">[</span>root@hdp002 home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># mysql -uroot -p</span>
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with <span class="token punctuation">;</span> or \g.
+Your MySQL connection <span class="token function">id</span> is 4
+Server version: 5.7.24 MySQL Community Server <span class="token punctuation">(</span>GPL<span class="token punctuation">)</span>
+
+Copyright <span class="token punctuation">(</span>c<span class="token punctuation">)</span> 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type <span class="token string">'help;'</span> or <span class="token string">'\h'</span> <span class="token keyword">for</span> help. Type <span class="token string">'\c'</span> to <span class="token function">clear</span> the current input statement.
+
+mysql<span class="token operator">></span> use ambari<span class="token punctuation">;</span>
+Database changed
+mysql<span class="token operator">></span> <span class="token function">source</span> /home/Ambari-DDL-MySQL-CREATE.sql<span class="token punctuation">;</span>
+<span class="token punctuation">..</span>.
+<span class="token punctuation">..</span>.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="启动ambari-server"><a href="#启动ambari-server" class="headerlink" title="启动ambari-server"></a>启动ambari-server</h4><p>执行<code>ambari-server start</code>命令启动服务</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hdp001 home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ambari-server start</span>
+Using python  /usr/bin/python
+Starting ambari-server
+Ambari Server running with administrator privileges.
+ERROR: Exiting with <span class="token keyword">exit</span> code -1. 
+REASON: Before starting Ambari Server, you must copy the MySQL JDBC driver JAR <span class="token function">file</span> to
+/usr/share/java and <span class="token keyword">set</span> property <span class="token string">"server.jdbc.driver.path=[path/to/custom_jdbc_driver]"</span> <span class="token keyword">in</span> ambari.properties.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>报错。根据提示信息，将MySQL连接包拷贝到<code>/usr/share/java/</code>目录下，并设置参数路径（也可在之后安装hive相关组件时设置该参数）。<br>可能会遇到<code>/usr/share/java</code>不是一个目录的情况，此时删掉该文件，新建一个java目录即可。</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hdp001 home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cp /home/mysql-connector-java-5.1.47.jar /usr/share/java/</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>再次启动ambari-server即可启动成功</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hdp001 home<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ambari-server start</span>
+Using python  /usr/bin/python
+Starting ambari-server
+Ambari Server running with administrator privileges.
+Organizing resource files at /var/lib/ambari-server/resources<span class="token punctuation">..</span>.
+Ambari database consistency check started<span class="token punctuation">..</span>.
+Server PID at: /var/run/ambari-server/ambari-server.pid
+Server out at: /var/log/ambari-server/ambari-server.out
+Server log at: /var/log/ambari-server/ambari-server.log
+Waiting <span class="token keyword">for</span> server start<span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>
+Server started listening on 8080
+
+DB configs consistency check: no errors and warnings were found.
+Ambari Server <span class="token string">'start'</span> completed successfully.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="访问服务器8080端口"><a href="#访问服务器8080端口" class="headerlink" title="访问服务器8080端口"></a>访问服务器8080端口</h4><p>默认用户名和密码都为admin<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/ambari%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2.png" alt=""><br>根据提示安装集群<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E6%A0%B9%E6%8D%AE%E6%8F%90%E7%A4%BA%E5%AE%89%E8%A3%85%E9%9B%86%E7%BE%A4.png" alt=""><br>设置集群名字，比如my_hadoop<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E4%B8%BA%E9%9B%86%E7%BE%A4%E8%B5%B7%E5%90%8D%E5%AD%97.png" alt=""><br>选择HDP版本，配置yum源地址<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/HDP%E7%89%88%E6%9C%AC%E9%80%89%E6%8B%A9%E4%B8%8Eyum%E6%BA%90%E5%9C%B0%E5%9D%80%E9%85%8D%E7%BD%AE.png" alt=""><br>配置host与ssh<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E9%85%8D%E7%BD%AEhost%E4%B8%8Essh.png" alt=""><br>确认后开始在节点上安装ambari-agent<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/agent%E5%AE%89%E8%A3%85%E9%A1%B5%E9%9D%A2.png" alt=""></p>
+<blockquote>
+<p>安装agent时可能报错：</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">..</span>.
+Connection to node1 closed.
+SSH <span class="token function">command</span> execution finished
+host<span class="token operator">=</span>node1, exitcode<span class="token operator">=</span>0
+Command end <span class="token function">time</span> 2019-01-15 15:52:22
+
+Registering with the server<span class="token punctuation">..</span>.
+Registration with the server failed.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>解决方法：<br>报错的节点编辑文件：<code>/etc/ambari-agent/conf/ambari-agent.ini</code>，将hostname修改为正确值</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">..</span>.
+<span class="token punctuation">[</span>server<span class="token punctuation">]</span>
+hostname<span class="token operator">=</span>master1
+url_port<span class="token operator">=</span>8440
+secured_url_port<span class="token operator">=</span>8441
+connect_retry_delay<span class="token operator">=</span>10
+max_reconnect_retry_delay<span class="token operator">=</span>30
+<span class="token punctuation">..</span>.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<p>ambari-agent安装成功<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/agent%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F.png" alt=""><br>选择hadoop组件进行安装，建议安装少量组件，之后可以再添加<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E9%80%89%E6%8B%A9%E9%9C%80%E8%A6%81%E5%AE%89%E8%A3%85%E7%9A%84hadoop%E7%BB%84%E4%BB%B6.png" alt=""><br>选择主节点安装位置（如NameNode）<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E9%80%89%E6%8B%A9%E4%B8%BB%E8%8A%82%E7%82%B9.png" alt=""><br>选择从节点安装位置（如DataNode）<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E9%80%89%E6%8B%A9%E4%BB%8E%E8%8A%82%E7%82%B9.png" alt=""><br>进行其他设置（如密码、数据保存路径、用户/用户组、参数配置等）<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E5%85%B6%E4%BB%96%E8%AE%BE%E7%BD%AE1.png" alt=""><br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E5%85%B6%E4%BB%96%E8%AE%BE%E7%BD%AE2.png" alt=""><br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E5%85%B6%E4%BB%96%E8%AE%BE%E7%BD%AE3.png" alt=""><br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E5%85%B6%E4%BB%96%E8%AE%BE%E7%BD%AE4.png" alt=""><br>配置完成后，查看配置项是否无误，确认无误后点击发布开始安装<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/%E9%85%8D%E7%BD%AE%E5%AE%8C%E6%88%90%E7%A1%AE%E8%AE%A4%E5%AE%89%E8%A3%85.png" alt=""><br>等待安装进度完成即可，如果安装过程中出错，可根据报错信息进行修改直到安装成功<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85HDP/hadoop%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85%E8%BF%9B%E5%BA%A6.png" alt=""></p>
+<h3 id="使用HDP"><a href="#使用HDP" class="headerlink" title="使用HDP"></a>使用HDP</h3><h4 id="HDP安装路径"><a href="#HDP安装路径" class="headerlink" title="HDP安装路径"></a>HDP安装路径</h4><table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">安装路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">HDP各组件默认安装目录</td>
+<td align="center">/usr/hdp/版本号</td>
+</tr>
+<tr>
+<td align="center">ambari-server安装目录</td>
+<td align="center">/usr/lib/ambari-server</td>
+</tr>
+<tr>
+<td align="center">ambari-agent安装目录</td>
+<td align="center">/usr/lib/ambari-agent</td>
+</tr>
+<tr>
+<td align="center">日志安装目录</td>
+<td align="center">/var/log</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>ambari安装的hdp路径是不能更改的，但是可以用软链接将以上路径链接到其他路径。</p>
+</blockquote>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">
+                                    <span class="chip bg-color">大数据</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/">
+                                    <span class="chip bg-color">离线安装</span>
+                                </a>
+                            
+                                <a href="/tags/HDP/">
+                                    <span class="chip bg-color">HDP</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '5d9119965bca0418a356',
+        clientSecret: '9f807f3b84131fb73cd00b374d87d2829674d456',
+        repo: 'gitalk',
+        owner: 'hm-dusk',
+        admin: "hm-dusk",
+        id: '2019-01-09T20-07-15',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/01/12/maven-shi-yong-hortonworks-yi-lai-bao/">
+                    <div class="card-image">
+                        
+                        <img src="http://47.106.179.244/logo/hortonworks.png" class="responsive-img" alt="Maven使用Hortonworks依赖包">
+                        
+                        <span class="card-title">Maven使用Hortonworks依赖包</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            在项目中连接HDP时，会出现HortonWorks的Maven依赖包下载不了的情况，本文提供解决方案。
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-01-12
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category">
+                                    大数据
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">
+                        <span class="chip bg-color">大数据</span>
+                    </a>
+                    
+                    <a href="/tags/Maven/">
+                        <span class="chip bg-color">Maven</span>
+                    </a>
+                    
+                    <a href="/tags/HDP/">
+                        <span class="chip bg-color">HDP</span>
+                    </a>
+                    
+                    <a href="/tags/Hortonworks/">
+                        <span class="chip bg-color">Hortonworks</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/01/03/hive2-zhi-llap-da-jian/">
+                    <div class="card-image">
+                        
+                        <img src="http://47.106.179.244/logo/hive.png" class="responsive-img" alt="Hive2之LLAP搭建">
+                        
+                        <span class="card-title">Hive2之LLAP搭建</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Hive2.0之LLAP搭建
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-01-03
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="post-category">
+                                    大数据
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">
+                        <span class="chip bg-color">大数据</span>
+                    </a>
+                    
+                    <a href="/tags/Hive/">
+                        <span class="chip bg-color">Hive</span>
+                    </a>
+                    
+                    <a href="/tags/LLAP/">
+                        <span class="chip bg-color">LLAP</span>
+                    </a>
+                    
+                    <a href="/tags/Tez/">
+                        <span class="chip bg-color">Tez</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+    
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2016</span>
+            <a href="http://blog.hming.org" target="_blank">貍铭</a>
+<!--            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>-->
+<!--            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>-->
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">77.6k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2016";
+                    var startMonth = "7";
+                    var startDate = "23";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/hm-dusk" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1322260665@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1322260665" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1322260665" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i["DaoVoiceObject"] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            a.charset = "utf-8";
+            m.parentNode.insertBefore(a, m)
+        })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+            "//widget.daovoice.io/widget/6984b559.js", "daovoice")
+        daovoice('init', {
+            app_id: "f27de589"
+        });
+        daovoice('update');
+    </script>
+    
+
+    
+
+    
+
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
