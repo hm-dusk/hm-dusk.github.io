@@ -625,9 +625,9 @@
       <category term="容器" scheme="http://blog.hming.org/categories/%E5%AE%B9%E5%99%A8/"/>
     
     
-      <category term="Docker" scheme="http://blog.hming.org/tags/Docker/"/>
-    
       <category term="容器" scheme="http://blog.hming.org/tags/%E5%AE%B9%E5%99%A8/"/>
+    
+      <category term="Docker" scheme="http://blog.hming.org/tags/Docker/"/>
     
       <category term="Alpine" scheme="http://blog.hming.org/tags/Alpine/"/>
     
