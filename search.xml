@@ -605,9 +605,9 @@ INFO  <span class="token keyword">:</span> OK
         <category>大数据</category>
       </categories>
       <tags>
+        <tag>Hive</tag>
         <tag>大数据</tag>
         <tag>CDH</tag>
-        <tag>Hive</tag>
         <tag>Zookeeper</tag>
       </tags>
   </entry>
@@ -648,9 +648,9 @@ INFO  <span class="token keyword">:</span> OK
         <category>大数据</category>
       </categories>
       <tags>
+        <tag>Hive</tag>
         <tag>大数据</tag>
         <tag>CDH</tag>
-        <tag>Hive</tag>
         <tag>乱码</tag>
       </tags>
   </entry>
@@ -3541,8 +3541,8 @@ max_reconnect_retry_delay<span class="token operator">=</span>30
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>大数据</tag>
         <tag>Hive</tag>
+        <tag>大数据</tag>
         <tag>LLAP</tag>
         <tag>Tez</tag>
       </tags>
@@ -3951,8 +3951,8 @@ main:
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>大数据</tag>
         <tag>Hive</tag>
+        <tag>大数据</tag>
         <tag>Spark</tag>
       </tags>
   </entry>
@@ -4333,8 +4333,8 @@ From <span class="token function">source</span> with checksum 9f2d17b212f3a05297
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>大数据</tag>
         <tag>Hive</tag>
+        <tag>大数据</tag>
         <tag>数据仓库</tag>
       </tags>
   </entry>
@@ -4636,8 +4636,8 @@ EXPOSE 80<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>大数据</tag>
         <tag>Hive</tag>
+        <tag>大数据</tag>
         <tag>Hadoop</tag>
       </tags>
   </entry>
