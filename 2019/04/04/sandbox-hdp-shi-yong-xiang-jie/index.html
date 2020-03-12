@@ -516,8 +516,8 @@
 </blockquote>
 <p>SandBox是Hortonworks提供的单机版HDP或HDF环境，主要用于测试和学习使用，对于没有服务器集群又想使用HDP/HDF的情况，SandBox是不二之选。<br>另外，SandBox里面内置了<code>DAS（Data Analytics Studio）</code>，非SandBox版本是没有这个的，需要购买Hortonworks服务才的获取到安装包。<br>SandBox提供三种安装方式：<code>VirtualBox虚拟机</code>、<code>VMware虚拟机</code>、<code>Docker容器</code>。<br>本文主要针对讲SandBox-HDP，HDF安装使用和HDP大致相同。<br>安装教程参考：<br><a href="http://blog.hming.org/2019/04/02/安装SandBox-HDP（Docker版）">安装SandBox HDP（Docker版）</a><br><a href="http://blog.hming.org/2019/04/02/安装SandBox-HDP（VMware版）">安装SandBox HDP（VMware版）</a></p>
 <h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><p>一个运行中的SandBox-HDP 3.0.1</p>
-<h3 id="web访问"><a href="#web访问" class="headerlink" title="web访问"></a>web访问</h3><p>1080端口为sandbox容器web服务端口，可以通过浏览器访问该端口，得到以下界面：<br><img src="/loading.gif" data-original="http://47.106.179.244/sandbox-hdp%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/sandbox%E9%A1%B5%E9%9D%A2.png" alt="sandbox页面"><br>左侧launch dashboard直接进入ambari管理界面，登录admin账号需要进入容器修改ambari管理员密码<br>右侧则是一些链接，包括ambari管理地址、Ranger地址、DAS地址等</p>
-<p>4200端口则提供了一个浏览器访问命令行的接口：<br><img src="/loading.gif" data-original="http://47.106.179.244/sandbox-hdp%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AE%BF%E9%97%AEhdp%E5%AE%B9%E5%99%A8.png" alt="浏览器访问hdp容器"><br>使用<code>root</code>登录，默认密码为<code>hadoop</code>，第一次登录会提示修改root密码，对密码强度会有要求</p>
+<h3 id="web访问"><a href="#web访问" class="headerlink" title="web访问"></a>web访问</h3><p>1080端口为sandbox容器web服务端口，可以通过浏览器访问该端口，得到以下界面：<br><img src="http://47.106.179.244/sandbox-hdp%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/sandbox%E9%A1%B5%E9%9D%A2.png" alt="sandbox页面"><br>左侧launch dashboard直接进入ambari管理界面，登录admin账号需要进入容器修改ambari管理员密码<br>右侧则是一些链接，包括ambari管理地址、Ranger地址、DAS地址等</p>
+<p>4200端口则提供了一个浏览器访问命令行的接口：<br><img src="http://47.106.179.244/sandbox-hdp%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AE%BF%E9%97%AEhdp%E5%AE%B9%E5%99%A8.png" alt="浏览器访问hdp容器"><br>使用<code>root</code>登录，默认密码为<code>hadoop</code>，第一次登录会提示修改root密码，对密码强度会有要求</p>
 <h3 id="登录到HDP环境主机"><a href="#登录到HDP环境主机" class="headerlink" title="登录到HDP环境主机"></a>登录到HDP环境主机</h3><p>在运行docker的主机上可以通过<code>2222</code>端口登录到HDP docker主机中，也可以通过<code>docker exec</code>命令进入<br>在其他机器上想登录到HDP主机就只能通过SSH了</p>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># SSH登录需要输入密码，root初始密码为hadoop</span>
 <span class="token punctuation">[</span>root@sandbox opt<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ssh 127.0.0.1 -p 2222</span>
@@ -1167,6 +1167,6 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</body>
 
 </html>

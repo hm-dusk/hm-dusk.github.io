@@ -523,9 +523,9 @@
 <p>根据自己需求选择模式，如果是想搭建一套不受外界干扰的局域网络，则用NAT模式。如果想与外界其他处于同一网段的物理机通信，则选择桥接模式</p>
 </blockquote>
 <h2 id="NAT模式"><a href="#NAT模式" class="headerlink" title="NAT模式"></a>NAT模式</h2><h3 id="1-查看网关和网段"><a href="#1-查看网关和网段" class="headerlink" title="1.查看网关和网段"></a>1.查看网关和网段</h3><p>虚拟机点击【编辑】→【虚拟网络编辑器】</p>
-<p><img src="/loading.gif" data-original="http://47.106.179.244/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip%E9%85%8D%E7%BD%AE/vm%E8%99%9A%E6%8B%9F%E7%BD%91%E7%BB%9C%E7%BC%96%E8%BE%91%E5%99%A8.png" alt="虚拟网络编辑器"></p>
+<p><img src="http://47.106.179.244/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip%E9%85%8D%E7%BD%AE/vm%E8%99%9A%E6%8B%9F%E7%BD%91%E7%BB%9C%E7%BC%96%E8%BE%91%E5%99%A8.png" alt="虚拟网络编辑器"></p>
 <p>使用NAT模式，选择VMnet8。取消勾选【使用本地DHCP…】，勾选会设置动态ip。</p>
-<p><img src="/loading.gif" data-original="http://47.106.179.244/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip%E9%85%8D%E7%BD%AE/NAT%E8%AE%BE%E7%BD%AE.png" alt="NAT设置"></p>
+<p><img src="http://47.106.179.244/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip%E9%85%8D%E7%BD%AE/NAT%E8%AE%BE%E7%BD%AE.png" alt="NAT设置"></p>
 <p>点击NAT设置，记住子网IP范围，如图表示我们只能设置虚拟机在192.168.40.0~192.168.40.255范围内。</p>
 <blockquote>
 <p>注意：</p>
@@ -572,26 +572,26 @@ HOSTNAME=hadoop001</code></pre><p>有需要就可以修改主机名。配置完�
 <h3 id="3-确保Linux虚拟机网络适配器选项"><a href="#3-确保Linux虚拟机网络适配器选项" class="headerlink" title="3.确保Linux虚拟机网络适配器选项"></a>3.确保Linux虚拟机网络适配器选项</h3><ol>
 <li>选择虚拟机，点击右键→【设置】</li>
 </ol>
-<p><img src="/loading.gif" data-original="http://47.106.179.244/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip%E9%85%8D%E7%BD%AE/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%8F%B3%E9%94%AE%E8%AE%BE%E7%BD%AE.png" alt="虚拟机右键设置"></p>
+<p><img src="http://47.106.179.244/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip%E9%85%8D%E7%BD%AE/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%8F%B3%E9%94%AE%E8%AE%BE%E7%BD%AE.png" alt="虚拟机右键设置"></p>
 <ol start="2">
 <li>【硬件】→【网络适配器】→选择【NAT模式】</li>
 </ol>
-<p><img src="/loading.gif" data-original="http://47.106.179.244/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip%E9%85%8D%E7%BD%AE/%E7%BD%91%E7%BB%9C%E9%80%82%E9%85%8D%E5%99%A8NAT%E6%A8%A1%E5%BC%8F.png" alt="网络适配器NAT"></p>
+<p><img src="http://47.106.179.244/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip%E9%85%8D%E7%BD%AE/%E7%BD%91%E7%BB%9C%E9%80%82%E9%85%8D%E5%99%A8NAT%E6%A8%A1%E5%BC%8F.png" alt="网络适配器NAT"></p>
 <h3 id="4-Windows-IP设置"><a href="#4-Windows-IP设置" class="headerlink" title="4.Windows IP设置"></a>4.Windows IP设置</h3><p>设置VMWare给我们配置的网络适配器，就是那个NAT8。右键属性</p>
-<p><img src="/loading.gif" data-original="http://47.106.179.244/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip%E9%85%8D%E7%BD%AE/WindowsIP%E8%AE%BE%E7%BD%AE1.png" alt="windowsIP设置1"></p>
+<p><img src="http://47.106.179.244/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip%E9%85%8D%E7%BD%AE/WindowsIP%E8%AE%BE%E7%BD%AE1.png" alt="windowsIP设置1"></p>
 <p>点击IPv4设置</p>
-<p><img src="/loading.gif" data-original="http://47.106.179.244/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip%E9%85%8D%E7%BD%AE/WindowsIP%E8%AE%BE%E7%BD%AE2.png" alt="windowsIP设置2"></p>
+<p><img src="http://47.106.179.244/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip%E9%85%8D%E7%BD%AE/WindowsIP%E8%AE%BE%E7%BD%AE2.png" alt="windowsIP设置2"></p>
 <p>设置Windows的ip地址，该地址也在范围内。</p>
-<p><img src="/loading.gif" data-original="http://47.106.179.244/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip%E9%85%8D%E7%BD%AE/WindowsIP%E8%AE%BE%E7%BD%AE3.png" alt=""></p>
+<p><img src="http://47.106.179.244/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip%E9%85%8D%E7%BD%AE/WindowsIP%E8%AE%BE%E7%BD%AE3.png" alt=""></p>
 <p>配置完之后就可以使用xshell等工具连接了。</p>
 <h2 id="Bridged（桥接模式）"><a href="#Bridged（桥接模式）" class="headerlink" title="Bridged（桥接模式）"></a>Bridged（桥接模式）</h2><h3 id="1-VM设置"><a href="#1-VM设置" class="headerlink" title="1.VM设置"></a>1.VM设置</h3><ol>
-<li><p>查看物理机网卡名称<br><img src="/loading.gif" data-original="http://47.106.179.244/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip%E9%85%8D%E7%BD%AE/%E7%89%A9%E7%90%86%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BF%A1%E6%81%AF.jpg" alt="物理机网络信息"></p>
+<li><p>查看物理机网卡名称<br><img src="http://47.106.179.244/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip%E9%85%8D%E7%BD%AE/%E7%89%A9%E7%90%86%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BF%A1%E6%81%AF.jpg" alt="物理机网络信息"></p>
 </li>
-<li><p>根据网卡，查看物理机ip网段信息<br>进入cmd命令行，执行<code>ipconfig /all</code><br><img src="/loading.gif" data-original="http://47.106.179.244/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip%E9%85%8D%E7%BD%AE/%E7%89%A9%E7%90%86%E6%9C%BAcmd%EF%BC%8Cip%E4%BF%A1%E6%81%AF.jpg" alt="物理机"></p>
+<li><p>根据网卡，查看物理机ip网段信息<br>进入cmd命令行，执行<code>ipconfig /all</code><br><img src="http://47.106.179.244/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip%E9%85%8D%E7%BD%AE/%E7%89%A9%E7%90%86%E6%9C%BAcmd%EF%BC%8Cip%E4%BF%A1%E6%81%AF.jpg" alt="物理机"></p>
 </li>
-<li><p>虚拟机点击【编辑】→【虚拟网络编辑器】<br>选择正确的网卡<br><img src="/loading.gif" data-original="http://47.106.179.244/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip%E9%85%8D%E7%BD%AE/vm%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F%E7%95%8C%E9%9D%A2.jpg" alt="虚拟网络编辑器"></p>
+<li><p>虚拟机点击【编辑】→【虚拟网络编辑器】<br>选择正确的网卡<br><img src="http://47.106.179.244/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip%E9%85%8D%E7%BD%AE/vm%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F%E7%95%8C%E9%9D%A2.jpg" alt="虚拟网络编辑器"></p>
 </li>
-<li><p>设置将要使用的虚拟机网络适配器，将其改为桥接模式。<br><img src="/loading.gif" data-original="http://47.106.179.244/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip%E9%85%8D%E7%BD%AE/%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F%E8%AE%BE%E7%BD%AE.JPG" alt="桥接模式"></p>
+<li><p>设置将要使用的虚拟机网络适配器，将其改为桥接模式。<br><img src="http://47.106.179.244/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip%E9%85%8D%E7%BD%AE/%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F%E8%AE%BE%E7%BD%AE.JPG" alt="桥接模式"></p>
 </li>
 </ol>
 <h3 id="2-设置虚拟机IP地址-1"><a href="#2-设置虚拟机IP地址-1" class="headerlink" title="2.设置虚拟机IP地址"></a>2.设置虚拟机IP地址</h3><p><strong>涉及文件列表：</strong></p>
@@ -1170,6 +1170,6 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</body>
 
 </html>

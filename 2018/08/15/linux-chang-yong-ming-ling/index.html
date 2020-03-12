@@ -870,7 +870,7 @@ tcp    LISTEN     0      128     ::ffff:10.75.4.31:8088     :::*     users:<span
 <p><code>-+</code>, –append:将文件内容追加到已存在的同名文件<br><code>-a</code>,–ascii:以文本方式传输<br><code>-b</code>, –binary:以二进制方式传输，推荐使用<br><code>--delay-startup N</code>:等待N秒<br><code>-e</code>, –escape:对所有控制字符转义，建议使用<br><code>-E</code>, –rename:已存在同名文件则重命名新上传的文件，以点和数字作为后缀<br><code>-p</code>, –protect:对ZMODEM协议有效，如果目标文件已存在则跳过<br><code>-q</code>, –quiet:安静执行，不输出提示信息<br><code>-v</code>, –verbose:输出传输过程中的提示信息<br><code>-y</code>, –overwrite:存在同名文件则替换<br><code>-X</code>, –xmodem:使用XMODEM协议<br><code>--ymodem</code>:使用YMODEM协议<br><code>-Z</code>, –zmodem:使用ZMODEM协议<br><code>--version</code>：显示版本信息<br><code>--h</code>, –help：显示帮助信息</p>
 </blockquote>
 <h5 id="命令实例-1"><a href="#命令实例-1" class="headerlink" title="命令实例"></a>命令实例</h5><ol>
-<li>输入rz，然后回车，选择本地文件上传<img src="/loading.gif" data-original="http://47.106.179.244/linux%E4%B8%8B%E5%AE%89%E8%A3%85java/rz%E6%88%AA%E5%9B%BE.jpg" alt="rz上传jdk"></li>
+<li>输入rz，然后回车，选择本地文件上传<img src="http://47.106.179.244/linux%E4%B8%8B%E5%AE%89%E8%A3%85java/rz%E6%88%AA%E5%9B%BE.jpg" alt="rz上传jdk"></li>
 <li>以二进制，并对控制字符进行转义，替换已存在的同名文件。<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hadoopmaster opt<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># rz -bye</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 </ol>
@@ -1542,6 +1542,6 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</body>
 
 </html>

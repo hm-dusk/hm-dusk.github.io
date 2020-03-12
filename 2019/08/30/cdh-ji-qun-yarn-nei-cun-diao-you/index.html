@@ -540,8 +540,8 @@
 </blockquote>
 </li>
 </ul>
-<h3 id="测试情况"><a href="#测试情况" class="headerlink" title="测试情况"></a>测试情况</h3><p>Yarn资源分配情况，虚拟CPU共分配了24核，内存则是他的两倍48G<br><img src="/loading.gif" data-original="http://47.106.179.244/CDH%E9%9B%86%E7%BE%A4Yarn%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98/yarn%E8%B5%84%E6%BA%90%E9%85%8D%E7%BD%AE.png" alt=""></p>
-<p>执行任务，队列调度策略为DRF，查看内存和CPU使用情况<br><img src="/loading.gif" data-original="http://47.106.179.244/CDH%E9%9B%86%E7%BE%A4Yarn%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98/%E5%86%85%E5%AD%98CPU%E4%BD%BF%E7%94%A8%E5%AF%B9%E6%AF%94.png" alt=""><br><img src="/loading.gif" data-original="http://47.106.179.244/CDH%E9%9B%86%E7%BE%A4Yarn%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98/%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5.png" alt=""><br><img src="/loading.gif" data-original="http://47.106.179.244/CDH%E9%9B%86%E7%BE%A4Yarn%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98/CPU%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5.png" alt=""><br>可以发现，内存使用受限于cpu，与DRF策略吻合</p>
+<h3 id="测试情况"><a href="#测试情况" class="headerlink" title="测试情况"></a>测试情况</h3><p>Yarn资源分配情况，虚拟CPU共分配了24核，内存则是他的两倍48G<br><img src="http://47.106.179.244/CDH%E9%9B%86%E7%BE%A4Yarn%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98/yarn%E8%B5%84%E6%BA%90%E9%85%8D%E7%BD%AE.png" alt=""></p>
+<p>执行任务，队列调度策略为DRF，查看内存和CPU使用情况<br><img src="http://47.106.179.244/CDH%E9%9B%86%E7%BE%A4Yarn%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98/%E5%86%85%E5%AD%98CPU%E4%BD%BF%E7%94%A8%E5%AF%B9%E6%AF%94.png" alt=""><br><img src="http://47.106.179.244/CDH%E9%9B%86%E7%BE%A4Yarn%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98/%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5.png" alt=""><br><img src="http://47.106.179.244/CDH%E9%9B%86%E7%BE%A4Yarn%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98/CPU%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5.png" alt=""><br>可以发现，内存使用受限于cpu，与DRF策略吻合</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><strong>Yarn队列如果采用的是DRF调度策略，则vcpu和内存最好按照1:1比例进行分配，因为多余的资源根本不会用到。</strong></p>
 <script>
         document.querySelectorAll('.github-emoji')
@@ -1090,6 +1090,6 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</body>
 
 </html>

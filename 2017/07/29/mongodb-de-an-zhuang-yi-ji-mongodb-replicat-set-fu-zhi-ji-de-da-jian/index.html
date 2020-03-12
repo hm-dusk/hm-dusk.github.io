@@ -513,7 +513,7 @@
 <h4 id="3-重新加载本地源"><a href="#3-重新加载本地源" class="headerlink" title="3. 重新加载本地源"></a>3. 重新加载本地源</h4><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> update<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h4 id="4-安装mongodb"><a href="#4-安装mongodb" class="headerlink" title="4. 安装mongodb"></a>4. 安装mongodb</h4><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> -y mongodb-org<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h4 id="5-修改配置文件"><a href="#5-修改配置文件" class="headerlink" title="5. 修改配置文件"></a>5. 修改配置文件</h4><blockquote>
-<p>配置文件默认文件目录/etc/mongod.conf<br>默认存储其数据文件/var/lib/mongodb<br>默认日志文件/var/log/mongodb/mongod.log<br><img src="/loading.gif" data-original="http://47.106.179.244/mongodb%E5%A4%8D%E5%88%B6%E9%9B%86%E6%90%AD%E5%BB%BA/%E9%BB%98%E8%AE%A4mongodb%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.jpg" alt=""></p>
+<p>配置文件默认文件目录/etc/mongod.conf<br>默认存储其数据文件/var/lib/mongodb<br>默认日志文件/var/log/mongodb/mongod.log<br><img src="http://47.106.179.244/mongodb%E5%A4%8D%E5%88%B6%E9%9B%86%E6%90%AD%E5%BB%BA/%E9%BB%98%E8%AE%A4mongodb%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.jpg" alt=""></p>
 </blockquote>
 <h4 id="6-启动mongodb"><a href="#6-启动mongodb" class="headerlink" title="6. 启动mongodb"></a>6. 启动mongodb</h4><pre class="line-numbers language-bash"><code class="language-bash">mongod -f /etc/mongod.conf<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h4 id="7-卸载mongodb"><a href="#7-卸载mongodb" class="headerlink" title="7. 卸载mongodb"></a>7. 卸载mongodb</h4><p>1)停止mongodb服务</p>
@@ -632,7 +632,7 @@ db.shutdownServer<span class="token punctuation">(</span><span class="token punc
 <li>查看mongodb的进程，用kill杀掉进程<br><code>不推荐这种方式，会有丢失数据的风险</code></li>
 </ol>
 <hr>
-<h2 id="二、搭建MongoDB-Replicat-Set复制集"><a href="#二、搭建MongoDB-Replicat-Set复制集" class="headerlink" title="二、搭建MongoDB Replicat Set复制集"></a>二、搭建MongoDB Replicat Set复制集</h2><p>MongoDB Replica Set是MongoDB官方推荐的主从复制和高可用方案，用于替代原有的Master-Slave主从复制方案。<br>不懂原理的可以<a href="http://www.linuxidc.com/Linux/2015-02/113296.htm" target="_blank" rel="noopener">点击这里</a>查看复制集原理（<code>推荐了解原理后再搭建</code>）<br><img src="/loading.gif" data-original="http://47.106.179.244/mongodb%E5%A4%8D%E5%88%B6%E9%9B%86%E6%90%AD%E5%BB%BA/%E5%A4%8D%E5%88%B6%E9%9B%86.jpg" alt=""></p>
+<h2 id="二、搭建MongoDB-Replicat-Set复制集"><a href="#二、搭建MongoDB-Replicat-Set复制集" class="headerlink" title="二、搭建MongoDB Replicat Set复制集"></a>二、搭建MongoDB Replicat Set复制集</h2><p>MongoDB Replica Set是MongoDB官方推荐的主从复制和高可用方案，用于替代原有的Master-Slave主从复制方案。<br>不懂原理的可以<a href="http://www.linuxidc.com/Linux/2015-02/113296.htm" target="_blank" rel="noopener">点击这里</a>查看复制集原理（<code>推荐了解原理后再搭建</code>）<br><img src="http://47.106.179.244/mongodb%E5%A4%8D%E5%88%B6%E9%9B%86%E6%90%AD%E5%BB%BA/%E5%A4%8D%E5%88%B6%E9%9B%86.jpg" alt=""></p>
 <h3 id="1-搭建环境（电脑配置）"><a href="#1-搭建环境（电脑配置）" class="headerlink" title="1.搭建环境（电脑配置）"></a>1.搭建环境（电脑配置）</h3><p>在需要布置为节点的机器上安装好MongoDB环境，参照上面的教程</p>
 <table>
 <thead>
@@ -1306,6 +1306,6 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</body>
 
 </html>

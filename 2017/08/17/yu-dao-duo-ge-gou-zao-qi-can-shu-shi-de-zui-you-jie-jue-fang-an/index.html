@@ -660,12 +660,12 @@ MyData myData = new MyData();
 </blockquote>
 <h4 id="在idea中如何快速生成Builder类"><a href="#在idea中如何快速生成Builder类" class="headerlink" title="在idea中如何快速生成Builder类"></a>在idea中如何快速生成Builder类</h4><p>不得不说idea是个很强大的编译器，它提供了类的构建器的自动创建，但前提是该类必须有包含所有必须属性参数的构造器。</p>
 <ol>
-<li><p>为类生成带有全部必须属性的构造器<br>在类中右键选择Generate（也可以使用快捷键：<code>Alt+Insert</code>）<br><img src="/loading.gif" data-original="http://47.106.179.244/Builder%E6%9E%84%E5%BB%BA%E5%99%A8%E6%A8%A1%E5%BC%8F/%E5%8F%B3%E9%94%AEGenerate.jpg" alt="选择Generate"><br>得到以下面板后点击Constructor<br><img src="/loading.gif" data-original="http://47.106.179.244/Builder%E6%9E%84%E5%BB%BA%E5%99%A8%E6%A8%A1%E5%BC%8F/Generate%E9%9D%A2%E6%9D%BF.jpg" alt="Generate面板"><br>选择需要生成构造器的属性<br><img src="/loading.gif" data-original="http://47.106.179.244/Builder%E6%9E%84%E5%BB%BA%E5%99%A8%E6%A8%A1%E5%BC%8F/%E5%B1%9E%E6%80%A7%E9%80%89%E6%8B%A9%E9%9D%A2%E6%9D%BF.jpg" alt="选择属性"><br>点击ok生成</p>
+<li><p>为类生成带有全部必须属性的构造器<br>在类中右键选择Generate（也可以使用快捷键：<code>Alt+Insert</code>）<br><img src="http://47.106.179.244/Builder%E6%9E%84%E5%BB%BA%E5%99%A8%E6%A8%A1%E5%BC%8F/%E5%8F%B3%E9%94%AEGenerate.jpg" alt="选择Generate"><br>得到以下面板后点击Constructor<br><img src="http://47.106.179.244/Builder%E6%9E%84%E5%BB%BA%E5%99%A8%E6%A8%A1%E5%BC%8F/Generate%E9%9D%A2%E6%9D%BF.jpg" alt="Generate面板"><br>选择需要生成构造器的属性<br><img src="http://47.106.179.244/Builder%E6%9E%84%E5%BB%BA%E5%99%A8%E6%A8%A1%E5%BC%8F/%E5%B1%9E%E6%80%A7%E9%80%89%E6%8B%A9%E9%9D%A2%E6%9D%BF.jpg" alt="选择属性"><br>点击ok生成</p>
 <blockquote>
 <p><em>注意：在自定义有参构造器时，需要重写一个无参的构造器</em></p>
 </blockquote>
 </li>
-<li><p>在需要生成的类里面右键，选择Refactor<br><img src="/loading.gif" data-original="http://47.106.179.244/Builder%E6%9E%84%E5%BB%BA%E5%99%A8%E6%A8%A1%E5%BC%8F/%E7%94%9F%E6%88%90Builder%E7%B1%BB.jpg" alt="生成builder"><br><img src="/loading.gif" data-original="http://47.106.179.244/Builder%E6%9E%84%E5%BB%BA%E5%99%A8%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E7%BD%AEBuilder%E7%B1%BB.jpg" alt="设置builder"><br>生成后：<br><img src="/loading.gif" data-original="http://47.106.179.244/Builder%E6%9E%84%E5%BB%BA%E5%99%A8%E6%A8%A1%E5%BC%8F/%E7%94%9F%E6%88%90%E5%90%8E.jpg" alt="enter image description here"></p>
+<li><p>在需要生成的类里面右键，选择Refactor<br><img src="http://47.106.179.244/Builder%E6%9E%84%E5%BB%BA%E5%99%A8%E6%A8%A1%E5%BC%8F/%E7%94%9F%E6%88%90Builder%E7%B1%BB.jpg" alt="生成builder"><br><img src="http://47.106.179.244/Builder%E6%9E%84%E5%BB%BA%E5%99%A8%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E7%BD%AEBuilder%E7%B1%BB.jpg" alt="设置builder"><br>生成后：<br><img src="http://47.106.179.244/Builder%E6%9E%84%E5%BB%BA%E5%99%A8%E6%A8%A1%E5%BC%8F/%E7%94%9F%E6%88%90%E5%90%8E.jpg" alt="enter image description here"></p>
 </li>
 </ol>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Builder模式也有它自身的不足之处。为了创建对象，必须先创建它的构建器。虽然创建构建器的开销在实践中可能不是那么明显，但是在十分注重性能的情况下，可能就成问题了。<br>最后，<code>如果类的构造器或者静态工厂中具有多个参数，设计这种类时，Builder模式就是中不错的选择</code>。</p>
@@ -1202,6 +1202,6 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</body>
 
 </html>
