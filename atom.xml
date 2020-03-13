@@ -50,7 +50,7 @@
     <link href="http://blog.hming.org/2020/02/22/ji-jin-xue-xi-bi-ji/"/>
     <id>http://blog.hming.org/2020/02/22/ji-jin-xue-xi-bi-ji/</id>
     <published>2020-02-22T04:22:44.000Z</published>
-    <updated>2020-02-22T04:22:44.000Z</updated>
+    <updated>2020-03-13T01:36:34.000Z</updated>
     
     <summary type="html">
     
@@ -100,9 +100,9 @@
     
       <category term="大数据" scheme="http://blog.hming.org/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
-      <category term="CDH" scheme="http://blog.hming.org/tags/CDH/"/>
-    
       <category term="Hive" scheme="http://blog.hming.org/tags/Hive/"/>
+    
+      <category term="CDH" scheme="http://blog.hming.org/tags/CDH/"/>
     
       <category term="Zookeeper" scheme="http://blog.hming.org/tags/Zookeeper/"/>
     
@@ -134,9 +134,9 @@
     
       <category term="大数据" scheme="http://blog.hming.org/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
-      <category term="CDH" scheme="http://blog.hming.org/tags/CDH/"/>
-    
       <category term="Hive" scheme="http://blog.hming.org/tags/Hive/"/>
+    
+      <category term="CDH" scheme="http://blog.hming.org/tags/CDH/"/>
     
       <category term="乱码" scheme="http://blog.hming.org/tags/%E4%B9%B1%E7%A0%81/"/>
     
@@ -642,9 +642,9 @@
       <category term="容器" scheme="http://blog.hming.org/categories/%E5%AE%B9%E5%99%A8/"/>
     
     
-      <category term="容器" scheme="http://blog.hming.org/tags/%E5%AE%B9%E5%99%A8/"/>
-    
       <category term="Docker" scheme="http://blog.hming.org/tags/Docker/"/>
+    
+      <category term="容器" scheme="http://blog.hming.org/tags/%E5%AE%B9%E5%99%A8/"/>
     
       <category term="Alpine" scheme="http://blog.hming.org/tags/Alpine/"/>
     

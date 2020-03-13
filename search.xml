@@ -492,6 +492,16 @@
 </ol>
 <h4 id="累计净值"><a href="#累计净值" class="headerlink" title="累计净值"></a>累计净值</h4><p>基金最关键指标。</p>
 <p>单位净值：分红后的净值。<br>累计净值：算上所有分红收益的累计净值。</p>
+<h3 id="混合型基金"><a href="#混合型基金" class="headerlink" title="混合型基金"></a>混合型基金</h3><p><code>股票型基金</code>由于股票必须占有80%的仓位，刚好2015年股灾，导致非常多的股票型基金修改为<code>偏股型混合基金</code>。<br><code>偏债混合型基金</code>有点类似<code>二级债基</code>，不推荐。</p>
+<p><code>平衡型基金</code>和<code>灵活配置型基金</code>真正体现了混合型基金的优点，即–<code>风险对冲</code>。</p>
+<h4 id="现代资产理论"><a href="#现代资产理论" class="headerlink" title="现代资产理论"></a>现代资产理论</h4><p>个别风险 = 非系统性风险 = 选股风险<br>买了A股票，只有A股票跌，其他的都涨。</p>
+<p>系统性风险 = 大盘风险<br>无论买了那只股票，所有股票都跌。</p>
+<p>问：如何化解这两种风险<br>答：构建一套最优的资产组合</p>
+<blockquote>
+<p>想要规避个别风险，就不要只买一只股票，而是买一篮子股票，这就是推荐买股票基金而不是单买股票的原因。<br>想要规避系统性风险，就不能只买一篮子股票，而要买更多的不同类别的资产，从而组建一个更加复杂多元的投资组合。</p>
+</blockquote>
+<h4 id="混合型基金购买建议"><a href="#混合型基金购买建议" class="headerlink" title="混合型基金购买建议"></a>混合型基金购买建议</h4><p><code>股票</code>和<code>债券</code>是最主要的两类金融资产。<br>股票属于权益类投资，债券则属于固定收益类投资，从理论上来说，两者正好形成了<code>风险对冲</code>（一般股市跌，债券就会涨，两个一起买就可以抵消风险，做到风险对冲）</p>
+<p>与其买混合型基金，还不如根据自身的风险偏好，按一定比例分别买入股基和债基，一样可以做到风险对冲。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -606,8 +616,8 @@ INFO  <span class="token keyword">:</span> OK
       </categories>
       <tags>
         <tag>大数据</tag>
-        <tag>CDH</tag>
         <tag>Hive</tag>
+        <tag>CDH</tag>
         <tag>Zookeeper</tag>
       </tags>
   </entry>
@@ -649,8 +659,8 @@ INFO  <span class="token keyword">:</span> OK
       </categories>
       <tags>
         <tag>大数据</tag>
-        <tag>CDH</tag>
         <tag>Hive</tag>
+        <tag>CDH</tag>
         <tag>乱码</tag>
       </tags>
   </entry>
@@ -2989,8 +2999,8 @@ PS1<span class="token operator">=</span><span class="token string">'[\u@\h \W]\$
         <category>容器</category>
       </categories>
       <tags>
-        <tag>容器</tag>
         <tag>Docker</tag>
+        <tag>容器</tag>
         <tag>Alpine</tag>
       </tags>
   </entry>
@@ -4726,8 +4736,8 @@ UUID<span class="token operator">=</span>daffff7e-bc4d-4cf0-bcdd-9b4a99a77ccc /b
       </categories>
       <tags>
         <tag>集群</tag>
-        <tag>K8s</tag>
         <tag>容器</tag>
+        <tag>K8s</tag>
       </tags>
   </entry>
   <entry>
@@ -5038,8 +5048,8 @@ docker run -itd --net my_network --ip 172.18.0.102 --add-host hdp001:172.18.0.10
         <category>容器</category>
       </categories>
       <tags>
-        <tag>容器</tag>
         <tag>Docker</tag>
+        <tag>容器</tag>
         <tag>IP</tag>
       </tags>
   </entry>
@@ -5386,8 +5396,8 @@ docker inspect --format <span class="token string">'{{ .NetworkSettings.IPAddres
         <category>容器</category>
       </categories>
       <tags>
-        <tag>容器</tag>
         <tag>Docker</tag>
+        <tag>容器</tag>
         <tag>命令</tag>
         <tag>镜像源</tag>
       </tags>
@@ -6701,8 +6711,8 @@ HOSTNAME=hadoop001</code></pre><p>有需要就可以修改主机名。<br>配置
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>IP</tag>
+        <tag>Linux</tag>
         <tag>虚拟机</tag>
         <tag>VMware</tag>
       </tags>
