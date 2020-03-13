@@ -616,8 +616,8 @@ INFO  <span class="token keyword">:</span> OK
       </categories>
       <tags>
         <tag>大数据</tag>
-        <tag>Hive</tag>
         <tag>CDH</tag>
+        <tag>Hive</tag>
         <tag>Zookeeper</tag>
       </tags>
   </entry>
@@ -659,8 +659,8 @@ INFO  <span class="token keyword">:</span> OK
       </categories>
       <tags>
         <tag>大数据</tag>
-        <tag>Hive</tag>
         <tag>CDH</tag>
+        <tag>Hive</tag>
         <tag>乱码</tag>
       </tags>
   </entry>
@@ -2999,8 +2999,8 @@ PS1<span class="token operator">=</span><span class="token string">'[\u@\h \W]\$
         <category>容器</category>
       </categories>
       <tags>
-        <tag>Docker</tag>
         <tag>容器</tag>
+        <tag>Docker</tag>
         <tag>Alpine</tag>
       </tags>
   </entry>
@@ -4736,8 +4736,8 @@ UUID<span class="token operator">=</span>daffff7e-bc4d-4cf0-bcdd-9b4a99a77ccc /b
       </categories>
       <tags>
         <tag>集群</tag>
-        <tag>容器</tag>
         <tag>K8s</tag>
+        <tag>容器</tag>
       </tags>
   </entry>
   <entry>
@@ -5048,8 +5048,8 @@ docker run -itd --net my_network --ip 172.18.0.102 --add-host hdp001:172.18.0.10
         <category>容器</category>
       </categories>
       <tags>
-        <tag>Docker</tag>
         <tag>容器</tag>
+        <tag>Docker</tag>
         <tag>IP</tag>
       </tags>
   </entry>
@@ -5396,8 +5396,8 @@ docker inspect --format <span class="token string">'{{ .NetworkSettings.IPAddres
         <category>容器</category>
       </categories>
       <tags>
-        <tag>Docker</tag>
         <tag>容器</tag>
+        <tag>Docker</tag>
         <tag>命令</tag>
         <tag>镜像源</tag>
       </tags>
@@ -6711,8 +6711,8 @@ HOSTNAME=hadoop001</code></pre><p>有需要就可以修改主机名。<br>配置
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>IP</tag>
         <tag>Linux</tag>
+        <tag>IP</tag>
         <tag>虚拟机</tag>
         <tag>VMware</tag>
       </tags>
