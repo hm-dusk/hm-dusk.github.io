@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>浅谈Java内存结构</title>
+    <url>/2020/04/21/qian-tan-java-nei-cun-jie-gou/</url>
+    <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>前不久部署的Hadoop环境中HDFS组件NameNode宕机，在经过排查后发现是因为HDFS中含有大量的小文件（多达250万个block），NameNode压力非常大，然而分配给NameNode的堆内存却只有1G<br><img src="http://47.106.179.244/%E6%B5%85%E8%B0%88Java%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/HDFS%E5%A0%86%E5%86%85%E5%AD%98%E9%85%8D%E7%BD%AE.png" alt=""><br>官方建议最小配置1G，每增加100万个block增加1G<br>参考官网：<a href="https://docs.cloudera.com/documentation/enterprise/6/release-notes/topics/rg_hardware_requirements.html#concept_fzz_dq4_gbb" target="_blank" rel="noopener">https://docs.cloudera.com/documentation/enterprise/6/release-notes/topics/rg_hardware_requirements.html#concept_fzz_dq4_gbb</a><br><img src="http://47.106.179.244/%E6%B5%85%E8%B0%88Java%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/Cloudera%E5%AE%98%E7%BD%91%E5%8F%82%E8%80%83HDFS%E9%85%8D%E7%BD%AE.png" alt=""><br>在将堆内存调至4G后NameNode正常运行。</p>
+<p>虽然修复了，但是心里面还是很疑惑，堆内存到底用来做什么？为什么需要这么多的堆内存？<br>由于JVM的概念已经很模糊了，固下来又复习了一遍java的内存结构。</p>
+<h3 id="运行时数据区"><a href="#运行时数据区" class="headerlink" title="运行时数据区"></a>运行时数据区</h3><p>Java内存结构主要讲的就是JVM（java虚拟机）运行时数据区的结构划分，分为线程共享的堆（Heap）和方法区（Method Area），以及线程私有的虚拟机栈（VM Stack）、本地方法栈（Native Method Stack）和程序计数器（Program Counter Register）<br><img src="http://47.106.179.244/%E6%B5%85%E8%B0%88Java%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA.png" alt=""></p>
+<h4 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h4><p>线程私有，和线程绑定，是当前线程所执行的字节码的行号指示器，也就是记录当前线程执行到哪一步了。</p>
+<blockquote>
+<p>因为Java虚拟机的多线程是通过线程轮流切换并分配处理器执行时间的方式来实现的，在任何一个确定的时刻，一个处理器（对于多核处理器来说是一个内核）都会执行一条线程中的指令。所以，为了线程切换后能够恢复到正确的执行位置，每个线程都需要一个独立的程序计数器，各条线程之间计数器互不影响，独立存储。</p>
+</blockquote>
+<h4 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h4><p>也叫Java虚拟机栈，线程私有，生命周期和线程相同。</p>
+<blockquote>
+<p>虚拟机栈描述的是Java方法执行的内存模型：每个方法在执行的同时都会创建一个栈帧（Stack Frame，是方法运行时的基础数据结构）用于存储<code>局部变量表</code>、<code>操作数栈</code>、<code>动态链接</code>、<code>方法出口（返回地址）</code>等信息。每一个方法从调用直到执行完成的过程，就对应一个栈帧在虚拟机栈中入栈到出栈的过程。<br><img src="http://47.106.179.244/%E6%B5%85%E8%B0%88Java%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/%E6%A0%88%E5%B8%A7%E7%BB%93%E6%9E%84.png" alt=""><br>其中局部变量表存放各种基本类型（byte、boolean、float、double、int、long、short、char）、对象引用和returnAddress类型。</p>
+</blockquote>
+<h4 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h4><p>线程私有，与虚拟机栈类似，区别在于本地方法栈为虚拟机用到的Native方法服务。</p>
+<h4 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h4><p>线程共享，堆是Java虚拟机管理的内存中最大的一块，堆存放几乎所有的java对象实例，是非常重要的一块空间，GC主要发生在这个区域，</p>
+<h4 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h4><p>线程共享，用于存储已被虚拟机加载的<code>类信息</code>、<code>常量</code>、<code>静态变量</code>、<code>即时编译器编译后的代码</code>等数据。</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>JVM</tag>
+        <tag>内存结构</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>理财过程中遇到的名词整理</title>
     <url>/2020/02/22/li-cai-guo-cheng-zhong-yu-dao-de-ming-ci-zheng-li/</url>
     <content><![CDATA[<h3 id="GDP（Gross-Domestic-Product）"><a href="#GDP（Gross-Domestic-Product）" class="headerlink" title="GDP（Gross Domestic Product）"></a>GDP（Gross Domestic Product）</h3><p><strong>百度百科</strong><br>国内生产总值（GDP）是指按国家市场价格计算的一个国家（或地区）所有常住单位在一定时期内生产活动的最终成果，常被公认为是衡量国家经济状况的最佳指标。国内生产总值GDP是核算体系中一个重要的综合性统计指标，也是我国新国民经济核算体系中的核心指标，它反映了一国（或地区）的经济实力和市场规模。</p>
@@ -552,6 +596,11 @@
 <blockquote>
 <p>夏普比率越高，基金性价比越高<br>标准差：反映基金的波动程度，将系统风险和非系统风险都包含在内，所测的是基金的全部风险</p>
 </blockquote>
+<h4 id="指数基金"><a href="#指数基金" class="headerlink" title="指数基金"></a>指数基金</h4><p>一般说的指数基金多指股票指数。<br><code>股票价格指数</code>：是描述股票市场总体价格水平变化的指标。</p>
+<p>指数是如果算出来的：<br>把某一天作为基准日，当天的所有股票价格加起来的总价格定为一个基准点位（基准指数），如100点，以后的股票涨跌就是和这100点来做比较，可以通过指数反映出该股市的总体水平是涨还是跌。</p>
+<h5 id="国内指数"><a href="#国内指数" class="headerlink" title="国内指数"></a>国内指数</h5><ol>
+<li>上证综指<br>上海证券综合指数简称<code>上证指数</code>或<code>上证综指</code>反映上海证券交易所所有上市股票价格的总体水平及变动情况。</li>
+</ol>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -665,9 +714,9 @@ INFO  <span class="token keyword">:</span> OK
         <category>大数据</category>
       </categories>
       <tags>
+        <tag>Hive</tag>
         <tag>大数据</tag>
         <tag>CDH</tag>
-        <tag>Hive</tag>
         <tag>Zookeeper</tag>
       </tags>
   </entry>
@@ -708,9 +757,9 @@ INFO  <span class="token keyword">:</span> OK
         <category>大数据</category>
       </categories>
       <tags>
+        <tag>Hive</tag>
         <tag>大数据</tag>
         <tag>CDH</tag>
-        <tag>Hive</tag>
         <tag>乱码</tag>
       </tags>
   </entry>
@@ -1498,6 +1547,8 @@ max_connections <span class="token operator">=</span> 550
 <span class="token comment" spellcheck="true">#system and chown the specified folder to the mysql user.</span>
 <span class="token comment" spellcheck="true">#建议单独磁盘装binlog，并且修改目录拥有者为mysql</span>
 log_bin<span class="token operator">=</span>/var/lib/mysql/mysql_binary_log
+<span class="token comment" spellcheck="true">#日志超过3天自动过期</span>
+expire_logs_days <span class="token operator">=</span> 3
 
 <span class="token comment" spellcheck="true">#In later versions of MariaDB, if you enable the binary log and do not set</span>
 <span class="token comment" spellcheck="true">#a server_id, MariaDB will not start. The server_id must be unique within</span>
@@ -1527,7 +1578,7 @@ pid-file<span class="token operator">=</span>/var/run/mariadb/mariadb.pid
 <span class="token comment" spellcheck="true">#</span>
 <span class="token comment" spellcheck="true"># include all files from the config directory</span>
 <span class="token comment" spellcheck="true">#</span>
-<span class="token operator">!</span>includedir /etc/my.cnf.d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token operator">!</span>includedir /etc/my.cnf.d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ol start="3">
 <li>启动Mariadb，并加入开机自启动</li>
 </ol>
@@ -1783,7 +1834,7 @@ All done, your SCM database is configured correctly<span class="token operator">
 2019-08-20 02:15:58,334 INFO WebServerImpl:org.eclipse.jetty.server.AbstractConnector: Started ServerConnector@179933a5<span class="token punctuation">{</span>HTTP/1.1,<span class="token punctuation">[</span>http/1.1<span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">{</span>0.0.0.0:7180<span class="token punctuation">}</span>
 2019-08-20 02:15:58,350 INFO WebServerImpl:org.eclipse.jetty.server.Server: Started @193290ms
 2019-08-20 02:15:58,350 INFO WebServerImpl:com.cloudera.server.cmf.WebServerImpl: Started Jetty server.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="浏览器访问7180端口，进行CDH安装"><a href="#浏览器访问7180端口，进行CDH安装" class="headerlink" title="浏览器访问7180端口，进行CDH安装"></a>浏览器访问7180端口，进行CDH安装</h3><p>Cloudera Manager会根据浏览器的语言进行语言的切换，本文为中文<br>初始用户名和密码均为：<code>admin</code><br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/cm%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2.png" alt=""><br>登录后看到第一个欢迎页面，点击继续<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/%E6%AC%A2%E8%BF%8E%E9%A1%B5%E9%9D%A21.png" alt=""><br>接受许可条款<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/%E6%8E%A5%E5%8F%97%E8%AE%B8%E5%8F%AF%E6%9D%A1%E6%AC%BE.png" alt=""><br>选择安装版本，这里选择免费版（之前免费版会有100个节点限制，现在已经没有了）<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/%E9%80%89%E6%8B%A9%E5%AE%89%E8%A3%85%E5%85%8D%E8%B4%B9%E7%89%88.png" alt=""></p>
+<h3 id="浏览器访问7180端口，进行CDH安装"><a href="#浏览器访问7180端口，进行CDH安装" class="headerlink" title="浏览器访问7180端口，进行CDH安装"></a>浏览器访问7180端口，进行CDH安装</h3><p>Cloudera Manager会根据浏览器的语言进行语言的切换，本文为中文<br>初始用户名和密码均为：<code>admin</code><br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/cm%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2.png" alt=""><br>登录后看到第一个欢迎页面，点击继续<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/%E6%AC%A2%E8%BF%8E%E9%A1%B5%E9%9D%A21.png" alt=""><br>接受许可条款<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/%E6%8E%A5%E5%8F%97%E8%AE%B8%E5%8F%AF%E6%9D%A1%E6%AC%BE.png" alt=""><br>选择安装版本，这里选择免费版<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/%E9%80%89%E6%8B%A9%E5%AE%89%E8%A3%85%E5%85%8D%E8%B4%B9%E7%89%88.png" alt=""></p>
 <p>进入第二个欢迎页面，左边列出了安装的步骤<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/%E6%AC%A2%E8%BF%8E%E9%A1%B5%E9%9D%A22.png" alt=""><br>输入集群名称，本文默认<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/%E8%BE%93%E5%85%A5%E9%9B%86%E7%BE%A4%E5%90%8D%E7%A7%B0.png" alt=""><br>输入主机名后进行搜索<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/%E8%BE%93%E5%85%A5%E4%B8%BB%E6%9C%BA%E5%90%8D.png" alt=""><br>配置cloudera manager yum离线库地址，点击更多选项<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/%E9%85%8D%E7%BD%AEcm%E5%BA%93%E5%9C%B0%E5%9D%80.png" alt=""><br>配置parcel库地址，前两个选项默认就行，远程Parcel库删除默认的地址，输入httpd服务的Parcel库地址，点击保存更改<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/%E9%85%8D%E7%BD%AEparcel%E5%BA%93%E5%9C%B0%E5%9D%80.png" alt=""><br>保存后会自动搜索Parcel包，如图，已经搜索到了之前下载的CDH6.3.0包，点击继续<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/%E8%87%AA%E5%8A%A8%E6%90%9C%E7%B4%A2%E6%9C%AC%E5%9C%B0parcel%E5%8C%85.png" alt=""><br>如果之前只安装了cm server节点的jdk，则需要勾选上，如果每个节点都安装了jdk就不需要勾选<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/%E5%AE%89%E8%A3%85jdk.png" alt=""><br>配置ssh，如果主机的密码不相同，则需要选择使用秘钥的形式，如果密码相同，直接输入密码即可<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/ssh%E9%85%8D%E7%BD%AE.png" alt=""><br>安装cloudera agent（安装过程中遇到问题可以根据提示进行解决），点击继续<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/%E5%AE%89%E8%A3%85agent1.png" alt=""><br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/%E5%AE%89%E8%A3%85agent2.png" alt=""><br>开始自动安装Parcel包，由于需要拷贝到相应节点然后解压，所以时间消耗比较久，耐心等待完成<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/%E5%AE%89%E8%A3%85parcel.png" alt=""><br>进行集群检测，包括网络检测和节点其他检测，如果检测有问题可以按照提示进行修复<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/%E9%9B%86%E7%BE%A4%E6%A3%80%E6%B5%8B1.png" alt=""><br>建议完全通过检测后再点击继续<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/%E9%9B%86%E7%BE%A4%E6%A3%80%E6%B5%8B2.png" alt=""></p>
 <blockquote>
 <p>如果只有一个节点，网络检测不会通过<br><img src="http://47.106.179.244/CentOS7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85CDH/%E5%8D%95%E8%8A%82%E7%82%B9%E4%B8%8D%E6%94%AF%E6%8C%81%E7%BD%91%E7%BB%9C%E6%A3%80%E6%B5%8B.png" alt=""></p>
@@ -3601,8 +3652,8 @@ max_reconnect_retry_delay<span class="token operator">=</span>30
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>大数据</tag>
         <tag>Hive</tag>
+        <tag>大数据</tag>
         <tag>LLAP</tag>
         <tag>Tez</tag>
       </tags>
@@ -4011,8 +4062,8 @@ main:
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>大数据</tag>
         <tag>Hive</tag>
+        <tag>大数据</tag>
         <tag>Spark</tag>
       </tags>
   </entry>
@@ -4393,8 +4444,8 @@ From <span class="token function">source</span> with checksum 9f2d17b212f3a05297
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>大数据</tag>
         <tag>Hive</tag>
+        <tag>大数据</tag>
         <tag>数据仓库</tag>
       </tags>
   </entry>
@@ -4696,8 +4747,8 @@ EXPOSE 80<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>大数据</tag>
         <tag>Hive</tag>
+        <tag>大数据</tag>
         <tag>Hadoop</tag>
       </tags>
   </entry>
@@ -6195,6 +6246,19 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.101-b13, mixed mode)
 <td></td>
 </tr>
 </tbody></table>
+<h3 id="shell脚本相关"><a href="#shell脚本相关" class="headerlink" title="shell脚本相关"></a>shell脚本相关</h3><h4 id="位置参数变量"><a href="#位置参数变量" class="headerlink" title="位置参数变量"></a>位置参数变量</h4><h5 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h5><p>当执行一个shell脚本时，如果希望获取到命令行得参数信息，就可以使用到位置参数变量，比如：./myshell.sh 100 200，这个就是一个执行shell得命令行，可以在myshell脚本中获取到参数信息。</p>
+<h5 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h5><ul>
+<li><strong><code>$n</code></strong> 功能描述：n为数字，$0表示命令本身，$1-$9代表第一到第九个参数，十个以上的参数需要用大括号包含，如：${10}</li>
+<li><strong><code>$*</code></strong> 功能描述：这个变量代表命令行中所有的参数，$*把所有的参数看成一个整体</li>
+<li><strong><code>$@</code></strong> 功能描述：这个变量也代表命令行中所有的参数，不过$@把每个参数区分对待</li>
+<li><strong><code>$#</code></strong> 功能描述：这个变量代表命令行中所有参数的个数</li>
+</ul>
+<h4 id="预定义变量"><a href="#预定义变量" class="headerlink" title="预定义变量"></a>预定义变量</h4><h5 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h5><p>shell设计者事先定义好的变量，可以直接在shell中使用</p>
+<h5 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h5><ul>
+<li><strong><code>$$</code></strong> 功能描述：当前进程的进程号（PID）</li>
+<li><strong><code>$!</code></strong> 功能描述：后台运行的最后一个进程的进程号（PID）</li>
+<li><strong><code>$?</code></strong> 功能描述：最后一次执行命令的返回状态。如果这个变量的值为0，证明上一个命令正确执行；如果非0（具体是哪个数，由命令自己来决定），则证明上一个命令执行不正确。</li>
+</ul>
 <h3 id="查看CPU信息"><a href="#查看CPU信息" class="headerlink" title="查看CPU信息"></a>查看CPU信息</h3><p>总核数 = 物理CPU个数 X 每颗物理CPU的核数<br>总逻辑CPU数 = 物理CPU个数 X 每颗物理CPU的核数 X 超线程数</p>
 <ol>
 <li>查看物理CPU个数<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@centos4 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l</span>
@@ -6497,7 +6561,7 @@ root     pts/0    10.75.4.14       16:26    9:05   0.00s  0.00s -bash
 root     pts/1    10.75.4.12       15:43    2:49   2:15   2:15  -bash
 root     pts/2    10.75.4.11       16:35    1.00s 20.22s  0.00s w
 root     pts/3    10.75.4.12       16:23    2:49   1:27   1:27  -bash
-<span class="token punctuation">[</span>root@centos3 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  ps aux | grep sshd</span>
+<span class="token punctuation">[</span>root@centos3 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true">#  ps -aux | grep sshd</span>
 root      1105  0.0  0.0 112796  1280 ?        Ss   Feb18   0:00 /usr/sbin/sshd -D
 root      4368  1.2  0.0 161400  6192 ?        Ss   15:43   0:40 sshd: root@pts/1
 root     19926 11.3  0.0 161400  6200 ?        Ss   16:23   1:39 sshd: root@pts/3
@@ -6590,6 +6654,39 @@ success<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
 success<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>删除端口</p>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@1 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># firewall-cmd --zone=public --remove-port=80/tcp --permanent</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="ps（查看进程状态命令）"><a href="#ps（查看进程状态命令）" class="headerlink" title="ps（查看进程状态命令）"></a>ps（查看进程状态命令）</h3><h4 id="命令格式-15"><a href="#命令格式-15" class="headerlink" title="命令格式"></a>命令格式</h4><p><code>ps [参数]</code></p>
+<h4 id="命令功能-15"><a href="#命令功能-15" class="headerlink" title="命令功能"></a>命令功能</h4><p>ps命令是Process Status的缩写。ps命令用来列出系统中当前运行的那些进程。ps命令列出的是当前那些进程的快照，就是执行ps命令的那个时刻的那些进程，如果想要动态的显示进程信息，就可以使用top命令。</p>
+<h4 id="命令参数-9"><a href="#命令参数-9" class="headerlink" title="命令参数"></a>命令参数</h4><p>一般常用的组合为<code>-aux</code>和<code>-ef</code></p>
+<blockquote>
+<p>-a 表示显示当前终端所有进程信息<br>-u 表示以用户格式显示<br>-x 表示显示进程运行的参数</p>
+</blockquote>
+<blockquote>
+<p>-e 显示所有进程<br>-f 以全格式显示</p>
+</blockquote>
+<h4 id="使用实例-13"><a href="#使用实例-13" class="headerlink" title="使用实例"></a>使用实例</h4><p>查看当前运行的进程，其中各列代表含义为：<br>USER：用户<br>PID：进程号<br>%CPU：占用cpu情况<br>%MEM：占用内存情况<br>VSZ：使用的虚拟内存<br>RSS：使用的物理内存<br>TTY：使用的终端<br>STAT：进程的状态，S为休眠，R为运行，Z为僵尸进程，<br>START：启动时间<br>TIME：占用CPU时间<br>COMMAND：进程执行时的命令行</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@cdh1 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ps -aux</span>
+USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root          1  0.0  0.0 190972  1800 ?        Ss   May09   0:09 /usr/lib/systemd/systemd --switched-root --system --deserialize 22
+root          2  0.0  0.0      0     0 ?        S    May09   0:00 <span class="token punctuation">[</span>kthreadd<span class="token punctuation">]</span>
+root          3  0.0  0.0      0     0 ?        S    May09   0:11 <span class="token punctuation">[</span>ksoftirqd/0<span class="token punctuation">]</span>
+root          5  0.0  0.0      0     0 ?        S<span class="token operator">&lt;</span>   May09   0:00 <span class="token punctuation">[</span>kworker/0:0H<span class="token punctuation">]</span>
+<span class="token punctuation">..</span>.
+root      20364  0.0  0.0 249952  2780 ?        Ss   May09   0:09 /usr/sbin/httpd -DFOREGROUND
+root      20480  0.1  0.1 692504 18296 ?        Sl   May09   6:31 /usr/bin/python2 /opt/cloudera/cm-agent/bin/<span class="token punctuation">..</span>/bin/flood
+clouder+  20517  0.0  0.2 256844 20880 ?        S    May09   0:01 /usr/bin/python2 /opt/cloudera/cm-agent/bin/cm proc_watcher 20566
+<span class="token punctuation">..</span>.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>查看当前运行进程，并显示父进程，其列代表含义为：<br>UID：用户ID<br>PID：进程ID<br>PPID：父进程ID<br>C：CPU用于计算执行优先级的因子。数值越大，表明进程是CPU密集型运算，执行优先级会降低；数值越小，表明进程是I/O密集型运算，执行优先级会提高。<br>STIME：进程启动的时间<br>TTY：完整的终端名称<br>TIME：CPU时间<br>CMD：启动进程所用的命令和参数</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@cdh1 ~<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># ps -ef</span>
+UID         PID   PPID  C STIME TTY          TIME CMD
+root          1      0  0 May09 ?        00:00:09 /usr/lib/systemd/systemd --switched-root --system --deserialize 22
+root          2      0  0 May09 ?        00:00:00 <span class="token punctuation">[</span>kthreadd<span class="token punctuation">]</span>
+root          3      2  0 May09 ?        00:00:11 <span class="token punctuation">[</span>ksoftirqd/0<span class="token punctuation">]</span>
+root          5      2  0 May09 ?        00:00:00 <span class="token punctuation">[</span>kworker/0:0H<span class="token punctuation">]</span>
+<span class="token punctuation">..</span>.
+root      20364      1  0 May09 ?        00:00:09 /usr/sbin/httpd -DFOREGROUND
+root      20480   9403  0 May09 ?        00:06:32 /usr/bin/python2 /opt/cloudera/cm-agent/bin/<span class="token punctuation">..</span>/bin/flood
+clouder+  20517   9403  0 May09 ?        00:00:01 /usr/bin/python2 /opt/cloudera/cm-agent/bin/cm proc_watcher 20566
+<span class="token punctuation">..</span>.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -6761,8 +6858,8 @@ HOSTNAME=hadoop001</code></pre><p>有需要就可以修改主机名。<br>配置
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>IP</tag>
+        <tag>Linux</tag>
         <tag>虚拟机</tag>
         <tag>VMware</tag>
       </tags>

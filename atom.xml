@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.hming.org/"/>
-  <updated>2020-02-22T04:55:21.000Z</updated>
+  <updated>2020-04-21T12:55:16.000Z</updated>
   <id>http://blog.hming.org/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>浅谈Java内存结构</title>
+    <link href="http://blog.hming.org/2020/04/21/qian-tan-java-nei-cun-jie-gou/"/>
+    <id>http://blog.hming.org/2020/04/21/qian-tan-java-nei-cun-jie-gou/</id>
+    <published>2020-04-21T12:55:16.000Z</published>
+    <updated>2020-04-21T12:55:16.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="http://blog.hming.org/categories/Java/"/>
+    
+    
+      <category term="JVM" scheme="http://blog.hming.org/tags/JVM/"/>
+    
+      <category term="内存结构" scheme="http://blog.hming.org/tags/%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
   
   <entry>
     <title>理财过程中遇到的名词整理</title>
@@ -98,11 +127,11 @@
       <category term="大数据" scheme="http://blog.hming.org/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
+      <category term="Hive" scheme="http://blog.hming.org/tags/Hive/"/>
+    
       <category term="大数据" scheme="http://blog.hming.org/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
       <category term="CDH" scheme="http://blog.hming.org/tags/CDH/"/>
-    
-      <category term="Hive" scheme="http://blog.hming.org/tags/Hive/"/>
     
       <category term="Zookeeper" scheme="http://blog.hming.org/tags/Zookeeper/"/>
     
@@ -132,11 +161,11 @@
       <category term="大数据" scheme="http://blog.hming.org/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
+      <category term="Hive" scheme="http://blog.hming.org/tags/Hive/"/>
+    
       <category term="大数据" scheme="http://blog.hming.org/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
       <category term="CDH" scheme="http://blog.hming.org/tags/CDH/"/>
-    
-      <category term="Hive" scheme="http://blog.hming.org/tags/Hive/"/>
     
       <category term="乱码" scheme="http://blog.hming.org/tags/%E4%B9%B1%E7%A0%81/"/>
     
@@ -616,37 +645,6 @@
       <category term="Linux" scheme="http://blog.hming.org/tags/Linux/"/>
     
       <category term="命令行提示符" scheme="http://blog.hming.org/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%8F%90%E7%A4%BA%E7%AC%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker Alpine容器介绍</title>
-    <link href="http://blog.hming.org/2019/03/06/docker-alpine-rong-qi-jie-shao/"/>
-    <id>http://blog.hming.org/2019/03/06/docker-alpine-rong-qi-jie-shao/</id>
-    <published>2019-03-06T12:44:02.000Z</published>
-    <updated>2019-03-06T12:44:02.000Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;a href=&quot;http://www.voidcn.com/article/p-ulbbnkky-brh.html&quot; target=&quot;_blank&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="容器" scheme="http://blog.hming.org/categories/%E5%AE%B9%E5%99%A8/"/>
-    
-    
-      <category term="容器" scheme="http://blog.hming.org/tags/%E5%AE%B9%E5%99%A8/"/>
-    
-      <category term="Docker" scheme="http://blog.hming.org/tags/Docker/"/>
-    
-      <category term="Alpine" scheme="http://blog.hming.org/tags/Alpine/"/>
     
   </entry>
   
