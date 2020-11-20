@@ -29,11 +29,7 @@
       
         
         
-          &lt;p&gt;之前介绍过如何在CentOS7下离线安装安装MySQL/Mariadb，&lt;/p&gt;
-&lt;script&gt;
-        document.querySelectorAll(&#39;.github-emoji&#39;)
-          .forEach(el =&gt; {
-        
+          &lt;p&gt;参考文章：&lt;br&gt;&lt;a
         
       
     
@@ -373,7 +369,7 @@
     <link href="http://blog.hming.org/2019/08/16/centos7-chi-xian-an-zhuang-cdh/"/>
     <id>http://blog.hming.org/2019/08/16/centos7-chi-xian-an-zhuang-cdh/</id>
     <published>2019-08-16T07:03:41.000Z</published>
-    <updated>2020-03-11T03:04:27.000Z</updated>
+    <updated>2020-11-20T08:24:28.000Z</updated>
     
     <summary type="html">
     
