@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>CentOS7下配置MySQL主备</title>
+    <url>/2020/11/20/centos7-xia-pei-zhi-mysql-zhu-bei/</url>
+    <content><![CDATA[<p>之前介绍过如何在CentOS7下离线安装安装MySQL/Mariadb，</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>浅谈Java内存结构</title>
     <url>/2020/04/21/qian-tan-java-nei-cun-jie-gou/</url>
     <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>前不久部署的Hadoop环境中HDFS组件NameNode宕机，在经过排查后发现是因为HDFS中含有大量的小文件（多达250万个block），NameNode压力非常大，然而分配给NameNode的堆内存却只有1G<br><img src="http://47.106.179.244/%E6%B5%85%E8%B0%88Java%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/HDFS%E5%A0%86%E5%86%85%E5%AD%98%E9%85%8D%E7%BD%AE.png" alt=""><br>官方建议最小配置1G，每增加100万个block增加1G<br>参考官网：<a href="https://docs.cloudera.com/documentation/enterprise/6/release-notes/topics/rg_hardware_requirements.html#concept_fzz_dq4_gbb" target="_blank" rel="noopener">https://docs.cloudera.com/documentation/enterprise/6/release-notes/topics/rg_hardware_requirements.html#concept_fzz_dq4_gbb</a><br><img src="http://47.106.179.244/%E6%B5%85%E8%B0%88Java%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/Cloudera%E5%AE%98%E7%BD%91%E5%8F%82%E8%80%83HDFS%E9%85%8D%E7%BD%AE.png" alt=""><br>在将堆内存调至4G后NameNode正常运行。</p>
@@ -714,9 +745,9 @@ INFO  <span class="token keyword">:</span> OK
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>Hive</tag>
         <tag>大数据</tag>
         <tag>CDH</tag>
+        <tag>Hive</tag>
         <tag>Zookeeper</tag>
       </tags>
   </entry>
@@ -757,9 +788,9 @@ INFO  <span class="token keyword">:</span> OK
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>Hive</tag>
         <tag>大数据</tag>
         <tag>CDH</tag>
+        <tag>Hive</tag>
         <tag>乱码</tag>
       </tags>
   </entry>
@@ -1566,7 +1597,7 @@ join_buffer_size <span class="token operator">=</span> 8M
 innodb_file_per_table <span class="token operator">=</span> 1
 innodb_flush_log_at_trx_commit  <span class="token operator">=</span> 2
 innodb_log_buffer_size <span class="token operator">=</span> 64M
-innodb_buffer_pool_size <span class="token operator">=</span> 4G
+innodb_buffer_pool_size <span class="token operator">=</span> 4G <span class="token comment" spellcheck="true">#内存大小根据实际情况调整，该值超过物理内存会导致Mariadb无法启动</span>
 innodb_thread_concurrency <span class="token operator">=</span> 8
 innodb_flush_method <span class="token operator">=</span> O_DIRECT
 innodb_log_file_size <span class="token operator">=</span> 512M
@@ -1638,6 +1669,8 @@ max_connections <span class="token operator">=</span> 550
 <span class="token comment" spellcheck="true">#system and chown the specified folder to the mysql user.</span>
 <span class="token comment" spellcheck="true">#建议单独磁盘装binlog，并且修改目录拥有者为mysql</span>
 log_bin<span class="token operator">=</span>/var/lib/mysql/mysql_binary_log
+<span class="token comment" spellcheck="true">#日志超过3天自动过期</span>
+expire_logs_days <span class="token operator">=</span> 3
 
 <span class="token comment" spellcheck="true">#In later versions of MySQL, if you enable the binary log and do not set</span>
 <span class="token comment" spellcheck="true">#a server_id, MySQL will not start. The server_id must be unique within</span>
@@ -1655,7 +1688,7 @@ join_buffer_size <span class="token operator">=</span> 8M
 innodb_file_per_table <span class="token operator">=</span> 1
 innodb_flush_log_at_trx_commit  <span class="token operator">=</span> 2
 innodb_log_buffer_size <span class="token operator">=</span> 64M
-innodb_buffer_pool_size <span class="token operator">=</span> 4G
+innodb_buffer_pool_size <span class="token operator">=</span> 4G <span class="token comment" spellcheck="true">#内存大小根据实际情况调整，该值超过物理内存会导致MySQL无法启动</span>
 innodb_thread_concurrency <span class="token operator">=</span> 8
 innodb_flush_method <span class="token operator">=</span> O_DIRECT
 innodb_log_file_size <span class="token operator">=</span> 512M
@@ -1664,7 +1697,7 @@ innodb_log_file_size <span class="token operator">=</span> 512M
 log-error<span class="token operator">=</span>/var/log/mysqld.log
 pid-file<span class="token operator">=</span>/var/run/mysqld/mysqld.pid
 
-sql_mode<span class="token operator">=</span>STRICT_ALL_TABLES<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+sql_mode<span class="token operator">=</span>STRICT_ALL_TABLES<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h5 id="配置组件数据库"><a href="#配置组件数据库" class="headerlink" title="配置组件数据库"></a>配置组件数据库</h5><p>新建各组件数据库，为后续安装做准备（这里可以根据安装的组件进行选择创建，其中密码<code>'1234'</code>建议设置为自己的密码）</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">DATABASE</span> scm <span class="token keyword">DEFAULT</span> <span class="token keyword">CHARACTER SET</span> utf8 <span class="token keyword">DEFAULT</span> <span class="token keyword">COLLATE</span> utf8_general_ci<span class="token punctuation">;</span>
 <span class="token keyword">GRANT</span> <span class="token keyword">ALL</span> <span class="token keyword">ON</span> scm<span class="token punctuation">.</span><span class="token operator">*</span> <span class="token keyword">TO</span> <span class="token string">'scm'</span>@'<span class="token operator">%</span><span class="token string">' IDENTIFIED BY '</span><span class="token number">1234</span><span class="token string">';
@@ -1675,11 +1708,8 @@ GRANT ALL ON hue.* TO '</span>hue<span class="token string">'@'</span><span clas
 CREATE DATABASE metastore DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 GRANT ALL ON metastore.* TO '</span>metastore<span class="token string">'@'</span><span class="token operator">%</span><span class="token string">' IDENTIFIED BY '</span><span class="token number">1234</span><span class="token string">';
 
-CREATE DATABASE sentry DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
-GRANT ALL ON sentry.* TO '</span>sentry<span class="token string">'@'</span><span class="token operator">%</span><span class="token string">' IDENTIFIED BY '</span><span class="token number">1234</span><span class="token string">';
-
 CREATE DATABASE oozie DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
-GRANT ALL ON oozie.* TO '</span>oozie<span class="token string">'@'</span><span class="token operator">%</span><span class="token string">' IDENTIFIED BY '</span><span class="token number">1234</span>'<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+GRANT ALL ON oozie.* TO '</span>oozie<span class="token string">'@'</span><span class="token operator">%</span><span class="token string">' IDENTIFIED BY '</span><span class="token number">1234</span>'<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h5 id="配置连接jar包"><a href="#配置连接jar包" class="headerlink" title="配置连接jar包"></a>配置连接jar包</h5><p>上传mysql连接包到<code>/usr/share/java/</code>目录下（如果没有则创建一个），改名为：<code>mysql-connector-java.jar</code></p>
 <blockquote>
 <p><strong>注意：需要连接MySQL数据库的节点都需要上传连接包</strong></p>
@@ -3652,8 +3682,8 @@ max_reconnect_retry_delay<span class="token operator">=</span>30
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>Hive</tag>
         <tag>大数据</tag>
+        <tag>Hive</tag>
         <tag>LLAP</tag>
         <tag>Tez</tag>
       </tags>
@@ -4062,8 +4092,8 @@ main:
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>Hive</tag>
         <tag>大数据</tag>
+        <tag>Hive</tag>
         <tag>Spark</tag>
       </tags>
   </entry>
@@ -4105,9 +4135,98 @@ main:
       </tags>
   </entry>
   <entry>
-    <title>CentOS7下离线安装MySQL</title>
+    <title>CentOS7下离线安装MySQL/Mariadb</title>
     <url>/2018/12/08/centos7-xia-chi-xian-an-zhuang-mysql/</url>
-    <content><![CDATA[<h3 id="下载社区版离线安装包"><a href="#下载社区版离线安装包" class="headerlink" title="下载社区版离线安装包"></a>下载社区版离线安装包</h3><p>本文为<code>mysql-5.7.24-1.el7.x86_64.rpm-bundle.tar</code><br>下载路径：<a href="https://dev.mysql.com/downloads/mysql/5.7.html#downloads" target="_blank" rel="noopener">https://dev.mysql.com/downloads/mysql/5.7.html#downloads</a></p>
+    <content><![CDATA[<h2 id="安装Mariadb"><a href="#安装Mariadb" class="headerlink" title="安装Mariadb"></a>安装Mariadb</h2><h3 id="配置离线yum源"><a href="#配置离线yum源" class="headerlink" title="配置离线yum源"></a>配置离线yum源</h3><p>配置了离线yum源之后就可以直接用yum命令进行安装，非常方便。<br>参考：<a href="http://blog.hming.org/2019/03/29/linux-zhi-zuo-chi-xian-yum-yuan/">Linux制作离线yum源</a></p>
+<h3 id="安装Mariadb-1"><a href="#安装Mariadb-1" class="headerlink" title="安装Mariadb"></a>安装Mariadb</h3><p>直接用yum命令进行安装server</p>
+<pre class="line-numbers language-bash"><code class="language-bash">yum -y <span class="token function">install</span> mariadb-server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="修改配置文件（可选）"><a href="#修改配置文件（可选）" class="headerlink" title="修改配置文件（可选）"></a>修改配置文件（可选）</h3><p>修改配置文件<code>/etc/my.cnf</code>为以下内容</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>mysqld<span class="token punctuation">]</span>
+datadir<span class="token operator">=</span>/var/lib/mysql
+socket<span class="token operator">=</span>/var/lib/mysql/mysql.sock
+transaction-isolation <span class="token operator">=</span> READ-COMMITTED
+<span class="token comment" spellcheck="true"># Disabling symbolic-links is recommended to prevent assorted security risks;</span>
+<span class="token comment" spellcheck="true"># to do so, uncomment this line:</span>
+symbolic-links <span class="token operator">=</span> 0
+<span class="token comment" spellcheck="true"># Settings user and group are ignored when systemd is used.</span>
+<span class="token comment" spellcheck="true"># If you need to run mysqld under a different user or group,</span>
+<span class="token comment" spellcheck="true"># customize your systemd unit file for mariadb according to the</span>
+<span class="token comment" spellcheck="true"># instructions in http://fedoraproject.org/wiki/Systemd</span>
+
+key_buffer <span class="token operator">=</span> 16M
+key_buffer_size <span class="token operator">=</span> 32M
+max_allowed_packet <span class="token operator">=</span> 32M
+thread_stack <span class="token operator">=</span> 256K
+thread_cache_size <span class="token operator">=</span> 64
+query_cache_limit <span class="token operator">=</span> 8M
+query_cache_size <span class="token operator">=</span> 64M
+query_cache_type <span class="token operator">=</span> 1
+
+max_connections <span class="token operator">=</span> 550
+<span class="token comment" spellcheck="true">#expire_logs_days = 10</span>
+<span class="token comment" spellcheck="true">#max_binlog_size = 100M</span>
+
+<span class="token comment" spellcheck="true">#log_bin should be on a disk with enough free space.</span>
+<span class="token comment" spellcheck="true">#Replace '/var/lib/mysql/mysql_binary_log' with an appropriate path for your</span>
+<span class="token comment" spellcheck="true">#system and chown the specified folder to the mysql user.</span>
+<span class="token comment" spellcheck="true">#建议单独磁盘装binlog，并且修改目录拥有者为mysql</span>
+log_bin<span class="token operator">=</span>/var/lib/mysql/mysql_binary_log
+<span class="token comment" spellcheck="true">#日志超过3天自动过期</span>
+expire_logs_days <span class="token operator">=</span> 3
+
+<span class="token comment" spellcheck="true">#In later versions of MariaDB, if you enable the binary log and do not set</span>
+<span class="token comment" spellcheck="true">#a server_id, MariaDB will not start. The server_id must be unique within</span>
+<span class="token comment" spellcheck="true">#the replicating group.</span>
+server_id<span class="token operator">=</span>1
+
+binlog_format <span class="token operator">=</span> mixed
+
+read_buffer_size <span class="token operator">=</span> 2M
+read_rnd_buffer_size <span class="token operator">=</span> 16M
+sort_buffer_size <span class="token operator">=</span> 8M
+join_buffer_size <span class="token operator">=</span> 8M
+
+<span class="token comment" spellcheck="true"># InnoDB settings</span>
+innodb_file_per_table <span class="token operator">=</span> 1
+innodb_flush_log_at_trx_commit  <span class="token operator">=</span> 2
+innodb_log_buffer_size <span class="token operator">=</span> 64M
+innodb_buffer_pool_size <span class="token operator">=</span> 4G <span class="token comment" spellcheck="true">#内存大小根据实际情况调整，该值超过物理内存会导致Mariadb无法启动</span>
+innodb_thread_concurrency <span class="token operator">=</span> 8
+innodb_flush_method <span class="token operator">=</span> O_DIRECT
+innodb_log_file_size <span class="token operator">=</span> 512M
+
+<span class="token punctuation">[</span>mysqld_safe<span class="token punctuation">]</span>
+log-error<span class="token operator">=</span>/var/log/mariadb/mariadb.log
+pid-file<span class="token operator">=</span>/var/run/mariadb/mariadb.pid
+
+<span class="token comment" spellcheck="true">#</span>
+<span class="token comment" spellcheck="true"># include all files from the config directory</span>
+<span class="token comment" spellcheck="true">#</span>
+<span class="token operator">!</span>includedir /etc/my.cnf.d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="启动Mariadb，并加入开机自启动"><a href="#启动Mariadb，并加入开机自启动" class="headerlink" title="启动Mariadb，并加入开机自启动"></a>启动Mariadb，并加入开机自启动</h3><pre class="line-numbers language-bash"><code class="language-bash">systemctl start mariadb
+systemctl <span class="token function">enable</span> mariadb<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="初始化Mariadb"><a href="#初始化Mariadb" class="headerlink" title="初始化Mariadb"></a>初始化Mariadb</h3><pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@cdh cdh6.3.0<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># mysql_secure_installation</span>
+<span class="token punctuation">..</span>.
+Enter current password <span class="token keyword">for</span> root <span class="token punctuation">(</span>enter <span class="token keyword">for</span> none<span class="token punctuation">)</span>: <span class="token comment" spellcheck="true">#第一次直接回车</span>
+OK, successfully used password, moving on<span class="token punctuation">..</span>.
+<span class="token punctuation">..</span>.
+Set root password? <span class="token punctuation">[</span>Y/n<span class="token punctuation">]</span> Y
+New password: <span class="token comment" spellcheck="true"># 设置root密码</span>
+Re-enter new password: 
+<span class="token punctuation">..</span>.
+Remove anonymous users? <span class="token punctuation">[</span>Y/n<span class="token punctuation">]</span> Y
+<span class="token punctuation">..</span>.
+Disallow root login remotely? <span class="token punctuation">[</span>Y/n<span class="token punctuation">]</span> N
+<span class="token punctuation">..</span>.
+Remove <span class="token function">test</span> database and access to it <span class="token punctuation">[</span>Y/n<span class="token punctuation">]</span> Y
+<span class="token punctuation">..</span>.
+Reload privilege tables now? <span class="token punctuation">[</span>Y/n<span class="token punctuation">]</span> Y
+<span class="token punctuation">..</span>.
+All done<span class="token operator">!</span>  If you've completed all of the above steps, your MariaDB
+installation should now be secure.
+
+Thanks <span class="token keyword">for</span> using MariaDB<span class="token operator">!</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h2><h3 id="下载社区版离线安装包"><a href="#下载社区版离线安装包" class="headerlink" title="下载社区版离线安装包"></a>下载社区版离线安装包</h3><p>本文为<code>mysql-5.7.24-1.el7.x86_64.rpm-bundle.tar</code><br>下载路径：<a href="https://dev.mysql.com/downloads/mysql/5.7.html#downloads" target="_blank" rel="noopener">https://dev.mysql.com/downloads/mysql/5.7.html#downloads</a></p>
 <ol>
 <li>选择适合CentOS的版本<br><img src="http://47.106.179.244/centos7%E4%B8%8B%E5%AE%89%E8%A3%85mysql/%E4%B8%8B%E8%BD%BD%E9%A1%B5%E9%9D%A21.png" alt="下载页面1"></li>
 <li>跳过登录直接下载<br><img src="http://47.106.179.244/centos7%E4%B8%8B%E5%AE%89%E8%A3%85mysql/%E4%B8%8B%E8%BD%BD%E9%A1%B5%E9%9D%A22.png" alt="下载页面2"></li>
@@ -4187,6 +4306,60 @@ mysql-community-server-5.7.24-1.el7.x86_64.rpm<span aria-hidden="true" class="li
 2018-12-08T07:53:54.389442Z 0 <span class="token punctuation">[</span>Warning<span class="token punctuation">]</span> Gtid table is not ready to be used. Table <span class="token string">'mysql.gtid_executed'</span> cannot be opened.
 2018-12-08T07:53:54.390177Z 1 <span class="token punctuation">[</span>Note<span class="token punctuation">]</span> A temporary password is generated <span class="token keyword">for</span> root@localhost: qHQHahCw<span class="token punctuation">(</span>7n<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>最后一串随机字符串为初始密码，本文中为<code>qHQHahCw(7n)</code></p>
+<h3 id="修改配置文件（可选）-1"><a href="#修改配置文件（可选）-1" class="headerlink" title="修改配置文件（可选）"></a>修改配置文件（可选）</h3><pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>mysqld<span class="token punctuation">]</span>
+datadir<span class="token operator">=</span>/var/lib/mysql
+socket<span class="token operator">=</span>/var/lib/mysql/mysql.sock
+transaction-isolation <span class="token operator">=</span> READ-COMMITTED
+<span class="token comment" spellcheck="true"># Disabling symbolic-links is recommended to prevent assorted security risks;</span>
+<span class="token comment" spellcheck="true"># to do so, uncomment this line:</span>
+symbolic-links <span class="token operator">=</span> 0
+
+key_buffer_size <span class="token operator">=</span> 32M
+max_allowed_packet <span class="token operator">=</span> 32M
+thread_stack <span class="token operator">=</span> 256K
+thread_cache_size <span class="token operator">=</span> 64
+query_cache_limit <span class="token operator">=</span> 8M
+query_cache_size <span class="token operator">=</span> 64M
+query_cache_type <span class="token operator">=</span> 1
+
+max_connections <span class="token operator">=</span> 550
+<span class="token comment" spellcheck="true">#expire_logs_days = 10</span>
+<span class="token comment" spellcheck="true">#max_binlog_size = 100M</span>
+
+<span class="token comment" spellcheck="true">#log_bin should be on a disk with enough free space.</span>
+<span class="token comment" spellcheck="true">#Replace '/var/lib/mysql/mysql_binary_log' with an appropriate path for your</span>
+<span class="token comment" spellcheck="true">#system and chown the specified folder to the mysql user.</span>
+<span class="token comment" spellcheck="true">#建议单独磁盘装binlog，并且修改目录拥有者为mysql</span>
+log_bin<span class="token operator">=</span>/var/lib/mysql/mysql_binary_log
+<span class="token comment" spellcheck="true">#日志超过3天自动过期</span>
+expire_logs_days <span class="token operator">=</span> 3
+
+<span class="token comment" spellcheck="true">#In later versions of MySQL, if you enable the binary log and do not set</span>
+<span class="token comment" spellcheck="true">#a server_id, MySQL will not start. The server_id must be unique within</span>
+<span class="token comment" spellcheck="true">#the replicating group.</span>
+server_id<span class="token operator">=</span>1
+
+binlog_format <span class="token operator">=</span> mixed
+
+read_buffer_size <span class="token operator">=</span> 2M
+read_rnd_buffer_size <span class="token operator">=</span> 16M
+sort_buffer_size <span class="token operator">=</span> 8M
+join_buffer_size <span class="token operator">=</span> 8M
+
+<span class="token comment" spellcheck="true"># InnoDB settings</span>
+innodb_file_per_table <span class="token operator">=</span> 1
+innodb_flush_log_at_trx_commit  <span class="token operator">=</span> 2
+innodb_log_buffer_size <span class="token operator">=</span> 64M
+innodb_buffer_pool_size <span class="token operator">=</span> 4G <span class="token comment" spellcheck="true">#内存大小根据实际情况调整，该值超过物理内存会导致MySQL无法启动</span>
+innodb_thread_concurrency <span class="token operator">=</span> 8
+innodb_flush_method <span class="token operator">=</span> O_DIRECT
+innodb_log_file_size <span class="token operator">=</span> 512M
+
+<span class="token punctuation">[</span>mysqld_safe<span class="token punctuation">]</span>
+log-error<span class="token operator">=</span>/var/log/mysqld.log
+pid-file<span class="token operator">=</span>/var/run/mysqld/mysqld.pid
+
+sql_mode<span class="token operator">=</span>STRICT_ALL_TABLES<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="修改用户及用户组，启动mysql数据库"><a href="#修改用户及用户组，启动mysql数据库" class="headerlink" title="修改用户及用户组，启动mysql数据库"></a>修改用户及用户组，启动mysql数据库</h3><p>修改mysql数据库目录的所属用户及其所属组，然后启动mysql数据库</p>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@hadoopmaster mysql<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># chown mysql:mysql /var/lib/mysql -R</span>
 <span class="token punctuation">[</span>root@hadoopmaster mysql<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># systemctl start mysqld.service</span>
@@ -4238,7 +4411,7 @@ mysql<span class="token operator">></span> show databases<span class="token punc
 <span class="token operator">|</span> sys                <span class="token operator">|</span>
 +--------------------+
 4 rows <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span>0.00 sec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="远程登录授权"><a href="#远程登录授权" class="headerlink" title="远程登录授权"></a>远程登录授权</h3><p>命令为：<br><code>grant all privileges on *.* to 'root'@'%' identified by '1234' with grant option;</code><br><code>flush privileges;</code></p>
+<h2 id="远程登录授权"><a href="#远程登录授权" class="headerlink" title="远程登录授权"></a>远程登录授权</h2><p>命令为：<br><code>grant all privileges on *.* to 'root'@'%' identified by '1234' with grant option;</code><br><code>flush privileges;</code></p>
 <blockquote>
 <p><code>*.*</code> 表示授权任何库任何表，如果想只授权test库的user表可以写为：<code>test.user</code><br><code>'root'@'%'</code> 其中root表示以root用户授权，<code>@</code>为连接符，<code>%</code>表示匹配所有的主机，如果想单独给某主机授权，可以将<code>%</code>替换为需要授权的主机<code>ip地址</code><br><code>'1234'</code> 表示授权访问的密码，可以自行设置密码<br>设置授权后需要用<code>flush privileges</code>命令刷新一下</p>
 </blockquote>
@@ -4271,8 +4444,9 @@ Query OK, 0 rows affected <span class="token punctuation">(</span>0.00 sec<span 
         <category>数据库</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>MySQL</tag>
+        <tag>Linux</tag>
+        <tag>Mariadb</tag>
       </tags>
   </entry>
   <entry>
@@ -4444,8 +4618,8 @@ From <span class="token function">source</span> with checksum 9f2d17b212f3a05297
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>Hive</tag>
         <tag>大数据</tag>
+        <tag>Hive</tag>
         <tag>数据仓库</tag>
       </tags>
   </entry>
@@ -4747,8 +4921,8 @@ EXPOSE 80<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
         <category>大数据</category>
       </categories>
       <tags>
-        <tag>Hive</tag>
         <tag>大数据</tag>
+        <tag>Hive</tag>
         <tag>Hadoop</tag>
       </tags>
   </entry>
@@ -6858,8 +7032,8 @@ HOSTNAME=hadoop001</code></pre><p>有需要就可以修改主机名。<br>配置
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>IP</tag>
         <tag>Linux</tag>
+        <tag>IP</tag>
         <tag>虚拟机</tag>
         <tag>VMware</tag>
       </tags>

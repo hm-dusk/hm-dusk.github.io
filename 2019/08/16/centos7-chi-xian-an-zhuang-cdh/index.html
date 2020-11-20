@@ -978,7 +978,7 @@ join_buffer_size <span class="token operator">=</span> 8M
 innodb_file_per_table <span class="token operator">=</span> 1
 innodb_flush_log_at_trx_commit  <span class="token operator">=</span> 2
 innodb_log_buffer_size <span class="token operator">=</span> 64M
-innodb_buffer_pool_size <span class="token operator">=</span> 4G
+innodb_buffer_pool_size <span class="token operator">=</span> 4G <span class="token comment" spellcheck="true">#内存大小根据实际情况调整，该值超过物理内存会导致Mariadb无法启动</span>
 innodb_thread_concurrency <span class="token operator">=</span> 8
 innodb_flush_method <span class="token operator">=</span> O_DIRECT
 innodb_log_file_size <span class="token operator">=</span> 512M
@@ -1050,6 +1050,8 @@ max_connections <span class="token operator">=</span> 550
 <span class="token comment" spellcheck="true">#system and chown the specified folder to the mysql user.</span>
 <span class="token comment" spellcheck="true">#建议单独磁盘装binlog，并且修改目录拥有者为mysql</span>
 log_bin<span class="token operator">=</span>/var/lib/mysql/mysql_binary_log
+<span class="token comment" spellcheck="true">#日志超过3天自动过期</span>
+expire_logs_days <span class="token operator">=</span> 3
 
 <span class="token comment" spellcheck="true">#In later versions of MySQL, if you enable the binary log and do not set</span>
 <span class="token comment" spellcheck="true">#a server_id, MySQL will not start. The server_id must be unique within</span>
@@ -1067,7 +1069,7 @@ join_buffer_size <span class="token operator">=</span> 8M
 innodb_file_per_table <span class="token operator">=</span> 1
 innodb_flush_log_at_trx_commit  <span class="token operator">=</span> 2
 innodb_log_buffer_size <span class="token operator">=</span> 64M
-innodb_buffer_pool_size <span class="token operator">=</span> 4G
+innodb_buffer_pool_size <span class="token operator">=</span> 4G <span class="token comment" spellcheck="true">#内存大小根据实际情况调整，该值超过物理内存会导致MySQL无法启动</span>
 innodb_thread_concurrency <span class="token operator">=</span> 8
 innodb_flush_method <span class="token operator">=</span> O_DIRECT
 innodb_log_file_size <span class="token operator">=</span> 512M
@@ -1076,7 +1078,7 @@ innodb_log_file_size <span class="token operator">=</span> 512M
 log-error<span class="token operator">=</span>/var/log/mysqld.log
 pid-file<span class="token operator">=</span>/var/run/mysqld/mysqld.pid
 
-sql_mode<span class="token operator">=</span>STRICT_ALL_TABLES<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+sql_mode<span class="token operator">=</span>STRICT_ALL_TABLES<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h5 id="配置组件数据库"><a href="#配置组件数据库" class="headerlink" title="配置组件数据库"></a>配置组件数据库</h5><p>新建各组件数据库，为后续安装做准备（这里可以根据安装的组件进行选择创建，其中密码<code>'1234'</code>建议设置为自己的密码）</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">DATABASE</span> scm <span class="token keyword">DEFAULT</span> <span class="token keyword">CHARACTER SET</span> utf8 <span class="token keyword">DEFAULT</span> <span class="token keyword">COLLATE</span> utf8_general_ci<span class="token punctuation">;</span>
 <span class="token keyword">GRANT</span> <span class="token keyword">ALL</span> <span class="token keyword">ON</span> scm<span class="token punctuation">.</span><span class="token operator">*</span> <span class="token keyword">TO</span> <span class="token string">'scm'</span>@'<span class="token operator">%</span><span class="token string">' IDENTIFIED BY '</span><span class="token number">1234</span><span class="token string">';
@@ -1087,11 +1089,8 @@ GRANT ALL ON hue.* TO '</span>hue<span class="token string">'@'</span><span clas
 CREATE DATABASE metastore DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 GRANT ALL ON metastore.* TO '</span>metastore<span class="token string">'@'</span><span class="token operator">%</span><span class="token string">' IDENTIFIED BY '</span><span class="token number">1234</span><span class="token string">';
 
-CREATE DATABASE sentry DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
-GRANT ALL ON sentry.* TO '</span>sentry<span class="token string">'@'</span><span class="token operator">%</span><span class="token string">' IDENTIFIED BY '</span><span class="token number">1234</span><span class="token string">';
-
 CREATE DATABASE oozie DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
-GRANT ALL ON oozie.* TO '</span>oozie<span class="token string">'@'</span><span class="token operator">%</span><span class="token string">' IDENTIFIED BY '</span><span class="token number">1234</span>'<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+GRANT ALL ON oozie.* TO '</span>oozie<span class="token string">'@'</span><span class="token operator">%</span><span class="token string">' IDENTIFIED BY '</span><span class="token number">1234</span>'<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h5 id="配置连接jar包"><a href="#配置连接jar包" class="headerlink" title="配置连接jar包"></a>配置连接jar包</h5><p>上传mysql连接包到<code>/usr/share/java/</code>目录下（如果没有则创建一个），改名为：<code>mysql-connector-java.jar</code></p>
 <blockquote>
 <p><strong>注意：需要连接MySQL数据库的节点都需要上传连接包</strong></p>
@@ -1645,7 +1644,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">81k</span>&nbsp;字
+                class="white-color">81.8k</span>&nbsp;字
             
             
             
