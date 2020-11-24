@@ -514,7 +514,7 @@
 <h3 id="SandBox是什么"><a href="#SandBox是什么" class="headerlink" title="SandBox是什么"></a>SandBox是什么</h3><blockquote>
 <p>The Sandbox is a straightforward, pre-configured, learning environment that contains the latest developments from Apache Hadoop, specifically the Hortonworks Data Platform (HDP). The Sandbox comes packaged in a virtual environment that can run in the cloud or on your personal machine. The Sandbox allows you to learn and explore HDP on your own.</p>
 </blockquote>
-<p>SandBox是Hortonworks提供的单机版HDP或HDF环境，主要用于测试和学习使用，对于没有服务器集群又想使用HDP/HDF的情况，SandBox是不二之选。<br>另外，SandBox里面内置了<code>DAS（Data Analytics Studio）</code>，非SandBox版本是没有这个的，需要购买Hortonworks服务才的获取到安装包。<br>SandBox提供三种安装方式：<code>VirtualBox虚拟机</code>、<code>VMware虚拟机</code>、<code>Docker容器</code>。<br>本文主要针对讲SandBox-HDP，HDF安装使用和HDP大致相同。<br>安装教程参考：<br><a href="http://blog.hming.org/2019/04/02/安装SandBox-HDP（Docker版）">安装SandBox HDP（Docker版）</a><br><a href="http://blog.hming.org/2019/04/02/安装SandBox-HDP（VMware版）">安装SandBox HDP（VMware版）</a></p>
+<p>SandBox是Hortonworks提供的单机版HDP或HDF环境，主要用于测试和学习使用，对于没有服务器集群又想使用HDP/HDF的情况，SandBox是不二之选。<br>另外，SandBox里面内置了<code>DAS（Data Analytics Studio）</code>，非SandBox版本是没有这个的，需要购买Hortonworks服务才的获取到安装包。<br>SandBox提供三种安装方式：<code>VirtualBox虚拟机</code>、<code>VMware虚拟机</code>、<code>Docker容器</code>。<br>本文主要针对讲SandBox-HDP，HDF安装使用和HDP大致相同。<br>安装教程参考：<br><a href="http://blog.hming.org/2019/04/02/an-zhuang-sandbox-hdp-docker-ban/">安装SandBox HDP（Docker版）</a><br><a href="http://blog.hming.org/2019/04/02/an-zhuang-sandbox-hdp-vmware-ban/">安装SandBox HDP（VMware版）</a></p>
 <h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><p>一个运行中的SandBox-HDP 3.0.1</p>
 <h3 id="web访问"><a href="#web访问" class="headerlink" title="web访问"></a>web访问</h3><p>1080端口为sandbox容器web服务端口，可以通过浏览器访问该端口，得到以下界面：<br><img src="http://47.106.179.244/sandbox-hdp%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/sandbox%E9%A1%B5%E9%9D%A2.png" alt="sandbox页面"><br>左侧launch dashboard直接进入ambari管理界面，登录admin账号需要进入容器修改ambari管理员密码<br>右侧则是一些链接，包括ambari管理地址、Ranger地址、DAS地址等</p>
 <p>4200端口则提供了一个浏览器访问命令行的接口：<br><img src="http://47.106.179.244/sandbox-hdp%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AE%BF%E9%97%AEhdp%E5%AE%B9%E5%99%A8.png" alt="浏览器访问hdp容器"><br>使用<code>root</code>登录，默认密码为<code>hadoop</code>，第一次登录会提示修改root密码，对密码强度会有要求</p>
@@ -538,7 +538,7 @@ Last login: Thu Apr  4 08:22:27 2019 from 172.18.0.3
 </thead>
 <tbody><tr>
 <td align="center">admin</td>
-<td align="center">参考<a href="http://blog.hming.org/2019/04/04/SandBox-HDP使用详解/#重置Ambari管理员密码">重置管理员密码</a></td>
+<td align="center">参考<a href="http://blog.hming.org/2019/04/04/sandbox-hdp-shi-yong-xiang-jie/#toc-heading-6">重置管理员密码</a></td>
 </tr>
 <tr>
 <td align="center">maria_dev</td>
@@ -617,7 +617,7 @@ Type <span class="token string">"help"</span> <span class="token keyword">for</s
 
 ambari<span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">select</span> version,config_id,type_name,config_data from clusterconfig where type_name<span class="token operator">=</span><span class="token string">'hive-site'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>在结果里查找内容：javax.jdo.option.ConnectionPassword</p>
-<h3 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h3><h4 id="远程向HDFS上传文件失败问题"><a href="#远程向HDFS上传文件失败问题" class="headerlink" title="远程向HDFS上传文件失败问题"></a>远程向HDFS上传文件失败问题</h4><p>参照<a href="http://blog.hming.org/2019/04/16/SandBox-HDFS%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98/">SandBox HDFS上传文件失败问题</a></p>
+<h3 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h3><h4 id="远程向HDFS上传文件失败问题"><a href="#远程向HDFS上传文件失败问题" class="headerlink" title="远程向HDFS上传文件失败问题"></a>远程向HDFS上传文件失败问题</h4><p>参照<a href="http://blog.hming.org/2019/04/16/sandbox-hdfs-shang-chuan-wen-jian-shi-bai-wen-ti/">SandBox HDFS上传文件失败问题</a></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
