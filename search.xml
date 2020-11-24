@@ -2210,6 +2210,101 @@ tcp6       0      0 :::6002                 :::*                    LISTEN      
 <p>目前Apache社区Hadoop最新版本：3.2.0</p>
 <p>目前CDH最新版支持Hadoop版本：3.0.0</p>
 <p>目前HDP最新版支持Hadoop版本：3.1.1</p>
+<h4 id="支持主流组件版本对比"><a href="#支持主流组件版本对比" class="headerlink" title="支持主流组件版本对比"></a>支持主流组件版本对比</h4><p>参考官网：<br><a href="https://docs.cloudera.com/HDPDocuments/HDP3/HDP-3.1.5/release-notes/content/comp_versions.html" target="_blank" rel="noopener">HDP3.1.5组件版本</a><br><a href="https://docs.cloudera.com/documentation/enterprise/6/release-notes/topics/rg_cdh_63_packaging.html#concept_rtm_b5p_m3b" target="_blank" rel="noopener">CDH6.3.0组件版本</a></p>
+<table>
+<thead>
+<tr>
+<th align="left">组件</th>
+<th align="left">CDH 6.3.0</th>
+<th align="left">HDP 3.1.5</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Hadoop</strong></td>
+<td align="left">3.0.0</td>
+<td align="left">3.1.1🔺</td>
+</tr>
+<tr>
+<td align="left"><strong>ZooKeeper</strong></td>
+<td align="left">3.4.5</td>
+<td align="left">3.4.6🔺</td>
+</tr>
+<tr>
+<td align="left"><strong>Hive</strong></td>
+<td align="left">2.1.1</td>
+<td align="left">3.1.0🔺</td>
+</tr>
+<tr>
+<td align="left"><strong>HBase</strong></td>
+<td align="left">2.1.0</td>
+<td align="left">2.1.6🔺</td>
+</tr>
+<tr>
+<td align="left"><strong>Kafka</strong></td>
+<td align="left">2.2.1🔺</td>
+<td align="left">2.0.0</td>
+</tr>
+<tr>
+<td align="left"><strong>Oozie</strong></td>
+<td align="left">5.1.0🔺</td>
+<td align="left">4.3.1</td>
+</tr>
+<tr>
+<td align="left"><strong>Spark</strong></td>
+<td align="left">2.4.0🔺</td>
+<td align="left">2.3.2</td>
+</tr>
+<tr>
+<td align="left">Impala</td>
+<td align="left">3.2.0</td>
+<td align="left">\</td>
+</tr>
+<tr>
+<td align="left">Sentry</td>
+<td align="left">2.1.0</td>
+<td align="left">\</td>
+</tr>
+<tr>
+<td align="left">Ranger</td>
+<td align="left">\</td>
+<td align="left">1.2.0</td>
+</tr>
+<tr>
+<td align="left">Livy</td>
+<td align="left">\</td>
+<td align="left">0.5.0</td>
+</tr>
+<tr>
+<td align="left">TEZ</td>
+<td align="left">\</td>
+<td align="left">0.9.1</td>
+</tr>
+<tr>
+<td align="left">Zeppelin</td>
+<td align="left">\</td>
+<td align="left">0.8.0</td>
+</tr>
+<tr>
+<td align="left">Phoenix</td>
+<td align="left">\</td>
+<td align="left">5.0.0</td>
+</tr>
+<tr>
+<td align="left">Knox</td>
+<td align="left">\</td>
+<td align="left">1.0.0</td>
+</tr>
+<tr>
+<td align="left">Atlas</td>
+<td align="left">\</td>
+<td align="left">2.0.0</td>
+</tr>
+<tr>
+<td align="left">Druid</td>
+<td align="left">\</td>
+<td align="left">0.12.1 (incubating)</td>
+</tr>
+</tbody></table>
 <h4 id="架构对比"><a href="#架构对比" class="headerlink" title="架构对比"></a>架构对比</h4><h5 id="CDH"><a href="#CDH" class="headerlink" title="CDH"></a>CDH</h5><p><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/CDH%E6%9E%B6%E6%9E%84.png" alt=""></p>
 <h5 id="HDP"><a href="#HDP" class="headerlink" title="HDP"></a>HDP</h5><p><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/HDP%E6%9E%B6%E6%9E%84.png" alt=""></p>
 <h4 id="原装支持组件对比"><a href="#原装支持组件对比" class="headerlink" title="原装支持组件对比"></a>原装支持组件对比</h4><p><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/%E7%BB%84%E4%BB%B6%E5%AF%B9%E6%AF%94.png" alt=""></p>
@@ -2244,6 +2339,7 @@ tcp6       0      0 :::6002                 :::*                    LISTEN      
 <li>组件服务的快速链接在tab页上<br><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/CDH%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A23.png" alt=""></li>
 <li>cm服务可以配置高可用<br>参考官网：<a href="https://www.cloudera.com/documentation/enterprise/6/6.2/topics/admin_cm_ha_server.html" target="_blank" rel="noopener">Installing and Configuring Cloudera Manager Server for High Availability</a></li>
 <li>cm支持数据加密，无论是静态加密或保护数据传输，但是可惜的是免费版cm支持很有限。另外加密前官方强烈建议安装Kerberos<br>参考官网：<a href="https://www.cloudera.com/documentation/enterprise/6/6.2/topics/sg_enc_overview.html" target="_blank" rel="noopener">Encryption Overview</a><br><img src="http://47.106.179.244/HDP%E4%B8%8ECDH%E5%AF%B9%E6%AF%94/CDH%E5%8A%A0%E5%AF%86%E9%85%8D%E7%BD%AE%E9%A1%B5%E9%9D%A2.png" alt=""></li>
+<li>Cloudera Manager本身支持高可用，但是需要其他服务的配合。<br> 参考：<a href="https://docs.cloudera.com/documentation/enterprise/latest/topics/admin_cm_ha_overview.html" target="_blank" rel="noopener">Configuring Cloudera Manager for High Availability With a Load Balancer</a></li>
 </ol>
 <h3 id="CDH版本说明"><a href="#CDH版本说明" class="headerlink" title="CDH版本说明"></a>CDH版本说明</h3><h4 id="CDH6-X组件版本对应"><a href="#CDH6-X组件版本对应" class="headerlink" title="CDH6.X组件版本对应"></a>CDH6.X组件版本对应</h4><p><a href="https://www.cloudera.com/documentation/enterprise/6/release-notes/topics/rg_cdh_6_packaging.html" target="_blank" rel="noopener">https://www.cloudera.com/documentation/enterprise/6/release-notes/topics/rg_cdh_6_packaging.html</a></p>
 <h4 id="CDH5-X组件版本对应"><a href="#CDH5-X组件版本对应" class="headerlink" title="CDH5.X组件版本对应"></a>CDH5.X组件版本对应</h4><p><a href="https://www.cloudera.com/documentation/enterprise/release-notes/topics/cdh_vd_cdh_package_tarball.html" target="_blank" rel="noopener">https://www.cloudera.com/documentation/enterprise/release-notes/topics/cdh_vd_cdh_package_tarball.html</a></p>
